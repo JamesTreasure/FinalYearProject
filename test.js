@@ -14,72 +14,58 @@ $(document).ready(function () {
 
     resizeCanvas();
 
-    var circles = [];
+    var circles = new Array();
     var drag = false;
-    var c = {};
-    var circleMade = false;
 
     var Circle = function (x, y, radius) {
-        this.x = x;
-        this.y = y;
+        this.x = x; //Centre of the circle
+        this.y = y; //Centre of the circle
         this.radius = radius;
     };
 
-    function printMousePos(event) {
-        console.log("clientX: " + event.clientX + " - clientY: " + event.clientY);
+    function pointInCircle(x, y, cx, cy, radius) {
+        var distancesquared = (x - cx) * (x - cx) + (y - cy) * (y - cy);
+        return distancesquared <= radius * radius;
     }
 
 
+    $(window).on("contextmenu", function(e){
+        var isInCircle = pointInCircle(e.pageX, e.pageY,circles[0].x, circles[0].radius, circles[0].radius);
+        console.log(isInCircle);
+    });
+
     $(window).mousedown(function (e) {
-        var canvasOffset = canvas.offset();
-        // c.startX = e.pageX - canvasOffset.left;
-        // c.startY = e.pageY - canvasOffset.top;
-        //
-        // c.X = c.startX;
-        // c.Y = c.startY;
-        circles.push(new Circle(e.pageX, e.pageY, 100))
+        circles.push(new Circle(e.pageX, e.pageY, 1));
         drag = true;
     })
 
     $(window).mouseup(function (e) {
         drag = false;
-        circles.push(new Circle(c.X, c.Y, c.radius))
-        circleMade = true;
-        c = {};
     })
+
+    $(window).dblclick(function (e) {
+        console.log("Double Click!")
+    })
+
 
     $(window).mousemove(function (e) {
         if (drag) {
-            var canvasOffset = canvas.offset();
-            console.log(circles[circles.length-1])
-            console.log(circles[circles.length-1].x)
-            console.log(circles[circles.length-1].y)
-
-            if(circles[circles.length - 1].radius > 0){
-                circles[circles.length - 1].radius--;
+            if (circles[circles.length - 1].radius > 0) {
+                circles[circles.length - 1].radius = Math.sqrt(Math.pow((circles[circles.length - 1].x - e.pageX), 2) + Math.pow((circles[circles.length - 1].y - e.pageY), 2));
             }
-
-            // c.X = e.pageX - canvasOffset.left;
-            // c.Y = e.pageY - canvasOffset.top;
-            // if (!circleMade) {
-            //     c.radius = Math.sqrt(Math.pow((c.X - c.startX), 2) + Math.pow((c.Y - c.startY), 2));
-            // }
         }
     })
 
     function animate() {
-
         // Clear
         context.clearRect(0, 0, canvasWidth, canvasHeight);
 
-
-        console.log(circles.length)
         for (var i = 0; i < circles.length; i++) {
 
             var tempCircle = circles[i];
 
             context.beginPath();
-            console.log("Circle radius = " + tempCircle.radius)
+
             context.arc(tempCircle.x, tempCircle.y, tempCircle.radius, 0, Math.PI * 2, false);
             context.fillStyle = 'green';
             context.fill();
