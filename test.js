@@ -14,6 +14,25 @@ $(document).ready(function () {
 
     resizeCanvas();
 
+    var drawCircle = false
+    var moveCircle = false;
+
+    var dragOffsetX, dragOffsetY;
+    var dragId = -1;
+
+
+    var drawCircleButton = $("#drawCircle");
+    var moveCircleButton = $("#moveCircle");
+    drawCircleButton.click(function () {
+        drawCircle = true;
+        moveCircle = false;
+    });
+
+    moveCircleButton.click(function () {
+        drawCircle = false;
+        moveCircle = true;
+    });
+
     var circles = new Array();
     var drag = false;
 
@@ -23,35 +42,55 @@ $(document).ready(function () {
         this.radius = radius;
     };
 
-    function pointInCircle(x, y, cx, cy, radius) {
-        var distancesquared = (x - cx) * (x - cx) + (y - cy) * (y - cy);
+    function pointInCircle(mouseX, mouseY, circleX, circleY, radius) {
+        var distancesquared = (mouseX - circleX) * (mouseX - circleX) + (mouseY - circleY) * (mouseY - circleY);
         return distancesquared <= radius * radius;
     }
 
-
-    $(window).on("contextmenu", function(e){
-        var isInCircle = pointInCircle(e.pageX, e.pageY,circles[0].x, circles[0].radius, circles[0].radius);
-        console.log(isInCircle);
-    });
-
     $(window).mousedown(function (e) {
-        circles.push(new Circle(e.pageX, e.pageY, 1));
-        drag = true;
+        if (drawCircle) {
+            circles.push(new Circle(e.pageX, e.pageY, 1));
+            drag = true;
+        }
+
+        if(moveCircle){
+            for (var i = 0; i < circles.length; i++) {
+                dx = e.pageX - circles[i].x;
+                dy = e.pageY - circles[i].y;
+                var tempCircle = circles[i];
+                var inCircle = pointInCircle(e.pageX, e.pageY, tempCircle.x, tempCircle.y, tempCircle.radius)
+                console.log(inCircle);
+                if(inCircle){
+                    dragId = i;
+                    dragOffsetX = dx; //store offsets so item doesn't 'jump'
+                    dragOffsetY = dy;
+                    drag = true;
+                    return;
+                }
+            }
+        }
     })
 
     $(window).mouseup(function (e) {
         drag = false;
+        dragIdx = -1;
     })
-
-    $(window).dblclick(function (e) {
-        console.log("Double Click!")
-    })
-
 
     $(window).mousemove(function (e) {
-        if (drag) {
-            if (circles[circles.length - 1].radius > 0) {
-                circles[circles.length - 1].radius = Math.sqrt(Math.pow((circles[circles.length - 1].x - e.pageX), 2) + Math.pow((circles[circles.length - 1].y - e.pageY), 2));
+
+        if (drawCircle) {
+            if (drag) {
+                if (circles[circles.length - 1].radius > 0) {
+                    circles[circles.length - 1].radius = Math.sqrt(Math.pow((circles[circles.length - 1].x - e.pageX), 2) + Math.pow((circles[circles.length - 1].y - e.pageY), 2));
+                }
+            }
+        }
+
+        if(moveCircle){
+            if(drag){
+                console.log("Got here");
+                circles[dragId].x = e.pageX - dragOffsetX;
+                circles[dragId].y = e.pageY - dragOffsetY;
             }
         }
     })
@@ -67,8 +106,14 @@ $(document).ready(function () {
             context.beginPath();
 
             context.arc(tempCircle.x, tempCircle.y, tempCircle.radius, 0, Math.PI * 2, false);
-            context.fillStyle = 'green';
-            context.fill();
+            if(moveCircle && drag){
+                context.lineWidth = 5;
+                context.strokeStyle = '#00FFFF';
+                context.stroke();
+            }
+            context.lineWidth = 5;
+            context.strokeStyle = '#000000';
+            context.stroke();
         }
         setTimeout(animate, 33);
     };
