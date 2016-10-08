@@ -16,6 +16,7 @@ $(document).ready(function () {
 
     var drawCircle = false
     var moveCircle = false;
+    var paint = false;
 
     var dragOffsetX, dragOffsetY;
     var dragId = -1;
@@ -23,14 +24,24 @@ $(document).ready(function () {
 
     var drawCircleButton = $("#drawCircle");
     var moveCircleButton = $("#moveCircle");
+    var paintButton = $("#moveCircle");
+
     drawCircleButton.click(function () {
         drawCircle = true;
         moveCircle = false;
+        paint = false;
     });
 
     moveCircleButton.click(function () {
         drawCircle = false;
         moveCircle = true;
+        paint = false;
+    });
+
+    paint.click(function () {
+        drawCircle = false;
+        moveCircle = false;
+        paint = true;
     });
 
     var circles = new Array();
