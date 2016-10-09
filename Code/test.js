@@ -24,7 +24,7 @@ $(document).ready(function () {
 
     var drawCircleButton = $("#drawCircle");
     var moveCircleButton = $("#moveCircle");
-    var paintButton = $("#moveCircle");
+    var paintButton = $("#paint");
 
     drawCircleButton.click(function () {
         drawCircle = true;
@@ -38,7 +38,7 @@ $(document).ready(function () {
         paint = false;
     });
 
-    paint.click(function () {
+    paintButton.click(function () {
         drawCircle = false;
         moveCircle = false;
         paint = true;
@@ -64,14 +64,13 @@ $(document).ready(function () {
             drag = true;
         }
 
-        if(moveCircle){
+        if (moveCircle) {
             for (var i = 0; i < circles.length; i++) {
                 dx = e.pageX - circles[i].x;
                 dy = e.pageY - circles[i].y;
                 var tempCircle = circles[i];
                 var inCircle = pointInCircle(e.pageX, e.pageY, tempCircle.x, tempCircle.y, tempCircle.radius)
-                console.log(inCircle);
-                if(inCircle){
+                if (inCircle) {
                     dragId = i;
                     dragOffsetX = dx; //store offsets so item doesn't 'jump'
                     dragOffsetY = dy;
@@ -97,9 +96,8 @@ $(document).ready(function () {
             }
         }
 
-        if(moveCircle){
-            if(drag){
-                console.log("Got here");
+        if (moveCircle) {
+            if (drag) {
                 circles[dragId].x = e.pageX - dragOffsetX;
                 circles[dragId].y = e.pageY - dragOffsetY;
             }
@@ -117,7 +115,7 @@ $(document).ready(function () {
             context.beginPath();
 
             context.arc(tempCircle.x, tempCircle.y, tempCircle.radius, 0, Math.PI * 2, false);
-            if(moveCircle && drag){
+            if (moveCircle && drag) {
                 context.lineWidth = 5;
                 context.strokeStyle = '#00FFFF';
                 context.stroke();

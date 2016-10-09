@@ -1,0 +1,85 @@
+\documentclass[12pt,a4paper]{report}
+\usepackage{graphicx}
+\usepackage{lipsum}% http://ctan.org/pkg/lipsum
+\usepackage{titletoc}% http://ctan.org/pkg/titletoc
+\titlecontents*{chapter}% <section-type>
+  [0pt]% <left>
+  {}% <above-code>
+  {\bfseries\chaptername\ \thecontentslabel\quad}% <numbered-entry-format>
+  {}% <numberless-entry-format>
+  {\bfseries\hfill\contentspage}% <filler-page-format>
+
+\begin{document}
+\begin{titlepage}
+	\centering
+	{\scshape\LARGE University of Bath \par}
+	\vspace{1cm}
+	{\scshape\Large Final year project\par}
+	\vspace{1.5cm}
+	{\huge\bfseries Development of a Serious Game to teach Aristotle's Syllogisms\par}
+	\vspace{2cm}
+	{\Large\itshape James Treasure\par}
+	\vfill
+	supervised by\par
+	Dr.~Willem \textsc{Heijltjes}
+	\vfill
+	{\large \today\par}
+\end{titlepage}
+
+\tableofcontents
+\chapter{Problem Description}
+Video games are now seen as an ever-present aspect of modern life, with 97\% of people in the United States playing video games for 1 hour everyday. This industry is growing rapidly, now worth over double the American film industry. 
+
+Serious Games are a movement within the game industry made up of software developers and researchers who are using games to educate and teach. Whilst there is some debate of what exactly construes a serious game, Michael and Chen define a serious game as any game where entertainment is not the primary purpose, but instead the focus is on education. 
+
+The research of Prensky (2001) explains how due to the vast amount of technology experienced in everyday life, that newer generations have had their minds rewired. These cognitive changes have led to a different set of preferences compared to previous generations, with a particular emphasis on learning. This has led to people being taught with out of date methods that are not taking into account these changes.
+
+One of the benefits to using video games is their accessibility. In the UK, internet access has over doubled during the past 10 years, with 82\% of adults now using the internet daily and 99\% of households with children having internet access. (Office for National Statistics, 2016). With such a high number of people using the internet, games hosted on the web are easily accessible. Games also appeal to a wide audience, crossing demographic boundaries such as age, gender and educational status (Griffiths, 2012) 
+
+As discussed by Malone (1981) games are intrinsically motivating, that is to say that there are no external factors as to why a person is playing a game, but they are playing for enjoyment of the game itself. By carrying this intrinsic motivation into serious games, it is clear that this could be used to engage people who otherwise might not have been interested. 
+
+\section{Aim}
+\section{Objectives}
+\begin{itemize}
+  \item Investigate existing Serious Games, with particular focus on teaching concepts related to Mathematics and logic
+
+  \item Design, develop and release a Serious Game that can be used to teach the concepts laid out in Aristotle\textsc{\char13}s Syllogism
+  \item Ensure that the game is accessible regardless of players initial understanding of the subject
+  \item Evaluate the effectiveness of the game on users from a non-mathematical background
+  
+\end{itemize}
+\chapter{Requirements Specification}
+\section{First section}
+\section{Second section}
+\section{Last section}
+\chapter{Project Plan}
+\section{Milestones}
+\begin{enumerate}
+  \item Project Proposal
+  \item Literature Review
+  \item System Development
+  \item System Testing
+  \item User Testing
+  \item Write Dissertation
+\end{enumerate}
+\section{Second section}
+\section{Last section}
+
+\chapter{Resources}
+\section{Software Resources}
+The game will be a web based game with nearly all aspects of the game client side. It is possible that there might be some server side code needed to facilitate an online leaderboard or a multiplayer functionality.
+
+The client side will be built using traditional web technologies such as HTML and CSS. The game will be built using Canvas which is an HTML5 element that allows graphics to be drawn using JavaScript. 
+
+Any server side work will likely be done using Node.js and Express.js to create RESTful endpoints to manage the online leaderboard. Data will likely be persisted to using either MongoDB or MySQL as the database. If there is a form of online multiplayer in the game, either Node.js or Socket.io will be used for this purpose.
+
+\section{Hardware Resources}
+A PC will be needed to carry out the software development and dissertation write up of the project. 
+
+A web server will be needed to host all the server side content of the game. Due to the lightweight nature of the game there will be no needed for any specialist equipment.
+
+\section{Human Resources}
+Users will be required to test the game and give their feedback. 
+Meeting time with supervisor (Dr.~Willem Heijltjes) to discuss progress and direction of the project.
+\chapter{Bibliography}% 
+\end{document}
