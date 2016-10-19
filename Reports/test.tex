@@ -44,11 +44,11 @@
 
 \tableofcontents
 \chapter{Problem Description}
-The younger generation of today have grown up in a world consumed in technology. \cite{oblinger2005educating} described them as the \textit{Net Generation}, the generation who always need to be connected, require immediate feedback and crave social interaction. The research of \cite{prensky2001games} explains how the vast amount of technology now experienced in everyday life has led to these newer generations having their minds rewired. These cognitive changes have caused a different set of educational preferences when compared to previous generations, with teaching methods not evolving in order to take this in to account.
+The younger generation of today have grown up in a world consumed in technology. \cite{oblinger2005educating} described them as the \textit{Net Generation}, the generation who always need to be connected, require immediate feedback and crave social interaction. The research of \cite{prensky2001games} explains how this vast amount of technology now experienced in everyday life has led to these newer generations having their minds rewired. These cognitive changes have caused a different set of educational preferences when compared to previous generations, with teaching methods not evolving in order to take this in to account.
 
 Serious Games are a movement within the game industry comprised of software developers and researchers who are using games to tackle this problem. Whilst there is some debate around what exactly construes a serious game, \cite{michael2005serious} define one as any game where entertainment is not the primary purpose, but where instead the focus is on education. 
 
-One of the benefits of using games to teach is their accessibility. In the United Kingdom  access to the internet has doubled over the past 10 years, with 82\% of adults now using the internet on a daily basis\citep{onssurvey}. With such a high number of people using the internet it allows games hosted on the web to be available to the masses. Games also appeal to a wide audience by crossing demographic boundaries such as age, gender and educational status \citep{griffiths2002educational}. 
+One of the benefits of using games to teach is their accessibility. In the United Kingdom  access to the internet has doubled over the past 10 years, with 82\% of adults now using the internet on a daily basis \citep{onssurvey}. With such a high number of people using the internet it allows games hosted on the web to be available to the masses. Games also appeal to a wide audience by crossing demographic boundaries such as age, gender and educational status \citep{griffiths2002educational}. 
 
 As discussed by \cite{malone1981toward} games are also intrinsically motivating, such that there are no external factors as to why a person is playing other than for their own enjoyment. By carrying this intrinsic motivation into serious games, it is clear that this could be used to engage people who otherwise might not have been interested in learning. 
 
@@ -67,11 +67,13 @@ Design and develop a web based game to teach the player about Aristotle's Syllog
   
 \end{itemize}
 
-{\let\clearpage\relax \chapter{Requirements Specification}}
+\chapter{Requirements Specification}
    \section{Functional}
    \begin{enumerate}[label*=\thesection .\arabic*]
             \item The game will be written using HTML, CSS and JavaScript. The HTML5 element, Canvas, will be used to animate the game.\\
             \textit{These are the current standards for web development. Canvas is chosen over SVG as Canvas can be written in pure JavaScript. Canvas also has better performance than SVG, although that likely will not be a concern with a game of this nature. }
+            \item There must be an initial prototype of the game.\\
+            \textit{This is not only important as there is a progress demonstration that must be carried out but as it will provide an opportunity to gather feedback on the current state of the game.}
             \item The game must run on all common browsers.\\
             \textit{There are a number of known issues with some Canvas features on certain browsers. It is important to have a consistent experience across all browsers to not detract from the experience of playing the game. }
             \item The game must have multiple levels.\\
@@ -83,19 +85,19 @@ Design and develop a web based game to teach the player about Aristotle's Syllog
         \end{enumerate}
    \section{Non-functional}
    \begin{enumerate}[label*=\thesection.\arabic*]
-            \item The game should run at 60 frames per second.\\
-            \textit{Games at 60 frams per second appear much smoother to the player. This keeps focus on the game and not on the graphics.}
             \item The game should be playable on tablets and mobile phones.\\
             \textit{Having all controls for the game on screen and using no keyboard input will allow the game to be played across all devices. This aids accessibility as players may not have access to a traditional PC.}
             \item The game must have an elegant user interface.\\
             \textit{It is important to not crowd the users with an excessive number of buttons and options in the game. As no keyboard controls will be used, the challenge will be to provide a way to operate all controls of the game efficiently.}
-             \item The game must feature an tutorial at the beginning.\\
+             \item The game must feature a tutorial at the beginning.\\
             \textit{A tutorial is crucial to explain the premise and controls of the game. Not including a tutorial would leave the player confused and unsure of how to play. }
+             \item The game should run at 60 frames per second.\\
+            \textit{Games at 60 frams per second appear much smoother to the player. This keeps focus on the game and not on the graphics.}
         \end{enumerate}
 
 
 
-{\let\clearpage\relax\chapter{Project Plan}}
+\chapter{Project Plan}
 \noindent 
 The project has four specific milestones with hard deadlines, that have been broken down to show a more granular view of the work that needs to be completed. The Gantt Chart in Figure~\ref{fig:ganntchart} shows how long will be spent on each milestone.
 \section{Milestones}
@@ -124,12 +126,14 @@ The project has four specific milestones with hard deadlines, that have been bro
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{Gantt}
 \end{figure}
 
+
+
 {\let\clearpage\relax\chapter{Resources}}
 \section{Software Resources}
-All software technologies used to implement the game are free. WebStorm, a web development IDE, will be used to develop the game.
+HTML, CSS and JavaScript will be used to implement the game are all freely available. WebStorm, a web development IDE, will be used to develop the game.
 
 \section{Hardware Resources}
-A PC will be needed to carry out the software development and dissertation write up of the project. 
+A PC will be needed to carry out the software development and dissertation write up of the project. A server will also be needed to host the game.
 
 \section{Human Resources}
 Users will be required to test the game and give their feedback. 
