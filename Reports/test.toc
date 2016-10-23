@@ -1,13 +1,13 @@
 \contentsline {chapter}{\numberline {1}Problem Description}{2}
 \contentsline {section}{\numberline {1.1}Aim}{3}
 \contentsline {section}{\numberline {1.2}Objectives}{3}
-\contentsline {chapter}{\numberline {2}Requirements Specification}{4}
-\contentsline {section}{\numberline {2.1}Functional}{4}
-\contentsline {section}{\numberline {2.2}Non-functional}{4}
-\contentsline {chapter}{\numberline {3}Project Plan}{6}
-\contentsline {section}{\numberline {3.1}Milestones}{6}
-\contentsline {chapter}{\numberline {4}Resources}{7}
-\contentsline {section}{\numberline {4.1}Software Resources}{7}
-\contentsline {section}{\numberline {4.2}Hardware Resources}{7}
-\contentsline {section}{\numberline {4.3}Human Resources}{7}
+\contentsline {chapter}{\numberline {2}Requirements Specification}{5}
+\contentsline {section}{\numberline {2.1}Functional}{5}
+\contentsline {section}{\numberline {2.2}Non-functional}{5}
+\contentsline {chapter}{\numberline {3}Project Plan}{7}
+\contentsline {section}{\numberline {3.1}Milestones}{7}
+\contentsline {chapter}{\numberline {4}Resources}{8}
+\contentsline {section}{\numberline {4.1}Software Resources}{8}
+\contentsline {section}{\numberline {4.2}Hardware Resources}{8}
+\contentsline {section}{\numberline {4.3}Human Resources}{8}
 \contentsfinish 

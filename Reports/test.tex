@@ -15,6 +15,14 @@
 \setlength{\headsep}{5pt}
 
 
+\newenvironment{tightcenter}{%
+  \setlength\topsep{0pt}
+  \setlength\parskip{0pt}
+  \begin{center}
+}{%
+  \end{center}
+}
+
 \usepackage{float}
 \graphicspath{ {images/} }
 \tolerance=1
@@ -58,7 +66,22 @@ Serious Games lend themselves extremely well to delivering formative feedback to
 
 
 \section{Aim}
-Design and develop a web based game to teach the player about Aristotle's Syllogisms. The game will be in a puzzle style that will involve creating Venn diagrams to depict given syllogisms. There will be multiple levels with the difficulty progressing with each one. Initially as little mathematical notation as possible will be used, with set theory notations being introduced as the complexity increases. The game will initially begin with a small section teaching the basics of Venn Diagrams as these will be need to be understood in order to play. Completion of the game will result in the user being able to recognise and differentiate different examples of syllogisms. User tests will then be carried out to assess the effectiveness of the game as a method for teaching syllogisms. 
+Design and develop a web based game to teach the player about Aristotle's Syllogisms. Traditionally, syllogisms are represented sententially.
+
+
+\begin{tightcenter}
+\textit{All men are mortal}\\
+\textit{All Greeks are men}\\
+\textit{All Greeks are mortal}\\
+\end{tightcenter}
+
+However, representing syllogisms this way is not the most effective as they can be logically quite complex. As \cite{larkin1987diagram} explain, sentential form requires inferences to be made, and then those inferences to be held in memory. Throughout working through the syllogism those inferences must be continually remembered whilst working through the problem.
+
+There are a number of graphical notations that aim to remedy this problem. The most common representation is in the form of Venn diagrams, but alternatives such as Euler and Linear diagrams both exist. 
+
+This game will use the Venn diagram representation to depict syllogisms. 
+There will be multiple levels with the difficulty progressing with each one. Initially as little mathematical notation as possible will be used, with set theory notations being introduced as the complexity increases. The game will initially begin with a small section teaching the basics of Venn Diagrams as these will be need to be understood in order to play. Completion of the game will result in the user being able to recognise and differentiate different examples of syllogisms. User tests will then be carried out to assess the effectiveness of the game as a method for teaching syllogisms.
+
 \section{Objectives}
 \begin{itemize}
   \item Investigate existing Serious Games, with particular focus on teaching concepts related to Mathematics and logic.
