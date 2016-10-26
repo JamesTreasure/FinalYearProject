@@ -1,6 +1,6 @@
 \contentsline {chapter}{\numberline {1}Problem Description}{2}
 \contentsline {section}{\numberline {1.1}Aim}{3}
-\contentsline {section}{\numberline {1.2}Objectives}{3}
+\contentsline {section}{\numberline {1.2}Objectives}{4}
 \contentsline {chapter}{\numberline {2}Requirements Specification}{5}
 \contentsline {section}{\numberline {2.1}Functional}{5}
 \contentsline {section}{\numberline {2.2}Non-functional}{5}
