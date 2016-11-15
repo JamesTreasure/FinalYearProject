@@ -1,0 +1,95 @@
+\begin{thebibliography}{15}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Abuhamdeh and Csikszentmihalyi(2012)]{abuhamdeh2012importance}
+Sami Abuhamdeh and Mihaly Csikszentmihalyi.
+\newblock The importance of challenge for the enjoyment of intrinsically
+  motivated, goal-directed activities.
+\newblock \emph{Personality and Social Psychology Bulletin}, 38\penalty0
+  (3):\penalty0 317--330, 2012.
+
+\bibitem[Csikszentmihalyi et~al.(1997)Csikszentmihalyi, Rathunde, and
+  Whalen]{csikszentmihalyi1997talented}
+Mihaly Csikszentmihalyi, Kevin Rathunde, and Samuel Whalen.
+\newblock \emph{Talented teenagers: The roots of success and failure}.
+\newblock Cambridge University Press, 1997.
+
+\bibitem[Erickson(1978)]{Erickson1978-ERIROS}
+J.~R. Erickson.
+\newblock Research on syllogistic reasoning.
+\newblock In Russell Revlin and Richard~E. Mayer, editors, \emph{Human
+  Reasoning}, pages 39--50. Distributed Solely by Halsted Press, 1978.
+
+\bibitem[Griffiths(2002)]{griffiths2002educational}
+Mark Griffiths.
+\newblock The educational benefits of videogames.
+\newblock \emph{Education and Health}, 20\penalty0 (3):\penalty0 47--51, 2002.
+
+\bibitem[Irons(2007)]{irons2007enhancing}
+Alastair Irons.
+\newblock \emph{Enhancing learning through formative assessment and feedback}.
+\newblock Routledge, 2007.
+
+\bibitem[Johnson-Laird(1980)]{johnson1980mental}
+Philip~N Johnson-Laird.
+\newblock Mental models in cognitive science.
+\newblock \emph{Cognitive science}, 4\penalty0 (1):\penalty0 71--115, 1980.
+
+\bibitem[Kawachi(2003)]{kawachi2003initiating}
+Paul Kawachi.
+\newblock Initiating intrinsic motivation in online education: Review of the
+  current state of the art.
+\newblock \emph{Interactive Learning Environments}, 11\penalty0 (1):\penalty0
+  59--81, 2003.
+
+\bibitem[Larkin and Simon(1987)]{larkin1987diagram}
+Jill~H Larkin and Herbert~A Simon.
+\newblock Why a diagram is (sometimes) worth ten thousand words.
+\newblock \emph{Cognitive science}, 11\penalty0 (1):\penalty0 65--100, 1987.
+
+\bibitem[Lepper(1988)]{lepper1988motivational}
+Mark~R Lepper.
+\newblock Motivational considerations in the study of instruction.
+\newblock \emph{Cognition and instruction}, 5\penalty0 (4):\penalty0 289--309,
+  1988.
+
+\bibitem[Malone(1981)]{malone1981toward}
+Thomas~W Malone.
+\newblock Toward a theory of intrinsically motivating instruction.
+\newblock \emph{Cognitive science}, 5\penalty0 (4):\penalty0 333--369, 1981.
+
+\bibitem[Michael and Chen(2005)]{michael2005serious}
+David~R Michael and Sandra~L Chen.
+\newblock \emph{Serious games: Games that educate, train, and inform}.
+\newblock Muska \& Lipman/Premier-Trade, 2005.
+
+\bibitem[Oblinger et~al.(2005)Oblinger, Oblinger, and
+  Lippincott]{oblinger2005educating}
+Diana Oblinger, James~L Oblinger, and Joan~K Lippincott.
+\newblock \emph{Educating the net generation}.
+\newblock Boulder, Colo.: EDUCAUSE, c2005. 1 v.(various pagings):
+  illustrations., 2005.
+
+\bibitem[{Office For National Statistics}(2016)]{onssurvey}
+{Office For National Statistics}.
+\newblock Internet access – households and individuals.
+\newblock Technical report, 2016.
+\newblock URL
+  \url{http://www.ons.gov.uk/peoplepopulationandcommunity/householdcharacteristics/homeinternetandsocialmediausage/bulletins/internetaccesshouseholdsandindividuals/2016}.
+
+\bibitem[Prensky(2001)]{prensky2001games}
+Marc Prensky.
+\newblock The games generations: How learners have changed.
+\newblock \emph{Digital game-based learning}, 1, 2001.
+
+\bibitem[Smith(2016)]{sep-aristotle-logic}
+Robin Smith.
+\newblock Aristotle's logic.
+\newblock In Edward~N. Zalta, editor, \emph{The Stanford Encyclopedia of
+  Philosophy}. Winter 2016 edition, 2016.
+
+\end{thebibliography}
