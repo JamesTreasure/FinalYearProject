@@ -8,6 +8,7 @@
 \usepackage{graphicx}
 \usepackage{subfig}
 \usepackage{array}% http://ctan.org/pkg/array
+\usepackage{placeins}
 
 \usepackage{enumitem}
 
@@ -138,39 +139,65 @@ These are a very natural way of representing sets, with \cite{Erickson1978-ERIRO
   \end{minipage}
 \end{figure}
 
+Whilst according the Erickson the coincident are more commonly thought of, for diagrammatic purposes the traditional way will be discussed as it is clearer. As table 1.1 shows, when representing the individual moods Euler circles can be very intuitive.
+
+%Cirles are 8.5cm I think
 \begin{table}[h!]
   \centering
-  \begin{tabular}{ | c | m{5cm} | m{5cm} | }
-    \hline
-    my.Lboro & Advantages & Disadvantages \\ \hline
-    \begin{minipage}{.3\textwidth}
-      \includegraphics[width=\linewidth]{EulerCircles}
+  \begin{tabular}{  c  c  c  c }
+    A & I & E & O\\
+    \begin{minipage}{.22\textwidth}
+      \includegraphics[width=\linewidth]{AEuler}
     \end{minipage}
     &
-    %\begin{minipage}[t]{5cm}
-      \begin{itemize}
-        \item Accessibility
-        \item Up to date information
-        \item Fulfil students needs and wants \ldots
-      \end{itemize}
-    %\end{minipage}
+    \begin{minipage}{.22\textwidth}
+      \includegraphics[width=\linewidth]{IEuler}
+    \end{minipage}
     & 
-    %\begin{minipage}{5cm}
-      \begin{itemize}
-        \item Accessibility
-        \item Up to date information
-        \item Fulfil students needs and wants \ldots
-      \end{itemize}
-    %\end{minipage}
-    \\ \hline
+    \begin{minipage}{.22\textwidth}
+      \includegraphics[width=\linewidth]{EEuler}
+    \end{minipage}
+    &
+    \begin{minipage}{.22\textwidth}
+      \includegraphics[width=\textwidth]{OEuler}
+    \end{minipage}
+    \\
   \end{tabular}
-  \caption{my.Lboro Analysis}\label{tbl:myLboro}
+  \caption{Premises represented by Euler Circles}\label{tbl:eulerPremises}
 \end{table}
 
+\pagebreak
+\noindent Euler circles also nicely represent simpler syllogisms are Table 1.2 shows.
 
-Whilst according the Erickson the coincident are more commonly thought of, for diagrammatic purposes the traditional way will be discussed as it is clearer. 
+\begin{table}[htb]
+  \centering
+  \begin{tabular}{ c  c  c }
+    All Men Are Mortal & All Greeks Are Men & All Greeks Are Mortal\\
+    \begin{minipage}{.29\textwidth}
+      \includegraphics[scale=0.25]{EulerAllMenAreMortal}
+    \end{minipage}
+    &
+    \begin{minipage}{.29\textwidth}
+      \includegraphics[scale=0.25]{EulerAllGreeksAreMen}
+    \end{minipage}
+    & 
+    \begin{minipage}{.29\textwidth}
+      \includegraphics[scale=0.25]{EulerAllGreeksAreMortal}
+    \end{minipage}
+    \\
+  \end{tabular}
+  \caption{Premises represented by Euler Circles}\label{tbl:eulerPremises}
+\end{table}
+\FloatBarrier
+However, the problem with this representation arises when more complex syllogisms are constructed. When there are multiple ways to represent the conclusion the resulst is needing more than one diagram to depict the possibilites. All of a sudden the intuitive benefits are quickly outweighed by the complexity.
+
+\subsection{Venn Diagrams}
+
+\subsection{Categorical Pattern Diagrams}
+As introduced by \cite{cheng2012visualizing}, Categorical Pattern Diagrams offer a relatively new approach with regards to representing syllogisms. The aim behind them is to simplify the process of checking validity, better represent syllogisms with more than 2 premises and generally make the diagrams easier to infer from.
 
 
+The issue with this form of representation is the notation used is not intuitive. The advantages of other representations such as Venn Diagrams is that the notation they use are taught from a young age so the way they work is already understood. Cateogrical Pattern Diagrams however require the person to learn a whole new notation before they can begin to reason about the syllogism that it is representing.
 
 \chapter{Serious Games}
 \section{Introduction}
