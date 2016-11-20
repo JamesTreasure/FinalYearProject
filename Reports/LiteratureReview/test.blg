@@ -1,51 +1,8 @@
-This is BibTeX, Version 0.99d (TeX Live 2016)
-Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
-The top-level auxiliary file: test.aux
+This is BibTeX, Version 0.99dThe top-level auxiliary file: test.aux
 The style file: plainnat.bst
 Database file #1: bibliography.bib
 Warning--I didn't find a database entry for "Lim"
 Warning--empty journal in cheng2012visualizing
 Warning--empty institution in onssurvey
 Warning--empty publisher in sep-aristotle-logic
-You've used 18 entries,
-            2773 wiz_defined-function locations,
-            709 strings with 7673 characters,
-and the built_in function-call counts, 7000 in all, are:
-= -- 633
-> -- 284
-< -- 16
-+ -- 102
-- -- 84
-* -- 504
-:= -- 1098
-add.period$ -- 59
-call.type$ -- 18
-change.case$ -- 78
-chr.to.int$ -- 18
-cite$ -- 39
-duplicate$ -- 371
-empty$ -- 659
-format.name$ -- 108
-if$ -- 1462
-int.to.chr$ -- 1
-int.to.str$ -- 1
-missing$ -- 21
-newline$ -- 101
-num.names$ -- 76
-pop$ -- 168
-preamble$ -- 1
-purify$ -- 62
-quote$ -- 0
-skip$ -- 251
-stack$ -- 0
-substring$ -- 261
-swap$ -- 24
-text.length$ -- 1
-text.prefix$ -- 0
-top$ -- 0
-type$ -- 178
-warning$ -- 3
-while$ -- 77
-width$ -- 0
-write$ -- 241
 (There were 4 warnings)
