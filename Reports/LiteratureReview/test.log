@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.10.6)  18 NOV 2016 12:41
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.10.6)  19 NOV 2016 21:40
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -191,6 +191,9 @@ Package: float 2001/11/08 v1.3d Float enhancements (AL)
 
 LaTeX Warning: Label `tbl:eulerPremises' multiply defined.
 
+
+LaTeX Warning: Label `tbl:eulerPremises' multiply defined.
+
 )
 \openout1 = `test.aux'.
 
@@ -379,35 +382,100 @@ Overfull \hbox (15.3823pt too wide) in paragraph at lines 185--186
 [][] 
  []
 
+<images/AVenn.png, id=46, 513.92pt x 513.92pt>
+File: images/AVenn.png Graphic file (type png)
+ <use images/AVenn.png>
+Package pdftex.def Info: images/AVenn.png used on input line 203.
+(pdftex.def)             Requested size: 85.80048pt x 85.79688pt.
+
+<images/IVenn.png, id=47, 513.92pt x 513.92pt>
+File: images/IVenn.png Graphic file (type png)
+ <use images/IVenn.png>
+Package pdftex.def Info: images/IVenn.png used on input line 207.
+(pdftex.def)             Requested size: 85.80048pt x 85.79688pt.
+
+<images/EVenn.png, id=48, 513.92pt x 513.92pt>
+File: images/EVenn.png Graphic file (type png)
+ <use images/EVenn.png>
+Package pdftex.def Info: images/EVenn.png used on input line 211.
+(pdftex.def)             Requested size: 85.80048pt x 85.79688pt.
+
+<images/OVenn.png, id=49, 513.92pt x 513.92pt>
+File: images/OVenn.png Graphic file (type png)
+ <use images/OVenn.png>
+Package pdftex.def Info: images/OVenn.png used on input line 215.
+(pdftex.def)             Requested size: 85.80048pt x 85.79688pt.
+
+Overfull \hbox (1.2019pt too wide) in paragraph at lines 200--219
+ [][] 
+ []
+
 [6 <./images/EulerAllMenAreMortal.png> <./images/EulerAllGreeksAreMen.png> <./i
-mages/EulerAllGreeksAreMortal.png>]
+mages/EulerAllGreeksAreMortal.png> <./images/AVenn.png> <./images/IVenn.png> <.
+/images/EVenn.png> <./images/OVenn.png>]
+<images/ALinear.png, id=54, 513.92pt x 513.92pt>
+File: images/ALinear.png Graphic file (type png)
+ <use images/ALinear.png>
+Package pdftex.def Info: images/ALinear.png used on input line 232.
+(pdftex.def)             Requested size: 85.80048pt x 85.79688pt.
+
+<images/ILinear.png, id=55, 513.92pt x 513.92pt>
+File: images/ILinear.png Graphic file (type png)
+ <use images/ILinear.png>
+Package pdftex.def Info: images/ILinear.png used on input line 236.
+(pdftex.def)             Requested size: 85.80048pt x 85.79688pt.
+
+<images/ELinear.png, id=56, 513.92pt x 513.92pt>
+File: images/ELinear.png Graphic file (type png)
+ <use images/ELinear.png>
+Package pdftex.def Info: images/ELinear.png used on input line 240.
+(pdftex.def)             Requested size: 85.80048pt x 85.79688pt.
+
+<images/O1Linear.png, id=57, 513.92pt x 513.92pt>
+File: images/O1Linear.png Graphic file (type png)
+ <use images/O1Linear.png>
+Package pdftex.def Info: images/O1Linear.png used on input line 244.
+(pdftex.def)             Requested size: 85.80048pt x 85.79688pt.
+
+<images/O2Linear.png, id=58, 513.92pt x 513.92pt>
+File: images/O2Linear.png Graphic file (type png)
+ <use images/O2Linear.png>
+Package pdftex.def Info: images/O2Linear.png used on input line 251.
+(pdftex.def)             Requested size: 85.80048pt x 85.79688pt.
+
+Overfull \hbox (1.2019pt too wide) in paragraph at lines 229--255
+ [][] 
+ []
+
+[7 <./images/ALinear.png> <./images/ILinear.png> <./images/ELinear.png> <./imag
+es/O1Linear.png> <./images/O2Linear.png>]
 Chapter 2.
 
-Package natbib Warning: Citation `Lim' on page 7 undefined on input line 204.
+Package natbib Warning: Citation `Lim' on page 8 undefined on input line 268.
 
-[7
+[8
 
-] [8] (./test.bbl [9] [10
-
-]
-LaTeX Font Info:    Try loading font information for T1+cmtt on input line 88.
+] [9] (./test.bbl [10]
+LaTeX Font Info:    Try loading font information for T1+cmtt on input line 33.
 
 (/usr/local/texlive/2016/texmf-dist/tex/latex/base/t1cmtt.fd
 File: t1cmtt.fd 2014/09/29 v2.5h Standard LaTeX font definitions
-))
+) [11
+
+])
 
 Package natbib Warning: There were undefined citations.
 
-[11] (./test.aux)
+[12] (./test.aux)
 
 LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 4504 strings out of 493014
- 67666 string characters out of 6133351
- 236330 words of memory out of 5000000
- 7971 multiletter control sequences out of 15000+600000
+ 4556 strings out of 493014
+ 68736 string characters out of 6133351
+ 236424 words of memory out of 5000000
+ 8014 multiletter control sequences out of 15000+600000
  16260 words of font info for 37 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  44i,14n,42p,2933b,373s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -426,10 +494,10 @@ ve/2016/texmf-dist/fonts/type1/public/cm-super/sfrm1440.pfb></usr/local/texlive
 016/texmf-dist/fonts/type1/public/cm-super/sfti1200.pfb></usr/local/texlive/201
 6/texmf-dist/fonts/type1/public/cm-super/sfti1728.pfb></usr/local/texlive/2016/
 texmf-dist/fonts/type1/public/cm-super/sftt1200.pfb>
-Output written on test.pdf (12 pages, 440106 bytes).
+Output written on test.pdf (13 pages, 595055 bytes).
 PDF statistics:
- 112 PDF objects out of 1000 (max. 8388607)
- 72 compressed objects within 1 object stream
+ 125 PDF objects out of 1000 (max. 8388607)
+ 75 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 46 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 91 words of extra memory for PDF output out of 10000 (max. 10000000)
 

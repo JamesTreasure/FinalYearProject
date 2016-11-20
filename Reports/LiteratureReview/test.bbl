@@ -1,4 +1,4 @@
-\begin{thebibliography}{16}
+\begin{thebibliography}{18}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -23,6 +23,14 @@ Peter~CH Cheng.
 Mihaly Csikszentmihalyi, Kevin Rathunde, and Samuel Whalen.
 \newblock \emph{Talented teenagers: The roots of success and failure}.
 \newblock Cambridge University Press, 1997.
+
+\bibitem[Englebretsen(1991)]{englebretsen1991}
+George Englebretsen.
+\newblock Linear diagrams for syllogisms (with relationals).
+\newblock \emph{Notre Dame J. Formal Logic}, 33\penalty0 (1):\penalty0 37--69,
+  12 1991.
+\newblock \doi{10.1305/ndjfl/1093636009}.
+\newblock URL \url{http://dx.doi.org/10.1305/ndjfl/1093636009}.
 
 \bibitem[Erickson(1978)]{Erickson1978-ERIROS}
 J.~R. Erickson.
@@ -56,6 +64,12 @@ Paul Kawachi.
 Jill~H Larkin and Herbert~A Simon.
 \newblock Why a diagram is (sometimes) worth ten thousand words.
 \newblock \emph{Cognitive science}, 11\penalty0 (1):\penalty0 65--100, 1987.
+
+\bibitem[Lemon et~al.(1998)Lemon, Pratt, et~al.]{lemon1998insufficiency}
+Oliver Lemon, Ian Pratt, et~al.
+\newblock On the insufficiency of linear diagrams for syllogisms.
+\newblock \emph{Notre Dame Journal of Formal Logic}, 39\penalty0 (4):\penalty0
+  573--580, 1998.
 
 \bibitem[Lepper(1988)]{lepper1988motivational}
 Mark~R Lepper.

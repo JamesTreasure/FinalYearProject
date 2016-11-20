@@ -192,12 +192,76 @@ Whilst according the Erickson the coincident are more commonly thought of, for d
 However, the problem with this representation arises when more complex syllogisms are constructed. When there are multiple ways to represent the conclusion the resulst is needing more than one diagram to depict the possibilites. All of a sudden the intuitive benefits are quickly outweighed by the complexity.
 
 \subsection{Venn Diagrams}
+%Think about Plurative syllogisms for possible extensions
+Venn diagrams are the most commonly used diagrammatic representation of syllogigms. A huge advantage of them is that most people have been taught them at a young age and are very familiar with them.
+
+\begin{table}[h!]
+  \centering
+  \begin{tabular}{  c  c  c  c }
+    A & I & E & O\\
+    \begin{minipage}{.22\textwidth}
+      \includegraphics[width=\linewidth]{AVenn}
+    \end{minipage}
+    &
+    \begin{minipage}{.22\textwidth}
+      \includegraphics[width=\linewidth]{IVenn}
+    \end{minipage}
+    & 
+    \begin{minipage}{.22\textwidth}
+      \includegraphics[width=\linewidth]{EVenn}
+    \end{minipage}
+    &
+    \begin{minipage}{.22\textwidth}
+      \includegraphics[width=\textwidth]{OVenn}
+    \end{minipage}
+    \\
+  \end{tabular}
+  \caption{Premises represented by Venn Diagrams}\label{tbl:eulerPremises}
+\end{table}
+
+
+\subsection{Linear Diagrams}
+Linear diagrams are an alternative system that was devised by \cite{englebretsen1991}. Instead of being planar like Venn and Euler diagrams are linear. The reasoning behind this was that Englebretsen said it allowed linear diagrams to represent 4 terms, unlike their planar counterparts. Elements are represented by points which are then connected by lines to show sets.
+
+%Cirles are 8.5cm I think
+\begin{table}[h!]
+  \centering
+  \begin{tabular}{  c  c  c  c }
+    A & I & E & O\\
+    \begin{minipage}{.22\textwidth}
+      \includegraphics[width=\linewidth]{ALinear}
+    \end{minipage}
+    &
+    \begin{minipage}{.22\textwidth}
+      \includegraphics[width=\linewidth]{ILinear}
+    \end{minipage}
+    & 
+    \begin{minipage}{.22\textwidth}
+      \includegraphics[width=\linewidth]{ELinear}
+    \end{minipage}
+    &
+    \begin{minipage}{.22\textwidth}
+      \includegraphics[width=\textwidth]{O1Linear}
+    \end{minipage}
+    \\
+    &
+     &
+     &
+    \begin{minipage}{.22\textwidth}
+      \includegraphics[width=\textwidth]{O2Linear}
+    \end{minipage}
+    \\
+  \end{tabular}
+  \caption{Premises represented by Linear Diagrams}\label{tbl:linearPremises}
+\end{table}
+\FloatBarrier
+
+However, as shown by \cite{lemon1998insufficiency}, linear diagrams do not succsessfully manage to circumvent the same limitations that planar figures are succeptible to. 
 
 \subsection{Categorical Pattern Diagrams}
 As introduced by \cite{cheng2012visualizing}, Categorical Pattern Diagrams offer a relatively new approach with regards to representing syllogisms. The aim behind them is to simplify the process of checking validity, better represent syllogisms with more than 2 premises and generally make the diagrams easier to infer from.
 
-
-The issue with this form of representation is the notation used is not intuitive. The advantages of other representations such as Venn Diagrams is that the notation they use are taught from a young age so the way they work is already understood. Cateogrical Pattern Diagrams however require the person to learn a whole new notation before they can begin to reason about the syllogism that it is representing.
+The issue with this form of representation is the notation used is not intuitive. Cateogrical Pattern Diagrams require the person to learn a whole new notation before they can begin to reason about the syllogism that it is representing.
 
 \chapter{Serious Games}
 \section{Introduction}
@@ -221,7 +285,7 @@ In contrast complex games can take potentially hundreds of hours to complete and
 \section{Motivation}
 As discussed by \cite{malone1981toward} games can also be intrinsically motivating, such that there are no external factors as to why a person is playing other than for their own enjoyment. This is in contrast to typical classroom learning that is usually more extrinsically motivated through grades, exam results and certificates. As  \citep{csikszentmihalyi1997talented} says, the number of students attending school would see a sharp drop if extrinsic rewards were removed. Of the two, intrinsic motivation is more resilient that extrinsic motivation. Learning that takes place as a result of intrinsic motivation if how higher quality of the knowledge is longer lasting \citep{kawachi2003initiating}. However, it is important to remember that not all games are by definition intrinsically motivating, but need to be structured correctly to achieve this. Malone included challenge, fantasy and curiosity as the three cornerstones of intrinsically motivating serious games.  In order to create a challenging game, it should include uncertain goals that are not too easy for the players to complete. Ensuring a game is challenging is so crucial as demonstrated by Malone through his work surveying children's opinion on 25 different computer games. The results conclusively showed that the most popular games all shared one thing in common; they all contained a defined goal.  Similarly in a study carried out by \citep{abuhamdeh2012importance} on chess players, it was found that the more challenging the game the greater the player's enjoyment. A fantasy environment in a game is said to "evoke mental images of phyical or social situations not actually present". Malone divides these fantasies into intrinsic and extrinsic, with intrinsic being more interesting and instructional resulting in a  greater cognitive effect on learning. \citep{lepper1988motivational} explains how if learning takes place away from the functionality of the knowledge then this decontextulisation results in the learner becoming demotivated.  This can be tackled by teaching topics by using real world examples demonstrating how the concepts are applied.  However, as this is not always feasible, Lepper proposed inserting the content of the topic into a fantasy context. Curiosity was the final and like challenge, is stimulated from an optimal level of complexity. Also similarly like fantasy, curiosity is  broken down into two categories; sensory and cognitive.  Sensory curiosity, as the name suggests, uses lights, sounds and graphics to gain that attention of the participant. Cognitive curiosity is achieved by making the participant doubt their existing knowledge, as people desire to have "good form" in their cognitive structure.   By using this taxonomy when developing a serious game, it is clear that this could be used to engage people who otherwise might not have been interested in learning. 
 
-
+\section{Feeback}
 
 
 \bibliographystyle{plainnat}

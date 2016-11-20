@@ -137,6 +137,7 @@ function animate() {
         var tempCircle = circles[i];
 
         context.beginPath();
+        context.globalCompositeOperation="destination-over";
 
         context.arc(tempCircle.x, tempCircle.y, tempCircle.radius, 0, Math.PI * 2, false);
         if (moveCircle && drag) {

@@ -7,45 +7,45 @@ Warning--I didn't find a database entry for "Lim"
 Warning--empty journal in cheng2012visualizing
 Warning--empty institution in onssurvey
 Warning--empty publisher in sep-aristotle-logic
-You've used 16 entries,
+You've used 18 entries,
             2773 wiz_defined-function locations,
-            690 strings with 7273 characters,
-and the built_in function-call counts, 6101 in all, are:
-= -- 546
-> -- 245
-< -- 15
-+ -- 88
-- -- 72
-* -- 425
-:= -- 958
-add.period$ -- 51
-call.type$ -- 16
-change.case$ -- 69
-chr.to.int$ -- 16
-cite$ -- 35
-duplicate$ -- 330
-empty$ -- 580
-format.name$ -- 94
-if$ -- 1276
+            709 strings with 7673 characters,
+and the built_in function-call counts, 7000 in all, are:
+= -- 633
+> -- 284
+< -- 16
++ -- 102
+- -- 84
+* -- 504
+:= -- 1098
+add.period$ -- 59
+call.type$ -- 18
+change.case$ -- 78
+chr.to.int$ -- 18
+cite$ -- 39
+duplicate$ -- 371
+empty$ -- 659
+format.name$ -- 108
+if$ -- 1462
 int.to.chr$ -- 1
 int.to.str$ -- 1
-missing$ -- 19
-newline$ -- 89
-num.names$ -- 68
-pop$ -- 155
+missing$ -- 21
+newline$ -- 101
+num.names$ -- 76
+pop$ -- 168
 preamble$ -- 1
-purify$ -- 55
+purify$ -- 62
 quote$ -- 0
-skip$ -- 224
+skip$ -- 251
 stack$ -- 0
-substring$ -- 213
-swap$ -- 21
+substring$ -- 261
+swap$ -- 24
 text.length$ -- 1
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 156
+type$ -- 178
 warning$ -- 3
-while$ -- 67
+while$ -- 77
 width$ -- 0
-write$ -- 211
+write$ -- 241
 (There were 4 warnings)
