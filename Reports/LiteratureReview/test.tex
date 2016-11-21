@@ -56,7 +56,7 @@
 \chapter{Syllogisms}
 \section{History}
 
-Aristotle's work on formal logic was the earliest known formal study of the topic, which remained at the forefront of academia until the 19th following Gotlobb Frege's work on first order logic. As syllogisms were so prominent in logic for such a long time they have had huge cultural significance on the history of logic in the Western world \citep{sep-aristotle-logic}. Up until the 12th Century, medieval logicians only had access to a small portion of Aristotle's work with the notable exclusion being Prior Analytics, which contained his work on syllogisms. This period of time is known as logica vetus, or old logic. It wasn't until the 12th century when Prior Analytics resurfaced in the western world that the logica nova, or new logic, began. Immanuel Kant, a prominent 18th century philosopher, went as far as to describe Prior Analytics as "a closed and completed body of doctrine" demonstrating just how highly Aristotle's work on syllogisms was thought of.
+Aristotle's work on formal logic was the earliest known study of the topic, which remained at the forefront of academia until the 19th century following Gotlobb Frege's work on first order logic. As syllogisms were so prominent in logic for such a long time they have had huge cultural significance on the history of logic in the Western world \citep{sep-aristotle-logic}. Up until the 12th Century, medieval logicians only had access to a small portion of Aristotle's work with the notable exclusion being Prior Analytics, which contained his work on syllogisms. This period of time is known as logica vetus, or old logic. It wasn't until the 12th century when Prior Analytics resurfaced in the western world that the logica nova, or new logic, began. Immanuel Kant, a prominent 18th century philosopher, went as far as to describe Prior Analytics as "a closed and completed body of doctrine" demonstrating just how highly Aristotle's work on syllogisms was thought of.
 
 \section{What are syllogisms}
 Aristotle defined his syllogisms as \textit{"a discourse in which, certain things having been supposed, something different from the things supposed results of necessity because these things are so"}. Put more simply, syllogisms are a type of deductive reasoning that, when used on a logical argument, allows a conclusion to be drawn. Aristotle's focus was on categorical syllogisms, essentially a  logical argument that contains three categorical propositions. These three categorical propositions in turn are made up of two premises and a conclusion. Each categorical premise is made up of categorical terms, of which each is used twice in the syllogism as a whole. Each categorical premise can be described as a sentence that connects a predicate and a subject by a verb (copula). 
@@ -122,11 +122,62 @@ There are a few different ways that are currently used to represent syllogisms w
 Without exception all initially introduce syllogisms in sentential form, commonly using real world examples as opposed to letters. The advantage of this is it becomes far easier for the learner to visualise the propositions. For example it is far simpler to visualise the statement "All dogs are animals", than "All A are B" despite being saying essentially the same thing. 
 However representing syllogisms this way is not the most effective as they can be logically quite complex. As \citep{larkin1987diagram} explain, sentential form requires inferences to be made, and then those inferences to be held in memory. Working through the syllogism, for example to decide if it is valid, means that these inferences must be continually remembered. As shown by \cite{johnson1980mental}, sentential forms of syllogism are more difficult to understand and may be mentally translated into diagrammatic representations internally. 
 
+\subsection{Venn Diagrams}
+%Think about Plurative syllogisms for possible extensions
+Venn diagrams are the most commonly used diagrammatic representation of syllogigms. A huge advantage of them is that most people have been taught them at a young age and are very familiar with them. Each circle represent a term, with shading or marking with a cross is used to represent the state of the set. To achieve the final diagram the two previous diagrams are combined which can then  be used to check the validity of the conclusion.
+
+\begin{table}[h!]
+  \centering
+  \begin{tabular}{  c  c  c  c }
+    A & I & E & O\\
+    \begin{minipage}{.22\textwidth}
+      \includegraphics[width=\linewidth]{AVenn}
+    \end{minipage}
+    &
+    \begin{minipage}{.22\textwidth}
+      \includegraphics[width=\linewidth]{IVenn}
+    \end{minipage}
+    & 
+    \begin{minipage}{.22\textwidth}
+      \includegraphics[width=\linewidth]{EVenn}
+    \end{minipage}
+    &
+    \begin{minipage}{.22\textwidth}
+      \includegraphics[width=\textwidth]{OVenn}
+    \end{minipage}
+    \\
+  \end{tabular}
+  \caption{Premises represented by Venn Diagrams}\label{tbl:eulerPremises}
+\end{table}
+
+\begin{table}[htb]
+  \centering
+  \begin{tabular}{ c  c  c }
+    All Men Are Mortal & All Greeks Are Men & All Greeks Are Mortal\\
+    \begin{minipage}{.29\textwidth}
+      \includegraphics[scale=0.25]{VennAllMenAreMortal}
+    \end{minipage}
+    &
+    \begin{minipage}{.29\textwidth}
+      \includegraphics[scale=0.25]{VennAllGreeksAreMen}
+    \end{minipage}
+    & 
+    \begin{minipage}{.29\textwidth}
+      \includegraphics[scale=0.25]{VennAllGreeksAreMortal}
+    \end{minipage}
+    \\
+  \end{tabular}
+  \caption{Premises represented by Euler Circles}\label{tbl:eulerPremises}
+\end{table}
+\FloatBarrier
+
+
+
 \subsection{Euler Circles}
 Euler circles are one popular way in which syllogisms can be represented. 
 These are a very natural way of representing sets, with \cite{Erickson1978-ERIROS} putting forward the theory that when people are thinking about syllogisms that they are in fact being mentally thought of as Euler circles. He proposed that in the proposition, All A are B, 75\% of the time that will be imagined as coincident circles and the other 25\% as traditional euler circles.
 
-\begin{figure}[!tbp]
+\begin{figure}[!h]
   \centering
   \begin{minipage}[b]{0.4\textwidth}
     \includegraphics[width=\textwidth]{EulerCoincident}
@@ -138,7 +189,7 @@ These are a very natural way of representing sets, with \cite{Erickson1978-ERIRO
     \caption{Traditional Euler Circles}
   \end{minipage}
 \end{figure}
-
+\FloatBarrier
 Whilst according the Erickson the coincident are more commonly thought of, for diagrammatic purposes the traditional way will be discussed as it is clearer. As table 1.1 shows, when representing the individual moods Euler circles can be very intuitive.
 
 %Cirles are 8.5cm I think
@@ -191,34 +242,6 @@ Whilst according the Erickson the coincident are more commonly thought of, for d
 \FloatBarrier
 However, the problem with this representation arises when more complex syllogisms are constructed. When there are multiple ways to represent the conclusion the resulst is needing more than one diagram to depict the possibilites. All of a sudden the intuitive benefits are quickly outweighed by the complexity.
 
-\subsection{Venn Diagrams}
-%Think about Plurative syllogisms for possible extensions
-Venn diagrams are the most commonly used diagrammatic representation of syllogigms. A huge advantage of them is that most people have been taught them at a young age and are very familiar with them.
-
-\begin{table}[h!]
-  \centering
-  \begin{tabular}{  c  c  c  c }
-    A & I & E & O\\
-    \begin{minipage}{.22\textwidth}
-      \includegraphics[width=\linewidth]{AVenn}
-    \end{minipage}
-    &
-    \begin{minipage}{.22\textwidth}
-      \includegraphics[width=\linewidth]{IVenn}
-    \end{minipage}
-    & 
-    \begin{minipage}{.22\textwidth}
-      \includegraphics[width=\linewidth]{EVenn}
-    \end{minipage}
-    &
-    \begin{minipage}{.22\textwidth}
-      \includegraphics[width=\textwidth]{OVenn}
-    \end{minipage}
-    \\
-  \end{tabular}
-  \caption{Premises represented by Venn Diagrams}\label{tbl:eulerPremises}
-\end{table}
-
 
 \subsection{Linear Diagrams}
 Linear diagrams are an alternative system that was devised by \cite{englebretsen1991}. Instead of being planar like Venn and Euler diagrams are linear. The reasoning behind this was that Englebretsen said it allowed linear diagrams to represent 4 terms, unlike their planar counterparts. Elements are represented by points which are then connected by lines to show sets.
@@ -263,31 +286,54 @@ As introduced by \cite{cheng2012visualizing}, Categorical Pattern Diagrams offer
 
 The issue with this form of representation is the notation used is not intuitive. Categorical Pattern Diagrams require the person to learn a whole new notation before they can begin to reason about the syllogism that it is representing.
 
+\subsection{Thoughts to put somewhere}
+Polysyllogisms, unlike standard syllogisms, can contain more than 3 propositions. This poses a problem for graphical representations, with the Venn diagrams becoming exponentially complex such that it is impractical to represent more than 5 sets using them.
+As reasoned by \cite{cheng2014graphical}, linear and Euler diagrams also struggle with this problem. As both use spatial-overlap it means the diagrams can only represent a series of universal affirmative propositions. 
+
 \chapter{Serious Games}
 \section{Introduction}
-Serious Games are a movement within the game industry comprised of software developers and researchers who are using games to educate. Whilst there is some debate around what exactly construes a serious game, \cite{michael2005serious} define one as any game where entertainment is not the primary purpose, but where instead the focus is on education. They aim to tackle a growing problem in education whereby educational techniques have not adapted to the needs of the current generation. As \citep{Lim} discusses, learning in the classroom has been driven by the national curriculum, with a massive focus on standard and grades. This goes against the belief that to engage students the focus should in fact be on creating a learning environment that encourages this.  In contrast with previous generations, the younger generation of today have grown up in a world consumed in technology. \cite{oblinger2005educating} described them as the \textit{Net Generation}, the generation who always need to be connected, require immediate feedback and crave social interaction. The research of \cite{prensky2001games} explains how this vast amount of technology now experienced in everyday life has led to these newer generations having their minds rewired. These cognitive changes have caused a different set of educational preferences when compared to previous generations, with teaching methods not evolving in order to take this into account.
+Serious Games are a movement within the game industry comprised of software developers and researchers who are using games to educate. Whilst there is some debate around what exactly construes a serious game, \cite{michael2005serious} define one as any game where entertainment is not the primary purpose, but where instead the focus is on education. They aim to tackle a growing problem whereby educational techniques have not adapted to the needs of the current generation. As \cite{lim2008spirit} discusses, learning in the classroom has been driven by the national curriculum, with a massive focus on standard and grades. This goes against the belief that to engage students the focus should in fact be on creating a learning environment that encourages this.  In contrast with previous generations, the younger generation of today have grown up in a world consumed in technology. \cite{oblinger2005educating} described them as the \textit{Net Generation}, the generation who always need to be connected, require immediate feedback and crave social interaction. The research of \cite{prensky2001games} explains how this vast amount of technology now experienced in everyday life has led to these newer generations having their minds rewired. These cognitive changes have caused a different set of educational preferences when compared to previous generations, with teaching methods not evolving in order to take this into account.
 
 \section{Why They Are Good For Education}
-One of the benefits of using games to teach is their accessibility. In the United Kingdom  access to the internet has doubled over the past 10 years, with 82\% of adults now using the internet on a daily basis \citep{onssurvey}. With such a high number of people using the internet it allows games hosted on the web to be available to the masses. Games also appeal to a wide audience by crossing demographic boundaries such as age, gender and educational status \citep{griffiths2002educational}. 
+\subsection{Accessibility}
+One of the benefits of using games to teach is their accessibility in comparison to other methods of teaching. In the United Kingdom  access to the internet has doubled over the past 10 years, with 82\% of adults now using the internet on a daily basis \citep{onssurvey}. With such a huge number of people using the internet it means that games hosted on the web have an extremely large potential audience. This broad audience coupled with the widespread appeal of video games allows the crossing of demographic boundaries such as age, gender and educational status \citep{griffiths2002educational}.  Serious Games also have a lower barrier to entry than other educational methods by allowing a much more "pick up and play" approach to learning with less reliance on prerequisite background knowledge. In the case of syllogisms this would be achieved by using graphical representations to replace the set theory notations. By teaching the concepts first, set theory notation could then be introduced at a more appropriate time in the learning process when the player had a greater understanding of the topic. 
 
-\section{Existing Serious Games}
-Serious Games can be split into two main categories, mini-games and complex games. Mini Games tends to be far shorter, often only taking less than an hour to complete, focussing on a very specific topic within a subject and browser based. Progression tends to be added through multiple levels, all with similar design but increasing the difficultly from previous levels. This is the far more common type of Serious Game as game development is extremely costly, and mini games allow implementation from as few as a single developer.
-
-In contrast complex games can take potentially hundreds of hours to complete and cover a very broad topic. The game may contain multiple skills, paths to follow and complex goals. 
-
-\section{Motivation}
+\subsection{Motivation}
 As discussed by \cite{malone1981toward} games can also be intrinsically motivating, such that there are no external factors as to why a person is playing other than for their own enjoyment. This is in contrast to typical classroom learning that is usually more extrinsically motivated through grades, exam results and certificates. As  \citep{csikszentmihalyi1997talented} says, the number of students attending school would see a sharp drop if extrinsic rewards were removed. Of the two, intrinsic motivation is more resilient that extrinsic motivation. Learning that takes place as a result of intrinsic motivation if how higher quality of the knowledge is longer lasting \citep{kawachi2003initiating}. However, it is important to remember that not all games are by definition intrinsically motivating, but need to be structured correctly to achieve this. Malone included challenge, fantasy and curiosity as the three cornerstones of intrinsically motivating serious games.  In order to create a challenging game, it should include uncertain goals that are not too easy for the players to complete. Ensuring a game is challenging is so crucial as demonstrated by Malone through his work surveying children's opinion on 25 different computer games. The results conclusively showed that the most popular games all shared one thing in common; they all contained a defined goal.  Similarly in a study carried out by \citep{abuhamdeh2012importance} on chess players, it was found that the more challenging the game the greater the player's enjoyment. A fantasy environment in a game is said to "evoke mental images of phyical or social situations not actually present". Malone divides these fantasies into intrinsic and extrinsic, with intrinsic being more interesting and instructional resulting in a  greater cognitive effect on learning. \citep{lepper1988motivational} explains how if learning takes place away from the functionality of the knowledge then this decontextulisation results in the learner becoming demotivated.  This can be tackled by teaching topics by using real world examples demonstrating how the concepts are applied.  However, as this is not always feasible, Lepper proposed inserting the content of the topic into a fantasy context. Curiosity was the final and like challenge, is stimulated from an optimal level of complexity. Also similarly like fantasy, curiosity is  broken down into two categories; sensory and cognitive.  Sensory curiosity, as the name suggests, uses lights, sounds and graphics to gain that attention of the participant. Cognitive curiosity is achieved by making the participant doubt their existing knowledge, as people desire to have "good form" in their cognitive structure.   By using this taxonomy when developing a serious game, it is clear that this could be used to engage people who otherwise might not have been interested in learning. 
 
-\section{Feedback}
-Feedback is a crucial part of the education process and significantly influences the effectiveness of learning. Feedback in this context relates to information provided by a source, be it a teacher etc, regarding a person's understanding of a concept that be used to aid improvement.
+\subsection{Feedback}
+Feedback is a crucial part of the education process and significantly influences the effectiveness of learning. Feedback in this context relates to information provided by a source, be it a teacher etc, regarding a person's understanding of a concept that is used to aid improvement.
 As stated by \cite{hattie2007power}, "feedback is
-one of the most powerful influences on learning and achievement".
+one of the most powerful influences on learning and achievement". A further study carried out by \cite{hattie2007power} explored the most effective medium to provide feedback. Computer-assisted, audio and video feedback were found to be most effective forms with the more traditional approach of praise, punishment and providing extrinsic rewards being the worst. 
 
-One of the main advantages of using games for education is the speed at which feedback can be delivered to the learner. This is especially important to the \textit{Net Generation} who require this immediate feedback. For example, in the scenario of a teacher marking essays, it can be months between when the work was completed and when the feedback was received. The term \textit{Fast feedback} was coined by \cite{lumsden1988characteristics} which demonstrated how this timely feedback removed any uncertainty about progress and allowed any corrective action to be taken during the learning process.
+One of the main advantages of using games for education is the speed at which feedback can be delivered to the learner. This is especially important to the \textit{Net Generation} who require this immediate feedback. For example, in the scenario of a teacher marking essays, there can be months between when the work was completed and when the feedback was received.  The term \textit{Fast feedback} was coined by \cite{lumsden1988characteristics} which demonstrated how this timely feedback removed any uncertainty about progress and allowed any corrective action to be taken during the learning process. However, fast feedback is not a silver bullet, the speed at which feedback is delivered should depend on the difficulty of the task. The more complex the task, the greater the benefit of delaying the feedback to allow the information to be processed \cite{clariana2000applying}.
 
-The act of delivering feedback during the lenaring process is known as formative assessments, with summative assessments usually being carried out at the end. As explained by \cite{irons2007enhancing}, formative assessments can be hugely beneficial as they enhance the learning process by creating a positive environment which in turns results in greater motivation for learning. 
+Feedback during the learning process is known as formative assessments, with summative assessments usually being carried out at the end. As explained by \cite{irons2007enhancing}, formative assessments can be hugely beneficial as they enhance the learning process by creating a positive environment which in turns results in greater motivation for learner. 
 
 Serious Games lend themselves extremely well to delivering formative feedback to players through in-game features such as progress bars, score count and countdown timers. Feedback can also be provided to the player as they make mistakes allowing the player to engage with the game and keep on track to completing their goals. This can also help the player from becoming frustrated and not able to progress past a certain point.
+
+\section{Existing Serious Games}
+Serious Games can be split into two main categories, mini-games and complex games. Mini Games tends to be far shorter, often only taking less than an hour to complete. The focus is aimed at a very specific topic within a subject and is usually browser based. Progression tends to be added through multiple levels, all with similar design but with increasing difficulty. This is the far more common type of Serious Game as development is extremely costly, and mini games allow single developers to create them.
+
+In contrast complex games can take potentially hundreds of hours to complete and cover a very broad topic. The game may contain multiple skills, paths to follow and complex goals.  
+
+Serious games do not just apply to education, but are used by a wide variety of different industries. The United States military created America's Army to aid in their recruitment and Microsoft's Flight Simulator is used by pilots in training \citep{111701519980901}.
+
+\subsection{MyMaths}
+MyMaths is a web based service that is used by schools in over 70 countries, with over 4.5 million users. It is marketed as an online learning platform that provides lessons and homework tasks to school children.
+As Figure 2.1 shows, MyMaths makes use of fast feedback to provide the player with the results as soon as they have completed the task. However, MyMaths does not provide an immersive or particularly enjoyable experience for players. \cite{lee2013learning} found that while students said they enjoyed using computers to learn, they did not want to use MyMaths. This could be due to that fact that MyMaths is very one dimensional, merely presenting questions in a quiz like format. This does not engage with the player or make use of the technologies available to make it more interactive.
+
+
+\begin{figure}[!tbp]
+  \centering
+  \begin{minipage}[b]{1\textwidth}
+    \includegraphics[width=\textwidth]{mymaths}
+    \caption{A homework exercise in MyMaths}
+  \end{minipage}
+\end{figure}
+\FloatBarrier
+
+
 
 \bibliographystyle{plainnat}
 \bibliography{bibliography} 

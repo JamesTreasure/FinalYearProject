@@ -1,4 +1,4 @@
-\begin{thebibliography}{20}
+\begin{thebibliography}{25}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -12,11 +12,25 @@ Sami Abuhamdeh and Mihaly Csikszentmihalyi.
 \newblock \emph{Personality and Social Psychology Bulletin}, 38\penalty0
   (3):\penalty0 317--330, 2012.
 
+\bibitem[Cheng(2014)]{cheng2014graphical}
+Peter C-H Cheng.
+\newblock Graphical notations for syllogisms: how alternative representations
+  impact the accessibility of concepts.
+\newblock \emph{Journal of Visual Languages \& Computing}, 25\penalty0
+  (3):\penalty0 170--185, 2014.
+
 \bibitem[Cheng(2012)]{cheng2012visualizing}
 Peter~CH Cheng.
 \newblock Visualizing syllogisms: category pattern diagrams versus venn
   diagrams.
 \newblock 2012.
+
+\bibitem[Clariana et~al.(2000)Clariana, Wagner, and
+  Murphy]{clariana2000applying}
+Roy~B Clariana, Daren Wagner, and Lucia C~Roher Murphy.
+\newblock Applying a connectionist description of feedback timing.
+\newblock \emph{Educational Technology Research and Development}, 48\penalty0
+  (3):\penalty0 5--22, 2000.
 
 \bibitem[Csikszentmihalyi et~al.(1997)Csikszentmihalyi, Rathunde, and
   Whalen]{csikszentmihalyi1997talented}
@@ -49,6 +63,14 @@ John Hattie and Helen Timperley.
 \newblock \emph{Review of educational research}, 77\penalty0 (1):\penalty0
   81--112, 2007.
 
+\bibitem[Homan and Williams(1998)]{111701519980901}
+Willem Homan and Kathleen Williams.
+\newblock Pc-based flight simulators: No more games.
+\newblock \emph{Tech Directions}, 58\penalty0 (2):\penalty0 33, 1998.
+\newblock ISSN 10629351.
+\newblock URL
+  \url{http://search.ebscohost.com.ezproxy1.bath.ac.uk/login.aspx?direct=true&db=bth&AN=1117015&site=ehost-live}.
+
 \bibitem[Irons(2007)]{irons2007enhancing}
 Alastair Irons.
 \newblock \emph{Enhancing learning through formative assessment and feedback}.
@@ -71,6 +93,12 @@ Jill~H Larkin and Herbert~A Simon.
 \newblock Why a diagram is (sometimes) worth ten thousand words.
 \newblock \emph{Cognitive science}, 11\penalty0 (1):\penalty0 65--100, 1987.
 
+\bibitem[Lee and Johnston-Wilder(2013)]{lee2013learning}
+Clare Lee and Sue Johnston-Wilder.
+\newblock Learning mathematics—letting the pupils have their say.
+\newblock \emph{Educational Studies in Mathematics}, 83\penalty0 (2):\penalty0
+  163--180, 2013.
+
 \bibitem[Lemon et~al.(1998)Lemon, Pratt, et~al.]{lemon1998insufficiency}
 Oliver Lemon, Ian Pratt, et~al.
 \newblock On the insufficiency of linear diagrams for syllogisms.
@@ -82,6 +110,12 @@ Mark~R Lepper.
 \newblock Motivational considerations in the study of instruction.
 \newblock \emph{Cognition and instruction}, 5\penalty0 (4):\penalty0 289--309,
   1988.
+
+\bibitem[Lim(2008)]{lim2008spirit}
+Cher~Ping Lim.
+\newblock Spirit of the game: Empowering students as designers in schools?
+\newblock \emph{British Journal of Educational Technology}, 39\penalty0
+  (6):\penalty0 996--1003, 2008.
 
 \bibitem[Lumsden and Scott(1988)]{lumsden1988characteristics}
 Keith Lumsden and Alex Scott.

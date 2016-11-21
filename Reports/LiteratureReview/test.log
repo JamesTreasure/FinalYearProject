@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.10.8)  20 NOV 2016 14:50
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.10.8)  21 NOV 2016 22:19
 entering extended mode
 **./test.tex
 (test.tex
@@ -192,6 +192,9 @@ LaTeX Warning: Label `tbl:eulerPremises' multiply defined.
 
 LaTeX Warning: Label `tbl:eulerPremises' multiply defined.
 
+
+LaTeX Warning: Label `tbl:eulerPremises' multiply defined.
+
 )
 \openout1 = `test.aux'.
 
@@ -296,180 +299,226 @@ File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 74.
  [3]
-<images/EulerCoincident.png, id=26, 494.84875pt x 494.84875pt>
-File: images/EulerCoincident.png Graphic file (type png)
-
-<use images/EulerCoincident.png>
-Package pdftex.def Info: images/EulerCoincident.png used on input line 132.
-(pdftex.def)             Requested size: 155.99762pt x 155.99144pt.
-
-<images/EulerCircles.png, id=28, 494.84875pt x 494.84875pt>
-File: images/EulerCircles.png Graphic file (type png)
-
-<use images/EulerCircles.png>
-Package pdftex.def Info: images/EulerCircles.png used on input line 137.
-(pdftex.def)             Requested size: 155.99762pt x 155.99144pt.
- [4]
-<images/AEuler.png, id=33, 513.92pt x 513.92pt>
-File: images/AEuler.png Graphic file (type png)
- <use images/AEuler.png>
-Package pdftex.def Info: images/AEuler.png used on input line 150.
+<images/AVenn.png, id=26, 513.92pt x 513.92pt>
+File: images/AVenn.png Graphic file (type png)
+ <use images/AVenn.png>
+Package pdftex.def Info: images/AVenn.png used on input line 134.
 (pdftex.def)             Requested size: 85.80048pt x 85.79688pt.
 
-<images/IEuler.png, id=34, 513.92pt x 513.92pt>
-File: images/IEuler.png Graphic file (type png)
- <use images/IEuler.png>
-Package pdftex.def Info: images/IEuler.png used on input line 154.
+<images/IVenn.png, id=27, 513.92pt x 513.92pt>
+File: images/IVenn.png Graphic file (type png)
+ <use images/IVenn.png>
+Package pdftex.def Info: images/IVenn.png used on input line 138.
 (pdftex.def)             Requested size: 85.80048pt x 85.79688pt.
 
-<images/EEuler.png, id=35, 513.92pt x 513.92pt>
-File: images/EEuler.png Graphic file (type png)
- <use images/EEuler.png>
-Package pdftex.def Info: images/EEuler.png used on input line 158.
+<images/EVenn.png, id=28, 513.92pt x 513.92pt>
+File: images/EVenn.png Graphic file (type png)
+ <use images/EVenn.png>
+Package pdftex.def Info: images/EVenn.png used on input line 142.
 (pdftex.def)             Requested size: 85.80048pt x 85.79688pt.
 
-<images/OEuler.png, id=36, 513.92pt x 513.92pt>
-File: images/OEuler.png Graphic file (type png)
- <use images/OEuler.png>
-Package pdftex.def Info: images/OEuler.png used on input line 162.
+<images/OVenn.png, id=29, 513.92pt x 513.92pt>
+File: images/OVenn.png Graphic file (type png)
+ <use images/OVenn.png>
+Package pdftex.def Info: images/OVenn.png used on input line 146.
 (pdftex.def)             Requested size: 85.80048pt x 85.79688pt.
 
-Overfull \hbox (1.2019pt too wide) in paragraph at lines 147--166
+Overfull \hbox (1.2019pt too wide) in paragraph at lines 131--150
  [][] 
  []
 
-[5 <./images/EulerCoincident.png> <./images/EulerCircles.png> <./images/AEuler.
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+<images/VennAllMenAreMortal.png, id=30, 513.92pt x 513.92pt>
+File: images/VennAllMenAreMortal.png Graphic file (type png)
+
+<use images/VennAllMenAreMortal.png>
+Package pdftex.def Info: images/VennAllMenAreMortal.png used on input line 158.
+
+(pdftex.def)             Requested size: 128.47968pt x 128.47968pt.
+
+Overfull \hbox (15.3823pt too wide) in paragraph at lines 158--159
+[][] 
+ []
+
+<images/VennAllGreeksAreMen.png, id=31, 513.92pt x 513.92pt>
+File: images/VennAllGreeksAreMen.png Graphic file (type png)
+
+<use images/VennAllGreeksAreMen.png>
+Package pdftex.def Info: images/VennAllGreeksAreMen.png used on input line 162.
+
+(pdftex.def)             Requested size: 128.47968pt x 128.47968pt.
+
+Overfull \hbox (15.3823pt too wide) in paragraph at lines 162--163
+[][] 
+ []
+
+<images/VennAllGreeksAreMortal.png, id=33, 513.92pt x 513.92pt>
+File: images/VennAllGreeksAreMortal.png Graphic file (type png)
+
+<use images/VennAllGreeksAreMortal.png>
+Package pdftex.def Info: images/VennAllGreeksAreMortal.png used on input line 1
+66.
+(pdftex.def)             Requested size: 128.47968pt x 128.47968pt.
+
+Overfull \hbox (15.3823pt too wide) in paragraph at lines 166--167
+[][] 
+ []
+
+[4] <images/EulerCoincident.png, id=38, 371.13657pt x 371.13657pt>
+File: images/EulerCoincident.png Graphic file (type png)
+
+<use images/EulerCoincident.png>
+Package pdftex.def Info: images/EulerCoincident.png used on input line 183.
+(pdftex.def)             Requested size: 155.99762pt x 156.00087pt.
+
+<images/EulerCircles.png, id=39, 371.13657pt x 371.13657pt>
+File: images/EulerCircles.png Graphic file (type png)
+
+<use images/EulerCircles.png>
+Package pdftex.def Info: images/EulerCircles.png used on input line 188.
+(pdftex.def)             Requested size: 155.99762pt x 156.00087pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[5 <./images/AVenn.png> <./images/IVenn.png> <./images/EVenn.png> <./images/OVe
+nn.png> <./images/VennAllMenAreMortal.png> <./images/VennAllGreeksAreMen.png> <
+./images/VennAllGreeksAreMortal.png>]
+<images/AEuler.png, id=46, 513.92pt x 513.92pt>
+File: images/AEuler.png Graphic file (type png)
+ <use images/AEuler.png>
+Package pdftex.def Info: images/AEuler.png used on input line 201.
+(pdftex.def)             Requested size: 85.80048pt x 85.79688pt.
+
+<images/IEuler.png, id=47, 513.92pt x 513.92pt>
+File: images/IEuler.png Graphic file (type png)
+ <use images/IEuler.png>
+Package pdftex.def Info: images/IEuler.png used on input line 205.
+(pdftex.def)             Requested size: 85.80048pt x 85.79688pt.
+
+<images/EEuler.png, id=48, 513.92pt x 513.92pt>
+File: images/EEuler.png Graphic file (type png)
+ <use images/EEuler.png>
+Package pdftex.def Info: images/EEuler.png used on input line 209.
+(pdftex.def)             Requested size: 85.80048pt x 85.79688pt.
+
+<images/OEuler.png, id=49, 513.92pt x 513.92pt>
+File: images/OEuler.png Graphic file (type png)
+ <use images/OEuler.png>
+Package pdftex.def Info: images/OEuler.png used on input line 213.
+(pdftex.def)             Requested size: 85.80048pt x 85.79688pt.
+
+Overfull \hbox (1.2019pt too wide) in paragraph at lines 198--217
+ [][] 
+ []
+
+[6 <./images/EulerCoincident.png> <./images/EulerCircles.png> <./images/AEuler.
 png> <./images/IEuler.png> <./images/EEuler.png> <./images/OEuler.png>]
-<images/EulerAllMenAreMortal.png, id=42, 513.92pt x 513.92pt>
+<images/EulerAllMenAreMortal.png, id=56, 513.92pt x 513.92pt>
 File: images/EulerAllMenAreMortal.png Graphic file (type png)
 
 <use images/EulerAllMenAreMortal.png>
-Package pdftex.def Info: images/EulerAllMenAreMortal.png used on input line 177
+Package pdftex.def Info: images/EulerAllMenAreMortal.png used on input line 228
 .
 (pdftex.def)             Requested size: 128.47968pt x 128.47968pt.
 
-Overfull \hbox (15.3823pt too wide) in paragraph at lines 177--178
+Overfull \hbox (15.3823pt too wide) in paragraph at lines 228--229
 [][] 
  []
 
-<images/EulerAllGreeksAreMen.png, id=43, 513.92pt x 513.92pt>
+<images/EulerAllGreeksAreMen.png, id=57, 513.92pt x 513.92pt>
 File: images/EulerAllGreeksAreMen.png Graphic file (type png)
 
 <use images/EulerAllGreeksAreMen.png>
-Package pdftex.def Info: images/EulerAllGreeksAreMen.png used on input line 181
+Package pdftex.def Info: images/EulerAllGreeksAreMen.png used on input line 232
 .
 (pdftex.def)             Requested size: 128.47968pt x 128.47968pt.
 
-Overfull \hbox (15.3823pt too wide) in paragraph at lines 181--182
+Overfull \hbox (15.3823pt too wide) in paragraph at lines 232--233
 [][] 
  []
 
-<images/EulerAllGreeksAreMortal.png, id=44, 513.92pt x 513.92pt>
+<images/EulerAllGreeksAreMortal.png, id=58, 513.92pt x 513.92pt>
 File: images/EulerAllGreeksAreMortal.png Graphic file (type png)
 
 <use images/EulerAllGreeksAreMortal.png>
 Package pdftex.def Info: images/EulerAllGreeksAreMortal.png used on input line 
-185.
+236.
 (pdftex.def)             Requested size: 128.47968pt x 128.47968pt.
 
-Overfull \hbox (15.3823pt too wide) in paragraph at lines 185--186
+Overfull \hbox (15.3823pt too wide) in paragraph at lines 236--237
 [][] 
  []
 
-<images/AVenn.png, id=45, 513.92pt x 513.92pt>
-File: images/AVenn.png Graphic file (type png)
- <use images/AVenn.png>
-Package pdftex.def Info: images/AVenn.png used on input line 203.
-(pdftex.def)             Requested size: 85.80048pt x 85.79688pt.
-
-<images/IVenn.png, id=46, 513.92pt x 513.92pt>
-File: images/IVenn.png Graphic file (type png)
- <use images/IVenn.png>
-Package pdftex.def Info: images/IVenn.png used on input line 207.
-(pdftex.def)             Requested size: 85.80048pt x 85.79688pt.
-
-<images/EVenn.png, id=47, 513.92pt x 513.92pt>
-File: images/EVenn.png Graphic file (type png)
- <use images/EVenn.png>
-Package pdftex.def Info: images/EVenn.png used on input line 211.
-(pdftex.def)             Requested size: 85.80048pt x 85.79688pt.
-
-<images/OVenn.png, id=48, 513.92pt x 513.92pt>
-File: images/OVenn.png Graphic file (type png)
- <use images/OVenn.png>
-Package pdftex.def Info: images/OVenn.png used on input line 215.
-(pdftex.def)             Requested size: 85.80048pt x 85.79688pt.
-
-Overfull \hbox (1.2019pt too wide) in paragraph at lines 200--219
- [][] 
- []
-
-[6 <./images/EulerAllMenAreMortal.png> <./images/EulerAllGreeksAreMen.png> <./i
-mages/EulerAllGreeksAreMortal.png> <./images/AVenn.png> <./images/IVenn.png> <.
-/images/EVenn.png> <./images/OVenn.png>]
-<images/ALinear.png, id=53, 513.92pt x 513.92pt>
+<images/ALinear.png, id=59, 513.92pt x 513.92pt>
 File: images/ALinear.png Graphic file (type png)
  <use images/ALinear.png>
-Package pdftex.def Info: images/ALinear.png used on input line 232.
+Package pdftex.def Info: images/ALinear.png used on input line 255.
 (pdftex.def)             Requested size: 85.80048pt x 85.79688pt.
 
-<images/ILinear.png, id=54, 513.92pt x 513.92pt>
+<images/ILinear.png, id=60, 513.92pt x 513.92pt>
 File: images/ILinear.png Graphic file (type png)
  <use images/ILinear.png>
-Package pdftex.def Info: images/ILinear.png used on input line 236.
+Package pdftex.def Info: images/ILinear.png used on input line 259.
 (pdftex.def)             Requested size: 85.80048pt x 85.79688pt.
 
-<images/ELinear.png, id=55, 513.92pt x 513.92pt>
+<images/ELinear.png, id=61, 513.92pt x 513.92pt>
 File: images/ELinear.png Graphic file (type png)
  <use images/ELinear.png>
-Package pdftex.def Info: images/ELinear.png used on input line 240.
+Package pdftex.def Info: images/ELinear.png used on input line 263.
 (pdftex.def)             Requested size: 85.80048pt x 85.79688pt.
 
-<images/O1Linear.png, id=56, 513.92pt x 513.92pt>
+<images/O1Linear.png, id=62, 513.92pt x 513.92pt>
 File: images/O1Linear.png Graphic file (type png)
  <use images/O1Linear.png>
-Package pdftex.def Info: images/O1Linear.png used on input line 244.
+Package pdftex.def Info: images/O1Linear.png used on input line 267.
 (pdftex.def)             Requested size: 85.80048pt x 85.79688pt.
 
-<images/O2Linear.png, id=57, 513.92pt x 513.92pt>
+<images/O2Linear.png, id=63, 513.92pt x 513.92pt>
 File: images/O2Linear.png Graphic file (type png)
  <use images/O2Linear.png>
-Package pdftex.def Info: images/O2Linear.png used on input line 251.
+Package pdftex.def Info: images/O2Linear.png used on input line 274.
 (pdftex.def)             Requested size: 85.80048pt x 85.79688pt.
 
-Overfull \hbox (1.2019pt too wide) in paragraph at lines 229--255
+Overfull \hbox (1.2019pt too wide) in paragraph at lines 252--278
  [][] 
  []
 
-[7 <./images/ALinear.png> <./images/ILinear.png> <./images/ELinear.png> <./imag
-es/O1Linear.png> <./images/O2Linear.png>]
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[7 <./images/EulerAllMenAreMortal.png> <./images/EulerAllGreeksAreMen.png> <./i
+mages/EulerAllGreeksAreMortal.png>] [8 <./images/ALinear.png> <./images/ILinear
+.png> <./images/ELinear.png> <./images/O1Linear.png> <./images/O2Linear.png>]
 Chapter 2.
+[9
 
-Package natbib Warning: Citation `Lim' on page 8 undefined on input line 268.
+] [10] [11] <images/mymaths.png, id=79, 867.24pt x 487.8225pt>
+File: images/mymaths.png Graphic file (type png)
 
-[8
-
-] [9] [10] (test.bbl [11]
-LaTeX Font Info:    Try loading font information for T1+cmtt on input line 33.
+<use images/mymaths.png>
+Package pdftex.def Info: images/mymaths.png used on input line 330.
+(pdftex.def)             Requested size: 390.0pt x 219.37666pt.
+ [12] (test.bbl [13 <./images/mymaths.png>]
+LaTeX Font Info:    Try loading font information for T1+cmtt on input line 47.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\base\t1cmtt.fd"
 File: t1cmtt.fd 2014/09/29 v2.5h Standard LaTeX font definitions
-) [12
+) [14
 
-])
-
-Package natbib Warning: There were undefined citations.
-
-[13] (test.aux)
+] [15]) [16]
+(test.aux)
 
 LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 4567 strings out of 493334
- 68189 string characters out of 3139252
- 235284 words of memory out of 3000000
- 8015 multiletter control sequences out of 15000+200000
+ 4601 strings out of 493334
+ 69150 string characters out of 3139252
+ 235476 words of memory out of 3000000
+ 8045 multiletter control sequences out of 15000+200000
  16260 words of font info for 37 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  44i,14n,42p,2935b,373s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -489,9 +538,9 @@ r\jknappen\ec\dpi600\ecbx2488.pk> <C:\Users\james\AppData\Local\MiKTeX\2.9\font
 s\pk\ljfour\jknappen\ec\dpi600\eccc1728.pk> <C:\Users\james\AppData\Local\MiKTe
 X\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\eccc2074.pk><C:/Program Files/MiKTeX 2
 .9/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
-Output written on test.pdf (14 pages, 532606 bytes).
+Output written on test.pdf (17 pages, 688943 bytes).
 PDF statistics:
- 464 PDF objects out of 1000 (max. 8388607)
+ 498 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 91 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 111 words of extra memory for PDF output out of 10000 (max. 10000000)
 
