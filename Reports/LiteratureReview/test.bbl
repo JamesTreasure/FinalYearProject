@@ -1,4 +1,4 @@
-\begin{thebibliography}{25}
+\begin{thebibliography}{26}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -87,6 +87,11 @@ Paul Kawachi.
   current state of the art.
 \newblock \emph{Interactive Learning Environments}, 11\penalty0 (1):\penalty0
   59--81, 2003.
+
+\bibitem[Lamport(1983)]{lamport1983good}
+Leslie Lamport.
+\newblock What good is temporal logic?
+\newblock In \emph{IFIP congress}, volume~83, pages 657--668, 1983.
 
 \bibitem[Larkin and Simon(1987)]{larkin1987diagram}
 Jill~H Larkin and Herbert~A Simon.

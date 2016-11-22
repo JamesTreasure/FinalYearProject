@@ -1,12 +1,14 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.10.8)  21 NOV 2016 22:19
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.10.6)  22 NOV 2016 13:33
 entering extended mode
-**./test.tex
-(test.tex
-LaTeX2e <2016/03/31> patch level 3
-Babel <3.9r> and hyphenation patterns for 75 language(s) loaded.
-("C:\Program Files\MiKTeX 2.9\tex\latex\base\report.cls"
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**test.tex
+(./test.tex
+LaTeX2e <2016/03/31>
+Babel <3.9r> and hyphenation patterns for 83 language(s) loaded.
+(/usr/local/texlive/2016/texmf-dist/tex/latex/base/report.cls
 Document Class: report 2014/09/29 v1.4h Standard LaTeX document class
-("C:\Program Files\MiKTeX 2.9\tex\latex\base\size12.clo"
+(/usr/local/texlive/2016/texmf-dist/tex/latex/base/size12.clo
 File: size12.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
 )
 \c@part=\count79
@@ -22,33 +24,33 @@ File: size12.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
 \belowcaptionskip=\skip42
 \bibindent=\dimen102
 )
-("C:\Program Files\MiKTeX 2.9\tex\latex\lipsum\lipsum.sty"
+(/usr/local/texlive/2016/texmf-dist/tex/latex/lipsum/lipsum.sty
 Package: lipsum 2014/07/27 v1.3 150 paragraphs of Lorem Ipsum dummy text
 \c@lips@count=\count88
 )
-("C:\Program Files\MiKTeX 2.9\tex\latex\titlesec\titletoc.sty"
+(/usr/local/texlive/2016/texmf-dist/tex/latex/titlesec/titletoc.sty
 Package: titletoc 2011/12/15 v1.6 TOC entries
 \ttl@leftsep=\dimen103
 )
-("C:\Program Files\MiKTeX 2.9\tex\latex\base\fontenc.sty"
-Package: fontenc 2016/06/19 v1.99m Standard LaTeX package
+(/usr/local/texlive/2016/texmf-dist/tex/latex/base/fontenc.sty
+Package: fontenc 2005/09/27 v1.99g Standard LaTeX package
 
-("C:\Program Files\MiKTeX 2.9\tex\latex\base\t1enc.def"
-File: t1enc.def 2016/06/19 v1.99m Standard LaTeX file
+(/usr/local/texlive/2016/texmf-dist/tex/latex/base/t1enc.def
+File: t1enc.def 2005/09/27 v1.99g Standard LaTeX file
 LaTeX Font Info:    Redeclaring font encoding T1 on input line 48.
 ))
-("C:\Program Files\MiKTeX 2.9\tex\latex\natbib\natbib.sty"
+(/usr/local/texlive/2016/texmf-dist/tex/latex/natbib/natbib.sty
 Package: natbib 2010/09/13 8.31b (PWD, AO)
 \bibhang=\skip43
 \bibsep=\skip44
 LaTeX Info: Redefining \cite on input line 694.
 \c@NAT@ctr=\count89
 )
-("C:\Program Files\MiKTeX 2.9\tex\latex\url\url.sty"
+(/usr/local/texlive/2016/texmf-dist/tex/latex/url/url.sty
 \Urlmuskip=\muskip10
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
-("C:\Program Files\MiKTeX 2.9\tex\latex\titlesec\titlesec.sty"
+(/usr/local/texlive/2016/texmf-dist/tex/latex/titlesec/titlesec.sty
 Package: titlesec 2016/03/21 v2.10.2 Sectioning titles
 \ttl@box=\box26
 \beforetitleunit=\skip45
@@ -60,31 +62,31 @@ Package: titlesec 2016/03/21 v2.10.2 Sectioning titles
 \titlewidthlast=\dimen107
 \titlewidthfirst=\dimen108
 )
-("C:\Program Files\MiKTeX 2.9\tex\latex\graphics\graphicx.sty"
+(/usr/local/texlive/2016/texmf-dist/tex/latex/graphics/graphicx.sty
 Package: graphicx 2014/10/28 v1.0g Enhanced LaTeX Graphics (DPC,SPQR)
 
-("C:\Program Files\MiKTeX 2.9\tex\latex\graphics\keyval.sty"
+(/usr/local/texlive/2016/texmf-dist/tex/latex/graphics/keyval.sty
 Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
 \KV@toks@=\toks15
 )
-("C:\Program Files\MiKTeX 2.9\tex\latex\graphics\graphics.sty"
-Package: graphics 2016/07/10 v1.0t Standard LaTeX Graphics (DPC,SPQR)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2016/05/09 v1.0r Standard LaTeX Graphics (DPC,SPQR)
 
-("C:\Program Files\MiKTeX 2.9\tex\latex\graphics\trig.sty"
+(/usr/local/texlive/2016/texmf-dist/tex/latex/graphics/trig.sty
 Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
 )
-("C:\Program Files\MiKTeX 2.9\tex\latex\00miktex\graphics.cfg"
-File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+(/usr/local/texlive/2016/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
+File: graphics.cfg 2016/01/02 v1.10 sample graphics configuration
 )
-Package graphics Info: Driver file: pdftex.def on input line 99.
+Package graphics Info: Driver file: pdftex.def on input line 96.
 
-("C:\Program Files\MiKTeX 2.9\tex\latex\graphics-def\pdftex.def"
-File: pdftex.def 2016/07/10 v0.06j Graphics/color for pdfTeX
+(/usr/local/texlive/2016/texmf-dist/tex/latex/pdftex-def/pdftex.def
+File: pdftex.def 2011/05/27 v0.06d Graphics/color for pdfTeX
 
-("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\infwarerr.sty"
+(/usr/local/texlive/2016/texmf-dist/tex/generic/oberdiek/infwarerr.sty
 Package: infwarerr 2016/05/16 v1.4 Providing info/warning/error messages (HO)
 )
-("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\ltxcmds.sty"
+(/usr/local/texlive/2016/texmf-dist/tex/generic/oberdiek/ltxcmds.sty
 Package: ltxcmds 2016/05/16 v1.23 LaTeX kernel commands for general use (HO)
 )
 \Gread@gobject=\count90
@@ -92,14 +94,14 @@ Package: ltxcmds 2016/05/16 v1.23 LaTeX kernel commands for general use (HO)
 \Gin@req@height=\dimen109
 \Gin@req@width=\dimen110
 )
-("C:\Program Files\MiKTeX 2.9\tex\latex\subfig\subfig.sty"
+(/usr/local/texlive/2016/texmf-dist/tex/latex/subfig/subfig.sty
 Package: subfig 2005/06/28 ver: 1.3 subfig package
 
-("C:\Program Files\MiKTeX 2.9\tex\latex\caption\caption.sty"
+(/usr/local/texlive/2016/texmf-dist/tex/latex/caption/caption.sty
 Package: caption 2016/02/21 v3.3-144 Customizing captions (AR)
 
-("C:\Program Files\MiKTeX 2.9\tex\latex\caption\caption3.sty"
-Package: caption3 2016/05/22 v1.7-166 caption3 kernel (AR)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/caption/caption3.sty
+Package: caption3 2016/02/04 v1.7-139 caption3 kernel (AR)
 Package caption3 Info: TeX engine: e-TeX on input line 67.
 \captionmargin=\dimen111
 \captionmargin@=\dimen112
@@ -125,7 +127,7 @@ Package caption3 Info: TeX engine: e-TeX on input line 67.
 \sf@top=\skip50
 \sf@bottom=\skip51
 )
-("C:\Program Files\MiKTeX 2.9\tex\latex\tools\array.sty"
+(/usr/local/texlive/2016/texmf-dist/tex/latex/tools/array.sty
 Package: array 2014/10/28 v2.4c Tabular extension package (FMi)
 \col@sep=\dimen119
 \extrarowheight=\dimen120
@@ -133,10 +135,10 @@ Package: array 2014/10/28 v2.4c Tabular extension package (FMi)
 \extratabsurround=\skip52
 \backup@length=\skip53
 )
-("C:\Program Files\MiKTeX 2.9\tex\latex\placeins\placeins.sty"
+(/usr/local/texlive/2016/texmf-dist/tex/latex/placeins/placeins.sty
 Package: placeins 2005/04/18  v 2.2
 )
-("C:\Program Files\MiKTeX 2.9\tex\latex\enumitem\enumitem.sty"
+(/usr/local/texlive/2016/texmf-dist/tex/latex/enumitem/enumitem.sty
 Package: enumitem 2011/09/28 v3.5.2 Customized lists
 \labelindent=\skip54
 \enit@outerparindent=\dimen121
@@ -144,7 +146,7 @@ Package: enumitem 2011/09/28 v3.5.2 Customized lists
 \enit@inbox=\box27
 \enitdp@description=\count99
 )
-("C:\Program Files\MiKTeX 2.9\tex\latex\tools\layout.sty"
+(/usr/local/texlive/2016/texmf-dist/tex/latex/tools/layout.sty
 Package: layout 2014/10/28 v1.2c Show layout parameters
 \oneinch=\count100
 \cnt@paperwidth=\count101
@@ -178,14 +180,14 @@ Package: layout 2014/10/28 v1.2c Show layout parameters
 \PositionY=\count129
 \ArrowLength=\count130
 )
-("C:\Program Files\MiKTeX 2.9\tex\latex\float\float.sty"
+(/usr/local/texlive/2016/texmf-dist/tex/latex/float/float.sty
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
 \c@float@type=\count131
 \float@exts=\toks18
 \float@box=\box28
 \@float@everytoks=\toks19
 \@floatcapt=\box29
-) (test.aux
+) (./test.aux
 
 LaTeX Warning: Label `tbl:eulerPremises' multiply defined.
 
@@ -210,7 +212,7 @@ LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 38.
 LaTeX Font Info:    ... okay on input line 38.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 38.
 LaTeX Font Info:    ... okay on input line 38.
- ("C:\Program Files\MiKTeX 2.9\tex\context\base\supp-pdf.mkii"
+ (/usr/local/texlive/2016/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count132
 \scratchdimen=\dimen122
@@ -223,15 +225,15 @@ LaTeX Font Info:    ... okay on input line 38.
 \MPnumerator=\count136
 \makeMPintoPDFobject=\count137
 \everyMPtoPDFconversion=\toks21
-) ("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\pdftexcmds.sty"
-Package: pdftexcmds 2016/05/21 v0.22 Utility functions of pdfTeX for LuaTeX (HO
+) (/usr/local/texlive/2016/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
+Package: pdftexcmds 2016/05/10 v0.21 Utility functions of pdfTeX for LuaTeX (HO
 )
 
-("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\ifluatex.sty"
+(/usr/local/texlive/2016/texmf-dist/tex/generic/oberdiek/ifluatex.sty
 Package: ifluatex 2016/05/16 v1.4 Provides the ifluatex switch (HO)
 Package ifluatex Info: LuaTeX not detected.
 )
-("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\ifpdf.sty"
+(/usr/local/texlive/2016/texmf-dist/tex/generic/oberdiek/ifpdf.sty
 Package: ifpdf 2016/05/14 v3.1 Provides the ifpdf switch
 )
 Package pdftexcmds Info: LuaTeX not detected.
@@ -239,42 +241,46 @@ Package pdftexcmds Info: \pdf@primitive is available.
 Package pdftexcmds Info: \pdf@ifprimitive is available.
 Package pdftexcmds Info: \pdfdraftmode found.
 )
-("C:\Program Files\MiKTeX 2.9\tex\latex\oberdiek\epstopdf-base.sty"
+(/usr/local/texlive/2016/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
 
-("C:\Program Files\MiKTeX 2.9\tex\latex\oberdiek\grfext.sty"
+(/usr/local/texlive/2016/texmf-dist/tex/latex/oberdiek/grfext.sty
 Package: grfext 2016/05/16 v1.2 Manage graphics extensions (HO)
 
-("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\kvdefinekeys.sty"
+(/usr/local/texlive/2016/texmf-dist/tex/generic/oberdiek/kvdefinekeys.sty
 Package: kvdefinekeys 2016/05/16 v1.4 Define keys (HO)
 ))
-("C:\Program Files\MiKTeX 2.9\tex\latex\oberdiek\kvoptions.sty"
+(/usr/local/texlive/2016/texmf-dist/tex/latex/oberdiek/kvoptions.sty
 Package: kvoptions 2016/05/16 v3.12 Key value format for package options (HO)
 
-("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\kvsetkeys.sty"
+(/usr/local/texlive/2016/texmf-dist/tex/generic/oberdiek/kvsetkeys.sty
 Package: kvsetkeys 2016/05/16 v1.17 Key value parser (HO)
 
-("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\etexcmds.sty"
+(/usr/local/texlive/2016/texmf-dist/tex/generic/oberdiek/etexcmds.sty
 Package: etexcmds 2016/05/16 v1.6 Avoid name clashes with e-TeX commands (HO)
 Package etexcmds Info: Could not find \expanded.
 (etexcmds)             That can mean that you are not using pdfTeX 1.50 or
 (etexcmds)             that some package has redefined \expanded.
 (etexcmds)             In the latter case, load this package earlier.
 )))
-Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
-38.
 Package grfext Info: Graphics extension search list:
 (grfext)             [.png,.pdf,.jpg,.mps,.jpeg,.jbig2,.jb2,.PNG,.PDF,.JPG,.JPE
 G,.JBIG2,.JB2,.eps]
 (grfext)             \AppendGraphicsExtensions on input line 456.
-)
+
+(/usr/local/texlive/2016/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
+e
+))
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: subfig package v1.3 is loaded.
 Package caption Info: float package is loaded.
 Package caption Info: End \AtBeginDocument code.
- [1
 
-{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}] (test.toc
+[1
+
+{/usr/local/texlive/2016/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
+(./test.toc
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <12> on input line 2.
 LaTeX Font Info:    External font `cmex10' loaded for size
@@ -293,31 +299,31 @@ Chapter 1.
 
 ]
 LaTeX Font Info:    Try loading font information for OMS+cmr on input line 74.
- ("C:\Program Files\MiKTeX 2.9\tex\latex\base\omscmr.fd"
+ (/usr/local/texlive/2016/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 74.
  [3]
-<images/AVenn.png, id=26, 513.92pt x 513.92pt>
+<images/AVenn.png, id=27, 513.92pt x 513.92pt>
 File: images/AVenn.png Graphic file (type png)
  <use images/AVenn.png>
 Package pdftex.def Info: images/AVenn.png used on input line 134.
 (pdftex.def)             Requested size: 85.80048pt x 85.79688pt.
 
-<images/IVenn.png, id=27, 513.92pt x 513.92pt>
+<images/IVenn.png, id=28, 513.92pt x 513.92pt>
 File: images/IVenn.png Graphic file (type png)
  <use images/IVenn.png>
 Package pdftex.def Info: images/IVenn.png used on input line 138.
 (pdftex.def)             Requested size: 85.80048pt x 85.79688pt.
 
-<images/EVenn.png, id=28, 513.92pt x 513.92pt>
+<images/EVenn.png, id=29, 513.92pt x 513.92pt>
 File: images/EVenn.png Graphic file (type png)
  <use images/EVenn.png>
 Package pdftex.def Info: images/EVenn.png used on input line 142.
 (pdftex.def)             Requested size: 85.80048pt x 85.79688pt.
 
-<images/OVenn.png, id=29, 513.92pt x 513.92pt>
+<images/OVenn.png, id=30, 513.92pt x 513.92pt>
 File: images/OVenn.png Graphic file (type png)
  <use images/OVenn.png>
 Package pdftex.def Info: images/OVenn.png used on input line 146.
@@ -330,83 +336,41 @@ Overfull \hbox (1.2019pt too wide) in paragraph at lines 131--150
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<images/VennAllMenAreMortal.png, id=30, 513.92pt x 513.92pt>
-File: images/VennAllMenAreMortal.png Graphic file (type png)
-
-<use images/VennAllMenAreMortal.png>
-Package pdftex.def Info: images/VennAllMenAreMortal.png used on input line 158.
-
-(pdftex.def)             Requested size: 128.47968pt x 128.47968pt.
-
-Overfull \hbox (15.3823pt too wide) in paragraph at lines 158--159
-[][] 
- []
-
-<images/VennAllGreeksAreMen.png, id=31, 513.92pt x 513.92pt>
-File: images/VennAllGreeksAreMen.png Graphic file (type png)
-
-<use images/VennAllGreeksAreMen.png>
-Package pdftex.def Info: images/VennAllGreeksAreMen.png used on input line 162.
-
-(pdftex.def)             Requested size: 128.47968pt x 128.47968pt.
-
-Overfull \hbox (15.3823pt too wide) in paragraph at lines 162--163
-[][] 
- []
-
-<images/VennAllGreeksAreMortal.png, id=33, 513.92pt x 513.92pt>
-File: images/VennAllGreeksAreMortal.png Graphic file (type png)
-
-<use images/VennAllGreeksAreMortal.png>
-Package pdftex.def Info: images/VennAllGreeksAreMortal.png used on input line 1
-66.
-(pdftex.def)             Requested size: 128.47968pt x 128.47968pt.
-
-Overfull \hbox (15.3823pt too wide) in paragraph at lines 166--167
-[][] 
- []
-
-[4] <images/EulerCoincident.png, id=38, 371.13657pt x 371.13657pt>
+[4] <images/EulerCoincident.png, id=35, 371.13657pt x 371.13657pt>
 File: images/EulerCoincident.png Graphic file (type png)
 
 <use images/EulerCoincident.png>
 Package pdftex.def Info: images/EulerCoincident.png used on input line 183.
 (pdftex.def)             Requested size: 155.99762pt x 156.00087pt.
 
-<images/EulerCircles.png, id=39, 371.13657pt x 371.13657pt>
+<images/EulerCircles.png, id=36, 371.13657pt x 371.13657pt>
 File: images/EulerCircles.png Graphic file (type png)
 
 <use images/EulerCircles.png>
 Package pdftex.def Info: images/EulerCircles.png used on input line 188.
 (pdftex.def)             Requested size: 155.99762pt x 156.00087pt.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-[5 <./images/AVenn.png> <./images/IVenn.png> <./images/EVenn.png> <./images/OVe
-nn.png> <./images/VennAllMenAreMortal.png> <./images/VennAllGreeksAreMen.png> <
-./images/VennAllGreeksAreMortal.png>]
-<images/AEuler.png, id=46, 513.92pt x 513.92pt>
+ <images/AEuler.png, id=38, 513.92pt x 513.92pt>
 File: images/AEuler.png Graphic file (type png)
- <use images/AEuler.png>
+
+<use images/AEuler.png>
 Package pdftex.def Info: images/AEuler.png used on input line 201.
 (pdftex.def)             Requested size: 85.80048pt x 85.79688pt.
-
-<images/IEuler.png, id=47, 513.92pt x 513.92pt>
+ <images/IEuler.png, id=39, 513.92pt x 513.92pt>
 File: images/IEuler.png Graphic file (type png)
- <use images/IEuler.png>
+
+<use images/IEuler.png>
 Package pdftex.def Info: images/IEuler.png used on input line 205.
 (pdftex.def)             Requested size: 85.80048pt x 85.79688pt.
-
-<images/EEuler.png, id=48, 513.92pt x 513.92pt>
+ <images/EEuler.png, id=40, 513.92pt x 513.92pt>
 File: images/EEuler.png Graphic file (type png)
- <use images/EEuler.png>
+
+<use images/EEuler.png>
 Package pdftex.def Info: images/EEuler.png used on input line 209.
 (pdftex.def)             Requested size: 85.80048pt x 85.79688pt.
-
-<images/OEuler.png, id=49, 513.92pt x 513.92pt>
+ <images/OEuler.png, id=41, 513.92pt x 513.92pt>
 File: images/OEuler.png Graphic file (type png)
- <use images/OEuler.png>
+
+<use images/OEuler.png>
 Package pdftex.def Info: images/OEuler.png used on input line 213.
 (pdftex.def)             Requested size: 85.80048pt x 85.79688pt.
 
@@ -414,9 +378,12 @@ Overfull \hbox (1.2019pt too wide) in paragraph at lines 198--217
  [][] 
  []
 
-[6 <./images/EulerCoincident.png> <./images/EulerCircles.png> <./images/AEuler.
-png> <./images/IEuler.png> <./images/EEuler.png> <./images/OEuler.png>]
-<images/EulerAllMenAreMortal.png, id=56, 513.92pt x 513.92pt>
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[5 <./images/AVenn.png> <./images/IVenn.png> <./images/EVenn.png> <./images/OVe
+nn.png> <./images/EulerCoincident.png> <./images/EulerCircles.png>]
+<images/EulerAllMenAreMortal.png, id=47, 513.92pt x 513.92pt>
 File: images/EulerAllMenAreMortal.png Graphic file (type png)
 
 <use images/EulerAllMenAreMortal.png>
@@ -428,7 +395,7 @@ Overfull \hbox (15.3823pt too wide) in paragraph at lines 228--229
 [][] 
  []
 
-<images/EulerAllGreeksAreMen.png, id=57, 513.92pt x 513.92pt>
+<images/EulerAllGreeksAreMen.png, id=48, 513.92pt x 513.92pt>
 File: images/EulerAllGreeksAreMen.png Graphic file (type png)
 
 <use images/EulerAllGreeksAreMen.png>
@@ -440,7 +407,7 @@ Overfull \hbox (15.3823pt too wide) in paragraph at lines 232--233
 [][] 
  []
 
-<images/EulerAllGreeksAreMortal.png, id=58, 513.92pt x 513.92pt>
+<images/EulerAllGreeksAreMortal.png, id=49, 513.92pt x 513.92pt>
 File: images/EulerAllGreeksAreMortal.png Graphic file (type png)
 
 <use images/EulerAllGreeksAreMortal.png>
@@ -452,31 +419,31 @@ Overfull \hbox (15.3823pt too wide) in paragraph at lines 236--237
 [][] 
  []
 
-<images/ALinear.png, id=59, 513.92pt x 513.92pt>
+<images/ALinear.png, id=50, 513.92pt x 513.92pt>
 File: images/ALinear.png Graphic file (type png)
  <use images/ALinear.png>
 Package pdftex.def Info: images/ALinear.png used on input line 255.
 (pdftex.def)             Requested size: 85.80048pt x 85.79688pt.
 
-<images/ILinear.png, id=60, 513.92pt x 513.92pt>
+<images/ILinear.png, id=51, 513.92pt x 513.92pt>
 File: images/ILinear.png Graphic file (type png)
  <use images/ILinear.png>
 Package pdftex.def Info: images/ILinear.png used on input line 259.
 (pdftex.def)             Requested size: 85.80048pt x 85.79688pt.
 
-<images/ELinear.png, id=61, 513.92pt x 513.92pt>
+<images/ELinear.png, id=52, 513.92pt x 513.92pt>
 File: images/ELinear.png Graphic file (type png)
  <use images/ELinear.png>
 Package pdftex.def Info: images/ELinear.png used on input line 263.
 (pdftex.def)             Requested size: 85.80048pt x 85.79688pt.
 
-<images/O1Linear.png, id=62, 513.92pt x 513.92pt>
+<images/O1Linear.png, id=53, 513.92pt x 513.92pt>
 File: images/O1Linear.png Graphic file (type png)
  <use images/O1Linear.png>
 Package pdftex.def Info: images/O1Linear.png used on input line 267.
 (pdftex.def)             Requested size: 85.80048pt x 85.79688pt.
 
-<images/O2Linear.png, id=63, 513.92pt x 513.92pt>
+<images/O2Linear.png, id=54, 513.92pt x 513.92pt>
 File: images/O2Linear.png Graphic file (type png)
  <use images/O2Linear.png>
 Package pdftex.def Info: images/O2Linear.png used on input line 274.
@@ -489,58 +456,54 @@ Overfull \hbox (1.2019pt too wide) in paragraph at lines 252--278
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[7 <./images/EulerAllMenAreMortal.png> <./images/EulerAllGreeksAreMen.png> <./i
-mages/EulerAllGreeksAreMortal.png>] [8 <./images/ALinear.png> <./images/ILinear
-.png> <./images/ELinear.png> <./images/O1Linear.png> <./images/O2Linear.png>]
+[6 <./images/AEuler.png> <./images/IEuler.png> <./images/EEuler.png> <./images/
+OEuler.png> <./images/EulerAllMenAreMortal.png> <./images/EulerAllGreeksAreMen.
+png> <./images/EulerAllGreeksAreMortal.png>] [7 <./images/ALinear.png> <./image
+s/ILinear.png> <./images/ELinear.png> <./images/O1Linear.png> <./images/O2Linea
+r.png>] [8]
 Chapter 2.
 [9
 
-] [10] [11] <images/mymaths.png, id=79, 867.24pt x 487.8225pt>
-File: images/mymaths.png Graphic file (type png)
-
-<use images/mymaths.png>
-Package pdftex.def Info: images/mymaths.png used on input line 330.
-(pdftex.def)             Requested size: 390.0pt x 219.37666pt.
- [12] (test.bbl [13 <./images/mymaths.png>]
+] [10] [11] (./test.bbl [12]
 LaTeX Font Info:    Try loading font information for T1+cmtt on input line 47.
 
-("C:\Program Files\MiKTeX 2.9\tex\latex\base\t1cmtt.fd"
+(/usr/local/texlive/2016/texmf-dist/tex/latex/base/t1cmtt.fd
 File: t1cmtt.fd 2014/09/29 v2.5h Standard LaTeX font definitions
-) [14
+) [13
 
-] [15]) [16]
-(test.aux)
+] [14])
+[15] (./test.aux)
 
 LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 4601 strings out of 493334
- 69150 string characters out of 3139252
- 235476 words of memory out of 3000000
- 8045 multiletter control sequences out of 15000+200000
- 16260 words of font info for 37 fonts, out of 3000000 for 9000
+ 4579 strings out of 493014
+ 69334 string characters out of 6133351
+ 235720 words of memory out of 5000000
+ 8037 multiletter control sequences out of 15000+600000
+ 16260 words of font info for 37 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 44i,14n,42p,2935b,373s stack positions out of 5000i,500n,10000p,200000b,50000s
- <C:\Users\james\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\
-ectt1200.pk> <C:\Users\james\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\
-ec\dpi600\ecbx1440.pk> <C:\Users\james\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour
-\jknappen\ec\dpi600\ecti1200.pk> <C:\Users\james\AppData\Local\MiKTeX\2.9\fonts
-\pk\ljfour\jknappen\ec\dpi600\ecbx1728.pk> <C:\Users\james\AppData\Local\MiKTeX
-\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecbx1200.pk> <C:\Users\james\AppData\Lo
-cal\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecrm2488.pk> <C:\Users\james\
-AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecrm1440.pk> <C:\Us
-ers\james\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\eccc1200.
-pk> <C:\Users\james\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600
-\ecrm1200.pk> <C:\Users\james\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen
-\ec\dpi600\ecti1728.pk> <C:\Users\james\AppData\Local\MiKTeX\2.9\fonts\pk\ljfou
-r\jknappen\ec\dpi600\ecbx2488.pk> <C:\Users\james\AppData\Local\MiKTeX\2.9\font
-s\pk\ljfour\jknappen\ec\dpi600\eccc1728.pk> <C:\Users\james\AppData\Local\MiKTe
-X\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\eccc2074.pk><C:/Program Files/MiKTeX 2
-.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
-Output written on test.pdf (17 pages, 688943 bytes).
+ 44i,14n,42p,2933b,373s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/local/texlive/2016/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}
+</usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><
+/usr/local/texlive/2016/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></u
+sr/local/texlive/2016/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb></usr
+/local/texlive/2016/texmf-dist/fonts/type1/public/cm-super/sfbx1728.pfb></usr/l
+ocal/texlive/2016/texmf-dist/fonts/type1/public/cm-super/sfbx2488.pfb></usr/loc
+al/texlive/2016/texmf-dist/fonts/type1/public/cm-super/sfcc1200.pfb></usr/local
+/texlive/2016/texmf-dist/fonts/type1/public/cm-super/sfcc1728.pfb></usr/local/t
+exlive/2016/texmf-dist/fonts/type1/public/cm-super/sfcc2074.pfb></usr/local/tex
+live/2016/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/local/texli
+ve/2016/texmf-dist/fonts/type1/public/cm-super/sfrm1440.pfb></usr/local/texlive
+/2016/texmf-dist/fonts/type1/public/cm-super/sfrm2488.pfb></usr/local/texlive/2
+016/texmf-dist/fonts/type1/public/cm-super/sfti1200.pfb></usr/local/texlive/201
+6/texmf-dist/fonts/type1/public/cm-super/sfti1728.pfb></usr/local/texlive/2016/
+texmf-dist/fonts/type1/public/cm-super/sftt1200.pfb>
+Output written on test.pdf (16 pages, 600073 bytes).
 PDF statistics:
- 498 PDF objects out of 1000 (max. 8388607)
+ 134 PDF objects out of 1000 (max. 8388607)
+ 81 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 111 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 91 words of extra memory for PDF output out of 10000 (max. 10000000)
 

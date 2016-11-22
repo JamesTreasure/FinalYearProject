@@ -155,15 +155,15 @@ Venn diagrams are the most commonly used diagrammatic representation of syllogig
   \begin{tabular}{ c  c  c }
     All Men Are Mortal & All Greeks Are Men & All Greeks Are Mortal\\
     \begin{minipage}{.29\textwidth}
-      \includegraphics[scale=0.25]{VennAllMenAreMortal}
+%      \includegraphics[scale=0.25]{VennAllMenAreMortal}
     \end{minipage}
     &
     \begin{minipage}{.29\textwidth}
-      \includegraphics[scale=0.25]{VennAllGreeksAreMen}
+%      \includegraphics[scale=0.25]{VennAllGreeksAreMen}
     \end{minipage}
     & 
     \begin{minipage}{.29\textwidth}
-      \includegraphics[scale=0.25]{VennAllGreeksAreMortal}
+%      \includegraphics[scale=0.25]{VennAllGreeksAreMortal}
     \end{minipage}
     \\
   \end{tabular}
@@ -287,8 +287,11 @@ As introduced by \cite{cheng2012visualizing}, Categorical Pattern Diagrams offer
 The issue with this form of representation is the notation used is not intuitive. Categorical Pattern Diagrams require the person to learn a whole new notation before they can begin to reason about the syllogism that it is representing.
 
 \subsection{Thoughts to put somewhere}
-Polysyllogisms, unlike standard syllogisms, can contain more than 3 propositions. This poses a problem for graphical representations, with the Venn diagrams becoming exponentially complex such that it is impractical to represent more than 5 sets using them.
-As reasoned by \cite{cheng2014graphical}, linear and Euler diagrams also struggle with this problem. As both use spatial-overlap it means the diagrams can only represent a series of universal affirmative propositions. 
+Polysyllogisms, unlike standard syllogisms, can contain more than 3 propositions. This poses a problem for graphical representations, with the Venn diagrams becoming exponentially complex as more sets are added such that it is impractical to represent more than 5 sets using them.
+As reasoned by \cite{cheng2014graphical}, linear and Euler diagrams also struggle with this problem. As both use spatial-overlap it means the diagrams can only represent a series of universal affirmative propositions as further propositions are nested in. As can be seen in Figure 1.1 and Figure 1.2 there are already multiple ways to represent syllogisms with 3 terms so it is easy to see how it would quickly become unmanagable as the number of propositons increases.
+
+\subsection{Temporal Logic}
+Temporal logic is a formal system for specifying and reasoning about propositions with regards to time. It is often used in the formal verification of software systems to interpret concurrent events \citep{lamport1983good}. Temporal Logic can be split into two subsections, linear and branching. Linear temporal logic represents time as a set of paths with each part being a sequence of moments. From any given moment there is only one possible future moment. Branching linear logic represents time as a tree with the root as the present and the branches being the future.
 
 \chapter{Serious Games}
 \section{Introduction}
@@ -323,17 +326,14 @@ Serious games do not just apply to education, but are used by a wide variety of 
 MyMaths is a web based service that is used by schools in over 70 countries, with over 4.5 million users. It is marketed as an online learning platform that provides lessons and homework tasks to school children.
 As Figure 2.1 shows, MyMaths makes use of fast feedback to provide the player with the results as soon as they have completed the task. However, MyMaths does not provide an immersive or particularly enjoyable experience for players. \cite{lee2013learning} found that while students said they enjoyed using computers to learn, they did not want to use MyMaths. This could be due to that fact that MyMaths is very one dimensional, merely presenting questions in a quiz like format. This does not engage with the player or make use of the technologies available to make it more interactive.
 
-
 \begin{figure}[!tbp]
   \centering
   \begin{minipage}[b]{1\textwidth}
-    \includegraphics[width=\textwidth]{mymaths}
+%    \includegraphics[width=\textwidth]{mymaths}
     \caption{A homework exercise in MyMaths}
   \end{minipage}
 \end{figure}
 \FloatBarrier
-
-
 
 \bibliographystyle{plainnat}
 \bibliography{bibliography} 
