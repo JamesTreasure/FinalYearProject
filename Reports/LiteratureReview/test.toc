@@ -4,16 +4,19 @@
 \contentsline {section}{\numberline {1.3}Current teaching}{4}
 \contentsline {subsection}{\numberline {1.3.1}Venn Diagrams}{4}
 \contentsline {subsection}{\numberline {1.3.2}Euler Circles}{5}
-\contentsline {subsection}{\numberline {1.3.3}Linear Diagrams}{6}
-\contentsline {subsection}{\numberline {1.3.4}Categorical Pattern Diagrams}{7}
-\contentsline {subsection}{\numberline {1.3.5}Thoughts to put somewhere}{7}
-\contentsline {subsection}{\numberline {1.3.6}Temporal Logic}{8}
-\contentsline {chapter}{\numberline {2}Serious Games}{9}
-\contentsline {section}{\numberline {2.1}Introduction}{9}
-\contentsline {section}{\numberline {2.2}Why They Are Good For Education}{9}
-\contentsline {subsection}{\numberline {2.2.1}Accessibility}{9}
-\contentsline {subsection}{\numberline {2.2.2}Motivation}{10}
-\contentsline {subsection}{\numberline {2.2.3}Feedback}{11}
-\contentsline {section}{\numberline {2.3}Existing Serious Games}{12}
-\contentsline {subsection}{\numberline {2.3.1}MyMaths}{12}
+\contentsline {subsection}{\numberline {1.3.3}Linear Diagrams}{7}
+\contentsline {subsection}{\numberline {1.3.4}Categorical Pattern Diagrams}{8}
+\contentsline {section}{\numberline {1.4}Additional Avenues To Explore}{8}
+\contentsline {subsection}{\numberline {1.4.1}Polysyllogisms}{8}
+\contentsline {subsection}{\numberline {1.4.2}Modal Logic}{9}
+\contentsline {subsection}{\numberline {1.4.3}Temporal Logic}{9}
+\contentsline {subsection}{\numberline {1.4.4}Set Theory}{10}
+\contentsline {chapter}{\numberline {2}Serious Games}{11}
+\contentsline {section}{\numberline {2.1}Introduction}{11}
+\contentsline {section}{\numberline {2.2}Why They Are Good For Education}{11}
+\contentsline {subsection}{\numberline {2.2.1}Accessibility}{11}
+\contentsline {subsection}{\numberline {2.2.2}Motivation}{12}
+\contentsline {subsection}{\numberline {2.2.3}Feedback}{13}
+\contentsline {section}{\numberline {2.3}Existing Serious Games}{14}
+\contentsline {subsection}{\numberline {2.3.1}MyMaths}{14}
 \contentsfinish 

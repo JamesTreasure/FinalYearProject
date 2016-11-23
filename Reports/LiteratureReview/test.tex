@@ -9,13 +9,14 @@
 \usepackage{subfig}
 \usepackage{array}% http://ctan.org/pkg/array
 \usepackage{placeins}
+\usepackage{amsmath,amssymb}
 
 \usepackage{enumitem}
 
 \usepackage{layout}
 \setlength{\voffset}{-0.5in}
 \setlength{\headsep}{5pt}
-
+\def\x#1{\texttt{\expandafter\string\csname#1\endcsname}&\expandafter$\csname#1\endcsname$}
 
 \newenvironment{tightcenter}{%
   \setlength\topsep{0pt}
@@ -155,15 +156,15 @@ Venn diagrams are the most commonly used diagrammatic representation of syllogig
   \begin{tabular}{ c  c  c }
     All Men Are Mortal & All Greeks Are Men & All Greeks Are Mortal\\
     \begin{minipage}{.29\textwidth}
-%      \includegraphics[scale=0.25]{VennAllMenAreMortal}
+      \includegraphics[scale=0.25]{VennAllMenAreMortal}
     \end{minipage}
     &
     \begin{minipage}{.29\textwidth}
-%      \includegraphics[scale=0.25]{VennAllGreeksAreMen}
+      \includegraphics[scale=0.25]{VennAllGreeksAreMen}
     \end{minipage}
     & 
     \begin{minipage}{.29\textwidth}
-%      \includegraphics[scale=0.25]{VennAllGreeksAreMortal}
+      \includegraphics[scale=0.25]{VennAllGreeksAreMortal}
     \end{minipage}
     \\
   \end{tabular}
@@ -286,12 +287,58 @@ As introduced by \cite{cheng2012visualizing}, Categorical Pattern Diagrams offer
 
 The issue with this form of representation is the notation used is not intuitive. Categorical Pattern Diagrams require the person to learn a whole new notation before they can begin to reason about the syllogism that it is representing.
 
-\subsection{Thoughts to put somewhere}
+\section{Additional Avenues To Explore}
+
+\subsection{Polysyllogisms}
 Polysyllogisms, unlike standard syllogisms, can contain more than 3 propositions. This poses a problem for graphical representations, with the Venn diagrams becoming exponentially complex as more sets are added such that it is impractical to represent more than 5 sets using them.
 As reasoned by \cite{cheng2014graphical}, linear and Euler diagrams also struggle with this problem. As both use spatial-overlap it means the diagrams can only represent a series of universal affirmative propositions as further propositions are nested in. As can be seen in Figure 1.1 and Figure 1.2 there are already multiple ways to represent syllogisms with 3 terms so it is easy to see how it would quickly become unmanagable as the number of propositons increases.
 
+\subsection{Modal Logic}
+Modal logic is an extension of classical proposition logic that uses the modal operators \textit{it is possible that} and \textit{it is necessary that} \citep{zalta1988basic}. Modal logic allows statements to be expressed that would otherwise not be possible in classic logic as it is not possible to convey the possibility of events happening. The following are examples of modal propositions:
+
+\bigbreak
+\begin{tightcenter}
+It is possible that it will snow tomorrow\\
+It is necessary that it is either snowing here now or it is not snowing here now.\\
+\end{tightcenter}
+\bigbreak
+
+The necessity operator is denoted by $\square$, whilst the possibility operator is represented by $\lozenge$.
+
 \subsection{Temporal Logic}
-Temporal logic is a formal system for specifying and reasoning about propositions with regards to time. It is often used in the formal verification of software systems to interpret concurrent events \citep{lamport1983good}. Temporal Logic can be split into two subsections, linear and branching. Linear temporal logic represents time as a set of paths with each part being a sequence of moments. From any given moment there is only one possible future moment. Branching linear logic represents time as a tree with the root as the present and the branches being the future.
+Temporal logic is a formal system for specifying and reasoning about propositions with regards to time. It is often used in the formal verification of software systems to interpret concurrent events \citep{lamport1983good}. Temporal logic can be split into two subsections, linear and branching. Linear temporal logic represents time as a set of paths with each part being a sequence of moments. From any given moment there is only one possible future moment, a unique successor. Branching linear logic represents time as a tree with the root as the present and the branches being the future.
+
+
+\begin{figure}[!h]
+  \centering
+  \begin{minipage}[b]{0.4\textwidth}
+    \includegraphics[width=\textwidth]{LinearTemporalLogic}
+    \caption{Linear Temporal Logic}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[b]{0.4\textwidth}
+    \includegraphics[width=\textwidth]{BranchingTemporalLogic}
+    \caption{Branching Temporal Logic}
+  \end{minipage}
+\end{figure}
+\FloatBarrier
+
+\subsection{Set Theory}
+Set theory is the mathematical theory of well-defined collections known as sets. These sets are made up of objects called elements. Given a set $S$ and an element $x$ it is said $x \in S$ if $x$ is an element of $S$ and conversely $x \notin S$ if $x$ is not an element of $S$ \citep{sep-set-theory}.
+The four premises of syllogisms can be represented using set theory notation.
+
+ Diagrammatically they appear very similar to Syllogisms as both utilise Venn diagrams.
+ 
+\begin{center}
+  \begin{tabular}{ c | c | c }
+    Syllogism & Set Notation & Sentential Representation \\ \hline
+    AaB & $B \subseteq A$ & All B is A \\
+    AiB & $\neg(B \cap A = \emptyset)$ & Some B is A \\
+    AeB & $B \cap A = \emptyset$ & No B is A \\
+    AoB & $\neg(B \cap A = B)$ & Some B is not A \\
+  \end{tabular}
+\end{center}
+
 
 \chapter{Serious Games}
 \section{Introduction}
@@ -329,7 +376,7 @@ As Figure 2.1 shows, MyMaths makes use of fast feedback to provide the player wi
 \begin{figure}[!tbp]
   \centering
   \begin{minipage}[b]{1\textwidth}
-%    \includegraphics[width=\textwidth]{mymaths}
+    \includegraphics[width=\textwidth]{mymaths}
     \caption{A homework exercise in MyMaths}
   \end{minipage}
 \end{figure}
