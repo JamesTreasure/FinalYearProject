@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.10.8)  23 NOV 2016 13:26
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.10.8)  24 NOV 2016 17:24
 entering extended mode
 **./test.tex
 (test.tex
@@ -369,191 +369,222 @@ File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 75.
- [3]
-<images/AVenn.png, id=26, 513.92pt x 513.92pt>
+ [3] [4]
+<images/AVenn.png, id=30, 513.92pt x 513.92pt>
 File: images/AVenn.png Graphic file (type png)
  <use images/AVenn.png>
-Package pdftex.def Info: images/AVenn.png used on input line 135.
+Package pdftex.def Info: images/AVenn.png used on input line 151.
 (pdftex.def)             Requested size: 85.80048pt x 85.79688pt.
 
-<images/IVenn.png, id=27, 513.92pt x 513.92pt>
+<images/IVenn.png, id=31, 513.92pt x 513.92pt>
 File: images/IVenn.png Graphic file (type png)
  <use images/IVenn.png>
-Package pdftex.def Info: images/IVenn.png used on input line 139.
+Package pdftex.def Info: images/IVenn.png used on input line 155.
 (pdftex.def)             Requested size: 85.80048pt x 85.79688pt.
 
-<images/EVenn.png, id=28, 513.92pt x 513.92pt>
+<images/EVenn.png, id=32, 513.92pt x 513.92pt>
 File: images/EVenn.png Graphic file (type png)
  <use images/EVenn.png>
-Package pdftex.def Info: images/EVenn.png used on input line 143.
+Package pdftex.def Info: images/EVenn.png used on input line 159.
 (pdftex.def)             Requested size: 85.80048pt x 85.79688pt.
 
-<images/OVenn.png, id=29, 513.92pt x 513.92pt>
+<images/OVenn.png, id=33, 513.92pt x 513.92pt>
 File: images/OVenn.png Graphic file (type png)
  <use images/OVenn.png>
-Package pdftex.def Info: images/OVenn.png used on input line 147.
+Package pdftex.def Info: images/OVenn.png used on input line 163.
 (pdftex.def)             Requested size: 85.80048pt x 85.79688pt.
 
-Overfull \hbox (1.2019pt too wide) in paragraph at lines 132--151
+Overfull \hbox (1.2019pt too wide) in paragraph at lines 148--167
  [][] 
  []
 
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-<images/VennAllMenAreMortal.png, id=30, 513.92pt x 513.92pt>
+<images/VennAllMenAreMortal.png, id=34, 513.92pt x 513.92pt>
 File: images/VennAllMenAreMortal.png Graphic file (type png)
 
 <use images/VennAllMenAreMortal.png>
-Package pdftex.def Info: images/VennAllMenAreMortal.png used on input line 159.
+Package pdftex.def Info: images/VennAllMenAreMortal.png used on input line 175.
 
 (pdftex.def)             Requested size: 128.47968pt x 128.47968pt.
 
-Overfull \hbox (15.3823pt too wide) in paragraph at lines 159--160
+Overfull \hbox (15.3823pt too wide) in paragraph at lines 175--176
 [][] 
  []
 
-<images/VennAllGreeksAreMen.png, id=31, 513.92pt x 513.92pt>
+<images/VennAllGreeksAreMen.png, id=35, 513.92pt x 513.92pt>
 File: images/VennAllGreeksAreMen.png Graphic file (type png)
 
 <use images/VennAllGreeksAreMen.png>
-Package pdftex.def Info: images/VennAllGreeksAreMen.png used on input line 163.
+Package pdftex.def Info: images/VennAllGreeksAreMen.png used on input line 179.
 
 (pdftex.def)             Requested size: 128.47968pt x 128.47968pt.
 
-Overfull \hbox (15.3823pt too wide) in paragraph at lines 163--164
+Overfull \hbox (15.3823pt too wide) in paragraph at lines 179--180
 [][] 
  []
 
-<images/VennAllGreeksAreMortal.png, id=33, 513.92pt x 513.92pt>
+<images/VennAllGreeksAreMortal.png, id=37, 513.92pt x 513.92pt>
 File: images/VennAllGreeksAreMortal.png Graphic file (type png)
 
 <use images/VennAllGreeksAreMortal.png>
 Package pdftex.def Info: images/VennAllGreeksAreMortal.png used on input line 1
-67.
+83.
 (pdftex.def)             Requested size: 128.47968pt x 128.47968pt.
 
-Overfull \hbox (15.3823pt too wide) in paragraph at lines 167--168
+Overfull \hbox (15.3823pt too wide) in paragraph at lines 183--184
 [][] 
  []
 
-[4] <images/EulerCoincident.png, id=38, 371.13657pt x 371.13657pt>
-File: images/EulerCoincident.png Graphic file (type png)
+<images/VennNoLizardsAreMammals.png, id=38, 513.92pt x 513.92pt>
+File: images/VennNoLizardsAreMammals.png Graphic file (type png)
 
-<use images/EulerCoincident.png>
-Package pdftex.def Info: images/EulerCoincident.png used on input line 184.
-(pdftex.def)             Requested size: 155.99762pt x 156.00087pt.
+<use images/VennNoLizardsAreMammals.png>
+Package pdftex.def Info: images/VennNoLizardsAreMammals.png used on input line 
+196.
+(pdftex.def)             Requested size: 128.47968pt x 128.47968pt.
 
-<images/EulerCircles.png, id=39, 371.13657pt x 371.13657pt>
-File: images/EulerCircles.png Graphic file (type png)
+Overfull \hbox (15.3823pt too wide) in paragraph at lines 196--197
+[][] 
+ []
 
-<use images/EulerCircles.png>
-Package pdftex.def Info: images/EulerCircles.png used on input line 189.
-(pdftex.def)             Requested size: 155.99762pt x 156.00087pt.
+<images/VennAllLizardsAreReptiles.png, id=39, 513.92pt x 513.92pt>
+File: images/VennAllLizardsAreReptiles.png Graphic file (type png)
+
+<use images/VennAllLizardsAreReptiles.png>
+Package pdftex.def Info: images/VennAllLizardsAreReptiles.png used on input lin
+e 200.
+(pdftex.def)             Requested size: 128.47968pt x 128.47968pt.
+
+Overfull \hbox (15.3823pt too wide) in paragraph at lines 200--201
+[][] 
+ []
+
+<images/VennSomeReptilesAreNotMammals.png, id=40, 513.92pt x 513.92pt>
+File: images/VennSomeReptilesAreNotMammals.png Graphic file (type png)
+
+<use images/VennSomeReptilesAreNotMammals.png>
+Package pdftex.def Info: images/VennSomeReptilesAreNotMammals.png used on input
+ line 204.
+(pdftex.def)             Requested size: 128.47968pt x 128.47968pt.
+
+Overfull \hbox (15.3823pt too wide) in paragraph at lines 204--205
+[][] 
+ []
 
 
-LaTeX Warning: `!h' float specifier changed to `!ht'.
+Overfull \hbox (45.78552pt too wide) in paragraph at lines 193--208
+ [][] 
+ []
 
 [5 <./images/AVenn.png> <./images/IVenn.png> <./images/EVenn.png> <./images/OVe
 nn.png> <./images/VennAllMenAreMortal.png> <./images/VennAllGreeksAreMen.png> <
 ./images/VennAllGreeksAreMortal.png>]
-<images/AEuler.png, id=46, 513.92pt x 513.92pt>
+<images/AEuler.png, id=47, 513.92pt x 513.92pt>
 File: images/AEuler.png Graphic file (type png)
  <use images/AEuler.png>
-Package pdftex.def Info: images/AEuler.png used on input line 202.
+Package pdftex.def Info: images/AEuler.png used on input line 224.
 (pdftex.def)             Requested size: 85.80048pt x 85.79688pt.
 
-<images/IEuler.png, id=47, 513.92pt x 513.92pt>
+<images/IEuler.png, id=48, 513.92pt x 513.92pt>
 File: images/IEuler.png Graphic file (type png)
  <use images/IEuler.png>
-Package pdftex.def Info: images/IEuler.png used on input line 206.
+Package pdftex.def Info: images/IEuler.png used on input line 228.
 (pdftex.def)             Requested size: 85.80048pt x 85.79688pt.
 
-<images/EEuler.png, id=48, 513.92pt x 513.92pt>
+<images/EEuler.png, id=49, 513.92pt x 513.92pt>
 File: images/EEuler.png Graphic file (type png)
  <use images/EEuler.png>
-Package pdftex.def Info: images/EEuler.png used on input line 210.
+Package pdftex.def Info: images/EEuler.png used on input line 232.
 (pdftex.def)             Requested size: 85.80048pt x 85.79688pt.
 
-<images/OEuler.png, id=49, 513.92pt x 513.92pt>
+<images/OEuler.png, id=50, 513.92pt x 513.92pt>
 File: images/OEuler.png Graphic file (type png)
  <use images/OEuler.png>
-Package pdftex.def Info: images/OEuler.png used on input line 214.
+Package pdftex.def Info: images/OEuler.png used on input line 236.
 (pdftex.def)             Requested size: 85.80048pt x 85.79688pt.
 
-Overfull \hbox (1.2019pt too wide) in paragraph at lines 199--218
+Overfull \hbox (1.2019pt too wide) in paragraph at lines 221--240
  [][] 
  []
 
-[6 <./images/EulerCoincident.png> <./images/EulerCircles.png> <./images/AEuler.
-png> <./images/IEuler.png> <./images/EEuler.png> <./images/OEuler.png>]
-<images/EulerAllMenAreMortal.png, id=56, 513.92pt x 513.92pt>
+<images/EulerAllMenAreMortal.png, id=51, 513.92pt x 513.92pt>
 File: images/EulerAllMenAreMortal.png Graphic file (type png)
 
 <use images/EulerAllMenAreMortal.png>
-Package pdftex.def Info: images/EulerAllMenAreMortal.png used on input line 229
+Package pdftex.def Info: images/EulerAllMenAreMortal.png used on input line 250
 .
 (pdftex.def)             Requested size: 128.47968pt x 128.47968pt.
 
-Overfull \hbox (15.3823pt too wide) in paragraph at lines 229--230
+Overfull \hbox (15.3823pt too wide) in paragraph at lines 250--251
 [][] 
  []
 
-<images/EulerAllGreeksAreMen.png, id=57, 513.92pt x 513.92pt>
+<images/EulerAllGreeksAreMen.png, id=52, 513.92pt x 513.92pt>
 File: images/EulerAllGreeksAreMen.png Graphic file (type png)
 
 <use images/EulerAllGreeksAreMen.png>
-Package pdftex.def Info: images/EulerAllGreeksAreMen.png used on input line 233
+Package pdftex.def Info: images/EulerAllGreeksAreMen.png used on input line 254
 .
 (pdftex.def)             Requested size: 128.47968pt x 128.47968pt.
 
-Overfull \hbox (15.3823pt too wide) in paragraph at lines 233--234
+Overfull \hbox (15.3823pt too wide) in paragraph at lines 254--255
 [][] 
  []
 
-<images/EulerAllGreeksAreMortal.png, id=58, 513.92pt x 513.92pt>
+<images/EulerAllGreeksAreMortal.png, id=53, 513.92pt x 513.92pt>
 File: images/EulerAllGreeksAreMortal.png Graphic file (type png)
 
 <use images/EulerAllGreeksAreMortal.png>
 Package pdftex.def Info: images/EulerAllGreeksAreMortal.png used on input line 
-237.
+258.
 (pdftex.def)             Requested size: 128.47968pt x 128.47968pt.
 
-Overfull \hbox (15.3823pt too wide) in paragraph at lines 237--238
+Overfull \hbox (15.3823pt too wide) in paragraph at lines 258--259
 [][] 
  []
 
-<images/ALinear.png, id=59, 513.92pt x 513.92pt>
-File: images/ALinear.png Graphic file (type png)
- <use images/ALinear.png>
-Package pdftex.def Info: images/ALinear.png used on input line 256.
+[6 <./images/VennNoLizardsAreMammals.png> <./images/VennAllLizardsAreReptiles.p
+ng> <./images/VennSomeReptilesAreNotMammals.png> <./images/AEuler.png> <./image
+s/IEuler.png> <./images/EEuler.png> <./images/OEuler.png>]
+<EulerNoHomeworkFun.png, id=61, 513.92pt x 513.92pt>
+File: EulerNoHomeworkFun.png Graphic file (type png)
+
+<use EulerNoHomeworkFun.png>
+Package pdftex.def Info: EulerNoHomeworkFun.png used on input line 272.
 (pdftex.def)             Requested size: 85.80048pt x 85.79688pt.
 
-<images/ILinear.png, id=60, 513.92pt x 513.92pt>
-File: images/ILinear.png Graphic file (type png)
- <use images/ILinear.png>
-Package pdftex.def Info: images/ILinear.png used on input line 260.
+<images/EulerSomeReadingIsHomework.png, id=62, 513.92pt x 513.92pt>
+File: images/EulerSomeReadingIsHomework.png Graphic file (type png)
+
+<use images/EulerSomeReadingIsHomework.png>
+Package pdftex.def Info: images/EulerSomeReadingIsHomework.png used on input li
+ne 276.
 (pdftex.def)             Requested size: 85.80048pt x 85.79688pt.
 
-<images/ELinear.png, id=61, 513.92pt x 513.92pt>
-File: images/ELinear.png Graphic file (type png)
- <use images/ELinear.png>
-Package pdftex.def Info: images/ELinear.png used on input line 264.
+<images/EulerSomeReadingIsNotFun1.png, id=63, 513.92pt x 513.92pt>
+File: images/EulerSomeReadingIsNotFun1.png Graphic file (type png)
+
+<use images/EulerSomeReadingIsNotFun1.png>
+Package pdftex.def Info: images/EulerSomeReadingIsNotFun1.png used on input lin
+e 280.
 (pdftex.def)             Requested size: 85.80048pt x 85.79688pt.
 
-<images/O1Linear.png, id=62, 513.92pt x 513.92pt>
-File: images/O1Linear.png Graphic file (type png)
- <use images/O1Linear.png>
-Package pdftex.def Info: images/O1Linear.png used on input line 268.
+<images/EulerSomeReadingIsNotFun2.png, id=64, 513.92pt x 513.92pt>
+File: images/EulerSomeReadingIsNotFun2.png Graphic file (type png)
+
+<use images/EulerSomeReadingIsNotFun2.png>
+Package pdftex.def Info: images/EulerSomeReadingIsNotFun2.png used on input lin
+e 286.
 (pdftex.def)             Requested size: 85.80048pt x 85.79688pt.
 
-<images/O2Linear.png, id=63, 513.92pt x 513.92pt>
-File: images/O2Linear.png Graphic file (type png)
- <use images/O2Linear.png>
-Package pdftex.def Info: images/O2Linear.png used on input line 275.
+<images/EulerSomeReadingIsNotFun3.png, id=65, 513.92pt x 513.92pt>
+File: images/EulerSomeReadingIsNotFun3.png Graphic file (type png)
+
+<use images/EulerSomeReadingIsNotFun3.png>
+Package pdftex.def Info: images/EulerSomeReadingIsNotFun3.png used on input lin
+e 292.
 (pdftex.def)             Requested size: 85.80048pt x 85.79688pt.
 
-Overfull \hbox (1.2019pt too wide) in paragraph at lines 253--279
+Overfull \hbox (8.72108pt too wide) in paragraph at lines 269--296
  [][] 
  []
 
@@ -561,59 +592,139 @@ Overfull \hbox (1.2019pt too wide) in paragraph at lines 253--279
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [7 <./images/EulerAllMenAreMortal.png> <./images/EulerAllGreeksAreMen.png> <./i
-mages/EulerAllGreeksAreMortal.png>] [8 <./images/ALinear.png> <./images/ILinear
-.png> <./images/ELinear.png> <./images/O1Linear.png> <./images/O2Linear.png>]
-<images/LinearTemporalLogic.png, id=70, 513.92pt x 513.92pt>
-File: images/LinearTemporalLogic.png Graphic file (type png)
+mages/EulerAllGreeksAreMortal.png>]
+<images/ALinear.png, id=69, 513.92pt x 513.92pt>
+File: images/ALinear.png Graphic file (type png)
+ <use images/ALinear.png>
+Package pdftex.def Info: images/ALinear.png used on input line 310.
+(pdftex.def)             Requested size: 85.80048pt x 85.79688pt.
 
-<use images/LinearTemporalLogic.png>
-Package pdftex.def Info: images/LinearTemporalLogic.png used on input line 315.
+<images/ILinear.png, id=70, 513.92pt x 513.92pt>
+File: images/ILinear.png Graphic file (type png)
+ <use images/ILinear.png>
+Package pdftex.def Info: images/ILinear.png used on input line 314.
+(pdftex.def)             Requested size: 85.80048pt x 85.79688pt.
 
-(pdftex.def)             Requested size: 155.99762pt x 155.99648pt.
+<images/ELinear.png, id=71, 513.92pt x 513.92pt>
+File: images/ELinear.png Graphic file (type png)
+ <use images/ELinear.png>
+Package pdftex.def Info: images/ELinear.png used on input line 318.
+(pdftex.def)             Requested size: 85.80048pt x 85.79688pt.
 
-<images/BranchingTemporalLogic.png, id=71, 513.92pt x 513.92pt>
-File: images/BranchingTemporalLogic.png Graphic file (type png)
+<images/O1Linear.png, id=72, 513.92pt x 513.92pt>
+File: images/O1Linear.png Graphic file (type png)
+ <use images/O1Linear.png>
+Package pdftex.def Info: images/O1Linear.png used on input line 322.
+(pdftex.def)             Requested size: 85.80048pt x 85.79688pt.
 
-<use images/BranchingTemporalLogic.png>
-Package pdftex.def Info: images/BranchingTemporalLogic.png used on input line 3
-20.
-(pdftex.def)             Requested size: 155.99762pt x 155.99648pt.
+<images/O2Linear.png, id=73, 513.92pt x 513.92pt>
+File: images/O2Linear.png Graphic file (type png)
+ <use images/O2Linear.png>
+Package pdftex.def Info: images/O2Linear.png used on input line 329.
+(pdftex.def)             Requested size: 85.80048pt x 85.79688pt.
+
+Overfull \hbox (1.2019pt too wide) in paragraph at lines 307--333
+ [][] 
+ []
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[9] [10 <./images/LinearTemporalLogic.png> <./images/BranchingTemporalLogic.png
->]
-Chapter 2.
-[11
+[8 <./EulerNoHomeworkFun.png> <./images/EulerSomeReadingIsHomework.png> <./imag
+es/EulerSomeReadingIsNotFun1.png> <./images/EulerSomeReadingIsNotFun2.png> <./i
+mages/EulerSomeReadingIsNotFun3.png>]
+<images/CPDA.png, id=81, 120.45pt x 112.16907pt>
+File: images/CPDA.png Graphic file (type png)
+ <use images/CPDA.png>
+Package pdftex.def Info: images/CPDA.png used on input line 349.
+(pdftex.def)             Requested size: 60.22484pt x 56.08438pt.
 
-] [12] [13] <images/mymaths.png, id=93, 867.24pt x 487.8225pt>
+<images/CPDI.png, id=82, 118.19156pt x 113.67468pt>
+File: images/CPDI.png Graphic file (type png)
+ <use images/CPDI.png>
+Package pdftex.def Info: images/CPDI.png used on input line 353.
+(pdftex.def)             Requested size: 59.09563pt x 56.83719pt.
+
+<images/CPDE.png, id=83, 121.95563pt x 110.66344pt>
+File: images/CPDE.png Graphic file (type png)
+ <use images/CPDE.png>
+Package pdftex.def Info: images/CPDE.png used on input line 357.
+(pdftex.def)             Requested size: 60.97765pt x 55.33157pt.
+
+<images/CPDO.png, id=84, 119.69719pt x 117.43875pt>
+File: images/CPDO.png Graphic file (type png)
+ <use images/CPDO.png>
+Package pdftex.def Info: images/CPDO.png used on input line 361.
+(pdftex.def)             Requested size: 85.80048pt x 84.18129pt.
+
+Overfull \hbox (1.2019pt too wide) in paragraph at lines 346--365
+ [][] 
+ []
+
+[9 <./images/ALinear.png> <./images/ILinear.png> <./images/ELinear.png> <./imag
+es/O1Linear.png> <./images/O2Linear.png> <./images/CPDA.png> <./images/CPDI.png
+> <./images/CPDE.png> <./images/CPDO.png>]
+<images/4SetVennDiagram.jpg, id=92, 346.29375pt x 333.245pt>
+File: images/4SetVennDiagram.jpg Graphic file (type jpg)
+
+<use images/4SetVennDiagram.jpg>
+Package pdftex.def Info: images/4SetVennDiagram.jpg used on input line 377.
+(pdftex.def)             Requested size: 155.99762pt x 150.12157pt.
+
+<images/5SetVennDiagram.png, id=93, 547.3248pt x 370.986pt>
+File: images/5SetVennDiagram.png Graphic file (type png)
+
+<use images/5SetVennDiagram.png>
+Package pdftex.def Info: images/5SetVennDiagram.png used on input line 382.
+(pdftex.def)             Requested size: 155.99762pt x 105.73776pt.
+ [10 <./images/4SetVennDiagram.jpg> <./images/5SetVennDiagram.png>]
+<images/LinearTemporalLogic.png, id=97, 513.92pt x 513.92pt>
+File: images/LinearTemporalLogic.png Graphic file (type png)
+
+<use images/LinearTemporalLogic.png>
+Package pdftex.def Info: images/LinearTemporalLogic.png used on input line 407.
+
+(pdftex.def)             Requested size: 155.99762pt x 155.99648pt.
+
+<images/BranchingTemporalLogic.png, id=98, 513.92pt x 513.92pt>
+File: images/BranchingTemporalLogic.png Graphic file (type png)
+
+<use images/BranchingTemporalLogic.png>
+Package pdftex.def Info: images/BranchingTemporalLogic.png used on input line 4
+12.
+(pdftex.def)             Requested size: 155.99762pt x 155.99648pt.
+ [11 <./images/LinearTemporalLogic.png> <./images/BranchingTemporalLogic.png>] 
+[12]
+Chapter 2.
+[13
+
+] [14] [15] <images/mymaths.png, id=120, 867.24pt x 487.8225pt>
 File: images/mymaths.png Graphic file (type png)
 
 <use images/mymaths.png>
-Package pdftex.def Info: images/mymaths.png used on input line 379.
+Package pdftex.def Info: images/mymaths.png used on input line 475.
 (pdftex.def)             Requested size: 390.0pt x 219.37666pt.
- [14] (test.bbl [15 <./images/mymaths.png>]
+ [16] (test.bbl [17 <./images/mymaths.png>]
 LaTeX Font Info:    Try loading font information for T1+cmtt on input line 54.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\base\t1cmtt.fd"
 File: t1cmtt.fd 2014/09/29 v2.5h Standard LaTeX font definitions
-) [16
+) [18
 
-] [17]) [18]
+] [19]) [20]
 (test.aux)
 
 LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 5504 strings out of 493334
- 79581 string characters out of 3139252
- 246492 words of memory out of 3000000
- 8911 multiletter control sequences out of 15000+200000
+ 5574 strings out of 493334
+ 81625 string characters out of 3139252
+ 245572 words of memory out of 3000000
+ 8968 multiletter control sequences out of 15000+200000
  18169 words of font info for 46 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 44i,14n,42p,2935b,382s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 44i,14n,42p,1477b,382s stack positions out of 5000i,500n,10000p,200000b,50000s
  <C:\Users\james\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\
 ectt1200.pk> <C:\Users\james\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\
 ec\dpi600\ecbx1440.pk> <C:\Users\james\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour
@@ -633,9 +744,9 @@ X\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\eccc2074.pk><C:/Program Files/MiKTeX 2
 /type1/public/amsfonts/cm/cmr12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/pu
 blic/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/ams
 fonts/symbols/msam10.pfb>
-Output written on test.pdf (19 pages, 762043 bytes).
+Output written on test.pdf (21 pages, 1152500 bytes).
 PDF statistics:
- 523 PDF objects out of 1000 (max. 8388607)
+ 552 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 121 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 181 words of extra memory for PDF output out of 10000 (max. 10000000)
 

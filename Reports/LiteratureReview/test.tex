@@ -57,10 +57,10 @@
 \chapter{Syllogisms}
 \section{History}
 
-Aristotle's work on formal logic was the earliest known study of the topic, which remained at the forefront of academia until the 19th century following Gotlobb Frege's work on first order logic. As syllogisms were so prominent in logic for such a long time they have had huge cultural significance on the history of logic in the Western world \citep{sep-aristotle-logic}. Up until the 12th Century, medieval logicians only had access to a small portion of Aristotle's work with the notable exclusion being Prior Analytics, which contained his work on syllogisms. This period of time is known as logica vetus, or old logic. It wasn't until the 12th century when Prior Analytics resurfaced in the western world that the logica nova, or new logic, began. Immanuel Kant, a prominent 18th century philosopher, went as far as to describe Prior Analytics as "a closed and completed body of doctrine" demonstrating just how highly Aristotle's work on syllogisms was thought of.
+Aristotle's work on formal logic was the earliest known study of the topic, which remained at the forefront of academia until the 19th century following Gotlobb Frege's work on first order logic. As syllogisms were so prominent for such a long period of time they have had huge cultural significance on the history of logic in the Western world \citep{sep-aristotle-logic}. Up until the 12th Century, medieval logicians only had access to a small portion of Aristotle's work with the notable exclusion being Prior Analytics, which contained his work on syllogisms. This period of time is known as logica vetus, or old logic. It wasn't until the 12th century when Prior Analytics resurfaced in the west that the logica nova, or new logic, began. Immanuel Kant, a prominent 18th century philosopher, went as far as to describe Prior Analytics as "a closed and completed body of doctrine" demonstrating just how highly Aristotle's work on syllogisms was thought of.
 
 \section{What are syllogisms}
-Aristotle defined his syllogisms as \textit{"a discourse in which, certain things having been supposed, something different from the things supposed results of necessity because these things are so"}. Put more simply, syllogisms are a type of deductive reasoning that, when used on a logical argument, allows a conclusion to be drawn. Aristotle's focus was on categorical syllogisms, essentially a  logical argument that contains three categorical propositions. These three categorical propositions in turn are made up of two premises and a conclusion. Each categorical premise is made up of categorical terms, of which each is used twice in the syllogism as a whole. Each categorical premise can be described as a sentence that connects a predicate and a subject by a verb (copula). 
+Aristotle defined his syllogisms as \textit{a discourse in which, certain things having been supposed, something different from the things supposed results of necessity because these things are so}. Put more simply, syllogisms are a type of deductive reasoning that, when used on a logical argument, allows a conclusion to be drawn. Aristotle's focus was on categorical syllogisms, essentially a  logical argument that contains three categorical propositions. These three categorical propositions in turn are made up of two premises and a conclusion. Each categorical premise is made up of categorical terms, of which each is used twice in the syllogism as a whole. Each categorical premise can be described as a sentence that connects a predicate and a subject by a verb. 
 \bigbreak
 \begin{tightcenter}
 \textit{All M are P} $\rightarrow$ major premise\\
@@ -70,11 +70,11 @@ Aristotle defined his syllogisms as \textit{"a discourse in which, certain thing
 \bigbreak
 Syllogisms are capable of being applied to any logical argument but to allow them to be compared to each other, they must be represented in a standard form. A categorical syllogism that follows standard form is always structured in the same way, first the major premise, then the minor premise followed by the conclusion. 
 
-As created by medivial logicians studying Aristotle's work, the mood and figure of a syllogism provides a notation to represent all the logically unique variations that can occur. The mood refers to the order in which the categorical propositions appear in the syllogism and are represented by four different classes.
+As created by medivial logicians studying Aristotle's work, the mood and figure of a syllogism provides a notation to represent all the logically unique variations that can occur. The mood refers to the order in which the categorical propositions appear in the syllogism and are represented by four different classes.%
 \begin{itemize}
 \item \textbf{A} - All A is B $\rightarrow$ universal affirmative proposition
-\item \textbf{I} - Some A is B $\rightarrow$ universal negative proposition
-\item \textbf{E} - No A is B $\rightarrow$ particular affirmative proposition
+\item \textbf{I} - Some A is B $\rightarrow$ particular affirmative proposition
+\item \textbf{E} - No A is B $\rightarrow$ universal negative  proposition
 \item \textbf{O} - Some A is not B  $\rightarrow$  particular negative proposition
 \end{itemize}
 Syllogisms also have a figure that describes the placement of the two middle terms.
@@ -96,26 +96,43 @@ By combining all the different possibilities of mood and figure there are 256 lo
 \end{tightcenter}
 \bigbreak
 
-Off these 256 syllogisms the majority are logically invalid, with only 24 being valid. Of these 24, 15 of these fall foul to the existential fallacy. That is to say that a syllogism with two universal premises has a particular conclusion. 
-\bigbreak
-\begin{tightcenter}
-\textit{All unicorns are animals.}\\ 
-\textit{All animals are dangerous.}\\
-\textit{Therefore, some unicorns are dangerous.}\\
-\end{tightcenter}
-\bigbreak
+Only 24 syllogisms out of the possible 256 are logically valid, and of these the existential fallacy is broken by 15 of them.
 
-The reason that this commits the logical fallacy is because whilst a unicorn does not need to exist to be classed as an animal, in order to class one as dangerous it must exist.
+\subsection{Existential Fallacy}
 
-Some of these also display weakened form, meaning a stronger conclusion can be drawn from the premises than is actually drawn. As seen below, whilst the conclusion drawn is correct it is possible to draw a stronger conclusion as say \textit{All dogs are animals}.
+The existential fallacy occurs whenever an argument is invalid because the premises lack existential import. Existential import is an attribute of a categorial proposition that implies the existence of the subject \citep{hurley2005concise}. 
 
-\bigbreak
-\begin{tightcenter}
-\textit{All mammals are animals}\\ 
-\textit{All dogs are mammals}\\
-\textit{Some dogs are animals }\\
-\end{tightcenter}
-\bigbreak
+There are two schools of thought on the existential fallacy with regards to syllogism, Aristotelian and Boolean.
+
+Traditionally as laid out by Aristotle the existence of a subject is assumed when making universal statements. I and O propositions are said to have existential import and in Aristotelian logic A and E propositions must follow validly by sub-alternation. This leads to A and E propositions also having existential import as a proposition with existential import cannot be derived from a proposition without existential import
+By considering the syllogism in figure 1.1 we can say that it does not commit the existential fallacy as dogs do exist whereas in figure 1.2 the existential fallacy is committed as dragons do not exist. 
+
+However, as modern day logicians and mathematicians often reason about empty sets or imaginary objects the Aristotelian approach to the existential fallacy was problematic. George Boole, a 19th century philosopher, built upon Aristotle's work to create his own Boolean syllogisms to address this issue by stating that universal propositions do not have existential import \citep{hammerhill}. 
+
+
+\begin{figure}[!h]
+  \centering
+  \begin{minipage}[b]{0.4\textwidth}
+    \begin{tightcenter}
+		\textit{All dogs are mammals }\\ 
+		\textit{All mammals are animals}\\
+		\textit{Some dogs are animals}\\
+		\end{tightcenter}
+		    \caption{}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[b]{0.4\textwidth}
+    \begin{tightcenter}
+		\textit{All gorillas are lizards }\\ 
+		\textit{All dragons are lizards}\\
+		\textit{Some dragons are not gorillas}\\
+		\end{tightcenter}
+    \caption{}
+  \end{minipage}
+\end{figure}
+\FloatBarrier
+
+The general rule to reason if a syllogism commits existential import is that is both premises are universal the conclusion cannot be particular. In Boolean logic if this rule is broken, then it is a fallacy but in Aristotelian logic the rule must be broken and the critical term must also not exist.
 
 \section{Current teaching}
 Syllogisms currently feature almost exclusively on philosophy courses around the world, typically as part of units on formal logic. 
@@ -124,8 +141,7 @@ Without exception all initially introduce syllogisms in sentential form, commonl
 However representing syllogisms this way is not the most effective as they can be logically quite complex. As \citep{larkin1987diagram} explain, sentential form requires inferences to be made, and then those inferences to be held in memory. Working through the syllogism, for example to decide if it is valid, means that these inferences must be continually remembered. As shown by \cite{johnson1980mental}, sentential forms of syllogism are more difficult to understand and may be mentally translated into diagrammatic representations internally. 
 
 \subsection{Venn Diagrams}
-%Think about Plurative syllogisms for possible extensions
-Venn diagrams are the most commonly used diagrammatic representation of syllogigms. A huge advantage of them is that most people have been taught them at a young age and are very familiar with them. Each circle represent a term, with shading or marking with a cross is used to represent the state of the set. To achieve the final diagram the two previous diagrams are combined which can then  be used to check the validity of the conclusion.
+Venn diagrams are the most commonly used diagrammatic representation of syllogisms. A huge advantage of them is that most people have been taught them at a young age and are therefore very familiar with them. Each circle represents a term, which is then filled in to represent the empty set or marked with a X to show atleast one member. To achieve the final diagram the two previous diagrams are combined which can then  be used to check the validity of the conclusion.
 
 \begin{table}[h!]
   \centering
@@ -148,7 +164,7 @@ Venn diagrams are the most commonly used diagrammatic representation of syllogig
     \end{minipage}
     \\
   \end{tabular}
-  \caption{Premises represented by Venn Diagrams}\label{tbl:eulerPremises}
+  \caption{Premises represented by Venn Diagrams}\label{tbl:vennPremises}
 \end{table}
 
 \begin{table}[htb]
@@ -168,30 +184,36 @@ Venn diagrams are the most commonly used diagrammatic representation of syllogig
     \end{minipage}
     \\
   \end{tabular}
-  \caption{Premises represented by Euler Circles}\label{tbl:eulerPremises}
+  \caption{AAA-1 Syllogism}\label{tbl:eulerPremises}
+\end{table}
+\FloatBarrier
+
+\begin{table}[htb]
+  \centering
+  \begin{tabular}{ c  c  c }
+    No lizards are mammals & All lizards are reptiles & Some reptiles are not mammals\\
+    \begin{minipage}{.29\textwidth}
+      \includegraphics[scale=0.25]{VennNoLizardsAreMammals}
+    \end{minipage}
+    &
+    \begin{minipage}{.29\textwidth}
+      \includegraphics[scale=0.25]{VennAllLizardsAreReptiles}
+    \end{minipage}
+    & 
+    \begin{minipage}{.29\textwidth}
+      \includegraphics[scale=0.25]{VennSomeReptilesAreNotMammals}
+    \end{minipage}
+    \\
+  \end{tabular}
+  \caption{EAO-3 Syllogism}\label{tbl:eulerPremises}
 \end{table}
 \FloatBarrier
 
 
 
 \subsection{Euler Circles}
-Euler circles are one popular way in which syllogisms can be represented. 
-These are a very natural way of representing sets, with \cite{Erickson1978-ERIROS} putting forward the theory that when people are thinking about syllogisms that they are in fact being mentally thought of as Euler circles. He proposed that in the proposition, All A are B, 75\% of the time that will be imagined as coincident circles and the other 25\% as traditional euler circles.
-
-\begin{figure}[!h]
-  \centering
-  \begin{minipage}[b]{0.4\textwidth}
-    \includegraphics[width=\textwidth]{EulerCoincident}
-    \caption{Coincident Euler Circles }
-  \end{minipage}
-  \hfill
-  \begin{minipage}[b]{0.4\textwidth}
-    \includegraphics[width=\textwidth]{EulerCircles}
-    \caption{Traditional Euler Circles}
-  \end{minipage}
-\end{figure}
-\FloatBarrier
-Whilst according the Erickson the coincident are more commonly thought of, for diagrammatic purposes the traditional way will be discussed as it is clearer. As table 1.1 shows, when representing the individual moods Euler circles can be very intuitive.
+Euler circles are another popular way in which syllogisms can be represented. 
+These are a very natural way of representing sets, with \cite{Erickson1978-ERIROS} putting forward the theory that when people are thinking about syllogisms that they are in fact being mentally thought of as Euler circles. As table 1.1 shows, when used to represent the individual premises Euler circles can be very intuitive.
 
 %Cirles are 8.5cm I think
 \begin{table}[h!]
@@ -218,8 +240,7 @@ Whilst according the Erickson the coincident are more commonly thought of, for d
   \caption{Premises represented by Euler Circles}\label{tbl:eulerPremises}
 \end{table}
 
-\pagebreak
-\noindent Euler circles also nicely represent simpler syllogisms are Table 1.2 shows.
+
 
 \begin{table}[htb]
   \centering
@@ -238,14 +259,47 @@ Whilst according the Erickson the coincident are more commonly thought of, for d
     \end{minipage}
     \\
   \end{tabular}
-  \caption{Premises represented by Euler Circles}\label{tbl:eulerPremises}
+  \caption{Premises represented by Euler Circles}\label{tbl:eulerAllMenMortal}
 \end{table}
 \FloatBarrier
-However, the problem with this representation arises when more complex syllogisms are constructed. When there are multiple ways to represent the conclusion the resulst is needing more than one diagram to depict the possibilites. All of a sudden the intuitive benefits are quickly outweighed by the complexity.
+Euler circles also concisely represents simpler syllogisms as Table \ref{tbl:eulerAllMenMortal} shows. However, the problem with this representation arises when more complex syllogisms are constructed. When there are multiple ways to represent the conclusion the result needs more than one diagram to depict all of the possibilities as seen in \ref{tbl:eulerHomework} . It is at this point that the intuitive benefits are quickly outweighed by the added overhead of managing multiple conclusive diagrams.
+
+\begin{table}[h!]
+  \centering
+  \begin{tabular}{  c  c  c }
+    No homework is fun & Some reading is homework & Some reading is not fun\\
+    \begin{minipage}{.22\textwidth}
+      \includegraphics[width=\linewidth]{EulerNoHomeworkFun}
+    \end{minipage}
+    &
+    \begin{minipage}{.22\textwidth}
+      \includegraphics[width=\linewidth]{EulerSomeReadingIsHomework}
+    \end{minipage}
+    & 
+    \begin{minipage}{.22\textwidth}
+      \includegraphics[width=\linewidth]{EulerSomeReadingIsNotFun1}
+    \end{minipage}
+    \\
+    &
+     &
+    \begin{minipage}{.22\textwidth}
+      \includegraphics[width=\textwidth]{EulerSomeReadingIsNotFun2}
+    \end{minipage}
+    \\
+    &
+     &
+    \begin{minipage}{.22\textwidth}
+      \includegraphics[width=\textwidth]{EulerSomeReadingIsNotFun3}
+    \end{minipage}
+    \\
+  \end{tabular}
+  \caption{EIO Syllogism}\label{tbl:eulerHomework}
+\end{table}
+\FloatBarrier
 
 
 \subsection{Linear Diagrams}
-Linear diagrams are an alternative system that was devised by \cite{englebretsen1991}. Instead of being planar like Venn and Euler diagrams are linear. The reasoning behind this was that Englebretsen said it allowed linear diagrams to represent 4 terms, unlike their planar counterparts. Elements are represented by points which are then connected by lines to show sets.
+Linear diagrams are an alternative system that was devised by \cite{englebretsen1991}. As the name suggests they are linear instead of being planar like Venn and Euler diagrams. The reasoning behind this was that Englebretsen said it allowed linear diagrams to represent 4 terms, unlike their planar counterparts. Elements are represented by points which are then connected by lines to show sets.
 
 %Cirles are 8.5cm I think
 \begin{table}[h!]
@@ -287,11 +341,49 @@ As introduced by \cite{cheng2012visualizing}, Categorical Pattern Diagrams offer
 
 The issue with this form of representation is the notation used is not intuitive. Categorical Pattern Diagrams require the person to learn a whole new notation before they can begin to reason about the syllogism that it is representing.
 
-\section{Additional Avenues To Explore}
+\begin{table}[h!]
+  \centering
+  \begin{tabular}{  c  c  c  c }
+    A & I & E & O\\
+    \begin{minipage}{.22\textwidth}
+      \includegraphics[width=\linewidth, scale=0.5]{CPDA}
+    \end{minipage}
+    &
+    \begin{minipage}{.22\textwidth}
+      \includegraphics[width=\linewidth, scale=0.5]{CPDI}
+    \end{minipage}
+    & 
+    \begin{minipage}{.22\textwidth}
+      \includegraphics[width=\linewidth, scale=0.5]{CPDE}
+    \end{minipage}
+    &
+    \begin{minipage}{.22\textwidth}
+      \includegraphics[width=\textwidth]{CPDO}
+    \end{minipage}
+    \\
+  \end{tabular}
+  \caption{Premises represented by Categorical Pattern Diagrams}\label{tbl:eulerPremises}
+\end{table}
+
+\section{Additional Logic Systems}
 
 \subsection{Polysyllogisms}
 Polysyllogisms, unlike standard syllogisms, can contain more than 3 propositions. This poses a problem for graphical representations, with the Venn diagrams becoming exponentially complex as more sets are added such that it is impractical to represent more than 5 sets using them.
 As reasoned by \cite{cheng2014graphical}, linear and Euler diagrams also struggle with this problem. As both use spatial-overlap it means the diagrams can only represent a series of universal affirmative propositions as further propositions are nested in. As can be seen in Figure 1.1 and Figure 1.2 there are already multiple ways to represent syllogisms with 3 terms so it is easy to see how it would quickly become unmanagable as the number of propositons increases.
+
+\begin{figure}[!h]
+  \centering
+  \begin{minipage}[b]{0.4\textwidth}
+    \includegraphics[width=\textwidth]{4SetVennDiagram}
+    \caption{4 Set Venn Diagram }
+  \end{minipage}
+  \hfill
+  \begin{minipage}[b]{0.4\textwidth}
+    \includegraphics[width=\textwidth]{5SetVennDiagram}
+    \caption{5 Set Venn Diagram}
+  \end{minipage}
+\end{figure}
+\FloatBarrier
 
 \subsection{Modal Logic}
 Modal logic is an extension of classical proposition logic that uses the modal operators \textit{it is possible that} and \textit{it is necessary that} \citep{zalta1988basic}. Modal logic allows statements to be expressed that would otherwise not be possible in classic logic as it is not possible to convey the possibility of events happening. The following are examples of modal propositions:
@@ -342,37 +434,41 @@ The four premises of syllogisms can be represented using set theory notation.
 
 \chapter{Serious Games}
 \section{Introduction}
-Serious Games are a movement within the game industry comprised of software developers and researchers who are using games to educate. Whilst there is some debate around what exactly construes a serious game, \cite{michael2005serious} define one as any game where entertainment is not the primary purpose, but where instead the focus is on education. They aim to tackle a growing problem whereby educational techniques have not adapted to the needs of the current generation. As \cite{lim2008spirit} discusses, learning in the classroom has been driven by the national curriculum, with a massive focus on standard and grades. This goes against the belief that to engage students the focus should in fact be on creating a learning environment that encourages this.  In contrast with previous generations, the younger generation of today have grown up in a world consumed in technology. \cite{oblinger2005educating} described them as the \textit{Net Generation}, the generation who always need to be connected, require immediate feedback and crave social interaction. The research of \cite{prensky2001games} explains how this vast amount of technology now experienced in everyday life has led to these newer generations having their minds rewired. These cognitive changes have caused a different set of educational preferences when compared to previous generations, with teaching methods not evolving in order to take this into account.
+Serious Games are a movement within the game industry comprised of software developers and researchers who are using games to educate. Whilst there is some debate around what exactly construes a serious game, \cite{michael2005serious} define one as any game where entertainment is not the primary purpose, but where instead the focus is on education. They aim to tackle a growing problem whereby educational techniques have not adapted to the needs of the current generation. As \cite{lim2008spirit} discusses, learning in the classroom has been driven by the national curriculum, with a massive focus on standard and grades. This goes against the belief that to attract the attention of students the focus should in fact be on creating an engaging learning environment. In contrast with previous generations, the younger generation of today have grown up in a world consumed in technology. \cite{oblinger2005educating} described them as the \textit{Net Generation}, the generation who always need to be connected, require immediate feedback and crave social interaction. The research of \cite{prensky2001games} explains how this vast amount of technology now experienced in everyday life has led to these newer generations having their minds rewired. These cognitive changes have caused a different set of educational preferences when compared to previous generations, with teaching methods not evolving in order to take this into account.
 
 \section{Why They Are Good For Education}
 \subsection{Accessibility}
-One of the benefits of using games to teach is their accessibility in comparison to other methods of teaching. In the United Kingdom  access to the internet has doubled over the past 10 years, with 82\% of adults now using the internet on a daily basis \citep{onssurvey}. With such a huge number of people using the internet it means that games hosted on the web have an extremely large potential audience. This broad audience coupled with the widespread appeal of video games allows the crossing of demographic boundaries such as age, gender and educational status \citep{griffiths2002educational}.  Serious Games also have a lower barrier to entry than other educational methods by allowing a much more "pick up and play" approach to learning with less reliance on prerequisite background knowledge. In the case of syllogisms this would be achieved by using graphical representations to replace the set theory notations. By teaching the concepts first, set theory notation could then be introduced at a more appropriate time in the learning process when the player had a greater understanding of the topic. 
+One of the benefits of using games to teach is their accessibility in comparison to other methods. In the United Kingdom  access to the internet has doubled over the past 10 years, with 82\% of adults now using the internet on a daily basis \citep{onssurvey}. With such a huge number of people using the internet it means that games hosted on the web have an extremely large potential audience. This broad audience coupled with the widespread appeal of video games allows the crossing of demographic boundaries such as age, gender and educational status \citep{griffiths2002educational}.  Serious Games also have a lower barrier to entry than other educational methods by allowing a much more "pick up and play" approach to learning with less reliance on prerequisite background knowledge. In the case of syllogisms by using graphical representations to replace the set theory notations it would allow a much wider variety of people to play the game. By teaching the concepts first, set theory notation could then be introduced at a more appropriate time in the learning process when the player had a greater understanding of the topic. 
 
 \subsection{Motivation}
-As discussed by \cite{malone1981toward} games can also be intrinsically motivating, such that there are no external factors as to why a person is playing other than for their own enjoyment. This is in contrast to typical classroom learning that is usually more extrinsically motivated through grades, exam results and certificates. As  \citep{csikszentmihalyi1997talented} says, the number of students attending school would see a sharp drop if extrinsic rewards were removed. Of the two, intrinsic motivation is more resilient that extrinsic motivation. Learning that takes place as a result of intrinsic motivation if how higher quality of the knowledge is longer lasting \citep{kawachi2003initiating}. However, it is important to remember that not all games are by definition intrinsically motivating, but need to be structured correctly to achieve this. Malone included challenge, fantasy and curiosity as the three cornerstones of intrinsically motivating serious games.  In order to create a challenging game, it should include uncertain goals that are not too easy for the players to complete. Ensuring a game is challenging is so crucial as demonstrated by Malone through his work surveying children's opinion on 25 different computer games. The results conclusively showed that the most popular games all shared one thing in common; they all contained a defined goal.  Similarly in a study carried out by \citep{abuhamdeh2012importance} on chess players, it was found that the more challenging the game the greater the player's enjoyment. A fantasy environment in a game is said to "evoke mental images of phyical or social situations not actually present". Malone divides these fantasies into intrinsic and extrinsic, with intrinsic being more interesting and instructional resulting in a  greater cognitive effect on learning. \citep{lepper1988motivational} explains how if learning takes place away from the functionality of the knowledge then this decontextulisation results in the learner becoming demotivated.  This can be tackled by teaching topics by using real world examples demonstrating how the concepts are applied.  However, as this is not always feasible, Lepper proposed inserting the content of the topic into a fantasy context. Curiosity was the final and like challenge, is stimulated from an optimal level of complexity. Also similarly like fantasy, curiosity is  broken down into two categories; sensory and cognitive.  Sensory curiosity, as the name suggests, uses lights, sounds and graphics to gain that attention of the participant. Cognitive curiosity is achieved by making the participant doubt their existing knowledge, as people desire to have "good form" in their cognitive structure.   By using this taxonomy when developing a serious game, it is clear that this could be used to engage people who otherwise might not have been interested in learning. 
+As discussed by \cite{malone1981toward} games can be intrinsically motivating, such that there are no external factors as to why a person is playing other than for their own enjoyment. This is in contrast to typical classroom learning that is usually more extrinsically motivated through grades, exam results and certificates. As  \citep{csikszentmihalyi1997talented} says, the number of students attending school would see a sharp drop if extrinsic rewards were removed. Of the two, intrinsic motivation is more resilient that extrinsic motivation and learning that takes place as a result of intrinsic motivation is of higher quality and longer lasting \citep{kawachi2003initiating}.
+
+However, it is important to remember that not all games are by definition intrinsically motivating, but need to be structured correctly to achieve this. Malone included challenge, fantasy and curiosity as the three cornerstones of intrinsically motivating serious games.  
+In order to create a challenging game, it should include uncertain goals that are not too easy for the players to complete. Ensuring a game is challenging is crucial as demonstrated by Malone's work surveying children's opinion on 25 different computer games. The results conclusively showed that the most popular games all shared one thing in common; they all contained a defined goal.  Similarly in a study carried out by \citep{abuhamdeh2012importance} on chess players, it was found that the more challenging the game the greater the player's enjoyment. This is important to bear in mind with syllogisms as it is demonstrates the need to add the correct amount of difficulty for the game to be successful.
+
+A fantasy environment in a game is said to "evoke mental images of phyical or social situations not actually present". Malone divides these fantasies into intrinsic and extrinsic, with intrinsic being more interesting and instructional resulting in a  greater cognitive effect on learning. \cite{lepper1988motivational} explains how if learning takes place away from the functionality of the knowledge then this decontextualisation results in the learner becoming demotivated.  This can be tackled by teaching topics by using real world examples demonstrating how the concepts are applied. For syllogisms this can just be as simple as using actual examples that exist as opposed to using letters to represent sets. However, as this is not always feasible, Lepper proposed inserting the content of the topic into a fantasy context.
+Curiosity, like challenge, is stimulated from an optimal level of complexity. Also similarly like fantasy, curiosity is  broken down into two categories; sensory and cognitive.  Sensory curiosity, as the name suggests, uses lights, sounds and graphics to gain that attention of the participant. Cognitive curiosity is achieved by making the participant doubt their existing knowledge, as people desire to have "good form" in their cognitive structure.   By using this taxonomy when developing a serious game, it is clear that this could be used to engage people who otherwise might not have been interested in learning. 
 
 \subsection{Feedback}
-Feedback is a crucial part of the education process and significantly influences the effectiveness of learning. Feedback in this context relates to information provided by a source, be it a teacher etc, regarding a person's understanding of a concept that is used to aid improvement.
+Feedback is information regarding a person's understanding of a concept provided with the intention of improving the person's ability. Feedback is a crucial part of the education process and significantly influences the effectiveness of learning.
+
 As stated by \cite{hattie2007power}, "feedback is
-one of the most powerful influences on learning and achievement". A further study carried out by \cite{hattie2007power} explored the most effective medium to provide feedback. Computer-assisted, audio and video feedback were found to be most effective forms with the more traditional approach of praise, punishment and providing extrinsic rewards being the worst. 
+one of the most powerful influences on learning and achievement". A further study carried out by explored the most effective medium to provide feedback. Computer-assisted, audio and video feedback were found to be most effective forms with the more traditional approach of praise, punishment and providing extrinsic rewards being the worst \citep{hattie2007power}. 
 
-One of the main advantages of using games for education is the speed at which feedback can be delivered to the learner. This is especially important to the \textit{Net Generation} who require this immediate feedback. For example, in the scenario of a teacher marking essays, there can be months between when the work was completed and when the feedback was received.  The term \textit{Fast feedback} was coined by \cite{lumsden1988characteristics} which demonstrated how this timely feedback removed any uncertainty about progress and allowed any corrective action to be taken during the learning process. However, fast feedback is not a silver bullet, the speed at which feedback is delivered should depend on the difficulty of the task. The more complex the task, the greater the benefit of delaying the feedback to allow the information to be processed \cite{clariana2000applying}.
+One of the main advantages of using games for education is the speed at which feedback can be delivered to the learner making this  especially important to the \textit{Net Generation}. The term \textit{Fast feedback} was coined b \cite{lumsden1988characteristics} which demonstrated how this timely feedback removed any uncertainty about progress and allowed any corrective action to be taken during the learning process. However, fast feedback is not a silver bullet and as such the speed at which feedback is delivered should depend on the difficulty of the task. The more complex the task, the greater the benefit of delaying the feedback to allow the information to be processed \cite{clariana2000applying}. 
 
-Feedback during the learning process is known as formative assessments, with summative assessments usually being carried out at the end. As explained by \cite{irons2007enhancing}, formative assessments can be hugely beneficial as they enhance the learning process by creating a positive environment which in turns results in greater motivation for learner. 
+Feedback during the learning process is known as formative assessments, with summative assessments usually being carried out at the end. As explained by \cite{irons2007enhancing}, formative assessments can be beneficial as they enhance the learning process by creating a positive environment which results in greater motivation for learner. 
 
-Serious Games lend themselves extremely well to delivering formative feedback to players through in-game features such as progress bars, score count and countdown timers. Feedback can also be provided to the player as they make mistakes allowing the player to engage with the game and keep on track to completing their goals. This can also help the player from becoming frustrated and not able to progress past a certain point.
+Serious Games lend themselves extremely well to delivering formative feedback to players through in-game features such as progress bars, score count and countdown timers. Feedback can also be provided to the player as they make mistakes allowing the player to engage with the game and keep on track to completing their goals. This can also help the player from becoming frustrated and unable to progress.
 
 \section{Existing Serious Games}
-Serious Games can be split into two main categories, mini-games and complex games. Mini Games tends to be far shorter, often only taking less than an hour to complete. The focus is aimed at a very specific topic within a subject and is usually browser based. Progression tends to be added through multiple levels, all with similar design but with increasing difficulty. This is the far more common type of Serious Game as development is extremely costly, and mini games allow single developers to create them.
+Serious Games can be split into two main categories, mini-games and complex games. Mini Games tend to be far shorter, often only taking less than an hour to complete. The focus is aimed at a very specific topic within a subject and is usually browser based. Progression tends to be added through multiple levels, all with similar design but with increasing difficulty. This is the far more common type of Serious Game as they are far cheaper to develop.
 
-In contrast complex games can take potentially hundreds of hours to complete and cover a very broad topic. The game may contain multiple skills, paths to follow and complex goals.  
+In contrast, complex games can take potentially hundreds of hours to complete and cover a very broad topic. The game may contain multiple skills, paths to follow and complex goals.  
 
 Serious games do not just apply to education, but are used by a wide variety of different industries. The United States military created America's Army to aid in their recruitment and Microsoft's Flight Simulator is used by pilots in training \citep{111701519980901}.
 
 \subsection{MyMaths}
-MyMaths is a web based service that is used by schools in over 70 countries, with over 4.5 million users. It is marketed as an online learning platform that provides lessons and homework tasks to school children.
-As Figure 2.1 shows, MyMaths makes use of fast feedback to provide the player with the results as soon as they have completed the task. However, MyMaths does not provide an immersive or particularly enjoyable experience for players. \cite{lee2013learning} found that while students said they enjoyed using computers to learn, they did not want to use MyMaths. This could be due to that fact that MyMaths is very one dimensional, merely presenting questions in a quiz like format. This does not engage with the player or make use of the technologies available to make it more interactive.
-
 \begin{figure}[!tbp]
   \centering
   \begin{minipage}[b]{1\textwidth}
@@ -381,6 +477,9 @@ As Figure 2.1 shows, MyMaths makes use of fast feedback to provide the player wi
   \end{minipage}
 \end{figure}
 \FloatBarrier
+
+MyMaths is a web based service that is used by schools in over 70 countries, with over 4.5 million users. It is marketed as an online learning platform that provides lessons and homework to school children. It allows them to complete all of this work online and is then automatically marked.
+As Figure 2.1 shows, MyMaths makes use of fast feedback to provide the player with the results as soon as they have completed the task. However, MyMaths does not provide an immersive or particularly enjoyable experience for players. \cite{lee2013learning} found that while students said they enjoyed using computers to learn, they did not want to use MyMaths. This could be due to that fact that MyMaths is very one dimensional, merely presenting questions in a quiz like format. This does not engage with the player, incite any emotive feelings or provide any fantasy environment. It would more enjoyable if the technologies available were used to make it more interactive.
 
 \bibliographystyle{plainnat}
 \bibliography{bibliography} 
