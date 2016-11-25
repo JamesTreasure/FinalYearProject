@@ -5,19 +5,19 @@
 \contentsline {section}{\numberline {1.3}Current teaching}{4}
 \contentsline {subsection}{\numberline {1.3.1}Venn Diagrams}{5}
 \contentsline {subsection}{\numberline {1.3.2}Euler Circles}{6}
-\contentsline {subsection}{\numberline {1.3.3}Linear Diagrams}{8}
-\contentsline {subsection}{\numberline {1.3.4}Categorical Pattern Diagrams}{9}
-\contentsline {section}{\numberline {1.4}Additional Logic Systems}{10}
-\contentsline {subsection}{\numberline {1.4.1}Polysyllogisms}{10}
+\contentsline {subsection}{\numberline {1.3.3}Linear Diagrams}{7}
+\contentsline {subsection}{\numberline {1.3.4}Categorical Pattern Diagrams}{8}
+\contentsline {section}{\numberline {1.4}Additional Logic Systems}{9}
+\contentsline {subsection}{\numberline {1.4.1}Polysyllogisms}{9}
 \contentsline {subsection}{\numberline {1.4.2}Modal Logic}{10}
-\contentsline {subsection}{\numberline {1.4.3}Temporal Logic}{11}
+\contentsline {subsection}{\numberline {1.4.3}Temporal Logic}{10}
 \contentsline {subsection}{\numberline {1.4.4}Set Theory}{11}
-\contentsline {chapter}{\numberline {2}Serious Games}{13}
-\contentsline {section}{\numberline {2.1}Introduction}{13}
-\contentsline {section}{\numberline {2.2}Why They Are Good For Education}{13}
-\contentsline {subsection}{\numberline {2.2.1}Accessibility}{13}
-\contentsline {subsection}{\numberline {2.2.2}Motivation}{14}
-\contentsline {subsection}{\numberline {2.2.3}Feedback}{15}
-\contentsline {section}{\numberline {2.3}Existing Serious Games}{16}
-\contentsline {subsection}{\numberline {2.3.1}MyMaths}{16}
+\contentsline {chapter}{\numberline {2}Serious Games}{12}
+\contentsline {section}{\numberline {2.1}Introduction}{12}
+\contentsline {section}{\numberline {2.2}Why They Are Good For Education}{12}
+\contentsline {subsection}{\numberline {2.2.1}Accessibility}{12}
+\contentsline {subsection}{\numberline {2.2.2}Motivation}{13}
+\contentsline {subsection}{\numberline {2.2.3}Feedback}{14}
+\contentsline {section}{\numberline {2.3}Existing Serious Games}{15}
+\contentsline {subsection}{\numberline {2.3.1}MyMaths}{15}
 \contentsfinish 
