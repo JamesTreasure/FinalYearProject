@@ -44,7 +44,7 @@
 	\vspace{1cm}
 	{\scshape\Large Literature Review\par}
 	\vspace{1.5cm}
-	{\huge\bfseries Development of a Serious Game to teach Aristotle's Syllogisms\par}
+	{\huge\bfseries The Development of a Serious Game to Teach Aristotle's Syllogisms\par}
 	\vspace{2cm}
 	{\Large\itshape James Treasure\par}
 	\vfill
@@ -66,12 +66,12 @@ Aristotle defined his syllogisms as \textit{a discourse in which, certain things
 \begin{tightcenter}
 \textit{All M are P} $\rightarrow$ major premise\\
 \textit{All S are M} $\rightarrow$ minor premise\\
-\textit{All S are P} $\rightarrow$ conclusion premise\\
+\textit{All S are P} $\rightarrow$ conclusion \\
 \end{tightcenter}
 \bigbreak
 Syllogisms are capable of being applied to any logical argument but to allow them to be compared to each other, they must be represented in a standard form. A categorical syllogism that follows standard form is always structured in the same way, first the major premise, then the minor premise followed by the conclusion. 
 
-As created by medieval logicians studying Aristotle's work, the mood and figure of a syllogism provides a notation to represent all the logically unique variations that can occur. The mood refers to the order in which the categorical propositions appear in the syllogism and i represented by four different classes.%
+As created by medieval logicians studying Aristotle's work, the mood and figure of a syllogism provides a notation to represent all the logically unique variations that can occur. The mood refers to the order in which the categorical propositions appear in the syllogism and is represented by four different classes.%
 \begin{itemize}
 \item \textbf{A} - All A is B $\rightarrow$ universal affirmative proposition
 \item \textbf{I} - Some A is B $\rightarrow$ particular affirmative proposition
@@ -103,7 +103,7 @@ Only 24 syllogisms out of the possible 256 are logically valid, and of these the
 
 The existential fallacy occurs whenever an argument is invalid because the premises lack existential import. Existential import is an attribute of a categorical proposition that implies the existence of the subject \citep{hurley2005concise}. There are two schools of thought on the existential fallacy with regards to syllogism, Aristotelian and Boolean.
 
-Traditionally, as laid out by Aristotle, the existence of a subject is assumed when making universal statements. I and O propositions are said to have existential import and in Aristotelian logic I and O propositions must follow from A and E propositions due to sub alternation. This leads to A and E propositions also having existential import as a proposition with existential import cannot be derived from a proposition without existential import.
+Traditionally, as laid out by Aristotle, the existence of a subject is assumed when making universal statements. I and O propositions are said to have existential import and in Aristotelian logic I and O propositions must follow from A and E propositions due to subalternation. Subalternation is an inference made between A and I or E and O propositions. It says that if A is true it can be inferred I is true, similarly with E and O. This leads to A and E propositions also having existential import as a proposition with existential import cannot be derived from a proposition without existential import.
 By considering the syllogism in figure 1.1 we can say that it does not commit the existential fallacy as dogs do exist whereas in figure 1.2 the existential fallacy is committed as dragons do not exist. 
 
 However, as modern day logicians and mathematicians often reason about empty sets or imaginary objects the Aristotelian approach to the existential fallacy was problematic. George Boole, a 19th century philosopher, built upon Aristotle's work to create his own Boolean syllogisms to address this issue by stating that universal propositions do not have existential import, thus allowing empty sets \citep{hammerhill}. In Boolean syllogisms both figure \ref{fig:existenetialFallacy1} and \ref{fig:existenetialFallacy2} commit the existential fallacy.
@@ -136,7 +136,7 @@ However, as modern day logicians and mathematicians often reason about empty set
 The general rule to reason if a syllogism the commits existential fallacy is that if both premises are universal then the conclusion cannot be particular. In Boolean logic if this rule is broken, then it is a fallacy but in Aristotelian logic the rule must be broken and the critical term must also not exist.
 
 \section{Current teaching}
-Syllogisms currently feature almost exclusively on philosophy courses around the world, typically as part of units on formal logic. 
+Syllogisms currently feature almost exclusively on philosophy courses around the world, typically as part of units on formal logic. However, Venn Diagrams are taught to children in primary school and set theory features on most maths and computer science degrees. So whilst they are not directly taught about syllogisms, they are already familiar with some of the most common ways to represent them.
 There are a few different ways that are currently used to represent syllogisms when teaching, with most courses using a mixture of sentential, set theory notation and diagrams. 
 It is common to initially introduce syllogisms in sentential form, using real world examples as opposed to letters. The advantage of this is it becomes far easier for the learner to visualise the propositions. For example, visualising the statement "all dogs are animals" is simpler than "all A are B" despite being representing the same idea. 
 
@@ -145,7 +145,7 @@ However representing syllogisms this way is not the most effective as they can b
 \subsection{Venn Diagrams}
 Venn diagrams are the most commonly used diagrammatic representation of syllogisms. The advantage over other diagrammatic forms is that most people have been taught them at a young age and are therefore very familiar with them. 
 
-In this representation each circle is a term, which is then filled in to represent the empty set or marked with a X to show atleast one member. To achieve the final diagram the two previous diagrams are combined which can then  be used to check the validity of the syllogism. It can be seen from table \ref{tbl:vennEAO-3} that even complex syllogisms are able to represented with relatively little complexity using Venn diagrams which contributes to their pop. 
+In this representation each circle is a term, which is then filled in to represent the empty set or marked with a X to show at least one member. To achieve the final diagram the two previous diagrams are combined which can then  be used to check the validity of the syllogism. It can be seen from table \ref{tbl:vennEAO-3} that even complex syllogisms are able to be represented with relatively little complexity using Venn diagrams which contributes to their popularity. 
 
 \begin{table}[h!]
   \centering
@@ -400,6 +400,7 @@ The issue with this form of representation is the notation used is not intuitive
 \FloatBarrier
 
 \section{Additional Logic Systems}
+So far only syllogisms have been looked at as formal logic system, but many more exist. There are number of systems that would be ideal to include in the syllogism game to allow the player to gain a broader appreciation for formal logic.
 
 \subsection{Polysyllogisms}
 Polysyllogisms, unlike standard syllogisms, can contain more than 3 propositions. This poses a problem for many graphical representations, with traditional circular Venn diagrams being limited to 3 sets. As figure \ref{fig:4SetVenn} and \ref{fig:4SetVenn} show it is possible to represent more than 3 sets using different shapes but as the diagrams become exponentially more complex as sets are added it is quickly becomes impractical to use them.
@@ -423,7 +424,7 @@ As reasoned by \cite{cheng2014graphical}, linear and Euler diagrams also struggl
 \FloatBarrier
 
 \subsection{Modal Logic}
-Modal logic is an extension of classical proposition logic that uses the modal operators \textit{it is possible that} and \textit{it is necessary that} to describe a way in which the rest of the proposition can be true\citep{zalta1988basic}. Modal logic allows statements to be expressed that would otherwise not be possible in classic logic as it is not possible to convey the prospect of events happening. The following are examples of modal propositions:
+Modal logic is an extension of classical proposition logic that uses the modal operators \textit{it is possible that} and \textit{it is necessary that} to describe a way in which the rest of the proposition can be true  \citep{zalta1988basic}. Modal logic allows statements to be expressed that would otherwise not be possible in (propositional) classic logic as it is not possible to convey the prospect of events happening. The following are examples of modal propositions:
 
 \bigbreak
 \begin{tightcenter}
@@ -455,16 +456,16 @@ Temporal logic is a formal system for specifying and reasoning about proposition
 \subsection{Set Theory}
 Set theory is the mathematical theory of well-defined collections known as sets. These sets are made up of objects called elements. Given a set $S$ and an element $x$ it is said $x \in S$ if $x$ is an element of $S$ and conversely $x \notin S$ if $x$ is not an element of $S$ \citep{sep-set-theory}.
 
-Diagrammatically they appear very similar to syllogisms as both utilise Venn diagrams so it would be a naturally follow on well to expand syllogisms to encompass set theory. This is especially true when it is considered how syllogisms can be represented using set theory notation as in table \ref{tbl:setTheoryNotationTable}.
+Diagrammatically they appear very similar to syllogisms as both utilise Venn diagrams so it would naturally follow on well to expand syllogisms to encompass set theory. This is especially true when it is considered how syllogisms can be represented using set theory notation as in table \ref{tbl:setTheoryNotationTable}.
  
 \begin{table}[h!]
 \begin{center}
   \begin{tabular}{ c | c | c }
     Syllogism & Set Notation & Sentential Representation \\ \hline
     AaB & $B \subseteq A$ & All B is A \\
-    AiB & $\neg(B \cap A = \emptyset)$ & Some B is A \\
+    AiB & $B \cap A \neq \emptyset$ & Some B is A \\
     AeB & $B \cap A = \emptyset$ & No B is A \\
-    AoB & $\neg(B \cap A = B)$ & Some B is not A \\
+    AoB & $B \cap A \nsubseteq B$ & Some B is not A \\
   \end{tabular}
    \caption{Set Theory Notation for Syllogisms}
   \label{tbl:setTheoryNotationTable}
