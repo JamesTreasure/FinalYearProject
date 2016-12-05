@@ -73,8 +73,9 @@ John Hattie and Helen Timperley.
 \bibitem[Hill(2016)]{hammerhill}
 Hammer Hill.
 \newblock Existential import.
-\newblock http://cstl-cla.semo.edu/hhill/pl120/notes/existential%20import.htm,
-  2016.
+\newblock
+  http://cstl-cla.semo.edu/hhill/pl120/notes/existential\\begin{equation} •
+  \end{equation}%20import.html, 2016.
 
 \bibitem[Homan and Williams(1998)]{111701519980901}
 Willem Homan and Kathleen Williams.
@@ -166,7 +167,7 @@ Diana Oblinger, James~L Oblinger, and Joan~K Lippincott.
 
 \bibitem[{Office For National Statistics}(2016)]{onssurvey}
 {Office For National Statistics}.
-\newblock Internet access – households and individuals.
+\newblock Internet access - households and individuals.
 \newblock Technical report, 2016.
 \newblock URL
   \url{http://www.ons.gov.uk/peoplepopulationandcommunity/householdcharacteristics/homeinternetandsocialmediausage/bulletins/internetaccesshouseholdsandindividuals/2016}.
