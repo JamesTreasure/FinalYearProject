@@ -74,24 +74,28 @@ $(document).ready(function () {
         }
 
         if (drawCircle) {
-            circles.push(new Circle(pos.x, pos.y, 1));
-            drag = true;
+            //it might be bette to pass the circle object to the drag function instead of initially setting with
+            //radius of 1. I think it will stop the issue of drawing circles with 1 radius.
+            circles.push(new Circle(pos.x, pos.y, 50));
+
+            //drag = true;
         }
 
         if (moveCircle) {
-            for (var i = 0; i < circles.length; i++) {
-                dx = pos.x - circles[i].x;
-                dy = pos.y - circles[i].y;
-                var tempCircle = circles[i];
-                var inCircle = pointInCircle(pos.x, pos.y, tempCircle.x, tempCircle.y, tempCircle.radius)
-                if (inCircle) {
-                    dragId = i;
-                    dragOffsetX = dx; //store offsets so item doesn't 'jump'
-                    dragOffsetY = dy;
-                    drag = true;
-                    return;
-                }
-            }
+            animate();
+            // for (var i = 0; i < circles.length; i++) {
+            //     dx = pos.x - circles[i].x;
+            //     dy = pos.y - circles[i].y;
+            //     var tempCircle = circles[i];
+            //     var inCircle = pointInCircle(pos.x, pos.y, tempCircle.x, tempCircle.y, tempCircle.radius)
+            //     if (inCircle) {
+            //         dragId = i;
+            //         dragOffsetX = dx; //store offsets so item doesn't 'jump'
+            //         dragOffsetY = dy;
+            //         drag = true;
+            //         return;
+            //     }
+            // }
         }
     })
 
@@ -118,17 +122,95 @@ $(document).ready(function () {
         }
     })
 
-    function paintLocation(x, y) {
-        var coord = "x=" + x + ", y=" + y;
-        var pixel = context.getImageData(x, y, 1, 1).data;
-        var hex = "#" + ("000000" + rgbToHex(pixel[0], pixel[1], pixel[2])).slice(-6);
-        $('#status').html(coord + "<br>" + hex);
+    var colorLayer = null;
 
-        var targetColour = hex;
-        var replacementColour = "#ff0000";
-        var black = "#000000";
+    //this will be initialised to the value of where the mouse is clicked
+    var startR = 0,
+        startG = 0,
+        startB = 0;
+
+    //this is the colour that will the filled
+    var fillColorR = 230,
+        fillColorG = 200,
+        fillColorB = 50;
+
+    function paintLocation(startX, startY) {
+        console.log("Start x: " + startX);
+        console.log("Start y: " + startY);
+        colorLayer = context.getImageData(0, 0, canvasWidth, canvasHeight);
+
+        pixelPos = (startY * canvasWidth + startX) * 4;
+
+        startR = colorLayer.data[pixelPos];
+        startG = colorLayer.data[pixelPos + 1];
+        startB = colorLayer.data[pixelPos + 2];
+
+        var pixelStack = [
+            [startX, startY]
+        ];
+        var drawingBoundTop = 0;
+        var guard = 10000;
+        while (pixelStack.length) {
+            if (guard-- < 0) break;
+            var newPos, x, y, pixelPos, reachLeft, reachRight;
+            newPos = pixelStack.pop();
+            x = newPos[0];
+            y = newPos[1];
+
+            pixelPos = (y * canvasWidth + x) * 4;
+            while (y-- >= drawingBoundTop && matchStartColor(pixelPos)) {
+                pixelPos -= canvasWidth * 4;
+            }
+            pixelPos += canvasWidth * 4;
+            ++y;
+            reachLeft = false;
+            reachRight = false;
+            while (y++ < canvasHeight - 1 && matchStartColor(pixelPos)) {
+                colorPixel(pixelPos);
+
+                if (x > 0) {
+                    if (matchStartColor(pixelPos - 4)) {
+                        if (!reachLeft) {
+                            pixelStack.push([x - 1, y]);
+                            reachLeft = true;
+                        }
+                    } else if (reachLeft) {
+                        reachLeft = false;
+                    }
+                }
+
+                if (x < canvasWidth - 1) {
+                    if (matchStartColor(pixelPos + 4)) {
+                        if (!reachRight) {
+                            pixelStack.push([x + 1, y]);
+                            reachRight = true;
+                        }
+                    } else if (reachRight) {
+                        reachRight = false;
+                    }
+                }
+
+                pixelPos += canvasWidth * 4;
+            }
+        }
+        context.putImageData(colorLayer, 0, 0);
+
     }
 
+    function matchStartColor(pixelPos) {
+        var r = colorLayer.data[pixelPos];
+        var g = colorLayer.data[pixelPos + 1];
+        var b = colorLayer.data[pixelPos + 2];
+
+        return (r == startR && g == startG && b == startB);
+    }
+
+    function colorPixel(pixelPos) {
+        colorLayer.data[pixelPos] = fillColorR;
+        colorLayer.data[pixelPos + 1] = fillColorG;
+        colorLayer.data[pixelPos + 2] = fillColorB;
+        colorLayer.data[pixelPos + 3] = 255;
+    }
 
     function animate() {
         // Clear
@@ -159,8 +241,17 @@ $(document).ready(function () {
             context.strokeStyle = '#8B374A';
             context.stroke();
         }
-        setTimeout(animate, 33);
+        //setTimeout(animate, 33);
     };
+
+    function getPixelColor(img, x, y) {
+        var data = img.data;
+        var offset = ((y * (img.width * 4)) + (x * 4));
+        var result = data[offset + 0] << 24; // r
+        result |= data[offset + 1] << 16; // g
+        result |= data[offset + 2] << 8; // b
+        return result;
+    }
 
     function rgbToHex(r, g, b) {
         if (r > 255 || g > 255 || b > 255)
@@ -175,15 +266,21 @@ $(document).ready(function () {
                 var radiuses = Math.abs(circles[i].radius - circles[j].radius);
                 var intersect = Math.sqrt(Math.pow((circles[i].x-circles[j].x),2)+Math.pow((circles[i].y-circles[j].y),2));
 
-                if(radiuses <= intersect){
-                    console.log("Intersect");
+
+                if(Math.hypot(circles[i].x-circles[j].x, circles[i].y-circles[j].y) <= (circles[i].radius + circles[j].radius)){
+                    console.log("Circle " + i + " intersects with circle " + j);
                 }
+
+
+                // if(Math.abs(circles[i].radius - circles[j].radius) <= intersect <= Math.abs(circles[i].radius + circles[j].radius)){
+                //     console.log("Intersect");
+                // }
 
             }
             
         }
     }
 
-    animate();
+    //animate();
 })
 ;
