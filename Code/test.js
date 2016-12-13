@@ -26,6 +26,7 @@ $(document).ready(function () {
         drawCircle = false;
         moveCircle = true;
         paint = false;
+        animate();
     });
 
     paintButton.click(function () {
@@ -35,7 +36,16 @@ $(document).ready(function () {
     });
 
     var circles = new Array();
+    var rectangles = new Array();
     var drag = false;
+
+
+    var Rectange = function(x,y, width, height){
+        this.x = x;
+        this.y = y;
+        this.width = width;
+        this.height = height;
+    };
 
     var Circle = function (x, y, radius) {
         this.x = x; //Centre of the circle
@@ -59,9 +69,6 @@ $(document).ready(function () {
 
     $(window).mousedown(function (e) {
         var pos = getMousePos(canvas, e);
-        console.log("Canvas height: " + canvasHeight + ", Canvas Width: " + canvasWidth);
-        console.log("X: " + pos.x + ", Y: " + pos.y);
-
         if (paint) {
             paintLocation(pos.x, pos.y)
         }
@@ -116,49 +123,67 @@ $(document).ready(function () {
         var pixel = context.getImageData(x, y, 1, 1).data;
         var hex = "#" + ("000000" + rgbToHex(pixel[0], pixel[1], pixel[2])).slice(-6);
         $('#status').html(coord + "<br>" + hex);
-        floodFill(x, y, pixel[0], pixel[1], pixel[2])
-    }
 
-    function floodFill(x, y, startR, startG, startB) {
-
-        // var pixelStack = [[startX, startY]];
-        //
-        context.fillStyle = "rgb(0, 255, 0, 1)";
-        context.fillRect(x, y, 20, 20);
+        var targetColour = hex;
+        var replacementColour = "#ff0000";
+        var black = "#000000";
     }
 
 
-function animate() {
-    // Clear
-    context.clearRect(0, 0, canvasWidth, canvasHeight);
+    function animate() {
+        // Clear
+        context.clearRect(0, 0, canvasWidth, canvasHeight);
 
-    for (var i = 0; i < circles.length; i++) {
+        if(circles.length > 1){
+            checkIntersection();
+        }
 
-        var tempCircle = circles[i];
+        for (var i = 0; i < rectangles.length; i++) {
+            var tempRectangle = rectangles[i];
+            context.fillStyle="#ff0000";
+            context.fillRect(tempRectangle.x, tempRectangle.y, tempRectangle.width, tempRectangle.height);
+        }
 
-        context.beginPath();
-        context.globalCompositeOperation="destination-over";
+        for (var i = 0; i < circles.length; i++) {
+            var tempCircle = circles[i];
+            context.beginPath();
+            context.globalCompositeOperation = "destination-over";
 
-        context.arc(tempCircle.x, tempCircle.y, tempCircle.radius, 0, Math.PI * 2, false);
-        if (moveCircle && drag) {
+            context.arc(tempCircle.x, tempCircle.y, tempCircle.radius, 0, Math.PI * 2, false);
+            if (moveCircle && drag) {
+                context.lineWidth = 5;
+                context.strokeStyle = '#8B374A';
+                context.stroke();
+            }
             context.lineWidth = 5;
             context.strokeStyle = '#8B374A';
             context.stroke();
         }
-        context.lineWidth = 5;
-        context.strokeStyle = '#8B374A';
-        context.stroke();
+        setTimeout(animate, 33);
+    };
+
+    function rgbToHex(r, g, b) {
+        if (r > 255 || g > 255 || b > 255)
+            throw "Invalid color component";
+        return ((r << 16) | (g << 8) | b).toString(16);
     }
-    setTimeout(animate, 33);
-};
 
-function rgbToHex(r, g, b) {
-    if (r > 255 || g > 255 || b > 255)
-        throw "Invalid color component";
-    return ((r << 16) | (g << 8) | b).toString(16);
-}
+    function checkIntersection(){
+        for (var i = 0; i < circles.length; i++) {
+            for (var j = i+1; j < circles.length; j++) {
+                //ABS(R0-R1) <= SQRT((x0-x1)^2+(y0-y1)^2) <= (R0+R1)
+                var radiuses = Math.abs(circles[i].radius - circles[j].radius);
+                var intersect = Math.sqrt(Math.pow((circles[i].x-circles[j].x),2)+Math.pow((circles[i].y-circles[j].y),2));
 
+                if(radiuses <= intersect){
+                    console.log("Intersect");
+                }
 
-animate();
+            }
+            
+        }
+    }
+
+    animate();
 })
 ;
