@@ -12,9 +12,18 @@ $(document).ready(function () {
     };
 
     var barbaraArray = [[0], [1], [0, 1], [1, 2]];
-    barbaraArray.sort(function (a, b) {
-        return a[0] - b[0];
-    });
+
+    context.fillStyle = "#003300";
+    context.font = '20px san-serif';
+    var allMenAreMortal = "All Men Are Mortal";
+    var allGreeksAreMen = "All Greeks Are Men";
+    var allGreeksAreMortal = "All Greeks Are Mortal";
+
+    var textWidth = context.measureText(allMenAreMortal).width;
+
+    context.fillText(allMenAreMortal , (canvas.width/2) - (textWidth / 2), 80);
+    context.fillText(allGreeksAreMen , (canvas.width/2) - (textWidth / 2), 100);
+    context.fillText(allGreeksAreMortal , (canvas.width/2) - (textWidth / 2), 120);
 
     function getMousePos(canvas, e) {
         var rect = canvas.getBoundingClientRect();
@@ -27,10 +36,33 @@ $(document).ready(function () {
     createCircles();
     var clickedInArray = new Array();
 
+    var drawCircleButton = $("#drawCircle");
+    var drawCircle = false
+    drawCircleButton.click(function () {
+        drawCircle = true;
+    });
+
+    var paint = false;
+    var paintButton = $("#paint");
+    paintButton.click(function () {
+        drawCircle = false;
+        moveCircle = false;
+        paint = true;
+    });
+
     $(window).mousedown(function (e) {
+        if(drawCircle){
+            tmp = context.getImageData(0,0,canvasWidth, canvasHeight);
+            context.clearRect(0,0,canvasWidth, canvasHeight);
+            drawCircle = false;
+        }
+        if(paint){
+            console.log("Got here");
+            context.putImageData(tmp,0,0);
+            paint = false;
+        }
         var pos = getMousePos(canvas, e);
         whichCircleClickedIn(pos.x, pos.y);
-        paintLocation(pos.x, pos.y, fillColorR, fillColorG, fillColorB);
         // isSyllogismComplete();
         checkIsIn2dArray();
     })
@@ -42,85 +74,72 @@ $(document).ready(function () {
             var circle = circlesArray[i];
             var distanceSquared = (x - circle.x) * (x - circle.x) + (y - circle.y) * (y - circle.y);
             if (distanceSquared <= circle.radius * circle.radius) {
-                console.log("Clicked in circle " + i);
                 tempArray.push(i);
             }
         }
 
+        if(tempArray.length < 1){
+            return;
+        }
 
 
+        var hasBeenAlreadyClickedIn = false;
+        var clickedInArrayLocation;
 
-        if (clickedInArray.length < 1) {
-            clickedInArray.push(tempArray);
-        } else {
+        if(clickedInArray.length > 0){
             for (var i = 0; i < clickedInArray.length; i++) {
-                console.log(clickedInArray[i].toString());
-                console.log(tempArray.toString());
-                if (clickedInArray[i].toString() === tempArray.toString()) {
-                    console.log("You've already clicked here! + " + i);
-                } else {
-                    console.log("Adding new click location + " + i);
-                    clickedInArray.push(tempArray);
-                    break;
+                if(clickedInArray[i].equals(tempArray)){
+                    hasBeenAlreadyClickedIn = true;
+                    clickedInArrayLocation = i;
                 }
             }
         }
-
-
-        // if(clickedInArray && clickedInArray.length > 0){
-        //     console.log("clickedInArray.length: " + clickedInArray.length);
-        //     for (var i = 0; i < clickedInArray.length; i++) {
-        //         if(clickedInArray[i].toString() === tempArray.toString()){
-        //             clickedInArray.splice(i, 1);
-        //         }else{
-        //             clickedInArray.push(tempArray);
-        //         }
-        //     }
-        // }else{
-        //     clickedInArray.push(tempArray);
-        // }
-    }
-
-    function createCircles() {
-        circlesArray.push(new Circle(300, 250, 100))
-        circlesArray.push(new Circle(250, 350, 100))
-        circlesArray.push(new Circle(350, 350, 100))
-
-        for (var i = 0; i < circlesArray.length; i++) {
-            var circle = circlesArray[i];
-            context.beginPath();
-            context.arc(circle.x, circle.y, circle.radius, 0, Math.PI * 2, false);
-            context.lineWidth = 5;
-            context.strokeStyle = '#8B374A';
-            context.stroke();
-            context.closePath();
+        if(hasBeenAlreadyClickedIn === false){
+            clickedInArray.push(tempArray);
+            var t0 = performance.now();
+            paintLocation(x, y, fillColorR, fillColorG, fillColorB);
+            var t1 = performance.now();
+            console.log("Call to doSomething took " + (t1 - t0) + " milliseconds.")
+        }else{
+            clickedInArray.splice(clickedInArrayLocation, 1);
+            paintLocation(x,y,255,255,255);
         }
+
+        console.log(clickedInArray);
     }
+
+
 
     function checkIsIn2dArray() {
         clickedInArray.sort(function (a, b) {
             return a[0] - b[0];
         });
 
+        barbaraArray.sort(function (a, b) {
+            return a[0] - b[0];
+        });
+
         if (clickedInArray.length !== barbaraArray.length) {
             console.log("Syllogism not correct");
-        } else if (barbaraArray.toString() === clickedInArray.toString()) {
+            $("#A").html("Syllogism not met");
+        } else if (barbaraArray.equals(clickedInArray)){
             console.log("Syllogism met")
+            $("#A").html("Syllogism met");
         } else {
             console.log("Nope, syllogism not met");
+            $("#A").html("Syllogism not met");
         }
 
     }
 
     var colorLayer = null;
+
     var startR = 0,
         startG = 0,
         startB = 0;
-
     var fillColorR = 230,
         fillColorG = 200,
         fillColorB = 50;
-
 
     function paintLocation(startX, startY, r, g, b) {
         colorLayer = context.getImageData(0, 0, canvasWidth, canvasHeight);
@@ -130,6 +149,10 @@ $(document).ready(function () {
         startR = colorLayer.data[pixelPos];
         startG = colorLayer.data[pixelPos + 1];
         startB = colorLayer.data[pixelPos + 2];
+
+        if(startR === 255 && startG === 0 && startB === 0){
+            return;
+        }
 
         var pixelStack = [
             [startX, startY]
@@ -185,6 +208,7 @@ $(document).ready(function () {
 
     }
 
+
     function matchStartColor(pixelPos) {
         var r = colorLayer.data[pixelPos];
         var g = colorLayer.data[pixelPos + 1];
@@ -198,6 +222,51 @@ $(document).ready(function () {
         colorLayer.data[pixelPos + 1] = g;
         colorLayer.data[pixelPos + 2] = b;
         colorLayer.data[pixelPos + 3] = 255;
+    }
+
+// Warn if overriding existing method
+    if(Array.prototype.equals)
+        console.warn("Overriding existing Array.prototype.equals. Possible causes: New API defines the method, there's a framework conflict or you've got double inclusions in your code.");
+// attach the .equals method to Array's prototype to call it on any array
+    Array.prototype.equals = function (array) {
+        // if the other array is a falsy value, return
+        if (!array)
+            return false;
+
+        // compare lengths - can save a lot of time
+        if (this.length != array.length)
+            return false;
+
+        for (var i = 0, l=this.length; i < l; i++) {
+            // Check if we have nested arrays
+            if (this[i] instanceof Array && array[i] instanceof Array) {
+                // recurse into the nested arrays
+                if (!this[i].equals(array[i]))
+                    return false;
+            }
+            else if (this[i] != array[i]) {
+                // Warning - two different object instances will never be equal: {x:20} != {x:20}
+                return false;
+            }
+        }
+        return true;
+    }
+// Hide method from for-in loops
+    Object.defineProperty(Array.prototype, "equals", {enumerable: false});
+    function createCircles() {
+        circlesArray.push(new Circle(300, 250, 100))
+        circlesArray.push(new Circle(250, 350, 100))
+        circlesArray.push(new Circle(350, 350, 100))
+
+        for (var i = 0; i < circlesArray.length; i++) {
+            var circle = circlesArray[i];
+            context.beginPath();
+            context.arc(circle.x, circle.y, circle.radius, 0, Math.PI * 2, false);
+            context.lineWidth = 5;
+            context.strokeStyle = '#FF0000';
+            context.stroke();
+            context.closePath();
+        }
     }
 
 })
