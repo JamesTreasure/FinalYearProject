@@ -1,15 +1,3 @@
-function addSyllogism(context, canvas) {
-    context.fillStyle = "#003300";
-    context.font = '20px san-serif';
-    var allMenAreMortal = "All Men Are Mortal";
-    var allGreeksAreMen = "All Greeks Are Men";
-    var allGreeksAreMortal = "All Greeks Are Mortal";
-
-    var textWidth = context.measureText(allMenAreMortal).width;
-    context.fillText(allMenAreMortal, (canvas.width / 2) - (textWidth / 2), 80);
-    context.fillText(allGreeksAreMen, (canvas.width / 2) - (textWidth / 2), 100);
-    context.fillText(allGreeksAreMortal, (canvas.width / 2) - (textWidth / 2), 120);
-}
 $(document).ready(function () {
     var canvas = document.getElementById('myCanvas');
     var context = canvas.getContext('2d');
@@ -31,6 +19,25 @@ $(document).ready(function () {
         createCircles();
     }
 
+    function addSyllogism(context, canvas) {
+        context.fillStyle = "#003300";
+        context.font = '20px san-serif';
+        var allMenAreMortal = "All Men Are Mortal";
+        var allGreeksAreMen = "All Greeks Are Men";
+        var allGreeksAreMortal = "All Greeks Are Mortal";
+
+        var textWidth = context.measureText(allMenAreMortal).width;
+        context.fillText(allMenAreMortal, (canvas.width / 2) - (textWidth / 2), 80);
+        context.fillText(allGreeksAreMen, (canvas.width / 2) - (textWidth / 2), 100);
+        context.fillText(allGreeksAreMortal, (canvas.width / 2) - (textWidth / 2), 120);
+    }
+
+    var moveText = $("#moveText");
+    var moveText = false;
+    moveText.click(function () {
+        moveText = true;
+        animate();
+    });
 
     function getMousePos(canvas, e) {
         var rect = canvas.getBoundingClientRect();
@@ -44,6 +51,30 @@ $(document).ready(function () {
         var pos = getMousePos(canvas, e);
         whichCircleClickedIn(pos.x, pos.y);
         checkIsIn2dArray();
+    })
+
+    $(window).mouseup(function (e) {
+        drag = false;
+        dragIdx = -1;
+    })
+
+
+    $(window).mousemove(function (e) {
+        var pos = getMousePos(canvas, e);
+        if (drawCircle) {
+            if (drag) {
+                if (circles[circles.length - 1].radius > 0) {
+                    circles[circles.length - 1].radius = Math.sqrt(Math.pow((circles[circles.length - 1].x - pos.x), 2) + Math.pow((circles[circles.length - 1].y - pos.y), 2));
+                }
+            }
+        }
+
+        if (moveCircle) {
+            if (drag) {
+                circles[dragId].x = pos.x - dragOffsetX;
+                circles[dragId].y = pos.y - dragOffsetY;
+            }
+        }
     })
 
     function circleEdgeClicked(x,y){
