@@ -1,15 +1,3 @@
-function addSyllogism(context, canvas) {
-    context.fillStyle = "#003300";
-    context.font = '20px san-serif';
-    var allMenAreMortal = "All Men Are Mortal";
-    var allGreeksAreMen = "All Greeks Are Men";
-    var allGreeksAreMortal = "All Greeks Are Mortal";
-
-    var textWidth = context.measureText(allMenAreMortal).width;
-    context.fillText(allMenAreMortal, (canvas.width / 2) - (textWidth / 2), 80);
-    context.fillText(allGreeksAreMen, (canvas.width / 2) - (textWidth / 2), 100);
-    context.fillText(allGreeksAreMortal, (canvas.width / 2) - (textWidth / 2), 120);
-}
 $(document).ready(function () {
     var canvas = document.getElementById('myCanvas');
     var context = canvas.getContext('2d');
@@ -26,11 +14,38 @@ $(document).ready(function () {
     var clickedInArray = new Array();
     var barbaraArray = [[0], [1], [0, 1], [1, 2]];
 
-    function main(){
-        addSyllogism(context, canvas);
+    function main() {
         createCircles();
     }
 
+
+    context.fillStyle = "#003300";
+    context.font = '20pt san-serif';
+    var textArray = [];
+    textArray.push("All Men Are Mortal");
+    textArray.push("All Greeks Are Men");
+    textArray.push("All Greeks Are Mortal");
+
+    for (var i = 0; i < textArray.length; i++) {
+        var textWidth = context.measureText(textArray[i]).width;
+        context.fillText(textArray[i], (canvas.width / 2) - (textWidth / 2), (i * 20) + 80);
+    }
+
+    var moveTextButton = $("#moveText");
+    var moveText;
+    moveTextButton.click(function () {
+        $("#status").html("Move button selected");
+        moveText = true;
+        playGame = false
+    });
+
+    var playGameButton = $("#playGame");
+    var playGame = false;
+    playGameButton.click(function () {
+        $("#status").html("Play game button selected");
+        moveText = false;
+        playGame = true;
+    });
 
     function getMousePos(canvas, e) {
         var rect = canvas.getBoundingClientRect();
@@ -41,12 +56,30 @@ $(document).ready(function () {
     }
 
     $(window).mousedown(function (e) {
+        console.log("Clicked received");
         var pos = getMousePos(canvas, e);
-        whichCircleClickedIn(pos.x, pos.y);
-        checkIsIn2dArray();
+        if(playGame){
+            console.log("In play game");
+            whichCircleClickedIn(pos.x, pos.y);
+            checkIsIn2dArray();
+        }else if(moveText){
+        console.log("Move text!");
+        textClickedOn(pos.x, pos.y);
+        }
     })
 
-    function circleEdgeClicked(x,y){
+    function textClickedOn(x, y) {
+        for (var i = 0; i < textArray.length; i++) {
+            var textWidth = context.measureText(textArray[i]).width;
+            var textX = (canvas.width / 2) - (textWidth / 2);
+            var textY = (i * 20) + 80;
+            if (x >= textX && x <= textX + textWidth && y >= (textY - 20) && y <= textY) {
+                console.log("Clicked inside rectangle " + i);
+            }
+        }
+    }
+
+    function circleEdgeClicked(x, y) {
         var colorLayer = context.getImageData(0, 0, canvasWidth, canvasHeight);
         var pixelPos = (x * canvasWidth + y) * 4;
 
@@ -54,7 +87,7 @@ $(document).ready(function () {
         startG = colorLayer.data[pixelPos + 1];
         startB = colorLayer.data[pixelPos + 2];
 
-        return(startR === 255 && startG === 0 && startB === 0);
+        return (startR === 255 && startG === 0 && startB === 0);
     }
 
     function whichCircleClickedIn(x, y) {
@@ -62,9 +95,9 @@ $(document).ready(function () {
             fillColorG = 200,
             fillColorB = 50;
 
-        if(circleEdgeClicked(x,y)){
-            return false;
-        }
+        // if (circleEdgeClicked(x, y)) {
+        //     return false;
+        // }
 
         var tempArray = new Array();
         for (var i = 0; i < circlesArray.length; i++) {
@@ -75,29 +108,28 @@ $(document).ready(function () {
             }
         }
 
-        if(tempArray.length < 1){
+        if (tempArray.length < 1) {
             return;
         }
 
         var hasBeenAlreadyClickedIn = false;
         var clickedInArrayLocation;
-        if(clickedInArray.length > 0){
+        if (clickedInArray.length > 0) {
             for (var i = 0; i < clickedInArray.length; i++) {
-                if(clickedInArray[i].equals(tempArray)){
+                if (clickedInArray[i].equals(tempArray)) {
                     hasBeenAlreadyClickedIn = true;
                     clickedInArrayLocation = i;
                 }
             }
         }
-        if(hasBeenAlreadyClickedIn === false){
+        if (hasBeenAlreadyClickedIn === false) {
             clickedInArray.push(tempArray);
             paintLocation(x, y, fillColorR, fillColorG, fillColorB);
-        }else{
+        } else {
             clickedInArray.splice(clickedInArrayLocation, 1);
-            paintLocation(x,y,255,255,255);
+            paintLocation(x, y, 255, 255, 255);
         }
     }
-
 
 
     function checkIsIn2dArray() {
@@ -111,7 +143,7 @@ $(document).ready(function () {
 
         if (clickedInArray.length !== barbaraArray.length) {
             $("#syllogismMet").html("Syllogism not met");
-        } else if (barbaraArray.equals(clickedInArray)){
+        } else if (barbaraArray.equals(clickedInArray)) {
             $("#syllogismMet").html("Syllogism met");
         } else {
             $("#syllogismMet").html("Syllogism not met");
@@ -130,9 +162,10 @@ $(document).ready(function () {
         startG = colorLayer.data[pixelPos + 1];
         startB = colorLayer.data[pixelPos + 2];
 
-        if(startR === 255 && startG === 0 && startB === 0){
-            return;
-        }
+        //commenting out red check because it is being checked when the circle is clicked.
+        // if (startR === 255 && startG === 0 && startB === 0) {
+        //     return;
+        // }
 
         var pixelStack = [
             [startX, startY]
@@ -149,18 +182,18 @@ $(document).ready(function () {
             y = newPos[1];
 
             pixelPos = (y * canvasWidth + x) * 4;
-            while (y-- >= drawingBoundTop && matchStartColor(colorLayer,pixelPos, startR, startG, startB)) {
+            while (y-- >= drawingBoundTop && matchStartColor(colorLayer, pixelPos, startR, startG, startB)) {
                 pixelPos -= canvasWidth * 4;
             }
             pixelPos += canvasWidth * 4;
             ++y;
             reachLeft = false;
             reachRight = false;
-            while (y++ < canvasHeight - 1 && matchStartColor(colorLayer,pixelPos, startR, startG, startB)) {
-                colorPixel(colorLayer,pixelPos, r, g, b);
+            while (y++ < canvasHeight - 1 && matchStartColor(colorLayer, pixelPos, startR, startG, startB)) {
+                colorPixel(colorLayer, pixelPos, r, g, b);
 
                 if (x > 0) {
-                    if (matchStartColor(colorLayer,pixelPos - 4,startR, startG, startB)) {
+                    if (matchStartColor(colorLayer, pixelPos - 4, startR, startG, startB)) {
                         if (!reachLeft) {
                             pixelStack.push([x - 1, y]);
                             reachLeft = true;
@@ -171,7 +204,7 @@ $(document).ready(function () {
                 }
 
                 if (x < canvasWidth - 1) {
-                    if (matchStartColor(colorLayer,pixelPos + 4,startR, startG, startB)) {
+                    if (matchStartColor(colorLayer, pixelPos + 4, startR, startG, startB)) {
                         if (!reachRight) {
                             pixelStack.push([x + 1, y]);
                             reachRight = true;
@@ -204,7 +237,7 @@ $(document).ready(function () {
     }
 
 // Warn if overriding existing method
-    if(Array.prototype.equals)
+    if (Array.prototype.equals)
         console.warn("Overriding existing Array.prototype.equals. Possible causes: New API defines the method, there's a framework conflict or you've got double inclusions in your code.");
 // attach the .equals method to Array's prototype to call it on any array
     Array.prototype.equals = function (array) {
@@ -216,7 +249,7 @@ $(document).ready(function () {
         if (this.length != array.length)
             return false;
 
-        for (var i = 0, l=this.length; i < l; i++) {
+        for (var i = 0, l = this.length; i < l; i++) {
             // Check if we have nested arrays
             if (this[i] instanceof Array && array[i] instanceof Array) {
                 // recurse into the nested arrays
@@ -232,7 +265,6 @@ $(document).ready(function () {
     }
 // Hide method from for-in loops
     Object.defineProperty(Array.prototype, "equals", {enumerable: false});
-
 
 
     function createCircles() {
