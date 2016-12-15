@@ -56,10 +56,8 @@ $(document).ready(function () {
     }
 
     $(window).mousedown(function (e) {
-        console.log("Clicked received");
         var pos = getMousePos(canvas, e);
         if(playGame){
-            console.log("In play game");
             whichCircleClickedIn(pos.x, pos.y);
             checkIsIn2dArray();
         }else if(moveText){
@@ -80,14 +78,8 @@ $(document).ready(function () {
     }
 
     function circleEdgeClicked(x, y) {
-        var colorLayer = context.getImageData(0, 0, canvasWidth, canvasHeight);
-        var pixelPos = (x * canvasWidth + y) * 4;
-
-        startR = colorLayer.data[pixelPos];
-        startG = colorLayer.data[pixelPos + 1];
-        startB = colorLayer.data[pixelPos + 2];
-
-        return (startR === 255 && startG === 0 && startB === 0);
+        var color = new Uint32Array(context.getImageData(x, y, 1, 1).data.buffer)[0];
+        return (color<<8) === 0xff00;
     }
 
     function whichCircleClickedIn(x, y) {
@@ -95,9 +87,11 @@ $(document).ready(function () {
             fillColorG = 200,
             fillColorB = 50;
 
-        // if (circleEdgeClicked(x, y)) {
-        //     return false;
-        // }
+
+        if (circleEdgeClicked(x, y)) {
+            return false;
+        }
+
 
         var tempArray = new Array();
         for (var i = 0; i < circlesArray.length; i++) {
@@ -141,9 +135,37 @@ $(document).ready(function () {
             return a[0] - b[0];
         });
 
+        for (var i = 0; i < clickedInArray.length; i++) {
+            console.log(clickedInArray[i]);
+        }
+
+        var inArray;
+        for (var i = 0; i < barbaraArray.length; i++) {
+            var tempBoolean = false;
+            for (var j = 0; j < clickedInArray.length; j++) {
+                if (barbaraArray[i].equals(clickedInArray[j])) {
+                    console.log("Here we are " + barbaraArray[i]);
+                    tempBoolean = true;
+                    break;
+                } else {
+                    tempBoolean = false;
+                }
+            }
+            if (tempBoolean === false) {
+                console.log("The problem was - " + barbaraArray[i]);
+                inArray = false;
+                break;
+            }
+            inArray = tempBoolean;
+        }
+
+        $("#barbaraArray").html(barbaraArray);
+        $("#array").html(clickedInArray);
+
+
         if (clickedInArray.length !== barbaraArray.length) {
             $("#syllogismMet").html("Syllogism not met");
-        } else if (barbaraArray.equals(clickedInArray)) {
+        } else if (inArray) {
             $("#syllogismMet").html("Syllogism met");
         } else {
             $("#syllogismMet").html("Syllogism not met");
