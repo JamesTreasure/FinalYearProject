@@ -57,12 +57,12 @@ $(document).ready(function () {
 
     $(window).mousedown(function (e) {
         var pos = getMousePos(canvas, e);
-        if(playGame){
+        if (playGame) {
             whichCircleClickedIn(pos.x, pos.y);
             checkIsIn2dArray();
-        }else if(moveText){
-        console.log("Move text!");
-        textClickedOn(pos.x, pos.y);
+        } else if (moveText) {
+            console.log("Move text!");
+            textClickedOn(pos.x, pos.y);
         }
     })
 
@@ -79,7 +79,7 @@ $(document).ready(function () {
 
     function circleEdgeClicked(x, y) {
         var color = new Uint32Array(context.getImageData(x, y, 1, 1).data.buffer)[0];
-        return (color<<8) === 0xff00;
+        return (color << 8) === 0xff00;
     }
 
     function whichCircleClickedIn(x, y) {
