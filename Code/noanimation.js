@@ -13,11 +13,13 @@ $(document).ready(function () {
 
     var clickedInArray = new Array();
     var barbaraArray = [[0], [1], [0, 1], [1, 2]];
+    var xyClickedIn = new Array();
 
     function main() {
         setupText();
         drawText();
         createCircles();
+        drawCircles();
     }
 
     var textArray = [];
@@ -29,9 +31,9 @@ $(document).ready(function () {
 
     function setupText(){
 
-        textArray.push(new TextObject("All Men Are Mortal", null, 80 ));
-        textArray.push(new TextObject("All Greeks Are Men", null, 100 ));
-        textArray.push(new TextObject("All Greeks Are Mortal", null, 120 ));
+        textArray.push(new TextObject("A", null, 80 ));
+        textArray.push(new TextObject("B", null, 100 ));
+        textArray.push(new TextObject("C", null, 120 ));
 
         for (var i = 0; i < textArray.length; i++) {
             var textWidth = context.measureText(textArray[i].text).width;
@@ -40,7 +42,16 @@ $(document).ready(function () {
 
     }
 
-
+    function animate() {
+        var fillColorR = 230,
+            fillColorG = 200,
+            fillColorB = 50;
+        drawText();
+        drawCircles();
+        for (var i = 0; i < xyClickedIn.length; i++) {
+            paintLocation(xyClickedIn[i][0], xyClickedIn[i][1], fillColorR, fillColorG, fillColorB);
+        }
+    }
 
     function drawText(){
         context.clearRect(0, 0, canvas.width, canvas.height);
@@ -114,7 +125,7 @@ $(document).ready(function () {
             if (drag) {
                 textArray[dragId].x = pos.x - dragOffsetX;
                 textArray[dragId].y = pos.y - dragOffsetY;
-                drawText();
+                animate();
             }
         }
     })
@@ -177,6 +188,7 @@ $(document).ready(function () {
         }
         if (hasBeenAlreadyClickedIn === false) {
             clickedInArray.push(tempArray);
+            xyClickedIn.push([x,y]);
             paintLocation(x, y, fillColorR, fillColorG, fillColorB);
         } else {
             clickedInArray.splice(clickedInArrayLocation, 1);
@@ -230,6 +242,7 @@ $(document).ready(function () {
     }
 
     function paintLocation(startX, startY, r, g, b) {
+        var t0 = performance.now();
         var colorLayer = context.getImageData(0, 0, canvasWidth, canvasHeight);
         var startR = 0,
             startG = 0,
@@ -291,6 +304,8 @@ $(document).ready(function () {
             }
         }
         context.putImageData(colorLayer, 0, 0);
+        var t1 = performance.now();
+        console.log("Call to paint took " + (t1 - t0) + " milliseconds.")
 
     }
 
@@ -340,10 +355,13 @@ $(document).ready(function () {
     Object.defineProperty(Array.prototype, "equals", {enumerable: false});
 
 
-    function createCircles() {
+    function createCircles(){
         circlesArray.push(new Circle(300, 250, 100))
         circlesArray.push(new Circle(250, 350, 100))
         circlesArray.push(new Circle(350, 350, 100))
+    }
+
+    function drawCircles() {
 
         for (var i = 0; i < circlesArray.length; i++) {
             var circle = circlesArray[i];
