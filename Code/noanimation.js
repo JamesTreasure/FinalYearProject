@@ -15,21 +15,48 @@ $(document).ready(function () {
     var barbaraArray = [[0], [1], [0, 1], [1, 2]];
 
     function main() {
+        setupText();
+        drawText();
         createCircles();
+    }
+
+    var textArray = [];
+    var TextObject = function(text, x, y){
+        this.text = text;
+        this.x = x;
+        this.y = y;
+    }
+
+    function setupText(){
+
+        textArray.push(new TextObject("All Men Are Mortal", null, 80 ));
+        textArray.push(new TextObject("All Greeks Are Men", null, 100 ));
+        textArray.push(new TextObject("All Greeks Are Mortal", null, 120 ));
+
+        for (var i = 0; i < textArray.length; i++) {
+            var textWidth = context.measureText(textArray[i].text).width;
+            textArray[i].x = (canvas.width / 2) - (textWidth / 2);
+        }
+
+    }
+
+
+
+    function drawText(){
+        context.clearRect(0, 0, canvas.width, canvas.height);
+        for (var i = 0; i < textArray.length; i++) {
+            context.fillStyle = "#003300";
+            context.font = '20pt san-serif';
+            context.fillText(textArray[i].text, textArray[i].x, textArray[i].y);
+        }
     }
 
 
     context.fillStyle = "#003300";
     context.font = '20pt san-serif';
-    var textArray = [];
-    textArray.push("All Men Are Mortal");
-    textArray.push("All Greeks Are Men");
-    textArray.push("All Greeks Are Mortal");
+    var aaa = "This should be centered"
+    context.fillText(aaa,(canvas.width / 2) - (context.measureText(aaa).width / 2), 50);
 
-    for (var i = 0; i < textArray.length; i++) {
-        var textWidth = context.measureText(textArray[i]).width;
-        context.fillText(textArray[i], (canvas.width / 2) - (textWidth / 2), (i * 20) + 80);
-    }
 
     var moveTextButton = $("#moveText");
     var moveText;
@@ -55,26 +82,58 @@ $(document).ready(function () {
         };
     }
 
+    var dragId;
+    var dragOffsetX;
+    var dragOffsetY;
+    var drag = false;
     $(window).mousedown(function (e) {
         var pos = getMousePos(canvas, e);
         if (playGame) {
             whichCircleClickedIn(pos.x, pos.y);
             checkIsIn2dArray();
         } else if (moveText) {
-            console.log("Move text!");
-            textClickedOn(pos.x, pos.y);
+            var clickedOn = textClickedOn(pos.x, pos.y)
+            console.log(clickedOn);
+            if (clickedOn >= 0) {
+                console.log("Clicked on " + clickedOn);
+                var textWidth = context.measureText(textArray[clickedOn].text).width;
+                console.log("Text width " + textWidth);
+                var textX = textArray[clickedOn].x;
+                var textY = textArray[clickedOn].y;
+                dragId = clickedOn;
+                dragOffsetX = pos.x - textX;
+                dragOffsetY = pos.y - textY;
+                drag = true;
+            }
         }
     })
 
-    function textClickedOn(x, y) {
-        for (var i = 0; i < textArray.length; i++) {
-            var textWidth = context.measureText(textArray[i]).width;
-            var textX = (canvas.width / 2) - (textWidth / 2);
-            var textY = (i * 20) + 80;
-            if (x >= textX && x <= textX + textWidth && y >= (textY - 20) && y <= textY) {
-                console.log("Clicked inside rectangle " + i);
+    $(window).mousemove(function (e) {
+        var pos = getMousePos(canvas, e);
+        if (moveText) {
+            if (drag) {
+                textArray[dragId].x = pos.x - dragOffsetX;
+                textArray[dragId].y = pos.y - dragOffsetY;
+                drawText();
             }
         }
+    })
+
+    $(window).mouseup(function (e) {
+        drag = false;
+        dragId = -1;
+    })
+
+
+
+    function textClickedOn(x, y) {
+        for (var i = 0; i < textArray.length; i++) {
+            var textWidth = context.measureText(textArray[i].text).width;
+            if (x >= textArray[i].x && x <= textArray[i].x + textWidth && y >= (textArray[i].y - 20) && y <= textArray[i].y) {
+                return i;
+            }
+        }
+        return -1;
     }
 
     function circleEdgeClicked(x, y) {
@@ -144,7 +203,6 @@ $(document).ready(function () {
             var tempBoolean = false;
             for (var j = 0; j < clickedInArray.length; j++) {
                 if (barbaraArray[i].equals(clickedInArray[j])) {
-                    console.log("Here we are " + barbaraArray[i]);
                     tempBoolean = true;
                     break;
                 } else {
@@ -152,7 +210,6 @@ $(document).ready(function () {
                 }
             }
             if (tempBoolean === false) {
-                console.log("The problem was - " + barbaraArray[i]);
                 inArray = false;
                 break;
             }
@@ -184,15 +241,9 @@ $(document).ready(function () {
         startG = colorLayer.data[pixelPos + 1];
         startB = colorLayer.data[pixelPos + 2];
 
-        //commenting out red check because it is being checked when the circle is clicked.
-        // if (startR === 255 && startG === 0 && startB === 0) {
-        //     return;
-        // }
-
         var pixelStack = [
             [startX, startY]
         ];
-
 
         var drawingBoundTop = 0;
         var guard = 10000;

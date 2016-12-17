@@ -100,7 +100,7 @@ $(document).ready(function () {
 
     $(window).mouseup(function (e) {
         drag = false;
-        dragIdx = -1;
+        dragId = -1;
     })
 
     $(window).mousemove(function (e) {
