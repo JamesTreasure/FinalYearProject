@@ -186,6 +186,7 @@ $(document).ready(function () {
                 }
             }
         }
+
         if (hasBeenAlreadyClickedIn === false) {
             clickedInArray.push(tempArray);
             xyClickedIn.push([x,y]);
