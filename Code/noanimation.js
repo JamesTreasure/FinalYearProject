@@ -4,6 +4,12 @@ $(document).ready(function () {
     var canvasWidth = canvas.width;
     var canvasHeight = canvas.height;
 
+    var dragId;
+    var dragOffsetX;
+    var dragOffsetY;
+    var drag = false;
+    var font = '20pt san-serif';
+
     var circlesArray = new Array();
     var Circle = function (x, y, radius) {
         this.x = x; //Centre of the circle
@@ -11,62 +17,37 @@ $(document).ready(function () {
         this.radius = radius;
     };
 
-    var clickedInArray = new Array();
-    var barbaraArray = [[0], [1], [0, 1], [1, 2]];
-    var xyClickedIn = new Array();
-
-    function main() {
-        setupText();
-        drawText();
-        createCircles();
-        drawCircles();
+    var staticTextArray = [];
+    var movableTextArray = [];
+    var Text = function (text, x, y, width, height) {
+        this.text = text;
+        this.x = x;
+        this.y = y;
+        this.width = width;
+        this.height = height;
     }
 
-    var textArray = [];
-    var TextObject = function(text, x, y){
-        this.text = text;
+    var clickedInArray = [];
+    var ClickedIn = function (clickedIn, x, y) {
+        this.clickedIn = clickedIn;
         this.x = x;
         this.y = y;
     }
 
-    function setupText(){
+    var barbaraArray = [[0], [1], [0, 1], [1, 2]];
 
-        textArray.push(new TextObject("A", null, 80 ));
-        textArray.push(new TextObject("B", null, 100 ));
-        textArray.push(new TextObject("C", null, 120 ));
-
-        for (var i = 0; i < textArray.length; i++) {
-            var textWidth = context.measureText(textArray[i].text).width;
-            textArray[i].x = (canvas.width / 2) - (textWidth / 2);
-        }
-
-    }
-
-    function animate() {
-        var fillColorR = 230,
-            fillColorG = 200,
-            fillColorB = 50;
-        drawText();
-        drawCircles();
-        for (var i = 0; i < xyClickedIn.length; i++) {
-            paintLocation(xyClickedIn[i][0], xyClickedIn[i][1], fillColorR, fillColorG, fillColorB);
-        }
-    }
-
-    function drawText(){
-        context.clearRect(0, 0, canvas.width, canvas.height);
-        for (var i = 0; i < textArray.length; i++) {
-            context.fillStyle = "#003300";
-            context.font = '20pt san-serif';
-            context.fillText(textArray[i].text, textArray[i].x, textArray[i].y);
-        }
+    var premiseLocation = [];
+    var Premise  = function(premise, location){
+        this.premise = premise;
+        this.location = location;
     }
 
 
+    //This doesn't actually show up but for some reason if I don't have it the text isn't centered.
     context.fillStyle = "#003300";
-    context.font = '20pt san-serif';
+    context.font = font;
     var aaa = "This should be centered"
-    context.fillText(aaa,(canvas.width / 2) - (context.measureText(aaa).width / 2), 50);
+    context.fillText(aaa, (canvas.width / 2) - (context.measureText(aaa).width / 2), 50);
 
 
     var moveTextButton = $("#moveText");
@@ -76,27 +57,15 @@ $(document).ready(function () {
         moveText = true;
         playGame = false
     });
-
     var playGameButton = $("#playGame");
+
     var playGame = false;
     playGameButton.click(function () {
         $("#status").html("Play game button selected");
         moveText = false;
         playGame = true;
     });
-
-    function getMousePos(canvas, e) {
-        var rect = canvas.getBoundingClientRect();
-        return {
-            x: e.clientX - rect.left,
-            y: e.clientY - rect.top
-        };
-    }
-
-    var dragId;
-    var dragOffsetX;
-    var dragOffsetY;
-    var drag = false;
+    
     $(window).mousedown(function (e) {
         var pos = getMousePos(canvas, e);
         if (playGame) {
@@ -107,40 +76,115 @@ $(document).ready(function () {
             console.log(clickedOn);
             if (clickedOn >= 0) {
                 console.log("Clicked on " + clickedOn);
-                var textWidth = context.measureText(textArray[clickedOn].text).width;
+                var textWidth = context.measureText(movableTextArray[clickedOn].text).width;
                 console.log("Text width " + textWidth);
-                var textX = textArray[clickedOn].x;
-                var textY = textArray[clickedOn].y;
+                var textX = movableTextArray[clickedOn].x;
+                var textY = movableTextArray[clickedOn].y;
                 dragId = clickedOn;
                 dragOffsetX = pos.x - textX;
                 dragOffsetY = pos.y - textY;
                 drag = true;
             }
         }
-    })
+    });
 
     $(window).mousemove(function (e) {
         var pos = getMousePos(canvas, e);
         if (moveText) {
             if (drag) {
-                textArray[dragId].x = pos.x - dragOffsetX;
-                textArray[dragId].y = pos.y - dragOffsetY;
-                animate();
+                movableTextArray[dragId].x = pos.x - dragOffsetX;
+                movableTextArray[dragId].y = pos.y - dragOffsetY;
+                for (var i = 0; i < circlesArray.length; i++) {
+                    for (var j = 0; j < movableTextArray.length; j++) {
+                        var bool = premiseInCircle(movableTextArray[j], circlesArray[i]);
+                        if(bool){
+                            console.log("Rectangle " + j + " in circle " + i);
+                        }
+                    }
+
+                }
+                setTimeout(animate(), 33);
             }
         }
-    })
+    });
 
     $(window).mouseup(function (e) {
         drag = false;
         dragId = -1;
     })
 
+    function main() {
+        setupStaticText();
+        setupMoveableText();
+        drawStaticText();
+        createCircles();
+        drawCircles();
+    }
 
+    function animate() {
+        var fillColorR = 230,
+            fillColorG = 200,
+            fillColorB = 50;
+        drawStaticText();
+        drawCircles();
+        for (var i = 0; i < clickedInArray.length; i++) {
+            paintLocation(clickedInArray[i].x, clickedInArray[i].y, fillColorR, fillColorG, fillColorB);
+        }
+    }
+    
+    function getMousePos(canvas, e) {
+        var rect = canvas.getBoundingClientRect();
+        return {
+            x: e.clientX - rect.left,
+            y: e.clientY - rect.top
+        };
+    }
+
+    function setupStaticText() {
+        staticTextArray.push(new Text("All Men Are Mortal", null, 80));
+        staticTextArray.push(new Text("All Greeks Are Men", null, 100));
+        staticTextArray.push(new Text("All Greeks Are Mortal", null, 120));
+
+        for (var i = 0; i < staticTextArray.length; i++) {
+            staticTextArray[i].width = context.measureText(staticTextArray[i].text).width;
+            staticTextArray[i].x = (canvas.width / 2) - (staticTextArray[i].width / 2);
+            staticTextArray[i].height = 20;
+
+        }
+
+    }
+
+    function setupMoveableText(){
+        movableTextArray.push(new Text("Men", null, 550));
+        movableTextArray.push(new Text("Mortal", null, 550));
+        movableTextArray.push(new Text("Greeks", null, 550));
+
+        for (var i = 0; i < movableTextArray.length; i++) {
+            movableTextArray[i].width = context.measureText(movableTextArray[i].text).width;
+            movableTextArray[i].x = i * (canvasWidth/3)+40;
+            movableTextArray[i].height = 20;
+        }
+
+    }
+
+    function drawStaticText() {
+        context.clearRect(0, 0, canvas.width, canvas.height);
+        for (var i = 0; i < staticTextArray.length; i++) {
+            context.fillStyle = "#003300";
+            context.font = font;
+            context.fillText(staticTextArray[i].text, staticTextArray[i].x, staticTextArray[i].y);
+        }
+        for (var i = 0; i < movableTextArray.length; i++) {
+            context.fillStyle = "#003300";
+            context.font = font;
+            context.fillText(movableTextArray[i].text, movableTextArray[i].x, movableTextArray[i].y);
+        }
+    }
 
     function textClickedOn(x, y) {
-        for (var i = 0; i < textArray.length; i++) {
-            var textWidth = context.measureText(textArray[i].text).width;
-            if (x >= textArray[i].x && x <= textArray[i].x + textWidth && y >= (textArray[i].y - 20) && y <= textArray[i].y) {
+        for (var i = 0; i < movableTextArray.length; i++) {
+            var textWidth = context.measureText(movableTextArray[i].text).width;
+            if (x >= movableTextArray[i].x && x <= movableTextArray[i].x + textWidth && y >= (movableTextArray[i].y - 20) && y <= movableTextArray[i].y) {
                 return i;
             }
         }
@@ -164,6 +208,7 @@ $(document).ready(function () {
 
 
         var tempArray = new Array();
+        //loops through circles and adds all circles clicked in to a temp array
         for (var i = 0; i < circlesArray.length; i++) {
             var circle = circlesArray[i];
             var distanceSquared = (x - circle.x) * (x - circle.x) + (y - circle.y) * (y - circle.y);
@@ -180,7 +225,8 @@ $(document).ready(function () {
         var clickedInArrayLocation;
         if (clickedInArray.length > 0) {
             for (var i = 0; i < clickedInArray.length; i++) {
-                if (clickedInArray[i].equals(tempArray)) {
+                if (clickedInArray[i].clickedIn.equals(tempArray)) {
+                    console.log("Already been clicked in");
                     hasBeenAlreadyClickedIn = true;
                     clickedInArrayLocation = i;
                 }
@@ -188,8 +234,7 @@ $(document).ready(function () {
         }
 
         if (hasBeenAlreadyClickedIn === false) {
-            clickedInArray.push(tempArray);
-            xyClickedIn.push([x,y]);
+            clickedInArray.push(new ClickedIn(tempArray, x, y));
             paintLocation(x, y, fillColorR, fillColorG, fillColorB);
         } else {
             clickedInArray.splice(clickedInArrayLocation, 1);
@@ -197,6 +242,12 @@ $(document).ready(function () {
         }
     }
 
+    function premiseInCircle(rectangle, circle){
+        var a = [rectangle, circle];
+        var dx = Math.max(circle.x - rectangle.x, (rectangle.x+rectangle.width) - circle.x);
+        var dy = Math.max(circle.y - rectangle.y, (rectangle.y+rectangle.height)- circle.y);
+        return circle.radius*circle.radius >= dx*dx + dy*dy;
+    }
 
     function checkIsIn2dArray() {
         clickedInArray.sort(function (a, b) {
@@ -215,7 +266,7 @@ $(document).ready(function () {
         for (var i = 0; i < barbaraArray.length; i++) {
             var tempBoolean = false;
             for (var j = 0; j < clickedInArray.length; j++) {
-                if (barbaraArray[i].equals(clickedInArray[j])) {
+                if (barbaraArray[i].equals(clickedInArray[j].clickedIn)) {
                     tempBoolean = true;
                     break;
                 } else {
@@ -325,6 +376,24 @@ $(document).ready(function () {
         colorLayer.data[pixelPos + 3] = 255;
     }
 
+    function createCircles() {
+        circlesArray.push(new Circle(300, 250, 100))
+        circlesArray.push(new Circle(250, 350, 100))
+        circlesArray.push(new Circle(350, 350, 100))
+    }
+
+    function drawCircles() {
+        for (var i = 0; i < circlesArray.length; i++) {
+            var circle = circlesArray[i];
+            context.beginPath();
+            context.arc(circle.x, circle.y, circle.radius, 0, Math.PI * 2, false);
+            context.lineWidth = 5;
+            context.strokeStyle = '#FF0000';
+            context.stroke();
+            context.closePath();
+        }
+    }
+
 // Warn if overriding existing method
     if (Array.prototype.equals)
         console.warn("Overriding existing Array.prototype.equals. Possible causes: New API defines the method, there's a framework conflict or you've got double inclusions in your code.");
@@ -355,25 +424,6 @@ $(document).ready(function () {
 // Hide method from for-in loops
     Object.defineProperty(Array.prototype, "equals", {enumerable: false});
 
-
-    function createCircles(){
-        circlesArray.push(new Circle(300, 250, 100))
-        circlesArray.push(new Circle(250, 350, 100))
-        circlesArray.push(new Circle(350, 350, 100))
-    }
-
-    function drawCircles() {
-
-        for (var i = 0; i < circlesArray.length; i++) {
-            var circle = circlesArray[i];
-            context.beginPath();
-            context.arc(circle.x, circle.y, circle.radius, 0, Math.PI * 2, false);
-            context.lineWidth = 5;
-            context.strokeStyle = '#FF0000';
-            context.stroke();
-            context.closePath();
-        }
-    }
 
     main();
 
