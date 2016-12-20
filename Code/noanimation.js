@@ -1,8 +1,10 @@
 $(document).ready(function () {
-    var canvas = document.getElementById('myCanvas');
-    var context = canvas.getContext('2d');
-    var canvasWidth = canvas.width;
-    var canvasHeight = canvas.height;
+    var layer1 = document.getElementById('layer1');
+    var layer2 = document.getElementById('layer2');
+    var context1 = layer1.getContext('2d');
+    var context2 = layer2.getContext('2d');
+    var canvasWidth = layer1.width;
+    var canvasHeight = layer1.height;
 
     var dragId;
     var dragOffsetX;
@@ -28,26 +30,21 @@ $(document).ready(function () {
     }
 
     var clickedInArray = [];
-    var ClickedIn = function (clickedIn, x, y) {
-        this.clickedIn = clickedIn;
-        this.x = x;
-        this.y = y;
-    }
 
     var barbaraArray = [[0], [1], [0, 1], [1, 2]];
 
     var premiseLocation = [];
-    var Premise  = function(premise, location){
+    var Premise = function (premise, location) {
         this.premise = premise;
         this.location = location;
     }
 
 
     //This doesn't actually show up but for some reason if I don't have it the text isn't centered.
-    context.fillStyle = "#003300";
-    context.font = font;
+    context1.fillStyle = "#003300";
+    context1.font = font;
     var aaa = "This should be centered"
-    context.fillText(aaa, (canvas.width / 2) - (context.measureText(aaa).width / 2), 50);
+    context1.fillText(aaa, (layer1.width / 2) - (context1.measureText(aaa).width / 2), 50);
 
 
     var moveTextButton = $("#moveText");
@@ -65,19 +62,17 @@ $(document).ready(function () {
         moveText = false;
         playGame = true;
     });
-    
+
     $(window).mousedown(function (e) {
-        var pos = getMousePos(canvas, e);
+        var pos = getMousePos(layer1, e);
         if (playGame) {
             whichCircleClickedIn(pos.x, pos.y);
-            checkIsIn2dArray();
+            newCheck();
+            //checkIsIn2dArray();
         } else if (moveText) {
             var clickedOn = textClickedOn(pos.x, pos.y)
-            console.log(clickedOn);
             if (clickedOn >= 0) {
-                console.log("Clicked on " + clickedOn);
-                var textWidth = context.measureText(movableTextArray[clickedOn].text).width;
-                console.log("Text width " + textWidth);
+                var textWidth = context1.measureText(movableTextArray[clickedOn].text).width;
                 var textX = movableTextArray[clickedOn].x;
                 var textY = movableTextArray[clickedOn].y;
                 dragId = clickedOn;
@@ -89,21 +84,13 @@ $(document).ready(function () {
     });
 
     $(window).mousemove(function (e) {
-        var pos = getMousePos(canvas, e);
+        var pos = getMousePos(layer1, e);
         if (moveText) {
             if (drag) {
                 movableTextArray[dragId].x = pos.x - dragOffsetX;
                 movableTextArray[dragId].y = pos.y - dragOffsetY;
-                for (var i = 0; i < circlesArray.length; i++) {
-                    for (var j = 0; j < movableTextArray.length; j++) {
-                        var bool = premiseInCircle(movableTextArray[j], circlesArray[i]);
-                        if(bool){
-                            console.log("Rectangle " + j + " in circle " + i);
-                        }
-                    }
-
-                }
-                setTimeout(animate(), 33);
+                newCheck();
+                requestAnimationFrame(animate);
             }
         }
     });
@@ -115,23 +102,70 @@ $(document).ready(function () {
 
     function main() {
         setupStaticText();
-        setupMoveableText();
+        setupMovableText();
         drawStaticText();
+        drawMovableText();
         createCircles();
         drawCircles();
     }
 
-    function animate() {
-        var fillColorR = 230,
-            fillColorG = 200,
-            fillColorB = 50;
-        drawStaticText();
-        drawCircles();
-        for (var i = 0; i < clickedInArray.length; i++) {
-            paintLocation(clickedInArray[i].x, clickedInArray[i].y, fillColorR, fillColorG, fillColorB);
+    function newCheck() {
+        var result;
+        var menCircle = whichCircleIsPremiseIn(movableTextArray[0]);
+        var mortalCircle = whichCircleIsPremiseIn(movableTextArray[1]);
+        var greeksCircle = whichCircleIsPremiseIn(movableTextArray[2]);
+        var greeksMenIntersection;
+        var greeksMortalIntersection
+        if(greeksCircle !== null && mortalCircle !== null && mortalCircle !== null){
+            greeksMenIntersection = [greeksCircle[0], menCircle[0]];
+            greeksMortalIntersection = [greeksCircle[0], mortalCircle[0]];
+            result = [greeksCircle, menCircle, greeksMenIntersection.sort(), greeksMortalIntersection.sort()];
+        }else{
+            $("#syllogismMet").html("Syllogism not met");
+            return false;
         }
+
+        console.log(result);
+        console.log(clickedInArray);
+
+        var inArray;
+        for (var i = 0; i < result.length; i++) {
+            var tempBoolean = false;
+            for (var j = 0; j < clickedInArray.length; j++) {
+                if (result[i].equals(clickedInArray[j])) {
+                    tempBoolean = true;
+                    break;
+                } else {
+                    tempBoolean = false;
+                }
+            }
+            if (tempBoolean === false) {
+                inArray = false;
+                break;
+            }
+            inArray = tempBoolean;
+        }
+
+        $("#barbaraArray").html(result);
+        $("#array").html(clickedInArray);
+
+        if (clickedInArray.length !== result.length) {
+            $("#syllogismMet").html("Syllogism not met");
+        } else if (inArray) {
+            $("#syllogismMet").html("Syllogism met");
+        } else {
+            $("#syllogismMet").html("Syllogism not met");
+        }
+
+        $("#menCircle").html("Men is in circle " + menCircle);
+        $("#mortalCircle").html("Mortal is in circle " + mortalCircle);
+        $("#greeksCircle").html("Greeks is in circle " + greeksCircle);
     }
-    
+
+    function animate() {
+        drawMovableText();
+    }
+
     function getMousePos(canvas, e) {
         var rect = canvas.getBoundingClientRect();
         return {
@@ -146,44 +180,46 @@ $(document).ready(function () {
         staticTextArray.push(new Text("All Greeks Are Mortal", null, 120));
 
         for (var i = 0; i < staticTextArray.length; i++) {
-            staticTextArray[i].width = context.measureText(staticTextArray[i].text).width;
-            staticTextArray[i].x = (canvas.width / 2) - (staticTextArray[i].width / 2);
+            staticTextArray[i].width = context1.measureText(staticTextArray[i].text).width;
+            staticTextArray[i].x = (layer1.width / 2) - (staticTextArray[i].width / 2);
             staticTextArray[i].height = 20;
 
         }
 
     }
 
-    function setupMoveableText(){
+    function setupMovableText() {
         movableTextArray.push(new Text("Men", null, 550));
         movableTextArray.push(new Text("Mortal", null, 550));
         movableTextArray.push(new Text("Greeks", null, 550));
-
         for (var i = 0; i < movableTextArray.length; i++) {
-            movableTextArray[i].width = context.measureText(movableTextArray[i].text).width;
-            movableTextArray[i].x = i * (canvasWidth/3)+40;
+            movableTextArray[i].width = context2.measureText(movableTextArray[i].text).width;
+            movableTextArray[i].x = i * (canvasWidth / 3) + 40;
             movableTextArray[i].height = 20;
         }
 
     }
 
     function drawStaticText() {
-        context.clearRect(0, 0, canvas.width, canvas.height);
         for (var i = 0; i < staticTextArray.length; i++) {
-            context.fillStyle = "#003300";
-            context.font = font;
-            context.fillText(staticTextArray[i].text, staticTextArray[i].x, staticTextArray[i].y);
+            context1.fillStyle = "#003300";
+            context1.font = font;
+            context1.fillText(staticTextArray[i].text, staticTextArray[i].x, staticTextArray[i].y);
         }
+    }
+
+    function drawMovableText() {
+        context2.clearRect(0, 0, layer1.width, layer2.height)
         for (var i = 0; i < movableTextArray.length; i++) {
-            context.fillStyle = "#003300";
-            context.font = font;
-            context.fillText(movableTextArray[i].text, movableTextArray[i].x, movableTextArray[i].y);
+            context2.fillStyle = "#003300";
+            context2.font = font;
+            context2.fillText(movableTextArray[i].text, movableTextArray[i].x, movableTextArray[i].y);
         }
     }
 
     function textClickedOn(x, y) {
         for (var i = 0; i < movableTextArray.length; i++) {
-            var textWidth = context.measureText(movableTextArray[i].text).width;
+            var textWidth = context1.measureText(movableTextArray[i].text).width;
             if (x >= movableTextArray[i].x && x <= movableTextArray[i].x + textWidth && y >= (movableTextArray[i].y - 20) && y <= movableTextArray[i].y) {
                 return i;
             }
@@ -192,7 +228,7 @@ $(document).ready(function () {
     }
 
     function circleEdgeClicked(x, y) {
-        var color = new Uint32Array(context.getImageData(x, y, 1, 1).data.buffer)[0];
+        var color = new Uint32Array(context1.getImageData(x, y, 1, 1).data.buffer)[0];
         return (color << 8) === 0xff00;
     }
 
@@ -225,8 +261,7 @@ $(document).ready(function () {
         var clickedInArrayLocation;
         if (clickedInArray.length > 0) {
             for (var i = 0; i < clickedInArray.length; i++) {
-                if (clickedInArray[i].clickedIn.equals(tempArray)) {
-                    console.log("Already been clicked in");
+                if (clickedInArray[i].equals(tempArray)) {
                     hasBeenAlreadyClickedIn = true;
                     clickedInArrayLocation = i;
                 }
@@ -234,7 +269,8 @@ $(document).ready(function () {
         }
 
         if (hasBeenAlreadyClickedIn === false) {
-            clickedInArray.push(new ClickedIn(tempArray, x, y));
+            tempArray.sort();
+            clickedInArray.push(tempArray);
             paintLocation(x, y, fillColorR, fillColorG, fillColorB);
         } else {
             clickedInArray.splice(clickedInArrayLocation, 1);
@@ -242,11 +278,27 @@ $(document).ready(function () {
         }
     }
 
-    function premiseInCircle(rectangle, circle){
-        var a = [rectangle, circle];
-        var dx = Math.max(circle.x - rectangle.x, (rectangle.x+rectangle.width) - circle.x);
-        var dy = Math.max(circle.y - rectangle.y, (rectangle.y+rectangle.height)- circle.y);
-        return circle.radius*circle.radius >= dx*dx + dy*dy;
+    function premiseInCircle(rectangle, circle) {
+        var dx = Math.max(circle.x - rectangle.x, (rectangle.x + rectangle.width) - circle.x);
+        var dy = Math.max(circle.y - rectangle.y, (rectangle.y + rectangle.height) - circle.y);
+        return circle.radius * circle.radius >= dx * dx + dy * dy;
+    }
+
+    function whichCircleIsPremiseIn(rectangle) {
+        var tempPremiseLocation = [];
+        for (var i = 0; i < circlesArray.length; i++) {
+            var dx = Math.max(circlesArray[i].x - rectangle.x, (rectangle.x + rectangle.width) - circlesArray[i].x);
+            var dy = Math.max(circlesArray[i].y - rectangle.y, (rectangle.y + rectangle.height) - circlesArray[i].y);
+            var inCircle = circlesArray[i].radius * circlesArray[i].radius >= dx * dx + dy * dy;
+            if (inCircle) {
+                tempPremiseLocation.push(i);
+            }
+        }
+        if(tempPremiseLocation.length === 1){
+            return tempPremiseLocation;
+        }else{
+            return null;
+        }
     }
 
     function checkIsIn2dArray() {
@@ -258,15 +310,12 @@ $(document).ready(function () {
             return a[0] - b[0];
         });
 
-        for (var i = 0; i < clickedInArray.length; i++) {
-            console.log(clickedInArray[i]);
-        }
 
         var inArray;
         for (var i = 0; i < barbaraArray.length; i++) {
             var tempBoolean = false;
             for (var j = 0; j < clickedInArray.length; j++) {
-                if (barbaraArray[i].equals(clickedInArray[j].clickedIn)) {
+                if (barbaraArray[i].equals(clickedInArray[j])) {
                     tempBoolean = true;
                     break;
                 } else {
@@ -294,8 +343,7 @@ $(document).ready(function () {
     }
 
     function paintLocation(startX, startY, r, g, b) {
-        var t0 = performance.now();
-        var colorLayer = context.getImageData(0, 0, canvasWidth, canvasHeight);
+        var colorLayer = context1.getImageData(0, 0, canvasWidth, canvasHeight);
         var startR = 0,
             startG = 0,
             startB = 0;
@@ -355,10 +403,7 @@ $(document).ready(function () {
                 pixelPos += canvasWidth * 4;
             }
         }
-        context.putImageData(colorLayer, 0, 0);
-        var t1 = performance.now();
-        console.log("Call to paint took " + (t1 - t0) + " milliseconds.")
-
+        context1.putImageData(colorLayer, 0, 0);
     }
 
     function matchStartColor(colorLayer, pixelPos, startR, startG, startB) {
@@ -385,45 +430,14 @@ $(document).ready(function () {
     function drawCircles() {
         for (var i = 0; i < circlesArray.length; i++) {
             var circle = circlesArray[i];
-            context.beginPath();
-            context.arc(circle.x, circle.y, circle.radius, 0, Math.PI * 2, false);
-            context.lineWidth = 5;
-            context.strokeStyle = '#FF0000';
-            context.stroke();
-            context.closePath();
+            context1.beginPath();
+            context1.arc(circle.x, circle.y, circle.radius, 0, Math.PI * 2, false);
+            context1.lineWidth = 5;
+            context1.strokeStyle = '#FF0000';
+            context1.stroke();
+            context1.closePath();
         }
     }
-
-// Warn if overriding existing method
-    if (Array.prototype.equals)
-        console.warn("Overriding existing Array.prototype.equals. Possible causes: New API defines the method, there's a framework conflict or you've got double inclusions in your code.");
-// attach the .equals method to Array's prototype to call it on any array
-    Array.prototype.equals = function (array) {
-        // if the other array is a falsy value, return
-        if (!array)
-            return false;
-
-        // compare lengths - can save a lot of time
-        if (this.length != array.length)
-            return false;
-
-        for (var i = 0, l = this.length; i < l; i++) {
-            // Check if we have nested arrays
-            if (this[i] instanceof Array && array[i] instanceof Array) {
-                // recurse into the nested arrays
-                if (!this[i].equals(array[i]))
-                    return false;
-            }
-            else if (this[i] != array[i]) {
-                // Warning - two different object instances will never be equal: {x:20} != {x:20}
-                return false;
-            }
-        }
-        return true;
-    }
-// Hide method from for-in loops
-    Object.defineProperty(Array.prototype, "equals", {enumerable: false});
-
 
     main();
 

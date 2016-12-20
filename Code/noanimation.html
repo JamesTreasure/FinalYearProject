@@ -5,15 +5,24 @@
     <meta charset="utf-8">
     <link href="test.css" rel="stylesheet" type="text/css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="arrayHelper.js" type="text/javascript"></script>
     <script type="text/javascript" src="noanimation.js"></script>
 </head>
 <body>
-<canvas id="myCanvas" width="600" height="600" style="border:1px solid #000000;">No canvas support</canvas>
+
+<div class="wrapper">
+    <canvas id="layer2" style="z-index: 2;" width="600" height="600" style="border:1px solid #000000;">No canvas support</canvas>
+    <canvas id="layer1" style="z-index: 1;" width="600" height="600" style="border:1px solid #000000;">No canvas support</canvas>
+</div>
+
 <button id="moveText">Move Text</button>
 <button id="playGame">Play Game</button>
 <div id="status"></div>
 <div id="syllogismMet"></div>
 <div id="barbaraArray"></div>
 <div id="array"></div>
+<div id="menCircle"></div>
+<div id="mortalCircle"></div>
+<div id="greeksCircle"></div>
 </body>
 </html>

@@ -8,7 +8,13 @@ html, body {
     width: 100%;
 }
 
-#myCanvas {
-    display: block;
-    margin: 0 auto;
+.wrapper {
+    position: relative;
+    width: 600px;
+    height: 600px;
+}
+
+.wrapper canvas {
+    position: absolute;
+    top: 0;
 }
