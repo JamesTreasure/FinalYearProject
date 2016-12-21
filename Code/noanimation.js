@@ -11,6 +11,9 @@ $(document).ready(function () {
     var dragOffsetY;
     var drag = false;
     var font = '20pt san-serif';
+    var fontHeight = 20;
+    var majorPremiseMet;
+    var minorPremiseMet;
 
     var circlesArray = new Array();
     var Circle = function (x, y, radius) {
@@ -31,55 +34,22 @@ $(document).ready(function () {
 
     var clickedInArray = [];
 
-    var barbaraArray = [[0], [1], [0, 1], [1, 2]];
-
-    var premiseLocation = [];
-    var Premise = function (premise, location) {
-        this.premise = premise;
-        this.location = location;
-    }
-
-
-    //This doesn't actually show up but for some reason if I don't have it the text isn't centered.
-    context1.fillStyle = "#003300";
-    context1.font = font;
-    var aaa = "This should be centered"
-    context1.fillText(aaa, (layer1.width / 2) - (context1.measureText(aaa).width / 2), 50);
-
-
-    var moveTextButton = $("#moveText");
     var moveText;
-    moveTextButton.click(function () {
-        $("#status").html("Move button selected");
-        moveText = true;
-        playGame = false
-    });
-    var playGameButton = $("#playGame");
-
-    var playGame = false;
-    playGameButton.click(function () {
-        $("#status").html("Play game button selected");
-        moveText = false;
-        playGame = true;
-    });
-
     $(window).mousedown(function (e) {
         var pos = getMousePos(layer1, e);
-        if (playGame) {
+        var clickedOn = textClickedOn(pos.x, pos.y);
+        if (clickedOn >= 0) {
+            moveText = true;
+            var textX = movableTextArray[clickedOn].x;
+            var textY = movableTextArray[clickedOn].y;
+            dragId = clickedOn;
+            dragOffsetX = pos.x - textX;
+            dragOffsetY = pos.y - textY;
+            drag = true;
+        }
+        if (!moveText) {
             whichCircleClickedIn(pos.x, pos.y);
             newCheck();
-            //checkIsIn2dArray();
-        } else if (moveText) {
-            var clickedOn = textClickedOn(pos.x, pos.y)
-            if (clickedOn >= 0) {
-                var textWidth = context1.measureText(movableTextArray[clickedOn].text).width;
-                var textX = movableTextArray[clickedOn].x;
-                var textY = movableTextArray[clickedOn].y;
-                dragId = clickedOn;
-                dragOffsetX = pos.x - textX;
-                dragOffsetY = pos.y - textY;
-                drag = true;
-            }
         }
     });
 
@@ -97,6 +67,7 @@ $(document).ready(function () {
 
     $(window).mouseup(function (e) {
         drag = false;
+        moveText = false;
         dragId = -1;
     })
 
@@ -109,6 +80,17 @@ $(document).ready(function () {
         drawCircles();
     }
 
+    function redrawLayer1(){
+        drawStaticText();
+    }
+
+    function clearStaticText(){
+        for (var i = 0; i < staticTextArray.length; i++) {
+            context1.clearRect(staticTextArray[i].x, staticTextArray[i].y-staticTextArray[i].height, staticTextArray[i].width, staticTextArray[i].height);
+        }
+        layer1.style.backgroundColor = 'rgba(255,50,25,0.2)';
+    }
+
     function newCheck() {
         var result;
         var menCircle = whichCircleIsPremiseIn(movableTextArray[0]);
@@ -116,46 +98,72 @@ $(document).ready(function () {
         var greeksCircle = whichCircleIsPremiseIn(movableTextArray[2]);
         var greeksMenIntersection;
         var greeksMortalIntersection
-        if(greeksCircle !== null && mortalCircle !== null && mortalCircle !== null){
+        if (greeksCircle !== null && mortalCircle !== null && menCircle !== null) {
             greeksMenIntersection = [greeksCircle[0], menCircle[0]];
             greeksMortalIntersection = [greeksCircle[0], mortalCircle[0]];
             result = [greeksCircle, menCircle, greeksMenIntersection.sort(), greeksMortalIntersection.sort()];
-        }else{
+            doThisBit = true;
+        } else {
             $("#syllogismMet").html("Syllogism not met");
-            return false;
+            doThisBit = false;
         }
 
-        console.log(result);
-        console.log(clickedInArray);
+        var doThisBit;
 
-        var inArray;
-        for (var i = 0; i < result.length; i++) {
-            var tempBoolean = false;
-            for (var j = 0; j < clickedInArray.length; j++) {
-                if (result[i].equals(clickedInArray[j])) {
-                    tempBoolean = true;
-                    break;
-                } else {
-                    tempBoolean = false;
+        if(doThisBit){
+            var inArray;
+            for (var i = 0; i < result.length; i++) {
+                var tempBoolean = false;
+                for (var j = 0; j < clickedInArray.length; j++) {
+                    if (result[i].equals(clickedInArray[j])) {
+                        tempBoolean = true;
+                        break;
+                    } else {
+                        tempBoolean = false;
+                    }
                 }
+                if (tempBoolean === false) {
+                    inArray = false;
+                    break;
+                }
+                inArray = tempBoolean;
             }
-            if (tempBoolean === false) {
-                inArray = false;
-                break;
-            }
-            inArray = tempBoolean;
         }
+
+        if(arrayContainsAnotherArray(clickedInArray, menCircle) && arrayContainsAnotherArray(clickedInArray, greeksMenIntersection)){
+            console.log("All men are mortal!");
+            majorPremiseMet = true;
+            clearStaticText();
+            redrawLayer1();
+        }else{
+            majorPremiseMet = false;
+            clearStaticText();
+            redrawLayer1();
+        }
+
+        if(arrayContainsAnotherArray(clickedInArray, greeksCircle) && arrayContainsAnotherArray(clickedInArray, greeksMortalIntersection)){
+            console.log("All men are mortal!");
+            minorPremiseMet = true;
+            clearStaticText();
+            redrawLayer1();
+        }else{
+            minorPremiseMet = false;
+            clearStaticText();
+            redrawLayer1();
+        }
+
 
         $("#barbaraArray").html(result);
         $("#array").html(clickedInArray);
 
-        if (clickedInArray.length !== result.length) {
+        if (typeof result == 'undefined' || result === null || clickedInArray.length !== result.length) {
             $("#syllogismMet").html("Syllogism not met");
         } else if (inArray) {
             $("#syllogismMet").html("Syllogism met");
         } else {
             $("#syllogismMet").html("Syllogism not met");
         }
+
 
         $("#menCircle").html("Men is in circle " + menCircle);
         $("#mortalCircle").html("Mortal is in circle " + mortalCircle);
@@ -174,18 +182,19 @@ $(document).ready(function () {
         };
     }
 
+    function arrayContainsAnotherArray(array1, array2){
+        for (var i = 0; i < array1.length; i++) {
+            if(array1[i].equals(array2)){
+                return true;
+            }
+        }
+        return false;
+    }
+
     function setupStaticText() {
         staticTextArray.push(new Text("All Men Are Mortal", null, 80));
         staticTextArray.push(new Text("All Greeks Are Men", null, 100));
         staticTextArray.push(new Text("All Greeks Are Mortal", null, 120));
-
-        for (var i = 0; i < staticTextArray.length; i++) {
-            staticTextArray[i].width = context1.measureText(staticTextArray[i].text).width;
-            staticTextArray[i].x = (layer1.width / 2) - (staticTextArray[i].width / 2);
-            staticTextArray[i].height = 20;
-
-        }
-
     }
 
     function setupMovableText() {
@@ -202,8 +211,19 @@ $(document).ready(function () {
 
     function drawStaticText() {
         for (var i = 0; i < staticTextArray.length; i++) {
-            context1.fillStyle = "#003300";
+            if(i===0 && majorPremiseMet){
+                context1.fillStyle = "#32CD32";
+            }else if(i === 1 && minorPremiseMet){
+                context1.fillStyle = "#32CD32";
+            }else if(i === 2 && minorPremiseMet && majorPremiseMet){
+                context1.fillStyle = "#32CD32";
+            }else{
+                context1.fillStyle = "#003300";
+            }
             context1.font = font;
+            staticTextArray[i].width = (context1.measureText(staticTextArray[i].text).width);
+            staticTextArray[i].x = ((layer1.width / 2) - (staticTextArray[i].width / 2));
+            staticTextArray[i].height = fontHeight;
             context1.fillText(staticTextArray[i].text, staticTextArray[i].x, staticTextArray[i].y);
         }
     }
@@ -278,12 +298,6 @@ $(document).ready(function () {
         }
     }
 
-    function premiseInCircle(rectangle, circle) {
-        var dx = Math.max(circle.x - rectangle.x, (rectangle.x + rectangle.width) - circle.x);
-        var dy = Math.max(circle.y - rectangle.y, (rectangle.y + rectangle.height) - circle.y);
-        return circle.radius * circle.radius >= dx * dx + dy * dy;
-    }
-
     function whichCircleIsPremiseIn(rectangle) {
         var tempPremiseLocation = [];
         for (var i = 0; i < circlesArray.length; i++) {
@@ -294,51 +308,10 @@ $(document).ready(function () {
                 tempPremiseLocation.push(i);
             }
         }
-        if(tempPremiseLocation.length === 1){
+        if (tempPremiseLocation.length === 1) {
             return tempPremiseLocation;
-        }else{
-            return null;
-        }
-    }
-
-    function checkIsIn2dArray() {
-        clickedInArray.sort(function (a, b) {
-            return a[0] - b[0];
-        });
-
-        barbaraArray.sort(function (a, b) {
-            return a[0] - b[0];
-        });
-
-
-        var inArray;
-        for (var i = 0; i < barbaraArray.length; i++) {
-            var tempBoolean = false;
-            for (var j = 0; j < clickedInArray.length; j++) {
-                if (barbaraArray[i].equals(clickedInArray[j])) {
-                    tempBoolean = true;
-                    break;
-                } else {
-                    tempBoolean = false;
-                }
-            }
-            if (tempBoolean === false) {
-                inArray = false;
-                break;
-            }
-            inArray = tempBoolean;
-        }
-
-        $("#barbaraArray").html(barbaraArray);
-        $("#array").html(clickedInArray);
-
-
-        if (clickedInArray.length !== barbaraArray.length) {
-            $("#syllogismMet").html("Syllogism not met");
-        } else if (inArray) {
-            $("#syllogismMet").html("Syllogism met");
         } else {
-            $("#syllogismMet").html("Syllogism not met");
+            return null;
         }
     }
 
@@ -440,6 +413,5 @@ $(document).ready(function () {
     }
 
     main();
-
 })
 ;
