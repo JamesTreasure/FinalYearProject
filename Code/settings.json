@@ -1,6 +1,30 @@
 {
   "globalSettings": [],
   "level1": {
+    "correctSyllogism": {
+      "subject": true,
+      "middleSubjectIntersection": true,
+      "subjectPredicateIntersection": true,
+      "middlePredicateIntersection": false,
+      "middleSubjectPredicateIntersection": false,
+      "predicate": false,
+      "middle": true
+    },
+    "majorPremise": {
+      "middle": true,
+      "middleSubjectIntersection" : true,
+      "middleSubjectPredicateIntersection" : false,
+      "middlePredicateIntersection" : false
+    },
+    "blankSyllogism": {
+      "subject": false,
+      "middleSubjectIntersection": false,
+      "subjectPredicateIntersection": false,
+      "middlePredicateIntersection": false,
+      "middleSubjectPredicateIntersection": false,
+      "predicate": false,
+      "middle": false
+    },
     "circlesNeeded": 3,
     "staticTextArray": [
       {

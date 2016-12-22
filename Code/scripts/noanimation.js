@@ -15,6 +15,9 @@ $(document).ready(function () {
     var majorPremiseMet;
     var minorPremiseMet;
     var circlesNeeded;
+    var correctSyllogism;
+    var blankSyllogism;
+    var majorPremise;
 
     var circlesArray = new Array();
     var Circle = function (x, y, radius) {
@@ -25,14 +28,6 @@ $(document).ready(function () {
 
     var staticTextArray = [];
     var movableTextArray = [];
-    var Text = function (text, x, y, width, height) {
-        this.text = text;
-        this.x = x;
-        this.y = y;
-        this.width = width;
-        this.height = height;
-    }
-
     var clickedInArray = [];
 
     var moveText;
@@ -81,106 +76,106 @@ $(document).ready(function () {
         drawCircles();
     }
 
-    function setupLevel(){
+    function setupLevel() {
         $.ajaxSetup({
             async: false
         });
 
-        $.getJSON("settings.json", function(json) {
+        $.getJSON("settings.json", function (json) {
             console.log(json); // this will show the info it in firebug console
             circlesNeeded = json.level1.circlesNeeded;
             staticTextArray = json.level1.staticTextArray;
             movableTextArray = json.level1.movableTextArray;
+            correctSyllogism = json.level1.correctSyllogism;
+            blankSyllogism = json.level1.blankSyllogism;
+            majorPremise = json.level1.majorPremise;
+
+            console.log("Test");
+            console.log(isSubset(correctSyllogism, majorPremise));
+            console.log(isSubset(majorPremise, correctSyllogism));
         });
+
     }
 
-    function redrawLayer1(){
+    function isSubset(obj1, obj2) {
+        for (var key in obj2){
+            if (JSON.stringify(obj2[key]) === JSON.stringify(obj1[key]))
+                return true;
+        }
+        return false;
+    }
+
+    function redrawLayer1() {
         drawStaticText();
     }
 
-    function clearStaticText(){
+    function clearStaticText() {
         for (var i = 0; i < staticTextArray.length; i++) {
-            context1.clearRect(staticTextArray[i].x, staticTextArray[i].y-staticTextArray[i].height, staticTextArray[i].width, staticTextArray[i].height+(canvasHeight/40));
+            context1.clearRect(staticTextArray[i].x, staticTextArray[i].y - staticTextArray[i].height,
+                staticTextArray[i].width, staticTextArray[i].height + (canvasHeight / 40));
         }
     }
 
     function newCheck() {
-        var result;
-        var menCircle = whichCircleIsPremiseIn(movableTextArray[0]);
-        var mortalCircle = whichCircleIsPremiseIn(movableTextArray[1]);
-        var greeksCircle = whichCircleIsPremiseIn(movableTextArray[2]);
-        var greeksMenIntersection;
-        var greeksMortalIntersection
-        if (greeksCircle !== null && mortalCircle !== null && menCircle !== null) {
-            greeksMenIntersection = [greeksCircle[0], menCircle[0]];
-            greeksMortalIntersection = [greeksCircle[0], mortalCircle[0]];
-            result = [greeksCircle, menCircle, greeksMenIntersection.sort(), greeksMortalIntersection.sort()];
-            doThisBit = true;
+        //all of these are arrays
+        var middle = whichCircleIsPremiseIn(movableTextArray[0]);
+        var predicate = whichCircleIsPremiseIn(movableTextArray[1]);
+        var subject = whichCircleIsPremiseIn(movableTextArray[2]);
+        var middleSubjectIntersection;
+        var subjectPredicateIntersection;
+        var middlePredicateIntersection;
+        var middleSubjectPredicateIntersection;
+
+        if (subject !== null && predicate !== null && middle !== null) {
+            middleSubjectIntersection = [subject[0], middle[0]].sort();
+            subjectPredicateIntersection = [subject[0], predicate[0]].sort();
+            middlePredicateIntersection = [middle[0], predicate[0]].sort();
+            middleSubjectPredicateIntersection = [middle[0], subject[0], predicate[0]].sort();
+        }
+
+        blankSyllogism.subject = arrayContainsAnotherArray(clickedInArray, subject);
+        blankSyllogism.middle = arrayContainsAnotherArray(clickedInArray, middle);
+        blankSyllogism.predicate = arrayContainsAnotherArray(clickedInArray, predicate);
+        blankSyllogism.middleSubjectIntersection = arrayContainsAnotherArray(clickedInArray, middleSubjectIntersection);
+        blankSyllogism.middlePredicateIntersection = arrayContainsAnotherArray(clickedInArray, middlePredicateIntersection);
+        blankSyllogism.middleSubjectPredicateIntersection = arrayContainsAnotherArray(clickedInArray, middleSubjectPredicateIntersection);
+        blankSyllogism.subjectPredicateIntersection = arrayContainsAnotherArray(clickedInArray, subjectPredicateIntersection);
+
+
+        if (_.isEqual(blankSyllogism, correctSyllogism)) {
+            console.log("Correct");
         } else {
-            $("#syllogismMet").html("Syllogism not met");
-            doThisBit = false;
+            console.log("Incorrect");
         }
 
-        var doThisBit;
 
-        if(doThisBit){
-            var inArray;
-            for (var i = 0; i < result.length; i++) {
-                var tempBoolean = false;
-                for (var j = 0; j < clickedInArray.length; j++) {
-                    if (result[i].equals(clickedInArray[j])) {
-                        tempBoolean = true;
-                        break;
-                    } else {
-                        tempBoolean = false;
-                    }
-                }
-                if (tempBoolean === false) {
-                    inArray = false;
-                    break;
-                }
-                inArray = tempBoolean;
-            }
-        }
 
-        if(arrayContainsAnotherArray(clickedInArray, menCircle) && arrayContainsAnotherArray(clickedInArray, greeksMenIntersection)){
-            console.log("All men are mortal!");
+
+        if (arrayContainsAnotherArray(clickedInArray, middle) && arrayContainsAnotherArray(clickedInArray, middleSubjectIntersection)
+            && !arrayContainsAnotherArray(clickedInArray, middlePredicateIntersection) && !arrayContainsAnotherArray(clickedInArray, middleSubjectPredicateIntersection)) {
             majorPremiseMet = true;
             clearStaticText();
             redrawLayer1();
-        }else{
+        } else {
             majorPremiseMet = false;
             clearStaticText();
             redrawLayer1();
         }
 
-        if(arrayContainsAnotherArray(clickedInArray, greeksCircle) && arrayContainsAnotherArray(clickedInArray, greeksMortalIntersection)){
-            console.log("All men are mortal!");
+        if (arrayContainsAnotherArray(clickedInArray, subject) && arrayContainsAnotherArray(clickedInArray, subjectPredicateIntersection)) {
             minorPremiseMet = true;
             clearStaticText();
             redrawLayer1();
-        }else{
+        } else {
             minorPremiseMet = false;
             clearStaticText();
             redrawLayer1();
         }
 
 
-        $("#barbaraArray").html(result);
-        $("#array").html(clickedInArray);
-
-        if (typeof result == 'undefined' || result === null || clickedInArray.length !== result.length) {
-            $("#syllogismMet").html("Syllogism not met");
-        } else if (inArray) {
-            $("#syllogismMet").html("Syllogism met");
-        } else {
-            $("#syllogismMet").html("Syllogism not met");
-        }
-
-
-        $("#menCircle").html("Men is in circle " + menCircle);
-        $("#mortalCircle").html("Mortal is in circle " + mortalCircle);
-        $("#greeksCircle").html("Greeks is in circle " + greeksCircle);
+        $("#menCircle").html("Men is in circle " + middle);
+        $("#mortalCircle").html("Mortal is in circle " + predicate);
+        $("#greeksCircle").html("Greeks is in circle " + subject);
     }
 
     function animate() {
@@ -195,9 +190,9 @@ $(document).ready(function () {
         };
     }
 
-    function arrayContainsAnotherArray(array1, array2){
+    function arrayContainsAnotherArray(array1, array2) {
         for (var i = 0; i < array1.length; i++) {
-            if(array1[i].equals(array2)){
+            if (array1[i].equals(array2)) {
                 return true;
             }
         }
@@ -209,11 +204,11 @@ $(document).ready(function () {
         context2.font = font;
         for (var i = 0; i < movableTextArray.length; i++) {
             movableTextArray[i].width = context2.measureText(movableTextArray[i].text).width;
-            movableTextArray[i].y = (canvasHeight/1.09);
-            var regions = canvasWidth/movableTextArray.length;
-            var middleOfRegion = regions/2;
-            var middleOffSet = movableTextArray[i].width/2;
-            movableTextArray[i].x = ((i+1)*regions)-middleOfRegion-middleOffSet;
+            movableTextArray[i].y = (canvasHeight / 1.09);
+            var regions = canvasWidth / movableTextArray.length;
+            var middleOfRegion = regions / 2;
+            var middleOffSet = movableTextArray[i].width / 2;
+            movableTextArray[i].x = ((i + 1) * regions) - middleOfRegion - middleOffSet;
             movableTextArray[i].height = 20;
         }
 
@@ -221,19 +216,19 @@ $(document).ready(function () {
 
     function drawStaticText() {
         for (var i = 0; i < staticTextArray.length; i++) {
-            if(i===0 && majorPremiseMet){
+            if (i === 0 && majorPremiseMet) {
                 context1.fillStyle = "#32CD32";
-            }else if(i === 1 && minorPremiseMet){
+            } else if (i === 1 && minorPremiseMet) {
                 context1.fillStyle = "#32CD32";
-            }else if(i === 2 && minorPremiseMet && majorPremiseMet){
+            } else if (i === 2 && minorPremiseMet && majorPremiseMet) {
                 context1.fillStyle = "#32CD32";
-            }else{
+            } else {
                 context1.fillStyle = "#003300";
             }
             context1.font = font;
             staticTextArray[i].width = (context1.measureText(staticTextArray[i].text).width);
             staticTextArray[i].x = ((layer1.width / 2) - (staticTextArray[i].width / 2));
-            staticTextArray[i].y = (i*(canvasHeight/30)+(canvasHeight/7.5));
+            staticTextArray[i].y = (i * (canvasHeight / 30) + (canvasHeight / 7.5));
             staticTextArray[i].height = fontHeight;
             context1.fillText(staticTextArray[i].text, staticTextArray[i].x, staticTextArray[i].y);
         }
@@ -407,10 +402,10 @@ $(document).ready(function () {
 
     function createCircles() {
         console.log(circlesNeeded);
-        if(circlesNeeded === 3){
-            circlesArray.push(new Circle((canvasWidth/2), (canvasHeight/2.4), (canvasWidth/6)));
-            circlesArray.push(new Circle((canvasWidth/2.4), (canvasHeight/1.71), (canvasWidth/6)));
-            circlesArray.push(new Circle((canvasWidth/1.71), (canvasHeight/1.71), (canvasWidth/6)));
+        if (circlesNeeded === 3) {
+            circlesArray.push(new Circle((canvasWidth / 2), (canvasHeight / 2.4), (canvasWidth / 6)));
+            circlesArray.push(new Circle((canvasWidth / 2.4), (canvasHeight / 1.71), (canvasWidth / 6)));
+            circlesArray.push(new Circle((canvasWidth / 1.71), (canvasHeight / 1.71), (canvasWidth / 6)));
         }
     }
 
@@ -425,6 +420,7 @@ $(document).ready(function () {
             context1.closePath();
         }
     }
+
     main();
 })
 ;
