@@ -14,6 +14,7 @@ $(document).ready(function () {
     var fontHeight = 20;
     var majorPremiseMet;
     var minorPremiseMet;
+    var circlesNeeded;
 
     var circlesArray = new Array();
     var Circle = function (x, y, radius) {
@@ -72,12 +73,25 @@ $(document).ready(function () {
     })
 
     function main() {
-        setupStaticText();
+        setupLevel();
         setupMovableText();
         drawStaticText();
         drawMovableText();
         createCircles();
         drawCircles();
+    }
+
+    function setupLevel(){
+        $.ajaxSetup({
+            async: false
+        });
+
+        $.getJSON("settings.json", function(json) {
+            console.log(json); // this will show the info it in firebug console
+            circlesNeeded = json.level1.circlesNeeded;
+            staticTextArray = json.level1.staticTextArray;
+            movableTextArray = json.level1.movableTextArray;
+        });
     }
 
     function redrawLayer1(){
@@ -86,9 +100,8 @@ $(document).ready(function () {
 
     function clearStaticText(){
         for (var i = 0; i < staticTextArray.length; i++) {
-            context1.clearRect(staticTextArray[i].x, staticTextArray[i].y-staticTextArray[i].height, staticTextArray[i].width, staticTextArray[i].height);
+            context1.clearRect(staticTextArray[i].x, staticTextArray[i].y-staticTextArray[i].height, staticTextArray[i].width, staticTextArray[i].height+(canvasHeight/40));
         }
-        layer1.style.backgroundColor = 'rgba(255,50,25,0.2)';
     }
 
     function newCheck() {
@@ -191,19 +204,16 @@ $(document).ready(function () {
         return false;
     }
 
-    function setupStaticText() {
-        staticTextArray.push(new Text("All Men Are Mortal", null, 80));
-        staticTextArray.push(new Text("All Greeks Are Men", null, 100));
-        staticTextArray.push(new Text("All Greeks Are Mortal", null, 120));
-    }
-
     function setupMovableText() {
-        movableTextArray.push(new Text("Men", null, 550));
-        movableTextArray.push(new Text("Mortal", null, 550));
-        movableTextArray.push(new Text("Greeks", null, 550));
+        context2.fillStyle = "#003300";
+        context2.font = font;
         for (var i = 0; i < movableTextArray.length; i++) {
             movableTextArray[i].width = context2.measureText(movableTextArray[i].text).width;
-            movableTextArray[i].x = i * (canvasWidth / 3) + 40;
+            movableTextArray[i].y = (canvasHeight/1.09);
+            var regions = canvasWidth/movableTextArray.length;
+            var middleOfRegion = regions/2;
+            var middleOffSet = movableTextArray[i].width/2;
+            movableTextArray[i].x = ((i+1)*regions)-middleOfRegion-middleOffSet;
             movableTextArray[i].height = 20;
         }
 
@@ -223,6 +233,7 @@ $(document).ready(function () {
             context1.font = font;
             staticTextArray[i].width = (context1.measureText(staticTextArray[i].text).width);
             staticTextArray[i].x = ((layer1.width / 2) - (staticTextArray[i].width / 2));
+            staticTextArray[i].y = (i*(canvasHeight/30)+(canvasHeight/7.5));
             staticTextArray[i].height = fontHeight;
             context1.fillText(staticTextArray[i].text, staticTextArray[i].x, staticTextArray[i].y);
         }
@@ -395,9 +406,12 @@ $(document).ready(function () {
     }
 
     function createCircles() {
-        circlesArray.push(new Circle(300, 250, 100))
-        circlesArray.push(new Circle(250, 350, 100))
-        circlesArray.push(new Circle(350, 350, 100))
+        console.log(circlesNeeded);
+        if(circlesNeeded === 3){
+            circlesArray.push(new Circle((canvasWidth/2), (canvasHeight/2.4), (canvasWidth/6)));
+            circlesArray.push(new Circle((canvasWidth/2.4), (canvasHeight/1.71), (canvasWidth/6)));
+            circlesArray.push(new Circle((canvasWidth/1.71), (canvasHeight/1.71), (canvasWidth/6)));
+        }
     }
 
     function drawCircles() {
@@ -411,7 +425,6 @@ $(document).ready(function () {
             context1.closePath();
         }
     }
-
     main();
 })
 ;

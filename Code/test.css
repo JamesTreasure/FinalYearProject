@@ -12,9 +12,12 @@ html, body {
     position: relative;
     width: 600px;
     height: 600px;
+    margin: 0px auto;
+    border: 1px solid red;
 }
 
 .wrapper canvas {
     position: absolute;
     top: 0;
 }
+

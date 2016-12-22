@@ -1,0 +1,28 @@
+{
+  "globalSettings": [],
+  "level1": {
+    "circlesNeeded": 3,
+    "staticTextArray": [
+      {
+        "text": "All Men Are Mortal"
+      },
+      {
+        "text": "All Greeks Are Men"
+      },
+      {
+        "text": "All Greeks Are Mortal"
+      }
+    ],
+    "movableTextArray": [
+      {
+        "text": "Men"
+      },
+      {
+        "text": "Mortal"
+      },
+      {
+        "text": "Greeks"
+      }
+    ]
+  }
+}
