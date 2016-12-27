@@ -12,9 +12,13 @@
     },
     "majorPremise": {
       "middle": true,
-      "middleSubjectIntersection" : true,
-      "middleSubjectPredicateIntersection" : false,
-      "middlePredicateIntersection" : false
+      "middleSubjectIntersection": true,
+      "middleSubjectPredicateIntersection": false,
+      "middlePredicateIntersection": false
+    },
+    "minorPremise": {
+      "subject": true,
+      "subjectPredicateIntersection": true
     },
     "blankSyllogism": {
       "subject": false,
@@ -26,27 +30,62 @@
       "middle": false
     },
     "circlesNeeded": 3,
-    "staticTextArray": [
-      {
-        "text": "All Men Are Mortal"
-      },
-      {
-        "text": "All Greeks Are Men"
-      },
-      {
-        "text": "All Greeks Are Mortal"
-      }
-    ],
-    "movableTextArray": [
-      {
-        "text": "Men"
-      },
-      {
-        "text": "Mortal"
-      },
-      {
-        "text": "Greeks"
-      }
-    ]
+    "staticTextArray": [{
+      "text": "All Men Are Mortal"
+    }, {
+      "text": "All Greeks Are Men"
+    }, {
+      "text": "All Greeks Are Mortal"
+    }],
+    "movableTextArray": [{
+      "text": "Men"
+    }, {
+      "text": "Mortal"
+    }, {
+      "text": "Greeks"
+    }]
+  },
+  "level2": {
+    "correctSyllogism": {
+      "subject": true,
+      "middleSubjectIntersection": false,
+      "subjectPredicateIntersection": true,
+      "middlePredicateIntersection": true,
+      "middleSubjectPredicateIntersection": true,
+      "predicate": false,
+      "middle": false
+    },
+    "majorPremise": {
+      "middlePredicateIntersection": true,
+      "middleSubjectPredicateIntersection": true
+    },
+    "minorPremise": {
+      "subject": true,
+      "subjectPredicateIntersection": true
+    },
+    "blankSyllogism": {
+      "subject": false,
+      "middleSubjectIntersection": false,
+      "subjectPredicateIntersection": false,
+      "middlePredicateIntersection": false,
+      "middleSubjectPredicateIntersection": false,
+      "predicate": false,
+      "middle": false
+    },
+    "circlesNeeded": 3,
+    "staticTextArray": [{
+      "text": "No Reptiles Have Fur"
+    }, {
+      "text": "All Snakes Are Reptiles"
+    }, {
+      "text": "No Snakes Have Fur"
+    }],
+    "movableTextArray": [{
+      "text": "Reptiles"
+    }, {
+      "text": "Fur"
+    }, {
+      "text": "Snakes"
+    }]
   }
 }

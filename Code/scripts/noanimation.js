@@ -5,7 +5,6 @@ $(document).ready(function () {
     var context2 = layer2.getContext('2d');
     var canvasWidth = layer1.width;
     var canvasHeight = layer1.height;
-
     var dragId;
     var dragOffsetX;
     var dragOffsetY;
@@ -18,6 +17,9 @@ $(document).ready(function () {
     var correctSyllogism;
     var blankSyllogism;
     var majorPremise;
+    var minorPremise;
+
+
 
     var circlesArray = new Array();
     var Circle = function (x, y, radius) {
@@ -26,13 +28,34 @@ $(document).ready(function () {
         this.radius = radius;
     };
 
+    var undoStack = [];
+    var redoStack = [];
+    var GameState = function (movableTextArray, clickedInArray) {
+        this.movableTextArray = movableTextArray;
+        this.clickedInArray = clickedInArray;
+    }
+    var Text = function (x, y, width, height, content) {
+        this.x = x;
+        this.y = y;
+        this.width = width;
+        this.height = height;
+        this.content = content;
+    }
+
     var staticTextArray = [];
     var movableTextArray = [];
     var clickedInArray = [];
-
     var moveText;
+
     $(window).mousedown(function (e) {
         var pos = getMousePos(layer1, e);
+        var pos = getMousePos(layer1, e);
+        if (pos.x > 0 && pos.x < canvasWidth && pos.y > 0 && pos.y < 600) {
+            var clonedMovableTextArray = clone(movableTextArray);
+            var clonedClickedInArray = clone(clickedInArray);
+            undoStack.push(new GameState(clonedMovableTextArray, clonedClickedInArray));
+            console.log("pushed");
+        }
         var clickedOn = textClickedOn(pos.x, pos.y);
         if (clickedOn >= 0) {
             moveText = true;
@@ -45,7 +68,8 @@ $(document).ready(function () {
         }
         if (!moveText) {
             whichCircleClickedIn(pos.x, pos.y);
-            newCheck();
+            checkIfSyllogismIsMet();
+            checkIfAnyPropositionsAreMet();
         }
     });
 
@@ -55,54 +79,92 @@ $(document).ready(function () {
             if (drag) {
                 movableTextArray[dragId].x = pos.x - dragOffsetX;
                 movableTextArray[dragId].y = pos.y - dragOffsetY;
-                newCheck();
+                checkIfSyllogismIsMet();
+                checkIfAnyPropositionsAreMet();
                 requestAnimationFrame(animate);
             }
         }
     });
 
+    $("#undoButon").click(function(){
+        undo();
+    });
+
+    $("#redoButton").click(function(){
+        redo();
+    });
+
+
+    function undo() {
+        console.log(clickedInArray);
+        if(undoStack.length > 0){
+            redoStack.push(new GameState(movableTextArray, clickedInArray));
+            var previousGameState = undoStack.pop();
+            movableTextArray = previousGameState.movableTextArray;
+            clickedInArray = previousGameState.clickedInArray;
+            console.log(clickedInArray);
+            drawMovableText();
+            checkIfSyllogismIsMet();
+            checkIfAnyPropositionsAreMet();
+        }
+    }
+
+    function redo() {
+        if(redoStack.length > 0){
+            undoStack.push(new GameState(movableTextArray,clickedInArray));
+            var redoGameState = redoStack.pop();
+            movableTextArray = redoGameState.movableTextArray;
+            clickedInArray = redoGameState.clickedInArray;
+            drawMovableText();
+            checkIfSyllogismIsMet();
+            checkIfAnyPropositionsAreMet();
+        }
+    }
+
+
     $(window).mouseup(function (e) {
+        var pos = getMousePos(layer1, e);
         drag = false;
         moveText = false;
         dragId = -1;
-    })
+    });
 
-    function main() {
-        setupLevel();
+    function main(level) {
+        setupLevel(level);
+        context1.fillStyle = "white";
+        context1.fillRect(0, 0, layer1.width, layer1.height);
         setupMovableText();
         drawStaticText();
         drawMovableText();
         createCircles();
         drawCircles();
+
     }
 
-    function setupLevel() {
+    function setupLevel(levelNumber) {
         $.ajaxSetup({
             async: false
         });
 
         $.getJSON("settings.json", function (json) {
-            console.log(json); // this will show the info it in firebug console
-            circlesNeeded = json.level1.circlesNeeded;
-            staticTextArray = json.level1.staticTextArray;
-            movableTextArray = json.level1.movableTextArray;
-            correctSyllogism = json.level1.correctSyllogism;
-            blankSyllogism = json.level1.blankSyllogism;
-            majorPremise = json.level1.majorPremise;
-
-            console.log("Test");
-            console.log(isSubset(correctSyllogism, majorPremise));
-            console.log(isSubset(majorPremise, correctSyllogism));
+            var level = json["level" + levelNumber];
+            circlesNeeded = level.circlesNeeded;
+            staticTextArray = level.staticTextArray;
+            movableTextArray = level.movableTextArray;
+            correctSyllogism = level.correctSyllogism;
+            blankSyllogism = level.blankSyllogism;
+            majorPremise = level.majorPremise;
+            minorPremise = level.minorPremise;
         });
 
     }
 
-    function isSubset(obj1, obj2) {
-        for (var key in obj2){
-            if (JSON.stringify(obj2[key]) === JSON.stringify(obj1[key]))
-                return true;
-        }
-        return false;
+    function tearDown() {
+        context1.clearRect(0, 0, canvasWidth, canvasHeight);
+        movableTextArray = [];
+        staticTextArray = [];
+        circlesArray = [];
+        clickedInArray = [];
     }
 
     function redrawLayer1() {
@@ -116,7 +178,7 @@ $(document).ready(function () {
         }
     }
 
-    function newCheck() {
+    function checkIfSyllogismIsMet() {
         //all of these are arrays
         var middle = whichCircleIsPremiseIn(movableTextArray[0]);
         var predicate = whichCircleIsPremiseIn(movableTextArray[1]);
@@ -143,39 +205,43 @@ $(document).ready(function () {
 
 
         if (_.isEqual(blankSyllogism, correctSyllogism)) {
-            console.log("Correct");
-        } else {
-            console.log("Incorrect");
+            tearDown();
+            main(2);
         }
 
+    }
 
-
-
-        if (arrayContainsAnotherArray(clickedInArray, middle) && arrayContainsAnotherArray(clickedInArray, middleSubjectIntersection)
-            && !arrayContainsAnotherArray(clickedInArray, middlePredicateIntersection) && !arrayContainsAnotherArray(clickedInArray, middleSubjectPredicateIntersection)) {
-            majorPremiseMet = true;
-            clearStaticText();
-            redrawLayer1();
-        } else {
-            majorPremiseMet = false;
-            clearStaticText();
-            redrawLayer1();
+    function checkIfAnyPropositionsAreMet() {
+        for (var key in majorPremise) {
+            var valueInMajorPremise = majorPremise[key];
+            var valueInBlankSyllogism = blankSyllogism[key];
+            majorPremiseMet = valueInBlankSyllogism === valueInMajorPremise;
+            if (!majorPremiseMet) {
+                clearStaticText();
+                redrawLayer1();
+                break;
+            }
         }
-
-        if (arrayContainsAnotherArray(clickedInArray, subject) && arrayContainsAnotherArray(clickedInArray, subjectPredicateIntersection)) {
-            minorPremiseMet = true;
-            clearStaticText();
-            redrawLayer1();
-        } else {
-            minorPremiseMet = false;
+        if (minorPremiseMet) {
             clearStaticText();
             redrawLayer1();
         }
 
 
-        $("#menCircle").html("Men is in circle " + middle);
-        $("#mortalCircle").html("Mortal is in circle " + predicate);
-        $("#greeksCircle").html("Greeks is in circle " + subject);
+        for (var key in minorPremise) {
+            var valueInMinorPremise = minorPremise[key];
+            var valueInBlankSyllogism = blankSyllogism[key];
+            minorPremiseMet = valueInBlankSyllogism === valueInMinorPremise;
+            if (!minorPremiseMet) {
+                clearStaticText();
+                redrawLayer1();
+                break;
+            }
+        }
+        if (minorPremiseMet) {
+            clearStaticText();
+            redrawLayer1();
+        }
     }
 
     function animate() {
@@ -259,15 +325,9 @@ $(document).ready(function () {
     }
 
     function whichCircleClickedIn(x, y) {
-        var fillColorR = 230,
-            fillColorG = 200,
-            fillColorB = 50;
-
-
         if (circleEdgeClicked(x, y)) {
             return false;
         }
-
 
         var tempArray = new Array();
         //loops through circles and adds all circles clicked in to a temp array
@@ -297,10 +357,13 @@ $(document).ready(function () {
         if (hasBeenAlreadyClickedIn === false) {
             tempArray.sort();
             clickedInArray.push(tempArray);
-            paintLocation(x, y, fillColorR, fillColorG, fillColorB);
+            context1.fillStyle = "yellow";
+            floodFill.fill(x, y, 100, context1, null, null, 90)
         } else {
             clickedInArray.splice(clickedInArrayLocation, 1);
-            paintLocation(x, y, 255, 255, 255);
+            context1.fillStyle = "white";
+            floodFill.fill(x, y, 100, context1, null, null, 90)
+
         }
     }
 
@@ -319,85 +382,6 @@ $(document).ready(function () {
         } else {
             return null;
         }
-    }
-
-    function paintLocation(startX, startY, r, g, b) {
-        var colorLayer = context1.getImageData(0, 0, canvasWidth, canvasHeight);
-        var startR = 0,
-            startG = 0,
-            startB = 0;
-
-        pixelPos = (startY * canvasWidth + startX) * 4;
-
-        startR = colorLayer.data[pixelPos];
-        startG = colorLayer.data[pixelPos + 1];
-        startB = colorLayer.data[pixelPos + 2];
-
-        var pixelStack = [
-            [startX, startY]
-        ];
-
-        var drawingBoundTop = 0;
-        var guard = 10000;
-        while (pixelStack.length) {
-            if (guard-- < 0) break;
-            var newPos, x, y, pixelPos, reachLeft, reachRight;
-            newPos = pixelStack.pop();
-            x = newPos[0];
-            y = newPos[1];
-
-            pixelPos = (y * canvasWidth + x) * 4;
-            while (y-- >= drawingBoundTop && matchStartColor(colorLayer, pixelPos, startR, startG, startB)) {
-                pixelPos -= canvasWidth * 4;
-            }
-            pixelPos += canvasWidth * 4;
-            ++y;
-            reachLeft = false;
-            reachRight = false;
-            while (y++ < canvasHeight - 1 && matchStartColor(colorLayer, pixelPos, startR, startG, startB)) {
-                colorPixel(colorLayer, pixelPos, r, g, b);
-
-                if (x > 0) {
-                    if (matchStartColor(colorLayer, pixelPos - 4, startR, startG, startB)) {
-                        if (!reachLeft) {
-                            pixelStack.push([x - 1, y]);
-                            reachLeft = true;
-                        }
-                    } else if (reachLeft) {
-                        reachLeft = false;
-                    }
-                }
-
-                if (x < canvasWidth - 1) {
-                    if (matchStartColor(colorLayer, pixelPos + 4, startR, startG, startB)) {
-                        if (!reachRight) {
-                            pixelStack.push([x + 1, y]);
-                            reachRight = true;
-                        }
-                    } else if (reachRight) {
-                        reachRight = false;
-                    }
-                }
-
-                pixelPos += canvasWidth * 4;
-            }
-        }
-        context1.putImageData(colorLayer, 0, 0);
-    }
-
-    function matchStartColor(colorLayer, pixelPos, startR, startG, startB) {
-        var r = colorLayer.data[pixelPos];
-        var g = colorLayer.data[pixelPos + 1];
-        var b = colorLayer.data[pixelPos + 2];
-
-        return (r == startR && g == startG && b == startB);
-    }
-
-    function colorPixel(colorLayer, pixelPos, r, g, b) {
-        colorLayer.data[pixelPos] = r;
-        colorLayer.data[pixelPos + 1] = g;
-        colorLayer.data[pixelPos + 2] = b;
-        colorLayer.data[pixelPos + 3] = 255;
     }
 
     function createCircles() {
@@ -421,6 +405,18 @@ $(document).ready(function () {
         }
     }
 
-    main();
+    function clone(obj) {
+        if (obj == null || typeof(obj) != 'object') {
+            return obj;
+        }
+        var temp = new obj.constructor();
+        for (var key in obj) {
+            temp[key] = clone(obj[key]);
+        }
+        return temp;
+    }
+
+
+    main(1);
 })
 ;
