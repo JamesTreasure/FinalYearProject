@@ -365,6 +365,7 @@ $(document).ready(function () {
             floodFill.fill(x, y, 100, context1, null, null, 90)
 
         }
+        console.log(clickedInArray);
     }
 
     function whichCircleIsPremiseIn(rectangle) {
