@@ -21,3 +21,9 @@ html, body {
     top: 0;
 }
 
+#undoButton {
+    position:absolute;
+    transition: .5s ease;
+    top: 5%;
+    left: 30%;
+}

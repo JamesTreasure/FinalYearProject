@@ -43,7 +43,8 @@
       "text": "Mortal"
     }, {
       "text": "Greeks"
-    }]
+    }],
+    "particularSyllogism" : false
   },
   "level2": {
     "correctSyllogism": {
@@ -86,6 +87,54 @@
       "text": "Fur"
     }, {
       "text": "Snakes"
-    }]
+    }],
+    "particularSyllogism" : false
+  },
+  "level3": {
+    "correctSyllogism": {
+      "subject": true,
+      "middleSubjectIntersection": false,
+      "subjectPredicateIntersection": true,
+      "middlePredicateIntersection": true,
+      "middleSubjectPredicateIntersection": true,
+      "predicate": false,
+      "middle": false
+    },
+    "majorPremise": {
+      "middlePredicateIntersection": true,
+      "middleSubjectPredicateIntersection": true
+    },
+    "minorPremise": {
+      "subject": true,
+      "subjectPredicateIntersection": true
+    },
+    "blankSyllogism": {
+      "subject": false,
+      "middleSubjectIntersection": false,
+      "subjectPredicateIntersection": false,
+      "middlePredicateIntersection": false,
+      "middleSubjectPredicateIntersection": false,
+      "predicate": false,
+      "middle": false
+    },
+    "circlesNeeded": 3,
+    "staticTextArray": [{
+      "text": "All Rabbits Have Fur"
+    }, {
+      "text": "Some Pet Rabbits Have Fur"
+    }, {
+      "text": "Some Pets Have Fur"
+    }],
+    "movableTextArray": [{
+      "text": "Rabbit"
+    }, {
+      "text": "Fur"
+    }, {
+      "text": "Pet"
+    },{
+      "text": "X"
+    }],
+    "particularSyllogism" : true,
+    "particularSyllogismLocation" : "middleSubjectPredicateIntersection"
   }
 }

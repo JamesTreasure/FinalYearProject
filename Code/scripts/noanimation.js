@@ -18,30 +18,28 @@ $(document).ready(function () {
     var blankSyllogism;
     var majorPremise;
     var minorPremise;
+    var particularSyllogism;
+    var particularSyllogismArray = [];
 
 
-
-    var circlesArray = new Array();
+    var GameState = function (movableTextArray, clickedInArray) {
+        this.movableTextArray = movableTextArray;
+        this.clickedInArray = clickedInArray;
+    }
+    var Click = function (circleClickedIn, x, y) {
+        this.circleClickedIn = circleClickedIn;
+        this.x = x;
+        this.y = y;
+    }
     var Circle = function (x, y, radius) {
         this.x = x; //Centre of the circle
         this.y = y; //Centre of the circle
         this.radius = radius;
     };
 
+    var circlesArray = [];
     var undoStack = [];
     var redoStack = [];
-    var GameState = function (movableTextArray, clickedInArray) {
-        this.movableTextArray = movableTextArray;
-        this.clickedInArray = clickedInArray;
-    }
-    var Text = function (x, y, width, height, content) {
-        this.x = x;
-        this.y = y;
-        this.width = width;
-        this.height = height;
-        this.content = content;
-    }
-
     var staticTextArray = [];
     var movableTextArray = [];
     var clickedInArray = [];
@@ -50,14 +48,15 @@ $(document).ready(function () {
     $(window).mousedown(function (e) {
         var pos = getMousePos(layer1, e);
         var pos = getMousePos(layer1, e);
-        if (pos.x > 0 && pos.x < canvasWidth && pos.y > 0 && pos.y < 600) {
-            var clonedMovableTextArray = clone(movableTextArray);
-            var clonedClickedInArray = clone(clickedInArray);
-            undoStack.push(new GameState(clonedMovableTextArray, clonedClickedInArray));
-            console.log("pushed");
-        }
+
         var clickedOn = textClickedOn(pos.x, pos.y);
         if (clickedOn >= 0) {
+            if (pos.x > 0 && pos.x < canvasWidth && pos.y > 0 && pos.y < 600) {
+                console.log("pushed!");
+                var clonedMovableTextArray = clone(movableTextArray);
+                var clonedClickedInArray = clone(clickedInArray);
+                undoStack.push(new GameState(clonedMovableTextArray, clonedClickedInArray));
+            }
             moveText = true;
             var textX = movableTextArray[clickedOn].x;
             var textY = movableTextArray[clickedOn].y;
@@ -86,23 +85,30 @@ $(document).ready(function () {
         }
     });
 
-    $("#undoButon").click(function(){
+    $(window).mouseup(function (e) {
+        drag = false;
+        moveText = false;
+        dragId = -1;
+    });
+
+    $("#undoButton").click(function () {
         undo();
     });
 
-    $("#redoButton").click(function(){
+    $("#redoButton").click(function () {
         redo();
     });
 
-
     function undo() {
-        console.log(clickedInArray);
-        if(undoStack.length > 0){
+        var clickedInArrayBeforePop = clone(clickedInArray);
+        if (undoStack.length > 0) {
             redoStack.push(new GameState(movableTextArray, clickedInArray));
             var previousGameState = undoStack.pop();
             movableTextArray = previousGameState.movableTextArray;
             clickedInArray = previousGameState.clickedInArray;
-            console.log(clickedInArray);
+            if (clickedInArray.length != clickedInArrayBeforePop.length) {
+                undoRedoRepaintCheck(clickedInArrayBeforePop, clickedInArray);
+            }
             drawMovableText();
             checkIfSyllogismIsMet();
             checkIfAnyPropositionsAreMet();
@@ -110,26 +116,67 @@ $(document).ready(function () {
     }
 
     function redo() {
-        if(redoStack.length > 0){
-            undoStack.push(new GameState(movableTextArray,clickedInArray));
+        var clickedInArrayBeforePop = clone(clickedInArray);
+        if (redoStack.length > 0) {
+            undoStack.push(new GameState(movableTextArray, clickedInArray));
             var redoGameState = redoStack.pop();
             movableTextArray = redoGameState.movableTextArray;
             clickedInArray = redoGameState.clickedInArray;
+            if (clickedInArray.length != clickedInArrayBeforePop.length) {
+                undoRedoRepaintCheck(clickedInArrayBeforePop, clickedInArray);
+            }
             drawMovableText();
             checkIfSyllogismIsMet();
             checkIfAnyPropositionsAreMet();
         }
     }
 
+    function undoRedoRepaintCheck(before, after) {
+        if (before.length > after.length) {
+            var index;
+            for (var i = 0; i < before.length; i++) {
+                var tempBoolean = false;
+                for (var j = 0; j < after.length; j++) {
+                    if (before[i].circleClickedIn.equals(after[j].circleClickedIn)) {
+                        tempBoolean = true;
+                        break;
+                    } else {
+                        tempBoolean = false;
+                    }
+                }
+                if (tempBoolean === false) {
+                    index = i;
+                    break;
+                }
+            }
+            context1.fillStyle = "white";
+            floodFill.fill(before[index].x, before[index].y, 100, context1, null, null, 90);
+        }
 
-    $(window).mouseup(function (e) {
-        var pos = getMousePos(layer1, e);
-        drag = false;
-        moveText = false;
-        dragId = -1;
-    });
+        if (before.length < after.length) {
+            var index;
+            for (var i = 0; i < after.length; i++) {
+                var tempBoolean = false;
+                for (var j = 0; j < before.length; j++) {
+                    if (after[i].circleClickedIn.equals(before[j].circleClickedIn)) {
+                        tempBoolean = true;
+                        break;
+                    } else {
+                        tempBoolean = false;
+                    }
+                }
+                if (tempBoolean === false) {
+                    index = i;
+                    break;
+                }
+            }
+            context1.fillStyle = "yellow"
+            floodFill.fill(after[index].x, after[index].y, 100, context1, null, null, 90);
+        }
+    }
 
     function main(level) {
+
         setupLevel(level);
         context1.fillStyle = "white";
         context1.fillRect(0, 0, layer1.width, layer1.height);
@@ -138,7 +185,6 @@ $(document).ready(function () {
         drawMovableText();
         createCircles();
         drawCircles();
-
     }
 
     function setupLevel(levelNumber) {
@@ -155,6 +201,7 @@ $(document).ready(function () {
             blankSyllogism = level.blankSyllogism;
             majorPremise = level.majorPremise;
             minorPremise = level.minorPremise;
+            particularSyllogism = level.particularSyllogism;
         });
 
     }
@@ -183,6 +230,10 @@ $(document).ready(function () {
         var middle = whichCircleIsPremiseIn(movableTextArray[0]);
         var predicate = whichCircleIsPremiseIn(movableTextArray[1]);
         var subject = whichCircleIsPremiseIn(movableTextArray[2]);
+        var particular;
+        if(movableTextArray.length < 3){
+            particular = whichCircleIsPremiseIn(movableTextArray[3]);
+        }
         var middleSubjectIntersection;
         var subjectPredicateIntersection;
         var middlePredicateIntersection;
@@ -258,7 +309,7 @@ $(document).ready(function () {
 
     function arrayContainsAnotherArray(array1, array2) {
         for (var i = 0; i < array1.length; i++) {
-            if (array1[i].equals(array2)) {
+            if (array1[i].circleClickedIn.equals(array2)) {
                 return true;
             }
         }
@@ -277,7 +328,6 @@ $(document).ready(function () {
             movableTextArray[i].x = ((i + 1) * regions) - middleOfRegion - middleOffSet;
             movableTextArray[i].height = 20;
         }
-
     }
 
     function drawStaticText() {
@@ -343,11 +393,18 @@ $(document).ready(function () {
             return;
         }
 
+        if (x > 0 && x < canvasWidth && y > 0 && y < 600) {
+            console.log("pushed!");
+            var clonedMovableTextArray = clone(movableTextArray);
+            var clonedClickedInArray = clone(clickedInArray);
+            undoStack.push(new GameState(clonedMovableTextArray, clonedClickedInArray));
+        }
+
         var hasBeenAlreadyClickedIn = false;
         var clickedInArrayLocation;
         if (clickedInArray.length > 0) {
             for (var i = 0; i < clickedInArray.length; i++) {
-                if (clickedInArray[i].equals(tempArray)) {
+                if (clickedInArray[i].circleClickedIn.equals(tempArray)) {
                     hasBeenAlreadyClickedIn = true;
                     clickedInArrayLocation = i;
                 }
@@ -356,7 +413,8 @@ $(document).ready(function () {
 
         if (hasBeenAlreadyClickedIn === false) {
             tempArray.sort();
-            clickedInArray.push(tempArray);
+            clickedInArray.push(new Click(tempArray, x, y))
+            // clickedInArray.push(tempArray);
             context1.fillStyle = "yellow";
             floodFill.fill(x, y, 100, context1, null, null, 90)
         } else {
@@ -365,7 +423,6 @@ $(document).ready(function () {
             floodFill.fill(x, y, 100, context1, null, null, 90)
 
         }
-        console.log(clickedInArray);
     }
 
     function whichCircleIsPremiseIn(rectangle) {
@@ -386,7 +443,6 @@ $(document).ready(function () {
     }
 
     function createCircles() {
-        console.log(circlesNeeded);
         if (circlesNeeded === 3) {
             circlesArray.push(new Circle((canvasWidth / 2), (canvasHeight / 2.4), (canvasWidth / 6)));
             circlesArray.push(new Circle((canvasWidth / 2.4), (canvasHeight / 1.71), (canvasWidth / 6)));
@@ -406,18 +462,18 @@ $(document).ready(function () {
         }
     }
 
-    function clone(obj) {
-        if (obj == null || typeof(obj) != 'object') {
-            return obj;
+
+    function clone(object) {
+        if (object == null || typeof(object) != 'object') {
+            return object;
         }
-        var temp = new obj.constructor();
-        for (var key in obj) {
-            temp[key] = clone(obj[key]);
+        var temp = new object.constructor();
+        for (var key in object) {
+            temp[key] = clone(object[key]);
         }
         return temp;
     }
 
-
-    main(1);
+    main(3);
 })
 ;
