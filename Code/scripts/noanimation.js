@@ -20,6 +20,8 @@ $(document).ready(function () {
     var minorPremise;
     var particularSyllogism;
     var particularSyllogismArray = [];
+    var correctXPlacement;
+    var levelNumber = 1;
 
 
     var GameState = function (movableTextArray, clickedInArray) {
@@ -202,6 +204,7 @@ $(document).ready(function () {
             majorPremise = level.majorPremise;
             minorPremise = level.minorPremise;
             particularSyllogism = level.particularSyllogism;
+            correctXPlacement = level.correctXPlacement;
         });
 
     }
@@ -231,9 +234,11 @@ $(document).ready(function () {
         var predicate = whichCircleIsPremiseIn(movableTextArray[1]);
         var subject = whichCircleIsPremiseIn(movableTextArray[2]);
         var particular;
-        if(movableTextArray.length < 3){
-            particular = whichCircleIsPremiseIn(movableTextArray[3]);
+        if(movableTextArray.length > 3){
+            particular = whichCircleIsPremiseInReturnsAllCircles(movableTextArray[3]);
         }
+
+
         var middleSubjectIntersection;
         var subjectPredicateIntersection;
         var middlePredicateIntersection;
@@ -255,11 +260,61 @@ $(document).ready(function () {
         blankSyllogism.subjectPredicateIntersection = arrayContainsAnotherArray(clickedInArray, subjectPredicateIntersection);
 
 
-        if (_.isEqual(blankSyllogism, correctSyllogism)) {
-            tearDown();
-            main(2);
+        var particularLocation;
+        if(particular){
+            if(particular.equals(middle)){
+                particularLocation = "middle";
+            }
+
+            if(particular.equals(predicate)){
+                particularLocation = "predicate";
+            }
+
+            if(particular.equals(subject)){
+                particularLocation = "subject";
+            }
+
+            if(particular.equals(middleSubjectIntersection)){
+                particularLocation = "middleSubjectIntersection";
+            }
+
+            if(particular.equals(subjectPredicateIntersection)){
+                particularLocation = "subjectPredicateIntersection";
+            }
+
+            if(particular.equals(middlePredicateIntersection)){
+                particularLocation = "middlePredicateIntersection";
+            }
+
+            if(particular.equals(middleSubjectPredicateIntersection)){
+                particularLocation = "middleSubjectPredicateIntersection";
+            }
+
+        }
+        console.log("TEST");
+        console.log(particularSyllogism);
+        if(particularSyllogism){
+            if (_.isEqual(blankSyllogism, correctSyllogism) && particularLocation === correctXPlacement) {
+                tearDown();
+                levelNumber++;
+                main(levelNumber);
+            }
+        }else{
+            if (_.isEqual(blankSyllogism, correctSyllogism)) {
+                tearDown();
+                levelNumber++;
+                main(levelNumber);
+            }
         }
 
+
+
+    }
+
+    function strcmp(a, b) {
+        if (a.toString() < b.toString()) return -1;
+        if (a.toString() > b.toString()) return 1;
+        return 0;
     }
 
     function checkIfAnyPropositionsAreMet() {
@@ -436,6 +491,23 @@ $(document).ready(function () {
             }
         }
         if (tempPremiseLocation.length === 1) {
+            return tempPremiseLocation;
+        } else {
+            return null;
+        }
+    }
+
+    function whichCircleIsPremiseInReturnsAllCircles(rectangle) {
+        var tempPremiseLocation = [];
+        for (var i = 0; i < circlesArray.length; i++) {
+            var dx = Math.max(circlesArray[i].x - rectangle.x, (rectangle.x + rectangle.width) - circlesArray[i].x);
+            var dy = Math.max(circlesArray[i].y - rectangle.y, (rectangle.y + rectangle.height) - circlesArray[i].y);
+            var inCircle = circlesArray[i].radius * circlesArray[i].radius >= dx * dx + dy * dy;
+            if (inCircle) {
+                tempPremiseLocation.push(i);
+            }
+        }
+        if (tempPremiseLocation.length) {
             return tempPremiseLocation;
         } else {
             return null;

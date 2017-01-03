@@ -92,17 +92,18 @@
   },
   "level3": {
     "correctSyllogism": {
-      "subject": true,
-      "middleSubjectIntersection": false,
-      "subjectPredicateIntersection": true,
-      "middlePredicateIntersection": true,
-      "middleSubjectPredicateIntersection": true,
+      "subject": false,
+      "middleSubjectIntersection": true,
+      "subjectPredicateIntersection": false,
+      "middlePredicateIntersection": false,
+      "middleSubjectPredicateIntersection": false,
       "predicate": false,
-      "middle": false
+      "middle": true
     },
+    "correctXPlacement": "middleSubjectPredicateIntersection",
     "majorPremise": {
-      "middlePredicateIntersection": true,
-      "middleSubjectPredicateIntersection": true
+      "middleIntersection": true,
+      "middleSubjectIntersection": true
     },
     "minorPremise": {
       "subject": true,
@@ -121,7 +122,7 @@
     "staticTextArray": [{
       "text": "All Rabbits Have Fur"
     }, {
-      "text": "Some Pet Rabbits Have Fur"
+      "text": "Some Pets Are Rabbits"
     }, {
       "text": "Some Pets Have Fur"
     }],
@@ -136,5 +137,53 @@
     }],
     "particularSyllogism" : true,
     "particularSyllogismLocation" : "middleSubjectPredicateIntersection"
+  },
+  "level4": {
+    "correctSyllogism": {
+      "subject": false,
+      "middleSubjectIntersection": true,
+      "subjectPredicateIntersection": false,
+      "middlePredicateIntersection": true,
+      "middleSubjectPredicateIntersection": true,
+      "predicate": false,
+      "middle": false
+    },
+    "correctXPlacement": "middleSubjectIntersection",
+    "majorPremise": {
+      "middleIntersection": true,
+      "middleSubjectIntersection": true
+    },
+    "minorPremise": {
+      "subject": true,
+      "subjectPredicateIntersection": true
+    },
+    "blankSyllogism": {
+      "subject": false,
+      "middleSubjectIntersection": false,
+      "subjectPredicateIntersection": false,
+      "middlePredicateIntersection": false,
+      "middleSubjectPredicateIntersection": false,
+      "predicate": false,
+      "middle": false
+    },
+    "circlesNeeded": 3,
+    "staticTextArray": [{
+      "text": "No homework is fun"
+    }, {
+      "text": "Some reading is not homework"
+    }, {
+      "text": "Some reading is not fun"
+    }],
+    "movableTextArray": [{
+      "text": "Home"
+    }, {
+      "text": "Fun"
+    }, {
+      "text": "Read"
+    },{
+      "text": "X"
+    }],
+    "particularSyllogism" : true,
+    "particularSyllogismLocation" : "middleSubjectIntersection"
   }
 }

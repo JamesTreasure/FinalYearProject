@@ -27,3 +27,10 @@ html, body {
     top: 5%;
     left: 30%;
 }
+
+#redoButton {
+    position:absolute;
+    transition: .5s ease;
+    top: 5%;
+    left: 33%;
+}
