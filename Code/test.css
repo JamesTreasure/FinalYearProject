@@ -24,13 +24,26 @@ html, body {
 #undoButton {
     position:absolute;
     transition: .5s ease;
-    top: 5%;
-    left: 30%;
+    top: 1%;
+    left: 1%;
+    width: 64px;
+    height:64px;
 }
 
 #redoButton {
     position:absolute;
     transition: .5s ease;
-    top: 5%;
-    left: 33%;
+    top: 1%;
+    left: 13%;
+    width: 64px;
+    height:64px;
+}
+
+#refreshButton {
+    position:absolute;
+    transition: .5s ease;
+    top: 1%;
+    left: 25%;
+    width: 56px;
+    height:56px;
 }

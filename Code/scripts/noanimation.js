@@ -19,10 +19,8 @@ $(document).ready(function () {
     var majorPremise;
     var minorPremise;
     var particularSyllogism;
-    var particularSyllogismArray = [];
     var correctXPlacement;
     var levelNumber = 1;
-
 
     var GameState = function (movableTextArray, clickedInArray) {
         this.movableTextArray = movableTextArray;
@@ -99,6 +97,11 @@ $(document).ready(function () {
 
     $("#redoButton").click(function () {
         redo();
+    });
+
+    $("#refreshButton").click(function () {
+        tearDown();
+        main(levelNumber);
     });
 
     function undo() {
@@ -178,7 +181,6 @@ $(document).ready(function () {
     }
 
     function main(level) {
-
         setupLevel(level);
         context1.fillStyle = "white";
         context1.fillRect(0, 0, layer1.width, layer1.height);
@@ -206,7 +208,6 @@ $(document).ready(function () {
             particularSyllogism = level.particularSyllogism;
             correctXPlacement = level.correctXPlacement;
         });
-
     }
 
     function tearDown() {
@@ -289,10 +290,8 @@ $(document).ready(function () {
             if(particular.equals(middleSubjectPredicateIntersection)){
                 particularLocation = "middleSubjectPredicateIntersection";
             }
-
         }
-        console.log("TEST");
-        console.log(particularSyllogism);
+
         if(particularSyllogism){
             if (_.isEqual(blankSyllogism, correctSyllogism) && particularLocation === correctXPlacement) {
                 tearDown();
@@ -306,15 +305,6 @@ $(document).ready(function () {
                 main(levelNumber);
             }
         }
-
-
-
-    }
-
-    function strcmp(a, b) {
-        if (a.toString() < b.toString()) return -1;
-        if (a.toString() > b.toString()) return 1;
-        return 0;
     }
 
     function checkIfAnyPropositionsAreMet() {
@@ -515,6 +505,10 @@ $(document).ready(function () {
     }
 
     function createCircles() {
+        if(circlesNeeded == 2){
+            circlesArray.push(new Circle((canvasWidth / 1.7), (canvasHeight / 2), (canvasWidth / 6)));
+            circlesArray.push(new Circle((canvasWidth / 2.3), (canvasHeight / 2), (canvasWidth / 6)));
+        }
         if (circlesNeeded === 3) {
             circlesArray.push(new Circle((canvasWidth / 2), (canvasHeight / 2.4), (canvasWidth / 6)));
             circlesArray.push(new Circle((canvasWidth / 2.4), (canvasHeight / 1.71), (canvasWidth / 6)));
@@ -534,7 +528,6 @@ $(document).ready(function () {
         }
     }
 
-
     function clone(object) {
         if (object == null || typeof(object) != 'object') {
             return object;
@@ -546,6 +539,6 @@ $(document).ready(function () {
         return temp;
     }
 
-    main(3);
+    main(1);
 })
 ;
