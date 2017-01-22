@@ -21,6 +21,7 @@ $(document).ready(function () {
     var particularSyllogism;
     var correctXPlacement;
     var levelNumber = 1;
+    var type;
 
     var GameState = function (movableTextArray, clickedInArray) {
         this.movableTextArray = movableTextArray;
@@ -136,6 +137,25 @@ $(document).ready(function () {
         }
     }
 
+    function main(level) {
+        setupLevel(level);
+        context1.fillStyle = "white";
+        context1.fillRect(0, 0, layer1.width, layer1.height);
+        if(type === "venn"){
+            setupMovableText();
+            createCircles();
+            drawCircles();
+            drawMovableText();
+        }
+        if(type === "syllogism"){
+            setupMovableText();
+            drawStaticText();
+            drawMovableText();
+            createCircles();
+            drawCircles();
+        }
+    }
+
     function undoRedoRepaintCheck(before, after) {
         if (before.length > after.length) {
             var index;
@@ -180,17 +200,6 @@ $(document).ready(function () {
         }
     }
 
-    function main(level) {
-        setupLevel(level);
-        context1.fillStyle = "white";
-        context1.fillRect(0, 0, layer1.width, layer1.height);
-        setupMovableText();
-        drawStaticText();
-        drawMovableText();
-        createCircles();
-        drawCircles();
-    }
-
     function setupLevel(levelNumber) {
         $.ajaxSetup({
             async: false
@@ -198,6 +207,7 @@ $(document).ready(function () {
 
         $.getJSON("settings.json", function (json) {
             var level = json["level" + levelNumber];
+            type = level.type;
             circlesNeeded = level.circlesNeeded;
             staticTextArray = level.staticTextArray;
             movableTextArray = level.movableTextArray;

@@ -1,6 +1,7 @@
 {
   "globalSettings": [],
   "level1": {
+    "type": "venn",
     "correctSyllogism": {
       "subject": true,
       "middleSubjectIntersection": true,
@@ -38,6 +39,65 @@
       "text": "All Greeks Are Mortal"
     }],
     "movableTextArray": [{
+      "text": "2"
+    }, {
+      "text": "5"
+    }, {
+      "text": "10"
+    }, {
+      "text": "6"
+    }, {
+      "text": "15"
+    }, {
+      "text": "12"
+    }, {
+      "text": "14"
+    }, {
+      "text": "20"
+    }, {
+      "text": "25"
+    }],
+    "particularSyllogism" : false
+  },
+  "level2": {
+    "type" : "syllogism",
+    "correctSyllogism": {
+      "subject": true,
+      "middleSubjectIntersection": true,
+      "subjectPredicateIntersection": true,
+      "middlePredicateIntersection": false,
+      "middleSubjectPredicateIntersection": false,
+      "predicate": false,
+      "middle": true
+    },
+    "majorPremise": {
+      "middle": true,
+      "middleSubjectIntersection": true,
+      "middleSubjectPredicateIntersection": false,
+      "middlePredicateIntersection": false
+    },
+    "minorPremise": {
+      "subject": true,
+      "subjectPredicateIntersection": true
+    },
+    "blankSyllogism": {
+      "subject": false,
+      "middleSubjectIntersection": false,
+      "subjectPredicateIntersection": false,
+      "middlePredicateIntersection": false,
+      "middleSubjectPredicateIntersection": false,
+      "predicate": false,
+      "middle": false
+    },
+    "circlesNeeded": 3,
+    "staticTextArray": [{
+      "text": "All Men Are Mortal"
+    }, {
+      "text": "All Greeks Are Men"
+    }, {
+      "text": "All Greeks Are Mortal"
+    }],
+    "movableTextArray": [{
       "text": "Men"
     }, {
       "text": "Mortal"
@@ -46,7 +106,7 @@
     }],
     "particularSyllogism" : false
   },
-  "level2": {
+  "level3": {
     "correctSyllogism": {
       "subject": true,
       "middleSubjectIntersection": false,
@@ -90,7 +150,7 @@
     }],
     "particularSyllogism" : false
   },
-  "level3": {
+  "level4": {
     "correctSyllogism": {
       "subject": false,
       "middleSubjectIntersection": true,
@@ -138,7 +198,7 @@
     "particularSyllogism" : true,
     "particularSyllogismLocation" : "middleSubjectPredicateIntersection"
   },
-  "level4": {
+  "level5": {
     "correctSyllogism": {
       "subject": false,
       "middleSubjectIntersection": true,
