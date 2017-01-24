@@ -21,6 +21,9 @@ $(document).ready(function () {
     var particularSyllogism;
     var correctXPlacement;
     var levelNumber = 1;
+    var circle1;
+    var circle2;
+    var intersection;
     var type;
 
     var GameState = function (movableTextArray, clickedInArray) {
@@ -67,9 +70,14 @@ $(document).ready(function () {
             drag = true;
         }
         if (!moveText) {
-            whichCircleClickedIn(pos.x, pos.y);
-            checkIfSyllogismIsMet();
-            checkIfAnyPropositionsAreMet();
+            if(type === "syllogism"){
+                whichCircleClickedIn(pos.x, pos.y);
+                checkIfSyllogismIsMet();
+                checkIfAnyPropositionsAreMet();
+            }
+            if(type === "venn"){
+                checkIfVennDiagramIsCorrect();
+            }
         }
     });
 
@@ -79,8 +87,13 @@ $(document).ready(function () {
             if (drag) {
                 movableTextArray[dragId].x = pos.x - dragOffsetX;
                 movableTextArray[dragId].y = pos.y - dragOffsetY;
-                checkIfSyllogismIsMet();
-                checkIfAnyPropositionsAreMet();
+                if(type === "venn"){
+                    checkIfVennDiagramIsCorrect();
+                }
+                if(type === "syllogism"){
+                    checkIfSyllogismIsMet();
+                    checkIfAnyPropositionsAreMet();
+                }
                 requestAnimationFrame(animate);
             }
         }
@@ -104,6 +117,30 @@ $(document).ready(function () {
         tearDown();
         main(levelNumber);
     });
+
+    function checkIfVennDiagramIsCorrect(){
+        var tempCircle1 = [];
+        var tempCircle2 = [];
+        var tempIntersection = [];
+        for (var i = 0; i < movableTextArray.length; i++) {
+            var tempArray = whichCircleIsPremiseInReturnsAllCircles(movableTextArray[i]);
+            if(tempArray){
+                if(tempArray[0] === 0 && tempArray.length === 1){
+                    tempCircle1.push(parseInt(movableTextArray[i].text));
+                }
+                if(tempArray[0] === 1 && tempArray.length === 1){
+                    tempCircle2.push(parseInt(movableTextArray[i].text));
+                }
+                if(tempArray.length === 2){
+                    tempIntersection.push(parseInt(movableTextArray[i].text));
+                }
+            }
+        }
+
+        if(tempCircle1.equals(circle1) && tempCircle2.equals(circle2) && tempIntersection.equals(intersection)){
+            console.log("Bloody met it lads");
+        }
+    }
 
     function undo() {
         var clickedInArrayBeforePop = clone(clickedInArray);
@@ -146,6 +183,7 @@ $(document).ready(function () {
             createCircles();
             drawCircles();
             drawMovableText();
+            drawStaticTextForVennDiagram();
         }
         if(type === "syllogism"){
             setupMovableText();
@@ -217,6 +255,9 @@ $(document).ready(function () {
             minorPremise = level.minorPremise;
             particularSyllogism = level.particularSyllogism;
             correctXPlacement = level.correctXPlacement;
+            circle1 = level.circle1;
+            circle2 = level.circle2;
+            intersection = level.intersection;
         });
     }
 
@@ -229,7 +270,12 @@ $(document).ready(function () {
     }
 
     function redrawLayer1() {
-        drawStaticText();
+        if(type === "syllogism"){
+            drawStaticText();
+        }
+        if(type === "venn"){
+            drawStaticTextForVennDiagram();
+        }
     }
 
     function clearStaticText() {
@@ -405,6 +451,25 @@ $(document).ready(function () {
         }
     }
 
+    function drawStaticTextForVennDiagram(){
+        for (var i = 0; i < staticTextArray.length; i++) {
+            context1.font = font;
+            context1.fillStyle = "#003300";
+            staticTextArray[i].width = (context1.measureText(staticTextArray[i].text).width);
+            // staticTextArray[i].x = ((layer1.width / 2) - (staticTextArray[i].width / 2));
+            if(i === 0){
+                staticTextArray[i].x = (layer1.width / 2) - staticTextArray[i].width - (layer1.width/25);
+            }
+            if(i === 1){
+                staticTextArray[i].x = (layer1.width / 2) + (layer1.width/25);;
+            }
+            staticTextArray[i].y = (canvasHeight / 2) - (canvasHeight/5);
+            staticTextArray[i].height = fontHeight;
+            context1.fillText(staticTextArray[i].text, staticTextArray[i].x, staticTextArray[i].y);
+        }
+
+    }
+
     function drawMovableText() {
         context2.clearRect(0, 0, layer1.width, layer2.height)
         for (var i = 0; i < movableTextArray.length; i++) {
@@ -480,11 +545,11 @@ $(document).ready(function () {
         }
     }
 
-    function whichCircleIsPremiseIn(rectangle) {
+    function whichCircleIsPremiseIn(premise) {
         var tempPremiseLocation = [];
         for (var i = 0; i < circlesArray.length; i++) {
-            var dx = Math.max(circlesArray[i].x - rectangle.x, (rectangle.x + rectangle.width) - circlesArray[i].x);
-            var dy = Math.max(circlesArray[i].y - rectangle.y, (rectangle.y + rectangle.height) - circlesArray[i].y);
+            var dx = Math.max(circlesArray[i].x - premise.x, (premise.x + premise.width) - circlesArray[i].x);
+            var dy = Math.max(circlesArray[i].y - premise.y, (premise.y + premise.height) - circlesArray[i].y);
             var inCircle = circlesArray[i].radius * circlesArray[i].radius >= dx * dx + dy * dy;
             if (inCircle) {
                 tempPremiseLocation.push(i);
@@ -516,8 +581,8 @@ $(document).ready(function () {
 
     function createCircles() {
         if(circlesNeeded == 2){
-            circlesArray.push(new Circle((canvasWidth / 1.7), (canvasHeight / 2), (canvasWidth / 6)));
-            circlesArray.push(new Circle((canvasWidth / 2.3), (canvasHeight / 2), (canvasWidth / 6)));
+            circlesArray.push(new Circle((canvasWidth / 2.4), (canvasHeight / 2), (canvasWidth / 6)));
+            circlesArray.push(new Circle((canvasWidth / 1.6), (canvasHeight / 2), (canvasWidth / 6)));
         }
         if (circlesNeeded === 3) {
             circlesArray.push(new Circle((canvasWidth / 2), (canvasHeight / 2.4), (canvasWidth / 6)));

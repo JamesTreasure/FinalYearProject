@@ -30,14 +30,16 @@
       "predicate": false,
       "middle": false
     },
+    "particularSyllogism" : false,
     "circlesNeeded": 2,
     "staticTextArray": [{
-      "text": "All Men Are Mortal"
+      "text": "Even Numbers"
     }, {
-      "text": "All Greeks Are Men"
-    }, {
-      "text": "All Greeks Are Mortal"
+      "text": "Multiples of 5"
     }],
+    "circle1" :[2,6,12,14],
+    "circle2" :[5,15,25],
+    "intersection" : [10,20],
     "movableTextArray": [{
       "text": "2"
     }, {
@@ -56,8 +58,7 @@
       "text": "20"
     }, {
       "text": "25"
-    }],
-    "particularSyllogism" : false
+    }]
   },
   "level2": {
     "type" : "syllogism",
@@ -107,6 +108,7 @@
     "particularSyllogism" : false
   },
   "level3": {
+    "type" : "syllogism",
     "correctSyllogism": {
       "subject": true,
       "middleSubjectIntersection": false,
@@ -151,6 +153,7 @@
     "particularSyllogism" : false
   },
   "level4": {
+    "type" : "syllogism",
     "correctSyllogism": {
       "subject": false,
       "middleSubjectIntersection": true,
@@ -199,6 +202,7 @@
     "particularSyllogismLocation" : "middleSubjectPredicateIntersection"
   },
   "level5": {
+    "type" : "syllogism",
     "correctSyllogism": {
       "subject": false,
       "middleSubjectIntersection": true,
