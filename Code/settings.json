@@ -2,6 +2,7 @@
   "globalSettings": [],
   "level1": {
     "type": "venn",
+    "levelNumber": 1,
     "correctSyllogism": {
       "subject": true,
       "middleSubjectIntersection": true,
@@ -37,31 +38,20 @@
     }, {
       "text": "Multiples of 5"
     }],
-    "circle1" :[2,6,12,14],
-    "circle2" :[5,15,25],
-    "intersection" : [10,20],
+    "circle1" :[2],
+    "circle2" :[5],
+    "intersection" : [10],
     "movableTextArray": [{
       "text": "2"
     }, {
       "text": "5"
     }, {
       "text": "10"
-    }, {
-      "text": "6"
-    }, {
-      "text": "15"
-    }, {
-      "text": "12"
-    }, {
-      "text": "14"
-    }, {
-      "text": "20"
-    }, {
-      "text": "25"
     }]
   },
   "level2": {
     "type" : "syllogism",
+    "levelNumber": 2,
     "correctSyllogism": {
       "subject": true,
       "middleSubjectIntersection": true,
@@ -109,6 +99,7 @@
   },
   "level3": {
     "type" : "syllogism",
+    "levelNumber": 3,
     "correctSyllogism": {
       "subject": true,
       "middleSubjectIntersection": false,

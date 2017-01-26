@@ -1,8 +1,10 @@
 $(document).ready(function () {
     var layer1 = document.getElementById('layer1');
     var layer2 = document.getElementById('layer2');
+    var layer3 = document.getElementById('layer3');
     var context1 = layer1.getContext('2d');
     var context2 = layer2.getContext('2d');
+    var context3 = layer3.getContext('2d');
     var canvasWidth = layer1.width;
     var canvasHeight = layer1.height;
     var dragId;
@@ -13,18 +15,10 @@ $(document).ready(function () {
     var fontHeight = 20;
     var majorPremiseMet;
     var minorPremiseMet;
-    var circlesNeeded;
-    var correctSyllogism;
-    var blankSyllogism;
-    var majorPremise;
-    var minorPremise;
-    var particularSyllogism;
-    var correctXPlacement;
-    var levelNumber = 1;
-    var circle1;
-    var circle2;
-    var intersection;
-    var type;
+    var levelNumber = 2;
+    var level;
+    var levelComplete = false;
+    var fadedAlphaLevel = 0.3;
 
     var GameState = function (movableTextArray, clickedInArray) {
         this.movableTextArray = movableTextArray;
@@ -44,62 +38,62 @@ $(document).ready(function () {
     var circlesArray = [];
     var undoStack = [];
     var redoStack = [];
-    var staticTextArray = [];
-    var movableTextArray = [];
     var clickedInArray = [];
     var moveText;
 
     $(window).mousedown(function (e) {
         var pos = getMousePos(layer1, e);
         var pos = getMousePos(layer1, e);
-
-        var clickedOn = textClickedOn(pos.x, pos.y);
-        if (clickedOn >= 0) {
-            if (pos.x > 0 && pos.x < canvasWidth && pos.y > 0 && pos.y < 600) {
-                console.log("pushed!");
-                var clonedMovableTextArray = clone(movableTextArray);
-                var clonedClickedInArray = clone(clickedInArray);
-                undoStack.push(new GameState(clonedMovableTextArray, clonedClickedInArray));
+        if (!levelComplete) {
+            var clickedOn = textClickedOn(pos.x, pos.y);
+            if (clickedOn >= 0) {
+                if (pos.x > 0 && pos.x < canvasWidth && pos.y > 0 && pos.y < 600) {
+                    console.log("pushed!");
+                    var clonedMovableTextArray = clone(movableTextArray);
+                    var clonedClickedInArray = clone(clickedInArray);
+                    undoStack.push(new GameState(clonedMovableTextArray, clonedClickedInArray));
+                }
+                moveText = true;
+                var textX = level.movableTextArray[clickedOn].x;
+                var textY = level.movableTextArray[clickedOn].y;
+                dragId = clickedOn;
+                dragOffsetX = pos.x - textX;
+                dragOffsetY = pos.y - textY;
+                drag = true;
             }
-            moveText = true;
-            var textX = movableTextArray[clickedOn].x;
-            var textY = movableTextArray[clickedOn].y;
-            dragId = clickedOn;
-            dragOffsetX = pos.x - textX;
-            dragOffsetY = pos.y - textY;
-            drag = true;
-        }
-        if (!moveText) {
-            if(type === "syllogism"){
-                whichCircleClickedIn(pos.x, pos.y);
-                checkIfSyllogismIsMet();
-                checkIfAnyPropositionsAreMet();
-            }
-            if(type === "venn"){
-                checkIfVennDiagramIsCorrect();
+            if (!moveText) {
+                if (level.type === "syllogism") {
+                    whichCircleClickedIn(pos.x, pos.y);
+                    checkIfSyllogismIsMet();
+                    checkIfAnyPropositionsAreMet();
+                }
+                if (level.type === "venn") {
+                    checkIfVennDiagramIsCorrect();
+                }
             }
         }
     });
 
     $(window).mousemove(function (e) {
         var pos = getMousePos(layer1, e);
+        checkButtons();
         if (moveText) {
             if (drag) {
-                movableTextArray[dragId].x = pos.x - dragOffsetX;
-                movableTextArray[dragId].y = pos.y - dragOffsetY;
-                if(type === "venn"){
-                    checkIfVennDiagramIsCorrect();
-                }
-                if(type === "syllogism"){
-                    checkIfSyllogismIsMet();
-                    checkIfAnyPropositionsAreMet();
-                }
+                level.movableTextArray[dragId].x = pos.x - dragOffsetX;
+                level.movableTextArray[dragId].y = pos.y - dragOffsetY;
                 requestAnimationFrame(animate);
             }
         }
     });
 
     $(window).mouseup(function (e) {
+        if (level.type === "venn") {
+            checkIfVennDiagramIsCorrect();
+        }
+        if (level.type === "syllogism") {
+            checkIfSyllogismIsMet();
+            checkIfAnyPropositionsAreMet();
+        }
         drag = false;
         moveText = false;
         dragId = -1;
@@ -107,52 +101,114 @@ $(document).ready(function () {
 
     $("#undoButton").click(function () {
         undo();
+        if (level.type === "venn"){
+            checkIfVennDiagramIsCorrect();
+        }
     });
 
     $("#redoButton").click(function () {
         redo();
+        if (level.type === "venn"){
+            checkIfVennDiagramIsCorrect();
+        }
     });
 
     $("#refreshButton").click(function () {
         tearDown();
-        main(levelNumber);
+        setupLevel(level.levelNumber);
+        main(level.levelNumber);
     });
 
-    function checkIfVennDiagramIsCorrect(){
+    $("#nextLevelButton").click(function () {
+        tearDown();
+        var currentLevel = level.levelNumber;
+        var nextLevel = currentLevel + 1;
+        setupLevel(nextLevel);
+        main(nextLevel);
+        $("#nextLevelButton").invisible();
+    });
+
+    function checkButtons(){
+        if(undoStack.length < 1){
+            $('#undoButton').prop('disabled', true);
+            $("#undoButton").css('opacity', '0.3');
+        }else{
+            $('#undoButton').prop('disabled', false);
+            $("#undoButton").css('opacity', '1');
+        }
+        if(redoStack.length < 1){
+            $('#redoButton').prop('disabled', true);
+            $("#redoButton").css('opacity', '0.3');
+        }else{
+            $('#redoButton').prop('disabled', false);
+            $("#redoButton").css('opacity', '1');
+        }
+    }
+
+    function levelCompleteScreen() {
+        context1.clearRect(0, 0, canvasWidth, canvasHeight);
+        drawCircles();
+        drawStaticTextForVennDiagram();
+        drawMovableText();
+        var width = document.getElementById('nextLevelButton').offsetWidth;
+        var x = canvasWidth/2 - (width/2);
+        $("#nextLevelButton").css({left: x});
+        $("#nextLevelButton").visible();
+        context3.font = font;
+        var text = "Level complete!"
+        var textWidth = (context3.measureText(text).width);
+        context3.fillText(text, ((canvasWidth / 2) - (textWidth / 2)), canvasHeight / 2);
+    }
+
+    function checkIfVennDiagramIsCorrect() {
+        console.log("Checkinggg!");
         var tempCircle1 = [];
         var tempCircle2 = [];
         var tempIntersection = [];
-        for (var i = 0; i < movableTextArray.length; i++) {
-            var tempArray = whichCircleIsPremiseInReturnsAllCircles(movableTextArray[i]);
-            if(tempArray){
-                if(tempArray[0] === 0 && tempArray.length === 1){
-                    tempCircle1.push(parseInt(movableTextArray[i].text));
+        for (var i = 0; i < level.movableTextArray.length; i++) {
+            var tempArray = whichCircleIsPremiseInReturnsAllCircles(level.movableTextArray[i]);
+            if (tempArray) {
+                if (tempArray[0] === 0 && tempArray.length === 1) {
+                    tempCircle1.push(parseInt(level.movableTextArray[i].text));
                 }
-                if(tempArray[0] === 1 && tempArray.length === 1){
-                    tempCircle2.push(parseInt(movableTextArray[i].text));
+                if (tempArray[0] === 1 && tempArray.length === 1) {
+                    tempCircle2.push(parseInt(level.movableTextArray[i].text));
                 }
-                if(tempArray.length === 2){
-                    tempIntersection.push(parseInt(movableTextArray[i].text));
+                if (tempArray.length === 2) {
+                    tempIntersection.push(parseInt(level.movableTextArray[i].text));
                 }
             }
         }
 
-        if(tempCircle1.equals(circle1) && tempCircle2.equals(circle2) && tempIntersection.equals(intersection)){
-            console.log("Bloody met it lads");
+
+        if (tempCircle1.equals(level.circle1) && tempCircle2.equals(level.circle2) && tempIntersection.equals(level.intersection)) {
+            if (!levelComplete) {
+                levelComplete = true;
+                levelCompleteScreen();
+            }
+            // tearDown();
+            // levelNumber++;
+            // main(levelNumber);
         }
     }
 
     function undo() {
         var clickedInArrayBeforePop = clone(clickedInArray);
+        if(levelComplete){
+            levelComplete = false;
+            context1.clearRect(0, 0, canvasWidth, canvasHeight);
+            drawCircles();
+            context3.clearRect(0, 0, canvasWidth, canvasHeight);
+        }
         if (undoStack.length > 0) {
-            redoStack.push(new GameState(movableTextArray, clickedInArray));
+            redoStack.push(new GameState(level.movableTextArray, clickedInArray));
             var previousGameState = undoStack.pop();
-            movableTextArray = previousGameState.movableTextArray;
+            level.movableTextArray = previousGameState.movableTextArray;
             clickedInArray = previousGameState.clickedInArray;
             if (clickedInArray.length != clickedInArrayBeforePop.length) {
                 undoRedoRepaintCheck(clickedInArrayBeforePop, clickedInArray);
             }
-            drawMovableText();
+            drawMovableText(false);
             checkIfSyllogismIsMet();
             checkIfAnyPropositionsAreMet();
         }
@@ -161,36 +217,37 @@ $(document).ready(function () {
     function redo() {
         var clickedInArrayBeforePop = clone(clickedInArray);
         if (redoStack.length > 0) {
-            undoStack.push(new GameState(movableTextArray, clickedInArray));
+            undoStack.push(new GameState(level.movableTextArray, clickedInArray));
             var redoGameState = redoStack.pop();
-            movableTextArray = redoGameState.movableTextArray;
+            level.movableTextArray = redoGameState.movableTextArray;
             clickedInArray = redoGameState.clickedInArray;
             if (clickedInArray.length != clickedInArrayBeforePop.length) {
                 undoRedoRepaintCheck(clickedInArrayBeforePop, clickedInArray);
             }
-            drawMovableText();
+            drawMovableText(false);
             checkIfSyllogismIsMet();
             checkIfAnyPropositionsAreMet();
         }
     }
 
-    function main(level) {
-        setupLevel(level);
+    function main(levelNumber) {
+        setupLevel(levelNumber);
         context1.fillStyle = "white";
         context1.fillRect(0, 0, layer1.width, layer1.height);
-        if(type === "venn"){
+        console.log(level);
+        if (level.type === "venn") {
             setupMovableText();
             createCircles();
-            drawCircles();
+            drawCircles(false);
             drawMovableText();
-            drawStaticTextForVennDiagram();
+            drawStaticTextForVennDiagram(false);
         }
-        if(type === "syllogism"){
+        if (level.type === "syllogism") {
             setupMovableText();
-            drawStaticText();
+            drawStaticText(false);
             drawMovableText();
             createCircles();
-            drawCircles();
+            drawCircles(false);
         }
     }
 
@@ -244,55 +301,44 @@ $(document).ready(function () {
         });
 
         $.getJSON("settings.json", function (json) {
-            var level = json["level" + levelNumber];
-            type = level.type;
-            circlesNeeded = level.circlesNeeded;
-            staticTextArray = level.staticTextArray;
+            level = json["level" + levelNumber];
             movableTextArray = level.movableTextArray;
-            correctSyllogism = level.correctSyllogism;
-            blankSyllogism = level.blankSyllogism;
-            majorPremise = level.majorPremise;
-            minorPremise = level.minorPremise;
-            particularSyllogism = level.particularSyllogism;
-            correctXPlacement = level.correctXPlacement;
-            circle1 = level.circle1;
-            circle2 = level.circle2;
-            intersection = level.intersection;
         });
     }
 
     function tearDown() {
+        levelComplete = false;
         context1.clearRect(0, 0, canvasWidth, canvasHeight);
-        movableTextArray = [];
-        staticTextArray = [];
+        context2.clearRect(0, 0, canvasWidth, canvasHeight);
+        context3.clearRect(0, 0, canvasWidth, canvasHeight);
         circlesArray = [];
         clickedInArray = [];
     }
 
     function redrawLayer1() {
-        if(type === "syllogism"){
-            drawStaticText();
+        if (level.type === "syllogism") {
+            drawStaticText(false);
         }
-        if(type === "venn"){
-            drawStaticTextForVennDiagram();
+        if (level.type === "venn") {
+            drawStaticTextForVennDiagram(false);
         }
     }
 
     function clearStaticText() {
-        for (var i = 0; i < staticTextArray.length; i++) {
-            context1.clearRect(staticTextArray[i].x, staticTextArray[i].y - staticTextArray[i].height,
-                staticTextArray[i].width, staticTextArray[i].height + (canvasHeight / 40));
+        for (var i = 0; i < level.staticTextArray.length; i++) {
+            context1.clearRect(level.staticTextArray[i].x, level.staticTextArray[i].y - level.staticTextArray[i].height,
+                level.staticTextArray[i].width, level.staticTextArray[i].height + (canvasHeight / 40));
         }
     }
 
     function checkIfSyllogismIsMet() {
         //all of these are arrays
-        var middle = whichCircleIsPremiseIn(movableTextArray[0]);
-        var predicate = whichCircleIsPremiseIn(movableTextArray[1]);
-        var subject = whichCircleIsPremiseIn(movableTextArray[2]);
+        var middle = whichCircleIsPremiseIn(level.movableTextArray[0]);
+        var predicate = whichCircleIsPremiseIn(level.movableTextArray[1]);
+        var subject = whichCircleIsPremiseIn(level.movableTextArray[2]);
         var particular;
-        if(movableTextArray.length > 3){
-            particular = whichCircleIsPremiseInReturnsAllCircles(movableTextArray[3]);
+        if (level.movableTextArray.length > 3) {
+            particular = whichCircleIsPremiseInReturnsAllCircles(level.movableTextArray[3]);
         }
 
 
@@ -308,54 +354,54 @@ $(document).ready(function () {
             middleSubjectPredicateIntersection = [middle[0], subject[0], predicate[0]].sort();
         }
 
-        blankSyllogism.subject = arrayContainsAnotherArray(clickedInArray, subject);
-        blankSyllogism.middle = arrayContainsAnotherArray(clickedInArray, middle);
-        blankSyllogism.predicate = arrayContainsAnotherArray(clickedInArray, predicate);
-        blankSyllogism.middleSubjectIntersection = arrayContainsAnotherArray(clickedInArray, middleSubjectIntersection);
-        blankSyllogism.middlePredicateIntersection = arrayContainsAnotherArray(clickedInArray, middlePredicateIntersection);
-        blankSyllogism.middleSubjectPredicateIntersection = arrayContainsAnotherArray(clickedInArray, middleSubjectPredicateIntersection);
-        blankSyllogism.subjectPredicateIntersection = arrayContainsAnotherArray(clickedInArray, subjectPredicateIntersection);
+        level.blankSyllogism.subject = arrayContainsAnotherArray(clickedInArray, subject);
+        level.blankSyllogism.middle = arrayContainsAnotherArray(clickedInArray, middle);
+        level.blankSyllogism.predicate = arrayContainsAnotherArray(clickedInArray, predicate);
+        level.blankSyllogism.middleSubjectIntersection = arrayContainsAnotherArray(clickedInArray, middleSubjectIntersection);
+        level.blankSyllogism.middlePredicateIntersection = arrayContainsAnotherArray(clickedInArray, middlePredicateIntersection);
+        level.blankSyllogism.middleSubjectPredicateIntersection = arrayContainsAnotherArray(clickedInArray, middleSubjectPredicateIntersection);
+        level.blankSyllogism.subjectPredicateIntersection = arrayContainsAnotherArray(clickedInArray, subjectPredicateIntersection);
 
 
         var particularLocation;
-        if(particular){
-            if(particular.equals(middle)){
+        if (particular) {
+            if (particular.equals(middle)) {
                 particularLocation = "middle";
             }
 
-            if(particular.equals(predicate)){
+            if (particular.equals(predicate)) {
                 particularLocation = "predicate";
             }
 
-            if(particular.equals(subject)){
+            if (particular.equals(subject)) {
                 particularLocation = "subject";
             }
 
-            if(particular.equals(middleSubjectIntersection)){
+            if (particular.equals(middleSubjectIntersection)) {
                 particularLocation = "middleSubjectIntersection";
             }
 
-            if(particular.equals(subjectPredicateIntersection)){
+            if (particular.equals(subjectPredicateIntersection)) {
                 particularLocation = "subjectPredicateIntersection";
             }
 
-            if(particular.equals(middlePredicateIntersection)){
+            if (particular.equals(middlePredicateIntersection)) {
                 particularLocation = "middlePredicateIntersection";
             }
 
-            if(particular.equals(middleSubjectPredicateIntersection)){
+            if (particular.equals(middleSubjectPredicateIntersection)) {
                 particularLocation = "middleSubjectPredicateIntersection";
             }
         }
 
-        if(particularSyllogism){
-            if (_.isEqual(blankSyllogism, correctSyllogism) && particularLocation === correctXPlacement) {
+        if (level.particularSyllogism) {
+            if (_.isEqual(level.blankSyllogism, level.correctSyllogism) && particularLocation === level.correctXPlacement) {
                 tearDown();
                 levelNumber++;
                 main(levelNumber);
             }
-        }else{
-            if (_.isEqual(blankSyllogism, correctSyllogism)) {
+        } else {
+            if (_.isEqual(level.blankSyllogism, level.correctSyllogism)) {
                 tearDown();
                 levelNumber++;
                 main(levelNumber);
@@ -364,9 +410,9 @@ $(document).ready(function () {
     }
 
     function checkIfAnyPropositionsAreMet() {
-        for (var key in majorPremise) {
-            var valueInMajorPremise = majorPremise[key];
-            var valueInBlankSyllogism = blankSyllogism[key];
+        for (var key in level.majorPremise) {
+            var valueInMajorPremise = level.majorPremise[key];
+            var valueInBlankSyllogism = level.blankSyllogism[key];
             majorPremiseMet = valueInBlankSyllogism === valueInMajorPremise;
             if (!majorPremiseMet) {
                 clearStaticText();
@@ -380,9 +426,9 @@ $(document).ready(function () {
         }
 
 
-        for (var key in minorPremise) {
-            var valueInMinorPremise = minorPremise[key];
-            var valueInBlankSyllogism = blankSyllogism[key];
+        for (var key in level.minorPremise) {
+            var valueInMinorPremise = level.minorPremise[key];
+            var valueInBlankSyllogism = level.blankSyllogism[key];
             minorPremiseMet = valueInBlankSyllogism === valueInMinorPremise;
             if (!minorPremiseMet) {
                 clearStaticText();
@@ -420,19 +466,22 @@ $(document).ready(function () {
     function setupMovableText() {
         context2.fillStyle = "#003300";
         context2.font = font;
-        for (var i = 0; i < movableTextArray.length; i++) {
-            movableTextArray[i].width = context2.measureText(movableTextArray[i].text).width;
-            movableTextArray[i].y = (canvasHeight / 1.09);
-            var regions = canvasWidth / movableTextArray.length;
+        for (var i = 0; i < level.movableTextArray.length; i++) {
+            level.movableTextArray[i].width = context2.measureText(level.movableTextArray[i].text).width;
+            level.movableTextArray[i].y = (canvasHeight / 1.09);
+            var regions = canvasWidth / level.movableTextArray.length;
             var middleOfRegion = regions / 2;
-            var middleOffSet = movableTextArray[i].width / 2;
-            movableTextArray[i].x = ((i + 1) * regions) - middleOfRegion - middleOffSet;
-            movableTextArray[i].height = 20;
+            var middleOffSet = level.movableTextArray[i].width / 2;
+            level.movableTextArray[i].x = ((i + 1) * regions) - middleOfRegion - middleOffSet;
+            level.movableTextArray[i].height = 20;
         }
     }
 
     function drawStaticText() {
-        for (var i = 0; i < staticTextArray.length; i++) {
+        if (levelComplete) {
+            context1.globalAlpha = fadedAlphaLevel;
+        }
+        for (var i = 0; i < level.staticTextArray.length; i++) {
             if (i === 0 && majorPremiseMet) {
                 context1.fillStyle = "#32CD32";
             } else if (i === 1 && minorPremiseMet) {
@@ -443,46 +492,56 @@ $(document).ready(function () {
                 context1.fillStyle = "#003300";
             }
             context1.font = font;
-            staticTextArray[i].width = (context1.measureText(staticTextArray[i].text).width);
-            staticTextArray[i].x = ((layer1.width / 2) - (staticTextArray[i].width / 2));
-            staticTextArray[i].y = (i * (canvasHeight / 30) + (canvasHeight / 7.5));
-            staticTextArray[i].height = fontHeight;
-            context1.fillText(staticTextArray[i].text, staticTextArray[i].x, staticTextArray[i].y);
+            level.staticTextArray[i].width = (context1.measureText(level.staticTextArray[i].text).width);
+            level.staticTextArray[i].x = ((layer1.width / 2) - (level.staticTextArray[i].width / 2));
+            level.staticTextArray[i].y = (i * (canvasHeight / 30) + (canvasHeight / 7.5));
+            level.staticTextArray[i].height = fontHeight;
+            context1.fillText(level.staticTextArray[i].text, level.staticTextArray[i].x, level.staticTextArray[i].y);
         }
+        context1.globalAlpha = 1;
+
     }
 
-    function drawStaticTextForVennDiagram(){
-        for (var i = 0; i < staticTextArray.length; i++) {
+    function drawStaticTextForVennDiagram() {
+        if (levelComplete) {
+            context1.globalAlpha = fadedAlphaLevel;
+        }
+        for (var i = 0; i < level.staticTextArray.length; i++) {
             context1.font = font;
             context1.fillStyle = "#003300";
-            staticTextArray[i].width = (context1.measureText(staticTextArray[i].text).width);
-            // staticTextArray[i].x = ((layer1.width / 2) - (staticTextArray[i].width / 2));
-            if(i === 0){
-                staticTextArray[i].x = (layer1.width / 2) - staticTextArray[i].width - (layer1.width/25);
+            level.staticTextArray[i].width = (context1.measureText(level.staticTextArray[i].text).width);
+            // level.staticTextArray[i].x = ((layer1.width / 2) - (level.staticTextArray[i].width / 2));
+            if (i === 0) {
+                level.staticTextArray[i].x = (layer1.width / 2) - level.staticTextArray[i].width - (layer1.width / 25);
             }
-            if(i === 1){
-                staticTextArray[i].x = (layer1.width / 2) + (layer1.width/25);;
+            if (i === 1) {
+                level.staticTextArray[i].x = (layer1.width / 2) + (layer1.width / 25);
+                ;
             }
-            staticTextArray[i].y = (canvasHeight / 2) - (canvasHeight/5);
-            staticTextArray[i].height = fontHeight;
-            context1.fillText(staticTextArray[i].text, staticTextArray[i].x, staticTextArray[i].y);
+            level.staticTextArray[i].y = (canvasHeight / 2) - (canvasHeight / 5);
+            level.staticTextArray[i].height = fontHeight;
+            context1.fillText(level.staticTextArray[i].text, level.staticTextArray[i].x, level.staticTextArray[i].y);
         }
-
+        context1.globalAlpha = 1;
     }
 
     function drawMovableText() {
+        if (levelComplete) {
+            context2.globalAlpha = fadedAlphaLevel;
+        }
         context2.clearRect(0, 0, layer1.width, layer2.height)
-        for (var i = 0; i < movableTextArray.length; i++) {
+        for (var i = 0; i < level.movableTextArray.length; i++) {
             context2.fillStyle = "#003300";
             context2.font = font;
-            context2.fillText(movableTextArray[i].text, movableTextArray[i].x, movableTextArray[i].y);
+            context2.fillText(level.movableTextArray[i].text, level.movableTextArray[i].x, level.movableTextArray[i].y);
         }
+        context2.globalAlpha = 1;
     }
 
     function textClickedOn(x, y) {
-        for (var i = 0; i < movableTextArray.length; i++) {
-            var textWidth = context1.measureText(movableTextArray[i].text).width;
-            if (x >= movableTextArray[i].x && x <= movableTextArray[i].x + textWidth && y >= (movableTextArray[i].y - 20) && y <= movableTextArray[i].y) {
+        for (var i = 0; i < level.movableTextArray.length; i++) {
+            var textWidth = context1.measureText(level.movableTextArray[i].text).width;
+            if (x >= level.movableTextArray[i].x && x <= level.movableTextArray[i].x + textWidth && y >= (level.movableTextArray[i].y - 20) && y <= level.movableTextArray[i].y) {
                 return i;
             }
         }
@@ -515,7 +574,7 @@ $(document).ready(function () {
 
         if (x > 0 && x < canvasWidth && y > 0 && y < 600) {
             console.log("pushed!");
-            var clonedMovableTextArray = clone(movableTextArray);
+            var clonedMovableTextArray = clone(level.movableTextArray);
             var clonedClickedInArray = clone(clickedInArray);
             undoStack.push(new GameState(clonedMovableTextArray, clonedClickedInArray));
         }
@@ -580,11 +639,11 @@ $(document).ready(function () {
     }
 
     function createCircles() {
-        if(circlesNeeded == 2){
-            circlesArray.push(new Circle((canvasWidth / 2.4), (canvasHeight / 2), (canvasWidth / 6)));
-            circlesArray.push(new Circle((canvasWidth / 1.6), (canvasHeight / 2), (canvasWidth / 6)));
+        if (level.circlesNeeded == 2) {
+            circlesArray.push(new Circle((canvasWidth / 2)-(canvasWidth/12), (canvasHeight / 2), (canvasWidth / 6)));
+            circlesArray.push(new Circle((canvasWidth / 2)+(canvasWidth/12), (canvasHeight / 2), (canvasWidth / 6)));
         }
-        if (circlesNeeded === 3) {
+        if (level.circlesNeeded === 3) {
             circlesArray.push(new Circle((canvasWidth / 2), (canvasHeight / 2.4), (canvasWidth / 6)));
             circlesArray.push(new Circle((canvasWidth / 2.4), (canvasHeight / 1.71), (canvasWidth / 6)));
             circlesArray.push(new Circle((canvasWidth / 1.71), (canvasHeight / 1.71), (canvasWidth / 6)));
@@ -592,6 +651,16 @@ $(document).ready(function () {
     }
 
     function drawCircles() {
+        if (levelComplete) {
+            context1.globalAlpha = fadedAlphaLevel;
+        }
+        context1.beginPath();
+        context1.lineWidth = 1;
+        context1.strokeStyle = '#FF0000';
+        context1.moveTo(canvasWidth/2,0);
+        context1.lineTo(canvasWidth/2,canvasHeight);
+        context1.stroke();
+        context1.closePath();
         for (var i = 0; i < circlesArray.length; i++) {
             var circle = circlesArray[i];
             context1.beginPath();
@@ -601,6 +670,7 @@ $(document).ready(function () {
             context1.stroke();
             context1.closePath();
         }
+        context2.globalAlpha = 1;
     }
 
     function clone(object) {
@@ -613,6 +683,19 @@ $(document).ready(function () {
         }
         return temp;
     }
+
+    (function($) {
+        $.fn.invisible = function() {
+            return this.each(function() {
+                $(this).css("visibility", "hidden");
+            });
+        };
+        $.fn.visible = function() {
+            return this.each(function() {
+                $(this).css("visibility", "visible");
+            });
+        };
+    }(jQuery));
 
     main(1);
 })
