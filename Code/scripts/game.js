@@ -2,9 +2,24 @@ $(document).ready(function () {
     var layer1 = document.getElementById('layer1');
     var layer2 = document.getElementById('layer2');
     var layer3 = document.getElementById('layer3');
+    var circleBorder = document.getElementById('circleBorder');
+    var tutorialCanvas = document.getElementById('tutorialCanvas');
+
+    //Context 1 has undo, redo and refresh. Also has static text, circles.
     var context1 = layer1.getContext('2d');
+
+    //Context 2 has movable text
     var context2 = layer2.getContext('2d');
+
+    //Context 3 has win screen
     var context3 = layer3.getContext('2d');
+
+    //Layer for the second circles
+    var circleBorderContext = circleBorder.getContext('2d');
+
+    //Layer for the tutorial
+    var tutorialCanvas = tutorialCanvas.getContext('2d');
+
     var canvasWidth = layer1.width;
     var canvasHeight = layer1.height;
     var dragId;
@@ -15,10 +30,11 @@ $(document).ready(function () {
     var fontHeight = 20;
     var majorPremiseMet;
     var minorPremiseMet;
-    var levelNumber = 2;
     var level;
     var levelComplete = false;
     var fadedAlphaLevel = 0.3;
+    var tutorialMode = false;
+    var tutorialStage = 0;
 
     var GameState = function (movableTextArray, clickedInArray) {
         this.movableTextArray = movableTextArray;
@@ -44,12 +60,17 @@ $(document).ready(function () {
     $(window).mousedown(function (e) {
         var pos = getMousePos(layer1, e);
         var pos = getMousePos(layer1, e);
+        if(tutorialMode){
+            tutorialStage++;
+            vennDiagramTutorial();
+            return;
+        }
         if (!levelComplete) {
             var clickedOn = textClickedOn(pos.x, pos.y);
             if (clickedOn >= 0) {
                 if (pos.x > 0 && pos.x < canvasWidth && pos.y > 0 && pos.y < 600) {
                     console.log("pushed!");
-                    var clonedMovableTextArray = clone(movableTextArray);
+                    var clonedMovableTextArray = clone(level.movableTextArray);
                     var clonedClickedInArray = clone(clickedInArray);
                     undoStack.push(new GameState(clonedMovableTextArray, clonedClickedInArray));
                 }
@@ -76,7 +97,7 @@ $(document).ready(function () {
 
     $(window).mousemove(function (e) {
         var pos = getMousePos(layer1, e);
-        checkButtons();
+        enableOrDisableUndoRedoButtons();
         if (moveText) {
             if (drag) {
                 level.movableTextArray[dragId].x = pos.x - dragOffsetX;
@@ -117,10 +138,13 @@ $(document).ready(function () {
         tearDown();
         setupLevel(level.levelNumber);
         main(level.levelNumber);
+        $("#nextLevelButton").invisible();
     });
 
     $("#nextLevelButton").click(function () {
         tearDown();
+        majorPremiseMet = false;
+        minorPremiseMet = false;
         var currentLevel = level.levelNumber;
         var nextLevel = currentLevel + 1;
         setupLevel(nextLevel);
@@ -128,7 +152,28 @@ $(document).ready(function () {
         $("#nextLevelButton").invisible();
     });
 
-    function checkButtons(){
+    function main(levelNumber) {
+        setupLevel(levelNumber);
+        context1.fillStyle = "white";
+        context1.fillRect(0, 0, layer1.width, layer1.height);
+        console.log(level);
+        if (level.type === "venn") {
+            setupMovableText();
+            createCircles();
+            drawCircles();
+            drawMovableText();
+            drawStaticTextForVennDiagram();
+        }
+        if (level.type === "syllogism") {
+            setupMovableText();
+            drawStaticText();
+            drawMovableText();
+            createCircles();
+            drawCircles();
+        }
+    }
+
+    function enableOrDisableUndoRedoButtons(){
         if(undoStack.length < 1){
             $('#undoButton').prop('disabled', true);
             $("#undoButton").css('opacity', '0.3');
@@ -146,9 +191,15 @@ $(document).ready(function () {
     }
 
     function levelCompleteScreen() {
+        levelComplete = true;
         context1.clearRect(0, 0, canvasWidth, canvasHeight);
+        context2.clearRect(0, 0, canvasWidth, canvasHeight);
+        context3.clearRect(0, 0, canvasWidth, canvasHeight);
+        circleBorderContext.clearRect(0, 0, canvasWidth, canvasHeight);
         drawCircles();
-        drawStaticTextForVennDiagram();
+        if(level.type === "venn"){
+            drawStaticTextForVennDiagram();
+        }
         drawMovableText();
         var width = document.getElementById('nextLevelButton').offsetWidth;
         var x = canvasWidth/2 - (width/2);
@@ -161,7 +212,6 @@ $(document).ready(function () {
     }
 
     function checkIfVennDiagramIsCorrect() {
-        console.log("Checkinggg!");
         var tempCircle1 = [];
         var tempCircle2 = [];
         var tempIntersection = [];
@@ -180,15 +230,11 @@ $(document).ready(function () {
             }
         }
 
-
         if (tempCircle1.equals(level.circle1) && tempCircle2.equals(level.circle2) && tempIntersection.equals(level.intersection)) {
             if (!levelComplete) {
                 levelComplete = true;
                 levelCompleteScreen();
             }
-            // tearDown();
-            // levelNumber++;
-            // main(levelNumber);
         }
     }
 
@@ -208,7 +254,7 @@ $(document).ready(function () {
             if (clickedInArray.length != clickedInArrayBeforePop.length) {
                 undoRedoRepaintCheck(clickedInArrayBeforePop, clickedInArray);
             }
-            drawMovableText(false);
+            drawMovableText();
             checkIfSyllogismIsMet();
             checkIfAnyPropositionsAreMet();
         }
@@ -227,27 +273,6 @@ $(document).ready(function () {
             drawMovableText(false);
             checkIfSyllogismIsMet();
             checkIfAnyPropositionsAreMet();
-        }
-    }
-
-    function main(levelNumber) {
-        setupLevel(levelNumber);
-        context1.fillStyle = "white";
-        context1.fillRect(0, 0, layer1.width, layer1.height);
-        console.log(level);
-        if (level.type === "venn") {
-            setupMovableText();
-            createCircles();
-            drawCircles(false);
-            drawMovableText();
-            drawStaticTextForVennDiagram(false);
-        }
-        if (level.type === "syllogism") {
-            setupMovableText();
-            drawStaticText(false);
-            drawMovableText();
-            createCircles();
-            drawCircles(false);
         }
     }
 
@@ -290,7 +315,7 @@ $(document).ready(function () {
                     break;
                 }
             }
-            context1.fillStyle = "yellow"
+            context1.fillStyle = "black"
             floodFill.fill(after[index].x, after[index].y, 100, context1, null, null, 90);
         }
     }
@@ -302,7 +327,6 @@ $(document).ready(function () {
 
         $.getJSON("settings.json", function (json) {
             level = json["level" + levelNumber];
-            movableTextArray = level.movableTextArray;
         });
     }
 
@@ -311,6 +335,7 @@ $(document).ready(function () {
         context1.clearRect(0, 0, canvasWidth, canvasHeight);
         context2.clearRect(0, 0, canvasWidth, canvasHeight);
         context3.clearRect(0, 0, canvasWidth, canvasHeight);
+        circleBorderContext.clearRect(0, 0, canvasWidth, canvasHeight);
         circlesArray = [];
         clickedInArray = [];
     }
@@ -396,15 +421,13 @@ $(document).ready(function () {
 
         if (level.particularSyllogism) {
             if (_.isEqual(level.blankSyllogism, level.correctSyllogism) && particularLocation === level.correctXPlacement) {
-                tearDown();
-                levelNumber++;
-                main(levelNumber);
+                levelComplete = true;
+                levelCompleteScreen();
             }
         } else {
             if (_.isEqual(level.blankSyllogism, level.correctSyllogism)) {
-                tearDown();
-                levelNumber++;
-                main(levelNumber);
+                levelComplete = true;
+                levelCompleteScreen();
             }
         }
     }
@@ -492,6 +515,7 @@ $(document).ready(function () {
                 context1.fillStyle = "#003300";
             }
             context1.font = font;
+            context1.fillStyle = "#1d1d1d"
             level.staticTextArray[i].width = (context1.measureText(level.staticTextArray[i].text).width);
             level.staticTextArray[i].x = ((layer1.width / 2) - (level.staticTextArray[i].width / 2));
             level.staticTextArray[i].y = (i * (canvasHeight / 30) + (canvasHeight / 7.5));
@@ -508,7 +532,7 @@ $(document).ready(function () {
         }
         for (var i = 0; i < level.staticTextArray.length; i++) {
             context1.font = font;
-            context1.fillStyle = "#003300";
+            context1.fillStyle = "#1d1d1d";
             level.staticTextArray[i].width = (context1.measureText(level.staticTextArray[i].text).width);
             // level.staticTextArray[i].x = ((layer1.width / 2) - (level.staticTextArray[i].width / 2));
             if (i === 0) {
@@ -531,7 +555,7 @@ $(document).ready(function () {
         }
         context2.clearRect(0, 0, layer1.width, layer2.height)
         for (var i = 0; i < level.movableTextArray.length; i++) {
-            context2.fillStyle = "#003300";
+            context2.fillStyle = "#3498db";
             context2.font = font;
             context2.fillText(level.movableTextArray[i].text, level.movableTextArray[i].x, level.movableTextArray[i].y);
         }
@@ -593,8 +617,9 @@ $(document).ready(function () {
         if (hasBeenAlreadyClickedIn === false) {
             tempArray.sort();
             clickedInArray.push(new Click(tempArray, x, y))
-            // clickedInArray.push(tempArray);
-            context1.fillStyle = "yellow";
+            // context1.fillStyle = "#252525";
+            context1.fillStyle = "#1d1d1d";
+
             floodFill.fill(x, y, 100, context1, null, null, 90)
         } else {
             clickedInArray.splice(clickedInArrayLocation, 1);
@@ -653,24 +678,106 @@ $(document).ready(function () {
     function drawCircles() {
         if (levelComplete) {
             context1.globalAlpha = fadedAlphaLevel;
+            circleBorderContext.globalAlpha = fadedAlphaLevel;
         }
-        context1.beginPath();
-        context1.lineWidth = 1;
-        context1.strokeStyle = '#FF0000';
-        context1.moveTo(canvasWidth/2,0);
-        context1.lineTo(canvasWidth/2,canvasHeight);
-        context1.stroke();
-        context1.closePath();
         for (var i = 0; i < circlesArray.length; i++) {
             var circle = circlesArray[i];
             context1.beginPath();
             context1.arc(circle.x, circle.y, circle.radius, 0, Math.PI * 2, false);
-            context1.lineWidth = 5;
-            context1.strokeStyle = '#FF0000';
+            context1.lineWidth = 2;
+            context1.strokeStyle = '#c0392b';
             context1.stroke();
             context1.closePath();
         }
-        context2.globalAlpha = 1;
+        for (var i = 0; i < circlesArray.length; i++) {
+            var circle = circlesArray[i];
+            circleBorderContext.beginPath();
+            circleBorderContext.arc(circle.x, circle.y, circle.radius, 0, Math.PI * 2, false);
+            circleBorderContext.lineWidth = 5;
+            circleBorderContext.strokeStyle = '#c0392b';
+            circleBorderContext.stroke();
+            circleBorderContext.closePath();
+        }
+        context1.globalAlpha = 1;
+        circleBorderContext.globalAlpha = 1;
+    }
+
+    function canvas_arrow_alternate2(context, fromx, fromy, tox, toy, strokeStyle){
+        var headlen = 12;   // length of head in pixels
+        var angle = Math.atan2(toy-fromy,tox-fromx);
+        context.save();
+        context.strokeStyle=strokeStyle || '#000'; // defaults to black
+        // dashed part
+        context.beginPath();
+        context.setLineDash([10]);
+        context.moveTo(fromx, fromy);
+        context.lineTo(tox, toy);
+        context.stroke();
+        // second part -non dashed-
+        context.beginPath();
+        context.setLineDash([0]);
+        context.moveTo(tox, toy);
+        context.lineTo(tox-headlen*Math.cos(angle-Math.PI/6),toy-headlen*Math.sin(angle-Math.PI/6));
+        context.moveTo(tox, toy);
+        context.lineTo(tox-headlen*Math.cos(angle+Math.PI/6),toy-headlen*Math.sin(angle+Math.PI/6));
+        context.stroke();
+        //
+        context.restore();          // this will, in fact, restore strokeStyle
+    }
+
+    function vennDiagramTutorial(){
+        tutorialMode = true;
+        if(tutorialStage === 0){
+            tutorialCanvas.clearRect(0, 0, canvasWidth, canvasHeight);
+            tutorialCanvas.font = font;
+            tutorialCanvas.fillText("This is the set of even numbers",50,450);
+            var circle = circlesArray[0];
+            tutorialCanvas.beginPath();
+            tutorialCanvas.arc(circle.x, circle.y, circle.radius, 0, Math.PI * 2, false);
+            tutorialCanvas.lineWidth = 2;
+            tutorialCanvas.strokeStyle = '#c0392b';
+            tutorialCanvas.fillStyle = '#c0392b';
+            tutorialCanvas.fill();
+            tutorialCanvas.stroke();
+            tutorialCanvas.closePath();
+            canvas_arrow_alternate2(tutorialCanvas,150,425,circlesArray[0].x-(canvasWidth/20), 300);
+
+        }
+
+        if(tutorialStage === 1){
+            tutorialCanvas.clearRect(0, 0, canvasWidth, canvasHeight);
+            tutorialCanvas.font = font;
+            tutorialCanvas.fillStyle = 'black';
+            tutorialCanvas.fillText("This is the set of multiples of 5",250,450);
+            var circle = circlesArray[1];
+            tutorialCanvas.beginPath();
+            tutorialCanvas.arc(circle.x, circle.y, circle.radius, 0, Math.PI * 2, false);
+            tutorialCanvas.lineWidth = 2;
+            tutorialCanvas.strokeStyle = '#c0392b';
+            tutorialCanvas.fillStyle = '#c0392b';
+            tutorialCanvas.fill();
+            tutorialCanvas.stroke();
+            tutorialCanvas.closePath();
+            canvas_arrow_alternate2(tutorialCanvas,450,425,circlesArray[1].x+(canvasWidth/20), 300);
+        }
+
+        if(tutorialStage === 2){
+            tutorialCanvas.clearRect(0, 0, canvasWidth, canvasHeight);
+            canvas_arrow_alternate2(tutorialCanvas,300,425,canvasWidth/2, 300);
+            tutorialCanvas.font = font;
+            tutorialCanvas.fillStyle = 'black';
+            var text = "This is the set of even numbers and multiples of 5";
+            var textWidth = (tutorialCanvas.measureText(text).width);
+            tutorialCanvas.fillText(text,((canvasWidth / 2) - (textWidth / 2)),450);
+            context1.fillStyle = "#c0392b";
+            floodFill.fill(canvasWidth/2, canvasHeight/2, 100, context1, null, null, 90);
+        }
+
+        if(tutorialStage === 3){
+            tutorialMode = false;
+            tearDown();
+        }
+
     }
 
     function clone(object) {
@@ -698,5 +805,6 @@ $(document).ready(function () {
     }(jQuery));
 
     main(1);
+    vennDiagramTutorial();
 })
 ;
