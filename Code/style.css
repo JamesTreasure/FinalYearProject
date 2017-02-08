@@ -27,6 +27,7 @@ html, body {
     left: 1%;
     width: 64px;
     height:64px;
+    outline: none;
 }
 
 #redoButton {
@@ -35,6 +36,7 @@ html, body {
     left: 13%;
     width: 64px;
     height:64px;
+    outline: none;
 }
 
 #refreshButton {
@@ -43,6 +45,7 @@ html, body {
     left: 25%;
     width: 56px;
     height:56px;
+    outline: none;
 }
 
 #nextLevelButton {
