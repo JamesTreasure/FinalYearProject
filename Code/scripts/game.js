@@ -18,16 +18,21 @@ $(document).ready(function () {
     var circleBorderContext = circleBorder.getContext('2d');
 
     //Layer for the tutorial
-    var tutorialCanvas = tutorialCanvas.getContext('2d');
+    var tutorialCanvasContext = tutorialCanvas.getContext('2d');
 
-    var canvasWidth = layer1.width;
-    var canvasHeight = layer1.height;
+    window.addEventListener('resize', resizeCanvas, false);
+
+
+
+
+    var canvasWidth;
+    var canvasHeight;
     var dragId;
     var dragOffsetX;
     var dragOffsetY;
     var drag = false;
-    var font = '20pt Arial';
-    var fontHeight = 20;
+    var font = '18pt comicNeue';
+    var fontHeight = 18;
     var majorPremiseMet;
     var minorPremiseMet;
     var level;
@@ -57,6 +62,46 @@ $(document).ready(function () {
     var clickedInArray = [];
     var moveText;
 
+
+    function renderText(text, x, y) {
+        tutorialCanvasContext.font = font;
+        tutorialCanvasContext.fillText(text,x,y);
+    }
+
+
+    function renderText() {
+        tutorialCanvasContext.font = font;
+        var text = "A set is a collection of things";
+        var textWidth = tutorialCanvasContext.measureText(text);
+        tutorialCanvasContext.fillText(text, ((canvasWidth / 2) - (textWidth.width / 2)), canvasHeight/4);
+    }
+
+    document.fonts.load('18pt "comicNeue"').then(renderText);
+
+    function resizeCanvas() {
+        layer1.width = window.innerWidth;
+        layer1.height = window.innerHeight;
+
+        layer2.height = window.innerHeight;
+        layer2.width = window.innerWidth;
+
+        layer3.height = window.innerHeight;
+        layer3.width = window.innerWidth;
+
+        circleBorder.height = window.innerHeight;
+        circleBorder.width = window.innerWidth;
+
+        tutorialCanvas.height = window.innerHeight;
+        tutorialCanvas.width = window.innerWidth;
+
+        canvasWidth = layer1.width;
+        canvasHeight = layer1.height;
+
+        // vennDiagramTutorial();
+        syllogismTutorial();
+
+    }
+
     $(window).mousedown(function (e) {
         var pos = getMousePos(layer1, e);
         if(tutorialMode && level.type === "venn") {
@@ -68,7 +113,7 @@ $(document).ready(function () {
             syllogismTutorial();
             return;
         }else{
-            tutorialCanvas.clearRect(0,0,canvasWidth,canvasHeight);
+            tutorialCanvasContext.clearRect(0,0,canvasWidth,canvasHeight);
         }
 
 
@@ -76,7 +121,6 @@ $(document).ready(function () {
             var clickedOn = textClickedOn(pos.x, pos.y);
             if (clickedOn >= 0) {
                 if (pos.x > 0 && pos.x < canvasWidth && pos.y > 0 && pos.y < 600) {
-                    console.log("pushed!");
                     var clonedMovableTextArray = clone(level.movableTextArray);
                     var clonedClickedInArray = clone(clickedInArray);
                     undoStack.push(new GameState(clonedMovableTextArray, clonedClickedInArray));
@@ -209,7 +253,7 @@ $(document).ready(function () {
         context2.clearRect(0, 0, canvasWidth, canvasHeight);
         context3.clearRect(0, 0, canvasWidth, canvasHeight);
         circleBorderContext.clearRect(0, 0, canvasWidth, canvasHeight);
-        tutorialCanvas.clearRect(0,0, canvasWidth, canvasHeight);
+        tutorialCanvasContext.clearRect(0,0, canvasWidth, canvasHeight);
     }
 
     function levelCompleteScreen() {
@@ -599,7 +643,6 @@ $(document).ready(function () {
 
     function circleEdgeClicked(x, y) {
         var color = new Uint32Array(context1.getImageData(x, y, 1, 1).data.buffer)[0];
-        console.log(color);
         return (color << 8) === 0xff00;
     }
 
@@ -645,6 +688,8 @@ $(document).ready(function () {
             // context1.fillStyle = "#252525";
             context1.fillStyle = "#1d1d1d";
 
+            console.log(x);
+            console.log(y);
             floodFill.fill(x, y, 100, context1, null, null, 90)
         } else {
             clickedInArray.splice(clickedInArrayLocation, 1);
@@ -690,13 +735,20 @@ $(document).ready(function () {
 
     function createCircles() {
         if (level.circlesNeeded == 2) {
-            circlesArray.push(new Circle((canvasWidth / 2)-(canvasWidth/12), (canvasHeight / 2), (canvasWidth / 6)));
-            circlesArray.push(new Circle((canvasWidth / 2)+(canvasWidth/12), (canvasHeight / 2), (canvasWidth / 6)));
+            var maxHeight = canvasHeight/3;
+            var radius = maxHeight/2;
+            var overlap = radius/2;
+            circlesArray.push(new Circle((canvasWidth / 2)-(overlap), (canvasHeight / 2), radius));
+            circlesArray.push(new Circle((canvasWidth / 2)+(overlap), (canvasHeight / 2), radius));
         }
         if (level.circlesNeeded === 3) {
-            circlesArray.push(new Circle((canvasWidth / 2), (canvasHeight / 2.4), (canvasWidth / 6)));
-            circlesArray.push(new Circle((canvasWidth / 2.4), (canvasHeight / 1.71), (canvasWidth / 6)));
-            circlesArray.push(new Circle((canvasWidth / 1.71), (canvasHeight / 1.71), (canvasWidth / 6)));
+            var segments = canvasHeight/4;
+            var radius = segments/2*1.25;
+            var overlap = radius/2;
+            circlesArray.push(new Circle((canvasWidth / 2), (segments + (segments*2))/2+(segments/6), radius));
+            circlesArray.push(new Circle((canvasWidth / 2)-overlap, (segments*2 + (segments*3))/2-(segments/6), radius));
+            circlesArray.push(new Circle((canvasWidth / 2)+overlap, (segments*2 + (segments*3))/2-(segments/6), radius));
+
         }
     }
 
@@ -761,71 +813,137 @@ $(document).ready(function () {
             setupMovableText();
             createCircles();
             drawCircles();
-            tutorialCanvas.clearRect(0, 0, canvasWidth, canvasHeight);
-            tutorialCanvas.font = font;
-            var text = "A set is a collection of things";
-            var textWidth = tutorialCanvas.measureText(text);
-            tutorialCanvas.fillText(text, ((canvasWidth / 2) - (textWidth.width / 2)), canvasHeight/4);
+            tutorialCanvasContext.clearRect(0, 0, canvasWidth, canvasHeight);
+            tutorialCanvasContext.font = font;
+            tutorialCanvasContext.fillStyle = 'black';
 
+
+            drawDashedArrow(tutorialCanvasContext,0,canvasHeight/2,canvasWidth, canvasHeight/2);
+            drawDashedArrow(tutorialCanvasContext,canvasWidth/2,0,canvasWidth/2, canvasHeight);
+
+            var maxHeight = canvasHeight/3;
+            drawDashedArrow(tutorialCanvasContext,0,0+maxHeight,canvasWidth, 0+maxHeight);
+            drawDashedArrow(tutorialCanvasContext,0,canvasHeight-maxHeight,canvasWidth, canvasHeight-maxHeight);
         }
 
         if(tutorialStage === 1){
             drawStaticTextForVennDiagram();
-            tutorialCanvas.clearRect(0, 0, canvasWidth, canvasHeight);
-            tutorialCanvas.font = font;
-            tutorialCanvas.fillText("This is the set of even numbers",50,450);
+            tutorialCanvasContext.clearRect(0, 0, canvasWidth, canvasHeight);
+            tutorialCanvasContext.font = font;
+            tutorialCanvasContext.fillStyle = 'black';
+            var text = "This is the set of even numbers";
+            var textWidth = (tutorialCanvasContext.measureText(text).width);
+            var textX = circlesArray[0].x-circlesArray[0].radius-(textWidth/2);
+            var textY = (canvasHeight/3)*2+(canvasHeight/3/2);
+            tutorialCanvasContext.fillText(text, textX ,textY);
+
+
             var circle = circlesArray[0];
-            tutorialCanvas.beginPath();
-            tutorialCanvas.arc(circle.x, circle.y, circle.radius, 0, Math.PI * 2, false);
-            tutorialCanvas.lineWidth = 2;
-            tutorialCanvas.strokeStyle = '#c0392b';
-            tutorialCanvas.fillStyle = '#c0392b';
-            tutorialCanvas.fill();
-            tutorialCanvas.stroke();
-            tutorialCanvas.closePath();
-            drawDashedArrow(tutorialCanvas,150,425,circlesArray[0].x-(canvasWidth/20), 300);
+            tutorialCanvasContext.beginPath();
+            tutorialCanvasContext.arc(circle.x, circle.y, circle.radius, 0, Math.PI * 2, false);
+            tutorialCanvasContext.lineWidth = 2;
+            tutorialCanvasContext.strokeStyle = '#c0392b';
+            tutorialCanvasContext.fillStyle = '#c0392b';
+            tutorialCanvasContext.fill();
+            tutorialCanvasContext.stroke();
+            tutorialCanvasContext.closePath();
+
+            var startX = textX+(textWidth/2);
+            var startY = textY-fontHeight-5;
+
+            var endpointX = circlesArray[0].x;
+            var endpointY = circlesArray[0].y+circlesArray[0].radius;
+
+            var midpointX = (startX+endpointX)/2;
+            var midpointY = (startY+endpointY)/2;
+
+            drawCurvedArrow(startX,startY, endpointX, endpointY, midpointX, midpointY+40);
 
         }
 
         if(tutorialStage === 2){
-            tutorialCanvas.clearRect(0, 0, canvasWidth, canvasHeight);
-            tutorialCanvas.font = font;
-            tutorialCanvas.fillStyle = 'black';
-            tutorialCanvas.fillText("This is the set of multiples of 5",250,450);
+            tutorialCanvasContext.clearRect(0, 0, canvasWidth, canvasHeight);
+            tutorialCanvasContext.font = font;
+            tutorialCanvasContext.fillStyle = 'black';
+
+            var text = "This is the set of multiples of 5";
+            var textWidth = (tutorialCanvasContext.measureText(text).width);
+            var textX = circlesArray[1].x+circlesArray[1].radius-(textWidth/2);
+            var textY = (canvasHeight/3)*2+(canvasHeight/3/2);
+            tutorialCanvasContext.fillText(text, textX ,textY);
+
             var circle = circlesArray[1];
-            tutorialCanvas.beginPath();
-            tutorialCanvas.arc(circle.x, circle.y, circle.radius, 0, Math.PI * 2, false);
-            tutorialCanvas.lineWidth = 2;
-            tutorialCanvas.strokeStyle = '#c0392b';
-            tutorialCanvas.fillStyle = '#c0392b';
-            tutorialCanvas.fill();
-            tutorialCanvas.stroke();
-            tutorialCanvas.closePath();
-            drawDashedArrow(tutorialCanvas,450,425,circlesArray[1].x+(canvasWidth/20), 300);
+            tutorialCanvasContext.beginPath();
+            tutorialCanvasContext.arc(circle.x, circle.y, circle.radius, 0, Math.PI * 2, false);
+            tutorialCanvasContext.lineWidth = 2;
+            tutorialCanvasContext.strokeStyle = '#c0392b';
+            tutorialCanvasContext.fillStyle = '#c0392b';
+            tutorialCanvasContext.fill();
+            tutorialCanvasContext.stroke();
+            tutorialCanvasContext.closePath();
+
+            var startX = textX+(textWidth/2);
+            var startY = textY-fontHeight-5;
+
+            var endpointX = circlesArray[1].x;
+            var endpointY = circlesArray[1].y+circlesArray[0].radius;
+
+            var midpointX = (startX+endpointX)/2;
+            var midpointY = (startY+endpointY)/2;
+
+            drawCurvedArrow(startX,startY, endpointX, endpointY, midpointX, midpointY+40);
         }
 
         if(tutorialStage === 3){
-            tutorialCanvas.clearRect(0, 0, canvasWidth, canvasHeight);
-            drawDashedArrow(tutorialCanvas,300,425,canvasWidth/2, 300);
-            tutorialCanvas.font = font;
-            tutorialCanvas.fillStyle = 'black';
+            tutorialCanvasContext.clearRect(0, 0, canvasWidth, canvasHeight);
+            tutorialCanvasContext.font = font;
+            tutorialCanvasContext.fillStyle = 'black';
             var text = "This is the set of even numbers and multiples of 5";
-            var textWidth = (tutorialCanvas.measureText(text).width);
-            tutorialCanvas.fillText(text,((canvasWidth / 2) - (textWidth / 2)),450);
+            var textWidth = (tutorialCanvasContext.measureText(text).width);
+            var textX = ((canvasWidth / 2) - (textWidth / 2));
+            var textY = (canvasHeight/3)*2+(canvasHeight/3/2);
+            tutorialCanvasContext.fillText(text, textX ,textY);
+
+
             context1.fillStyle = "#c0392b";
-            floodFill.fill(canvasWidth/2, canvasHeight/2, 100, context1, null, null, 90);
+            floodFill.fill(Math.round(canvasWidth/2), Math.round(canvasHeight/2), 100, context1, null, null, 90);
+
+            var startX = textX+(textWidth/2);
+            var startY = textY-fontHeight-5;
+
+            var endpointX = canvasWidth/2
+            var endpointY = canvasHeight/2;
+
+            var midpointX = (startX+endpointX)/2;
+            var midpointY = (startY+endpointY)/2;
+
+            drawCurvedArrow(startX,startY, endpointX, endpointY, midpointX, midpointY+40);
         }
 
         if(tutorialStage === 4){
-            tutorialCanvas.clearRect(0, 0, canvasWidth, canvasHeight);
+            tutorialCanvasContext.clearRect(0, 0, canvasWidth, canvasHeight);
             drawMovableText();
             context1.fillStyle = "white";
-            floodFill.fill(canvasWidth/2, canvasHeight/2, 100, context1, null, null, 90);
-            tutorialCanvas.font = font;
-            tutorialCanvas.fillStyle = 'black';
-            var text = "Drag the numbers into the correct circles!";
-            var textWidth = (tutorialCanvas.measureText(text).width);
-            tutorialCanvas.fillText(text,((canvasWidth / 2) - (textWidth / 2)),450);
+            floodFill.fill(Math.round(canvasWidth/2), Math.round(canvasHeight/2), 100, context1, null, null, 90);
+            tutorialCanvasContext.font = font;
+            var text = "Drag the numbers into the correct circles";
+            var textWidth = (tutorialCanvasContext.measureText(text).width);
+            var textX = circlesArray[0].x-circlesArray[0].radius-(textWidth);
+            var textY = (circlesArray[0].y+(circlesArray[0].radius/2));
+            tutorialCanvasContext.fillText(text, textX ,textY);
+
+            var startX = textX+(textWidth/2);
+            var startY = textY+fontHeight;
+
+            var endpointX = canvasWidth/3;
+            var endpointY = (canvasHeight/3*2)+canvasHeight/3/2;
+
+            var midpointX = (startX+endpointX)/2;
+            var midpointY = (startY+endpointY)/2;
+
+            drawCurvedArrow(startX,startY, endpointX, endpointY, midpointX, midpointY+40);
+
+
             tutorialMode = false;
             $("#undoButton").visible();
             $("#redoButton").visible();
@@ -847,14 +965,20 @@ $(document).ready(function () {
             setupMovableText();
             createCircles();
             drawCircles();
-            tutorialCanvas.clearRect(0, 0, canvasWidth, canvasHeight);
-            tutorialCanvas.font = font;
+            tutorialCanvasContext.clearRect(0, 0, canvasWidth, canvasHeight);
+            tutorialCanvasContext.font = font;
             var text = "Now we have three sets";
-            var textWidth = tutorialCanvas.measureText(text);
-            tutorialCanvas.fillText(text, 50, 100);
-            drawDashedArrow(tutorialCanvas,50+(textWidth.width/2),110,circlesArray[0].x+20, circlesArray[0].y-20);
-            drawDashedArrow(tutorialCanvas,50+(textWidth.width/2),110,circlesArray[1].x-20, circlesArray[1].y+20);
-            drawDashedArrow(tutorialCanvas,50+(textWidth.width/2),110,circlesArray[2].x+20, circlesArray[2].y+20);
+            var textWidth = tutorialCanvasContext.measureText(text);
+            tutorialCanvasContext.fillText(text, 50, 100);
+            drawDashedArrow(tutorialCanvasContext,50+(textWidth.width/2),110,circlesArray[0].x+20, circlesArray[0].y-20);
+            drawDashedArrow(tutorialCanvasContext,50+(textWidth.width/2),110,circlesArray[1].x-20, circlesArray[1].y+20);
+            drawDashedArrow(tutorialCanvasContext,50+(textWidth.width/2),110,circlesArray[2].x+20, circlesArray[2].y+20);
+            drawDashedArrow(tutorialCanvasContext,0,canvasHeight/2,canvasWidth, canvasHeight/2);
+            drawDashedArrow(tutorialCanvasContext,canvasWidth/2,0,canvasWidth/2, canvasHeight);
+
+            var maxHeight = canvasHeight/4;
+            drawDashedArrow(tutorialCanvasContext,0,0+maxHeight,canvasWidth, 0+maxHeight);
+            drawDashedArrow(tutorialCanvasContext,0,canvasHeight-maxHeight,canvasWidth, canvasHeight-maxHeight);
         }
 
         if(tutorialStage === 1){
@@ -862,32 +986,20 @@ $(document).ready(function () {
             setupMovableText();
             createCircles();
             drawCircles();
-            tutorialCanvas.clearRect(0, 0, canvasWidth, canvasHeight);
-            tutorialCanvas.font = font;
+            tutorialCanvasContext.clearRect(0, 0, canvasWidth, canvasHeight);
+            tutorialCanvasContext.font = font;
             var text1 = "Clicking in a segment of the circle will fill it in.";
             var text2 = "This represents the empty set.";
-            var textWidth = tutorialCanvas.measureText(text);
-            tutorialCanvas.fillText(text1, 50, 100);
-            tutorialCanvas.fillText(text2, 50, 125);
+            var textWidth = tutorialCanvasContext.measureText(text);
+            tutorialCanvasContext.fillText(text1, 50, 100);
+            tutorialCanvasContext.fillText(text2, 50, 125);
             context1.fillStyle = "#1d1d1d";
-            floodFill.fill(circlesArray[0].x, circlesArray[0].y-20, 100, context1, null, null, 90);
+            drawDashedArrow(tutorialCanvasContext,0,0,circlesArray[0].x, circlesArray[0].y-circlesArray[0].radius+(circlesArray[0].radius/5));
+            var x = circlesArray[0].x;
+            var y = circlesArray[0].y-circlesArray[0].radius+(circlesArray[0].radius/5)
+            floodFill.fill(Math.round(x), Math.round(y), 100, context1, null, null, 90);
         }
 
-        if(tutorialStage === 1){
-            tearDown();
-            setupMovableText();
-            createCircles();
-            drawCircles();
-            tutorialCanvas.clearRect(0, 0, canvasWidth, canvasHeight);
-            tutorialCanvas.font = font;
-            var text1 = "Clicking in a segment of the circle will fill it in";
-            var text2 = "This represents the empty set";
-            var textWidth = tutorialCanvas.measureText(text);
-            tutorialCanvas.fillText(text1, 50, 100);
-            tutorialCanvas.fillText(text2, 50, 125);
-            context1.fillStyle = "#1d1d1d";
-            floodFill.fill(circlesArray[0].x, circlesArray[0].y-20, 100, context1, null, null, 90);
-        }
 
         if(tutorialStage === 2){
             tearDown();
@@ -896,10 +1008,10 @@ $(document).ready(function () {
             drawCircles();
             drawStaticText();
             drawMovableText();
-            tutorialCanvas.clearRect(0, 0, canvasWidth, canvasHeight);
+            tutorialCanvasContext.clearRect(0, 0, canvasWidth, canvasHeight);
             var text1 = "Drag the words below into the circles";
-            tutorialCanvas.fillText(text1, 50, 500);
-            tutorialCanvas.font = font;
+            tutorialCanvasContext.fillText(text1, 50, 500);
+            tutorialCanvasContext.font = font;
 
         }
 
@@ -910,10 +1022,10 @@ $(document).ready(function () {
             drawCircles();
             drawStaticText();
             drawMovableText();
-            tutorialCanvas.clearRect(0, 0, canvasWidth, canvasHeight);
+            tutorialCanvasContext.clearRect(0, 0, canvasWidth, canvasHeight);
             var text1 = "Fill in sections of the circle to complete the syllogism";
-            tutorialCanvas.fillText(text1, 10, 500);
-            tutorialCanvas.font = font;
+            tutorialCanvasContext.fillText(text1, 10, 500);
+            tutorialCanvasContext.font = font;
             tutorialMode = false;
             $("#undoButton").visible();
             $("#redoButton").visible();
@@ -946,6 +1058,34 @@ $(document).ready(function () {
         };
     }(jQuery));
 
-    vennDiagramTutorial();
+    function drawCurvedArrow(startPointX, startPointY, endPointX, endPointY, quadPointX, quadPointY){
+
+        tutorialCanvasContext.strokeStyle ='#2c3e50';
+        tutorialCanvasContext.lineWidth = 6;
+        tutorialCanvasContext.lineCap="round";
+
+        var arrowAngle = Math.atan2(quadPointX - endPointX, quadPointY - endPointY) + Math.PI;
+        var arrowWidth = 20;
+
+        tutorialCanvasContext.beginPath();
+        tutorialCanvasContext.moveTo(startPointX, startPointY);
+
+        tutorialCanvasContext.quadraticCurveTo(quadPointX, quadPointY, endPointX, endPointY);
+
+        tutorialCanvasContext.moveTo(endPointX - (arrowWidth * Math.sin(arrowAngle - Math.PI / 6)),
+            endPointY - (arrowWidth * Math.cos(arrowAngle - Math.PI / 6)));
+
+        tutorialCanvasContext.lineTo(endPointX, endPointY);
+
+        tutorialCanvasContext.lineTo(endPointX - (arrowWidth * Math.sin(arrowAngle + Math.PI / 6)),
+            endPointY - (arrowWidth * Math.cos(arrowAngle + Math.PI / 6)));
+
+        tutorialCanvasContext.stroke();
+        tutorialCanvasContext.closePath();
+    }
+
+    resizeCanvas();
+
+    //vennDiagramTutorial();
 })
 ;

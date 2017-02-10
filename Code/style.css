@@ -8,13 +8,7 @@ html, body {
     width: 100%;
 }
 
-.wrapper {
-    position: relative;
-    width: 600px;
-    height: 600px;
-    margin: 0px auto;
-    border: 1px solid red;
-}
+
 
 .wrapper canvas {
     position: absolute;
@@ -22,27 +16,28 @@ html, body {
 }
 
 #undoButton {
-    position:absolute;
     top: 1%;
-    left: 1%;
+    float:left;
+    margin-right:5px;
     width: 64px;
     height:64px;
     outline: none;
 }
 
 #redoButton {
-    position:absolute;
+    float:left;
+    margin-right:5px;
     top: 1%;
-    left: 13%;
+    float: left;
     width: 64px;
     height:64px;
     outline: none;
 }
 
 #refreshButton {
-    position:absolute;
+    float:left;
+    margin-right:5px;
     top: 1%;
-    left: 25%;
     width: 56px;
     height:56px;
     outline: none;
@@ -55,4 +50,9 @@ html, body {
     left: 50%;
     width: 56px;
     height:56px;
+}
+
+@font-face {
+    font-family: 'comicNeue'; /*a name to be used later*/
+    src: url('fonts/Web/ComicNeue-Angular-Light.ttf'); /*URL to font*/
 }
