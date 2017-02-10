@@ -8,11 +8,8 @@ html, body {
     width: 100%;
 }
 
-
-
 .wrapper canvas {
     position: absolute;
-    top: 0;
 }
 
 #undoButton {
@@ -54,5 +51,10 @@ html, body {
 
 @font-face {
     font-family: 'comicNeue'; /*a name to be used later*/
+    src: url('fonts/Web/ComicNeue-Angular-Regular.ttf'); /*URL to font*/
+}
+
+@font-face {
+    font-family: 'comicNeueBold'; /*a name to be used later*/
     src: url('fonts/Web/ComicNeue-Angular-Light.ttf'); /*URL to font*/
 }
