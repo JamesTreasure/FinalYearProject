@@ -542,30 +542,35 @@ $(document).ready(function () {
 
     function animate() {
         drawMovableText();
-        var circlePremiseIsIn = whichCircleIsPremiseIn(level.movableTextArray[dragId]);
 
-        for (var i = 0; i < level.movableTextArray.length; i++) {
-            if(i != dragId){
-                var c = whichCircleIsPremiseIn(level.movableTextArray[i]);
-                if(c != null && circlePremiseIsIn != null){
-                    if(c.equals(circlePremiseIsIn)){
-                        return;
+        if(level.type === "syllogism"){
+            var circlePremiseIsIn = whichCircleIsPremiseIn(level.movableTextArray[dragId]);
+
+            for (var i = 0; i < level.movableTextArray.length; i++) {
+                if(i != dragId){
+                    var c = whichCircleIsPremiseIn(level.movableTextArray[i]);
+                    if(c != null && circlePremiseIsIn != null){
+                        if(c.equals(circlePremiseIsIn)){
+                            return;
+                        }
                     }
                 }
             }
+
+            if(circlePremiseIsIn){
+                tutorialCanvasContext.clearRect(0,0,canvasWidth,canvasHeight);
+                var circle = circlesArray[circlePremiseIsIn[0]];
+                tutorialCanvasContext.beginPath();
+                tutorialCanvasContext.arc(circle.x, circle.y, circle.radius, 0, Math.PI * 2, false);
+                tutorialCanvasContext.lineWidth = 6;
+                tutorialCanvasContext.strokeStyle = '#2ecc71';
+                tutorialCanvasContext.stroke();
+                tutorialCanvasContext.closePath();
+            }else{
+                tutorialCanvasContext.clearRect(0,0,canvasWidth,canvasHeight);
+            }
         }
 
-        if(circlePremiseIsIn){
-            var circle = circlesArray[circlePremiseIsIn[0]];
-            tutorialCanvasContext.beginPath();
-            tutorialCanvasContext.arc(circle.x, circle.y, circle.radius, 0, Math.PI * 2, false);
-            tutorialCanvasContext.lineWidth = 5;
-            tutorialCanvasContext.strokeStyle = '#2ecc71';
-            tutorialCanvasContext.stroke();
-            tutorialCanvasContext.closePath();
-        }else{
-            tutorialCanvasContext.clearRect(0,0,canvasWidth,canvasHeight);
-        }
 
 
 
@@ -811,29 +816,6 @@ $(document).ready(function () {
         circleBorderContext.globalAlpha = 1;
     }
 
-    function drawDashedArrow(context, fromx, fromy, tox, toy, strokeStyle){
-        var headlen = 12;   // length of head in pixels
-        var angle = Math.atan2(toy-fromy,tox-fromx);
-        context.save();
-        context.strokeStyle=strokeStyle || '#000'; // defaults to black
-        // dashed part
-        context.beginPath();
-        context.setLineDash([10]);
-        context.moveTo(fromx, fromy);
-        context.lineTo(tox, toy);
-        context.stroke();
-        // second part -non dashed-
-        context.beginPath();
-        context.setLineDash([0]);
-        context.moveTo(tox, toy);
-        context.lineTo(tox-headlen*Math.cos(angle-Math.PI/6),toy-headlen*Math.sin(angle-Math.PI/6));
-        context.moveTo(tox, toy);
-        context.lineTo(tox-headlen*Math.cos(angle+Math.PI/6),toy-headlen*Math.sin(angle+Math.PI/6));
-        context.stroke();
-        //
-        context.restore();          // this will, in fact, restore strokeStyle
-    }
-
     function vennDiagramTutorial(){
         tutorialMode = true;
         $("#undoButton").invisible();
@@ -1077,6 +1059,7 @@ $(document).ready(function () {
             $("#undoButton").visible();
             $("#redoButton").visible();
             $("#refreshButton").visible();
+            tutorialStage = 0;
         }
     }
 
