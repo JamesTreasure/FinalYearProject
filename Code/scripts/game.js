@@ -24,10 +24,6 @@ $(document).ready(function () {
     var circleHighlightContext = circleHighlightCanvas.getContext('2d');
 
     window.addEventListener('resize', resizeCanvas, false);
-
-
-
-
     var canvasWidth;
     var canvasHeight;
     var dragId;
@@ -107,23 +103,13 @@ $(document).ready(function () {
 
     $(window).mousedown(function (e) {
         var pos = getMousePos(layer1, e);
-        if(tutorialMode && level.type === "venn") {
-            tutorialStage++;
-            vennDiagramTutorial();
-            return;
-        }else if(tutorialMode && level.type === "syllogism"){
-            tutorialStage++;
-            syllogismTutorial();
-            return;
-        }else{
-            tutorialCanvasContext.clearRect(0,0,canvasWidth,canvasHeight);
-        }
 
-
-        if (!levelComplete) {
+        if (!levelComplete && !tutorialMode) {
             var clickedOn = textClickedOn(pos.x, pos.y);
             if (clickedOn >= 0) {
-                if (pos.x > 0 && pos.x < canvasWidth && pos.y > 0 && pos.y < 600) {
+                tutorialCanvasContext.clearRect(0,0,canvasWidth,canvasHeight);
+                $("#tutorialBackwards").invisible();
+                if (pos.x > 0 && pos.x < canvasWidth && pos.y > 0 && pos.y < canvasHeight) {
                     var clonedMovableTextArray = clone(level.movableTextArray);
                     var clonedClickedInArray = clone(clickedInArray);
                     undoStack.push(new GameState(clonedMovableTextArray, clonedClickedInArray));
@@ -174,7 +160,31 @@ $(document).ready(function () {
             drag = false;
             moveText = false;
             dragId = -1;
-            tutorialCanvasContext.clearRect(0,0,canvasWidth,canvasHeight);
+            // tutorialCanvasContext.clearRect(0,0,canvasWidth,canvasHeight);
+        }
+    });
+
+    $("#tutorialForwards").click(function () {
+        if(tutorialMode && level.type === "venn") {
+            tutorialStage++;
+            vennDiagramTutorial();
+            return;
+        }else if(tutorialMode && level.type === "syllogism"){
+            tutorialStage++;
+            syllogismTutorial();
+            return;
+        }
+    });
+
+    $("#tutorialBackwards").click(function () {
+        if(tutorialMode && level.type === "venn") {
+            tutorialStage--;
+            vennDiagramTutorial();
+            return;
+        }else if(tutorialMode && level.type === "syllogism"){
+            tutorialStage--;
+            syllogismTutorial();
+            return;
         }
     });
 
@@ -214,6 +224,15 @@ $(document).ready(function () {
         $("#nextLevelButton").invisible();
     });
 
+    $("#tutorial").click(function () {
+        if (level.type === "venn") {
+            vennDiagramTutorial()
+        }
+        if (level.type === "syllogism") {
+            syllogismTutorial();
+        }
+    });
+
     function main(levelNumber) {
         setupLevel(levelNumber);
         context1.fillStyle = "white";
@@ -236,6 +255,7 @@ $(document).ready(function () {
     }
 
     function enableOrDisableUndoRedoButtons(){
+        console.log(undoStack.length);
         if(undoStack.length < 1){
             $('#undoButton').prop('disabled', true);
             $("#undoButton").css('opacity', '0.3');
@@ -821,8 +841,13 @@ $(document).ready(function () {
         $("#undoButton").invisible();
         $("#redoButton").invisible();
         $("#refreshButton").invisible();
+        $("#tutorial").invisible();
+
 
         if(tutorialStage === 0){
+            $("#tutorialBackwards").invisible();
+            $("#tutorialForwards").visible();
+            tearDown();
             setupLevel(1);
             setupMovableText();
             createCircles();
@@ -833,6 +858,7 @@ $(document).ready(function () {
         }
 
         if(tutorialStage === 1){
+            $("#tutorialBackwards").visible();
             drawStaticTextForVennDiagram();
             tutorialCanvasContext.clearRect(0, 0, canvasWidth, canvasHeight);
             tutorialCanvasContext.font = font;
@@ -954,6 +980,8 @@ $(document).ready(function () {
             $("#undoButton").visible();
             $("#redoButton").visible();
             $("#refreshButton").visible();
+            $("#tutorial").visible();
+            $("#tutorialForwards").invisible();
             tutorialStage = 0;
         }
 
@@ -965,8 +993,12 @@ $(document).ready(function () {
         $("#undoButton").invisible();
         $("#redoButton").invisible();
         $("#refreshButton").invisible();
+        $("#tutorial").invisible();
 
         if(tutorialStage === 0){
+            $("#tutorialBackwards").invisible();
+            $("#tutorialForwards").visible();
+            tearDown();
             setupLevel(2);
             setupMovableText();
             createCircles();
@@ -1059,6 +1091,8 @@ $(document).ready(function () {
             $("#undoButton").visible();
             $("#redoButton").visible();
             $("#refreshButton").visible();
+            $("#tutorial").visible();
+            $("#tutorialForwards").invisible();
             tutorialStage = 0;
         }
     }
