@@ -200,6 +200,7 @@ $(document).ready(function () {
     });
 
     $(window).on('touchmove', $.throttle(10, function(e) {
+        e.preventDefault();
         var pos = getMousePos(layer1, e);
         enableOrDisableUndoRedoButtons();
         if (moveText) {
