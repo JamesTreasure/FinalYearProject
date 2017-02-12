@@ -65,7 +65,7 @@ html, body {
 
 #tutorialForwards {
     position:absolute;
-    top: 45%;
+    top: 46%;
     left: 90%;
     width: 4%;
     height: auto;
@@ -73,8 +73,8 @@ html, body {
 
 #tutorialBackwards {
     position:absolute;
-    top: 45%;
-    left: 10%;
+    top: 46%;
+    left: 6%;
     width: 4%;
     height: auto;
 }

@@ -4,7 +4,7 @@ $(document).ready(function () {
     var layer3 = document.getElementById('layer3');
     var circleBorder = document.getElementById('circleBorder');
     var tutorialCanvas = document.getElementById('tutorialCanvas');
-    var circleHighlightCanvas = document.getElementById('circleHighlightCanvas');
+    var guidelines = document.getElementById('guidelines');
 
     //Context 1 has undo, redo and refresh. Also has static text, circles.
     var context1 = layer1.getContext('2d');
@@ -22,7 +22,7 @@ $(document).ready(function () {
     var tutorialCanvasContext = tutorialCanvas.getContext('2d');
 
     //Not used atm
-    var circleHighlightContext = circleHighlightCanvas.getContext('2d');
+    var guidelinesContext = guidelines.getContext('2d');
 
     window.addEventListener('resize', resizeCanvas, false);
     var canvasWidth;
@@ -63,12 +63,6 @@ $(document).ready(function () {
     var moveText;
 
 
-    function renderText(text, x, y) {
-        tutorialCanvasContext.font = font;
-        tutorialCanvasContext.fillText(text,x,y);
-    }
-
-
     function renderText() {
         tutorialCanvasContext.font = font;
         var text = "A set is a collection of things";
@@ -97,8 +91,8 @@ $(document).ready(function () {
         canvasWidth = layer1.width;
         canvasHeight = layer1.height;
 
-        vennDiagramTutorial();
-        // syllogismTutorial();
+        // vennDiagramTutorial();
+        syllogismTutorial();
 
     }
 
@@ -109,7 +103,9 @@ $(document).ready(function () {
             var clickedOn = textClickedOn(pos.x, pos.y);
             if (clickedOn >= 0) {
                 tutorialCanvasContext.clearRect(0,0,canvasWidth,canvasHeight);
+                tutorialStage = 0;
                 $("#tutorialBackwards").invisible();
+                $("#tutorialForwards").invisible();
                 if (pos.x > 0 && pos.x < canvasWidth && pos.y > 0 && pos.y < canvasHeight) {
                     var clonedMovableTextArray = clone(level.movableTextArray);
                     var clonedClickedInArray = clone(clickedInArray);
@@ -158,19 +154,88 @@ $(document).ready(function () {
                 checkIfSyllogismIsMet();
                 checkIfAnyPropositionsAreMet();
             }
+            if(drag){
+                tutorialCanvasContext.clearRect(0,0,canvasWidth,canvasHeight);
+            }
             drag = false;
             moveText = false;
             dragId = -1;
-            tutorialCanvasContext.clearRect(0,0,canvasWidth,canvasHeight);
+        }
+    });
+
+    $(window).on('touchstart', function(e){
+        var pos = getMousePos(layer1, e);
+
+        if (!levelComplete && !tutorialMode) {
+            var clickedOn = textClickedOn(pos.x, pos.y);
+            if (clickedOn >= 0) {
+                tutorialCanvasContext.clearRect(0,0,canvasWidth,canvasHeight);
+                tutorialStage = 0;
+                $("#tutorialBackwards").invisible();
+                $("#tutorialForwards").invisible();
+                if (pos.x > 0 && pos.x < canvasWidth && pos.y > 0 && pos.y < canvasHeight) {
+                    var clonedMovableTextArray = clone(level.movableTextArray);
+                    var clonedClickedInArray = clone(clickedInArray);
+                    undoStack.push(new GameState(clonedMovableTextArray, clonedClickedInArray));
+                }
+                moveText = true;
+                var textX = level.movableTextArray[clickedOn].x;
+                var textY = level.movableTextArray[clickedOn].y;
+                dragId = clickedOn;
+                dragOffsetX = pos.x - textX;
+                dragOffsetY = pos.y - textY;
+                drag = true;
+            }
+            if (!moveText) {
+                if (level.type === "syllogism") {
+                    whichCircleClickedIn(pos.x, pos.y);
+                    checkIfSyllogismIsMet();
+                    checkIfAnyPropositionsAreMet();
+                }
+                if (level.type === "venn") {
+                    checkIfVennDiagramIsCorrect();
+                }
+            }
+        }
+    });
+
+    $(window).on('touchmove', $.throttle(10, function(e) {
+        var pos = getMousePos(layer1, e);
+        enableOrDisableUndoRedoButtons();
+        if (moveText) {
+            if (drag) {
+                level.movableTextArray[dragId].x = pos.x - dragOffsetX;
+                level.movableTextArray[dragId].y = pos.y - dragOffsetY;
+                requestAnimationFrame(animate);
+            }
+        }
+    }));
+
+    $(window).on('touchend',function (e) {
+
+        if(!tutorialMode){
+            if (level.type === "venn") {
+                checkIfVennDiagramIsCorrect();
+            }
+            if (level.type === "syllogism") {
+                checkIfSyllogismIsMet();
+                checkIfAnyPropositionsAreMet();
+            }
+            if(drag){
+                tutorialCanvasContext.clearRect(0,0,canvasWidth,canvasHeight);
+            }
+            drag = false;
+            moveText = false;
+            dragId = -1;
         }
     });
 
     $("#tutorialForwards").click(function () {
-        if(tutorialMode && level.type === "venn") {
+        if(level.type === "venn") {
             tutorialStage++;
             vennDiagramTutorial();
             return;
-        }else if(tutorialMode && level.type === "syllogism"){
+        }else if(level.type === "syllogism"){
             tutorialStage++;
             syllogismTutorial();
             return;
@@ -178,11 +243,11 @@ $(document).ready(function () {
     });
 
     $("#tutorialBackwards").click(function () {
-        if(tutorialMode && level.type === "venn") {
+        if(level.type === "venn") {
             tutorialStage--;
             vennDiagramTutorial();
             return;
-        }else if(tutorialMode && level.type === "syllogism"){
+        }else if(level.type === "syllogism"){
             tutorialStage--;
             syllogismTutorial();
             return;
@@ -233,6 +298,8 @@ $(document).ready(function () {
             syllogismTutorial();
         }
     });
+
+
 
     function main(levelNumber) {
         setupLevel(levelNumber);
@@ -591,11 +658,6 @@ $(document).ready(function () {
                 tutorialCanvasContext.clearRect(0,0,canvasWidth,canvasHeight);
             }
         }
-
-
-
-
-
     }
 
     function getMousePos(canvas, e) {
@@ -873,7 +935,6 @@ $(document).ready(function () {
         $("#refreshButton").invisible();
         $("#tutorial").invisible();
 
-
         if(tutorialStage === 0){
             $("#tutorialBackwards").invisible();
             $("#tutorialForwards").visible();
@@ -882,6 +943,15 @@ $(document).ready(function () {
             setupMovableText();
             createCircles();
             drawCircles();
+
+            // var segment = canvasWidth/6;
+            // for (var i = 1; i < 6; i++) {
+            //     context1.beginPath();
+            //     context1.moveTo(segment*i,0);
+            //     context1.lineTo(segment*i,canvasHeight);
+            //     context1.stroke();
+            // }
+
             tutorialCanvasContext.clearRect(0, 0, canvasWidth, canvasHeight);
             tutorialCanvasContext.font = font;
             tutorialCanvasContext.fillStyle = 'black';
@@ -889,6 +959,7 @@ $(document).ready(function () {
 
         if(tutorialStage === 1){
             $("#tutorialBackwards").visible();
+            $("#tutorialForwards").visible();
             drawStaticTextForVennDiagram();
             tutorialCanvasContext.clearRect(0, 0, canvasWidth, canvasHeight);
             tutorialCanvasContext.font = font;
@@ -924,6 +995,7 @@ $(document).ready(function () {
         }
 
         if(tutorialStage === 2){
+            $("#tutorialForwards").visible();
             tutorialCanvasContext.clearRect(0, 0, canvasWidth, canvasHeight);
             tutorialCanvasContext.font = font;
             tutorialCanvasContext.fillStyle = 'black';
@@ -957,6 +1029,7 @@ $(document).ready(function () {
         }
 
         if(tutorialStage === 3){
+            $("#tutorialForwards").visible();
             tutorialCanvasContext.clearRect(0, 0, canvasWidth, canvasHeight);
             tutorialCanvasContext.font = font;
             tutorialCanvasContext.fillStyle = 'black';
@@ -988,14 +1061,23 @@ $(document).ready(function () {
             context1.fillStyle = "white";
             floodFill.fill(Math.round(canvasWidth/2), Math.round(canvasHeight/2), 100, context1, null, null, 90);
             tutorialCanvasContext.font = font;
-            var text = "Drag the numbers into the correct circles";
-            var textWidth = (tutorialCanvasContext.measureText(text).width);
-            var textX = circlesArray[0].x-circlesArray[0].radius-(textWidth);
-            var textY = (circlesArray[0].y+(circlesArray[0].radius/2));
-            tutorialCanvasContext.fillText(text, textX ,textY);
 
-            var startX = textX+(textWidth/2);
-            var startY = textY+fontHeight;
+            var segment = canvasWidth/6;
+
+            var text = "Drag the numbers below into the correct circles";
+
+
+            var textWidth = (tutorialCanvasContext.measureText(text).width);
+            var maxWidth = segment;
+            var textX = segment;
+            var textY = (circlesArray[0].y+(circlesArray[0].radius/2));
+
+
+            var lastY = wrapText(tutorialCanvasContext, text, textX, textY, maxWidth, 20);
+
+
+            var startX = textX+(maxWidth/2);
+            var startY = lastY+fontHeight;
 
             var endpointX = canvasWidth/3;
             var endpointY = (canvasHeight/3*2)+canvasHeight/3/2;
@@ -1012,7 +1094,6 @@ $(document).ready(function () {
             $("#refreshButton").visible();
             $("#tutorial").visible();
             $("#tutorialForwards").invisible();
-            tutorialStage = 0;
         }
 
 
@@ -1059,7 +1140,7 @@ $(document).ready(function () {
             context1.fillStyle = "#1d1d1d";
 
             var startX = textX+(maxWidth/2);
-            var startY = lastY;
+            var startY = lastY + (fontHeight/2);
 
             var endpointX = circlesArray[0].x+circlesArray[0].radius;
             var endpointY = circlesArray[0].y;
