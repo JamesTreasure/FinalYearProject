@@ -422,7 +422,7 @@ $(document).ready(function () {
             async: false
         });
 
-        $.getJSON("settings.json", function (json) {
+        $.getJSON("JSON/settings.json", function (json) {
             level = json["level" + levelNumber];
         });
     }
