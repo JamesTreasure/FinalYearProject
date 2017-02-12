@@ -21,6 +21,7 @@ $(document).ready(function () {
     //Layer for the tutorial
     var tutorialCanvasContext = tutorialCanvas.getContext('2d');
 
+    //Not used atm
     var circleHighlightContext = circleHighlightCanvas.getContext('2d');
 
     window.addEventListener('resize', resizeCanvas, false);
@@ -62,20 +63,20 @@ $(document).ready(function () {
     var moveText;
 
 
-    // function renderText(text, x, y) {
-    //     tutorialCanvasContext.font = font;
-    //     tutorialCanvasContext.fillText(text,x,y);
-    // }
-    //
-    //
-    // function renderText() {
-    //     tutorialCanvasContext.font = font;
-    //     var text = "A set is a collection of things";
-    //     var textWidth = tutorialCanvasContext.measureText(text);
-    //     tutorialCanvasContext.fillText(text, ((canvasWidth / 2) - (textWidth.width / 2)), canvasHeight/4);
-    // }
+    function renderText(text, x, y) {
+        tutorialCanvasContext.font = font;
+        tutorialCanvasContext.fillText(text,x,y);
+    }
 
-    // document.fonts.load('18pt "comicNeue"').then(renderText);
+
+    function renderText() {
+        tutorialCanvasContext.font = font;
+        var text = "A set is a collection of things";
+        var textWidth = tutorialCanvasContext.measureText(text);
+        tutorialCanvasContext.fillText(text, ((canvasWidth / 2) - (textWidth.width / 2)), canvasHeight/4);
+    }
+
+    document.fonts.load('18pt "comicNeue"').then(renderText);
 
     function resizeCanvas() {
         layer1.width = window.innerWidth;
@@ -96,8 +97,8 @@ $(document).ready(function () {
         canvasWidth = layer1.width;
         canvasHeight = layer1.height;
 
-        // vennDiagramTutorial();
-        syllogismTutorial();
+        vennDiagramTutorial();
+        // syllogismTutorial();
 
     }
 
@@ -160,7 +161,7 @@ $(document).ready(function () {
             drag = false;
             moveText = false;
             dragId = -1;
-            // tutorialCanvasContext.clearRect(0,0,canvasWidth,canvasHeight);
+            tutorialCanvasContext.clearRect(0,0,canvasWidth,canvasHeight);
         }
     });
 
@@ -642,14 +643,43 @@ $(document).ready(function () {
             } else {
                 context1.fillStyle = "#003300";
             }
+
             context1.font = font;
             level.staticTextArray[i].width = (context1.measureText(level.staticTextArray[i].text).width);
             level.staticTextArray[i].x = ((layer1.width / 2) - (level.staticTextArray[i].width / 2));
             level.staticTextArray[i].y = (i * (canvasHeight / 30) + (canvasHeight/6.5));
             level.staticTextArray[i].height = fontHeight;
+
+            if(i == level.staticTextArray.length-1){
+                level.staticTextArray[i].y += (fontHeight/2);
+            }
+
+            drawLineBetween();
+
             context1.fillText(level.staticTextArray[i].text, level.staticTextArray[i].x, level.staticTextArray[i].y);
         }
         context1.globalAlpha = 1;
+    }
+
+    function drawLineBetween(){
+        var biggestLineWidthIndex = 0;
+        var biggestLineWidth = 0;
+        for (var i = 0; i < level.staticTextArray.length; i++) {
+            var lineWidth = level.staticTextArray[i].width;
+            var x = level.staticTextArray[i].x;
+            if(lineWidth > biggestLineWidth){
+                biggestLineWidth = lineWidth;
+                biggestLineWidthIndex = i;
+            }
+        }
+
+        var y = ((level.staticTextArray[1].y + level.staticTextArray[2].y)/2)-fontHeight/2;
+
+        context1.beginPath();
+        context1.strokeStyle = 'black';
+        context1.moveTo(level.staticTextArray[biggestLineWidthIndex].x,y);
+        context1.lineTo(level.staticTextArray[biggestLineWidthIndex].x + level.staticTextArray[biggestLineWidthIndex].width ,y);
+        context1.stroke();
     }
 
     function drawStaticTextForVennDiagram() {
