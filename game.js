@@ -166,6 +166,7 @@ $(document).ready(function () {
     });
 
     $(window).on('touchstart', function(e){
+        e.preventDefault();
         var pos = getMousePos(layer1, e);
 
         if (!levelComplete && !tutorialMode) {
