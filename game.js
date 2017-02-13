@@ -31,8 +31,7 @@ $(document).ready(function () {
     var dragOffsetX;
     var dragOffsetY;
     var drag = false;
-    var font = '18pt comicNeue';
-    var fontHeight = 18;
+
     var majorPremiseMet;
     var minorPremiseMet;
     var level;
@@ -40,6 +39,7 @@ $(document).ready(function () {
     var fadedAlphaLevel = 0.2;
     var tutorialMode = false;
     var tutorialStage = 0;
+    var currentFontSize;
 
     var GameState = function (movableTextArray, clickedInArray) {
         this.movableTextArray = movableTextArray;
@@ -72,6 +72,7 @@ $(document).ready(function () {
 
     document.fonts.load('18pt "comicNeue"').then(renderText);
 
+
     function resizeCanvas() {
         layer1.width = window.innerWidth;
         layer1.height = window.innerHeight;
@@ -95,6 +96,7 @@ $(document).ready(function () {
         syllogismTutorial();
 
     }
+
 
     $(window).mousedown(function (e) {
         var pos = getMousePos(layer1, e);
@@ -711,10 +713,10 @@ $(document).ready(function () {
             level.staticTextArray[i].width = (context1.measureText(level.staticTextArray[i].text).width);
             level.staticTextArray[i].x = ((layer1.width / 2) - (level.staticTextArray[i].width / 2));
             level.staticTextArray[i].y = (i * (canvasHeight / 30) + (canvasHeight/6.5));
-            level.staticTextArray[i].height = fontHeight;
+            level.staticTextArray[i].height = currentFontSize;
 
             if(i == level.staticTextArray.length-1){
-                level.staticTextArray[i].y += (fontHeight/2);
+                level.staticTextArray[i].y += (currentFontSize/2);
             }
 
             drawLineBetween();
@@ -736,7 +738,7 @@ $(document).ready(function () {
             }
         }
 
-        var y = ((level.staticTextArray[1].y + level.staticTextArray[2].y)/2)-fontHeight/2;
+        var y = ((level.staticTextArray[1].y + level.staticTextArray[2].y)/2)-currentFontSize/2;
 
         context1.beginPath();
         context1.strokeStyle = 'black';
@@ -762,7 +764,7 @@ $(document).ready(function () {
                 ;
             }
             level.staticTextArray[i].y = (canvasHeight / 2) - (canvasHeight / 5);
-            level.staticTextArray[i].height = fontHeight;
+            level.staticTextArray[i].height = currentFontSize;
             context1.fillText(level.staticTextArray[i].text, level.staticTextArray[i].x, level.staticTextArray[i].y);
         }
         context1.globalAlpha = 1;
@@ -983,7 +985,7 @@ $(document).ready(function () {
             tutorialCanvasContext.closePath();
 
             var startX = textX+(textWidth/2);
-            var startY = textY-fontHeight-5;
+            var startY = textY-currentFontSize-5;
 
             var endpointX = circlesArray[0].x;
             var endpointY = circlesArray[0].y+circlesArray[0].radius;
@@ -1018,7 +1020,7 @@ $(document).ready(function () {
             tutorialCanvasContext.closePath();
 
             var startX = textX+(textWidth/2);
-            var startY = textY-fontHeight-5;
+            var startY = textY-currentFontSize-5;
 
             var endpointX = circlesArray[1].x;
             var endpointY = circlesArray[1].y+circlesArray[0].radius;
@@ -1045,7 +1047,7 @@ $(document).ready(function () {
             floodFill.fill(Math.round(canvasWidth/2), Math.round(canvasHeight/2), 100, context1, null, null, 90);
 
             var startX = textX+(textWidth/2);
-            var startY = textY-fontHeight-5;
+            var startY = textY-currentFontSize-5;
 
             var endpointX = canvasWidth/2
             var endpointY = canvasHeight/2;
@@ -1074,11 +1076,11 @@ $(document).ready(function () {
             var textY = (circlesArray[0].y+(circlesArray[0].radius/2));
 
 
-            var lastY = wrapText(tutorialCanvasContext, text, textX, textY, maxWidth, 20);
+            var lastY = wrapText(tutorialCanvasContext, text, textX, textY, maxWidth, currentFontSize);
 
 
             var startX = textX+(maxWidth/2);
-            var startY = lastY+fontHeight;
+            var startY = lastY+currentFontSize;
 
             var endpointX = canvasWidth/3;
             var endpointY = (canvasHeight/3*2)+canvasHeight/3/2;
@@ -1137,11 +1139,11 @@ $(document).ready(function () {
             var maxWidth = canvasWidth/6;
             var textX = circlesArray[2].x+circlesArray[2].radius;
             var textY = (canvasHeight/4);
-            var lastY = wrapText(tutorialCanvasContext, text, textX, textY, canvasWidth/6, 20);
+            var lastY = wrapText(tutorialCanvasContext, text, textX, textY, canvasWidth/6, currentFontSize);
             context1.fillStyle = "#1d1d1d";
 
             var startX = textX+(maxWidth/2);
-            var startY = lastY + (fontHeight/2);
+            var startY = lastY + (currentFontSize/2);
 
             var endpointX = circlesArray[0].x+circlesArray[0].radius;
             var endpointY = circlesArray[0].y;
@@ -1171,7 +1173,7 @@ $(document).ready(function () {
             tutorialCanvasContext.fillText(text1, text1X ,text1Y);
 
             var start1X = text1X+(textWidth/2);
-            var start1Y = text1Y+fontHeight;
+            var start1Y = text1Y+currentFontSize;
 
             var endpoint1X = canvasWidth/3;
             var endpoint1Y = (canvasHeight/3*2)+canvasHeight/3/2;
@@ -1186,10 +1188,10 @@ $(document).ready(function () {
             var textWidth = tutorialCanvasContext.measureText(text2).width;
             var text2X = circlesArray[2].x+circlesArray[2].radius;
             var text2Y = (canvasHeight/4+(canvasHeight/8));
-            var last2Y = wrapText(tutorialCanvasContext, text2, text2X, text2Y, maxWidth, 20);
+            var last2Y = wrapText(tutorialCanvasContext, text2, text2X, text2Y, maxWidth, currentFontSize);
 
             var start2X = text2X+(maxWidth/2);
-            var start2Y = text2Y-fontHeight;
+            var start2Y = text2Y-currentFontSize;
 
             var endpoint2X = level.staticTextArray[1].x+level.staticTextArray[1].width+(canvasWidth/60);
             var endpoint2Y = level.staticTextArray[1].y;
@@ -1285,6 +1287,19 @@ $(document).ready(function () {
 
     resizeCanvas();
 
+    var fontBase = 1440;
+    var fontSize = 24;
+    function getFont() {
+        var ratio = fontSize / fontBase;   // calc ratio
+        var size = canvasWidth * ratio;   // get font size based on current width
+        currentFontSize = size;
+        return (size|0) + 'px comicNeue'; // set font
+    }
+
+    var font = getFont();
+
+
+    console.log(canvasWidth);
     //vennDiagramTutorial();
 
 })
