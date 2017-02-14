@@ -1,0 +1,198 @@
+{
+  "globalSettings": [],
+  "level1": {
+    "type": "venn",
+    "levelNumber": 1,
+    "correctSyllogism": {
+      "subject": true,
+      "middleSubjectIntersection": true,
+      "subjectPredicateIntersection": true,
+      "middlePredicateIntersection": false,
+      "middleSubjectPredicateIntersection": false,
+      "predicate": false,
+      "middle": true
+    },
+    "majorPremise": {
+      "middle": true,
+      "middleSubjectIntersection": true,
+      "middleSubjectPredicateIntersection": false,
+      "middlePredicateIntersection": false
+    },
+    "minorPremise": {
+      "subject": true,
+      "subjectPredicateIntersection": true
+    },
+    "blankSyllogism": {
+      "subject": false,
+      "middleSubjectIntersection": false,
+      "subjectPredicateIntersection": false,
+      "middlePredicateIntersection": false,
+      "middleSubjectPredicateIntersection": false,
+      "predicate": false,
+      "middle": false
+    },
+    "particularSyllogism" : false,
+    "circlesNeeded": 2,
+    "staticTextArray": [{
+      "text": "Even Numbers"
+    }, {
+      "text": "Multiples of 5"
+    }],
+    "circle1" :[2],
+    "circle2" :[5],
+    "intersection" : [10],
+    "movableTextArray": [{
+      "text": "2"
+    }, {
+      "text": "5"
+    }, {
+      "text": "10"
+    }]
+  },
+  "level2": {
+    "type" : "syllogism",
+    "levelNumber": 2,
+    "correctSyllogism": {
+      "subject": true,
+      "middleSubjectIntersection": true,
+      "subjectPredicateIntersection": true,
+      "middlePredicateIntersection": false,
+      "middleSubjectPredicateIntersection": false,
+      "predicate": false,
+      "middle": true
+    },
+    "majorPremise": {
+      "middle": true,
+      "middleSubjectIntersection": true,
+      "middleSubjectPredicateIntersection": false,
+      "middlePredicateIntersection": false
+    },
+    "minorPremise": {
+      "subject": true,
+      "subjectPredicateIntersection": true
+    },
+    "blankSyllogism": {
+      "subject": false,
+      "middleSubjectIntersection": false,
+      "subjectPredicateIntersection": false,
+      "middlePredicateIntersection": false,
+      "middleSubjectPredicateIntersection": false,
+      "predicate": false,
+      "middle": false
+    },
+    "circlesNeeded": 3,
+    "staticTextArray": [{
+      "text": "All Men Are Mortal"
+    }, {
+      "text": "All Greeks Are Men"
+    }, {
+      "text": "All Greeks Are Mortal"
+    }],
+    "movableTextArray": [{
+      "text": "Men"
+    }, {
+      "text": "Mortal"
+    }, {
+      "text": "Greeks"
+    }],
+    "particularSyllogism" : false
+  },
+  "level3": {
+    "type" : "syllogism",
+    "correctSyllogism": {
+      "subject": false,
+      "middleSubjectIntersection": true,
+      "subjectPredicateIntersection": false,
+      "middlePredicateIntersection": false,
+      "middleSubjectPredicateIntersection": false,
+      "predicate": false,
+      "middle": true
+    },
+    "correctXPlacement": "middleSubjectPredicateIntersection",
+    "majorPremise": {
+      "middleIntersection": true,
+      "middleSubjectIntersection": true
+    },
+    "minorPremise": {
+      "subject": true,
+      "subjectPredicateIntersection": true
+    },
+    "blankSyllogism": {
+      "subject": false,
+      "middleSubjectIntersection": false,
+      "subjectPredicateIntersection": false,
+      "middlePredicateIntersection": false,
+      "middleSubjectPredicateIntersection": false,
+      "predicate": false,
+      "middle": false
+    },
+    "circlesNeeded": 3,
+    "staticTextArray": [{
+      "text": "All Rabbits Have Fur"
+    }, {
+      "text": "Some Pets Are Rabbits"
+    }, {
+      "text": "Some Pets Have Fur"
+    }],
+    "movableTextArray": [{
+      "text": "Rabbit"
+    }, {
+      "text": "Fur"
+    }, {
+      "text": "Pet"
+    },{
+      "text": "X"
+    }],
+    "particularSyllogism" : true,
+    "particularSyllogismLocation" : "middleSubjectPredicateIntersection"
+  },
+  "level5": {
+    "type" : "syllogism",
+    "correctSyllogism": {
+      "subject": false,
+      "middleSubjectIntersection": true,
+      "subjectPredicateIntersection": false,
+      "middlePredicateIntersection": true,
+      "middleSubjectPredicateIntersection": true,
+      "predicate": false,
+      "middle": false
+    },
+    "correctXPlacement": "middleSubjectIntersection",
+    "majorPremise": {
+      "middleIntersection": true,
+      "middleSubjectIntersection": true
+    },
+    "minorPremise": {
+      "subject": true,
+      "subjectPredicateIntersection": true
+    },
+    "blankSyllogism": {
+      "subject": false,
+      "middleSubjectIntersection": false,
+      "subjectPredicateIntersection": false,
+      "middlePredicateIntersection": false,
+      "middleSubjectPredicateIntersection": false,
+      "predicate": false,
+      "middle": false
+    },
+    "circlesNeeded": 3,
+    "staticTextArray": [{
+      "text": "No homework is fun"
+    }, {
+      "text": "Some reading is not homework"
+    }, {
+      "text": "Some reading is not fun"
+    }],
+    "movableTextArray": [{
+      "text": "Home"
+    }, {
+      "text": "Fun"
+    }, {
+      "text": "Read"
+    },{
+      "text": "X"
+    }],
+    "particularSyllogism" : true,
+    "particularSyllogismLocation" : "middleSubjectIntersection"
+  }
+}
