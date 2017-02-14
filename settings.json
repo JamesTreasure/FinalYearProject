@@ -240,5 +240,48 @@
     }],
     "particularSyllogism" : true,
     "particularSyllogismLocation" : "middleSubjectIntersection"
-  }
+  },
+    "level4": {
+      "type" : "setTheory",
+      "correctSyllogism": {
+        "subject": false,
+        "middleSubjectIntersection": true,
+        "subjectPredicateIntersection": false,
+        "middlePredicateIntersection": false,
+        "middleSubjectPredicateIntersection": false,
+        "predicate": false,
+        "middle": true
+      },
+      "correctXPlacement": "middleSubjectPredicateIntersection",
+      "majorPremise": {
+        "middleIntersection": true,
+        "middleSubjectIntersection": true
+      },
+      "minorPremise": {
+        "subject": true,
+        "subjectPredicateIntersection": true
+      },
+      "blankSyllogism": {
+        "subject": false,
+        "middleSubjectIntersection": false,
+        "subjectPredicateIntersection": false,
+        "middlePredicateIntersection": false,
+        "middleSubjectPredicateIntersection": false,
+        "predicate": false,
+        "middle": false
+      },
+      "circlesNeeded": 3,
+      "staticTextArray": [{
+        "text": "A u (B n C) = (A u B) n (A u C)"
+      }],
+      "movableTextArray": [{
+        "text": "A"
+      }, {
+        "text": "B"
+      }, {
+        "text": "C"
+      }],
+      "particularSyllogism" : true,
+      "particularSyllogismLocation" : "middleSubjectPredicateIntersection"
+    }
 }

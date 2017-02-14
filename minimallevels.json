@@ -145,54 +145,5 @@
     }],
     "particularSyllogism" : true,
     "particularSyllogismLocation" : "middleSubjectPredicateIntersection"
-  },
-  "level5": {
-    "type" : "syllogism",
-    "correctSyllogism": {
-      "subject": false,
-      "middleSubjectIntersection": true,
-      "subjectPredicateIntersection": false,
-      "middlePredicateIntersection": true,
-      "middleSubjectPredicateIntersection": true,
-      "predicate": false,
-      "middle": false
-    },
-    "correctXPlacement": "middleSubjectIntersection",
-    "majorPremise": {
-      "middleIntersection": true,
-      "middleSubjectIntersection": true
-    },
-    "minorPremise": {
-      "subject": true,
-      "subjectPredicateIntersection": true
-    },
-    "blankSyllogism": {
-      "subject": false,
-      "middleSubjectIntersection": false,
-      "subjectPredicateIntersection": false,
-      "middlePredicateIntersection": false,
-      "middleSubjectPredicateIntersection": false,
-      "predicate": false,
-      "middle": false
-    },
-    "circlesNeeded": 3,
-    "staticTextArray": [{
-      "text": "No homework is fun"
-    }, {
-      "text": "Some reading is not homework"
-    }, {
-      "text": "Some reading is not fun"
-    }],
-    "movableTextArray": [{
-      "text": "Home"
-    }, {
-      "text": "Fun"
-    }, {
-      "text": "Read"
-    },{
-      "text": "X"
-    }],
-    "particularSyllogism" : true,
-    "particularSyllogismLocation" : "middleSubjectIntersection"
   }
 }
