@@ -95,5 +95,5 @@ html, body {
 
 @font-face {
     font-family: 'comicNeueBold'; /*a name to be used later*/
-    src: url('fonts/Web/ComicNeue-Angular-Light.ttf'); /*URL to font*/
+    src: url('fonts/Web/ComicNeue-Angular-Bold.ttf'); /*URL to font*/
 }

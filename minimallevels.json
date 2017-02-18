@@ -31,26 +31,39 @@
       "predicate": false,
       "middle": false
     },
-    "particularSyllogism" : false,
+    "particularSyllogism": false,
     "circlesNeeded": 2,
-    "staticTextArray": [{
-      "text": "Even Numbers"
-    }, {
-      "text": "Multiples of 5"
-    }],
-    "circle1" :[2],
-    "circle2" :[5],
-    "intersection" : [10],
-    "movableTextArray": [{
-      "text": "2"
-    }, {
-      "text": "5"
-    }, {
-      "text": "10"
-    }]
+    "staticTextArray": [
+      {
+        "text": "Even Numbers"
+      },
+      {
+        "text": "Multiples of 5"
+      }
+    ],
+    "circle1": [
+      2
+    ],
+    "circle2": [
+      5
+    ],
+    "intersection": [
+      10
+    ],
+    "movableTextArray": [
+      {
+        "text": "2"
+      },
+      {
+        "text": "5"
+      },
+      {
+        "text": "10"
+      }
+    ]
   },
   "level2": {
-    "type" : "syllogism",
+    "type": "syllogism",
     "levelNumber": 2,
     "correctSyllogism": {
       "subject": true,
@@ -81,24 +94,33 @@
       "middle": false
     },
     "circlesNeeded": 3,
-    "staticTextArray": [{
-      "text": "All Men Are Mortal"
-    }, {
-      "text": "All Greeks Are Men"
-    }, {
-      "text": "All Greeks Are Mortal"
-    }],
-    "movableTextArray": [{
-      "text": "Men"
-    }, {
-      "text": "Mortal"
-    }, {
-      "text": "Greeks"
-    }],
-    "particularSyllogism" : false
+    "staticTextArray": [
+      {
+        "text": "All Men Are Mortal"
+      },
+      {
+        "text": "All Greeks Are Men"
+      },
+      {
+        "text": "All Greeks Are Mortal"
+      }
+    ],
+    "movableTextArray": [
+      {
+        "text": "Men"
+      },
+      {
+        "text": "Mortal"
+      },
+      {
+        "text": "Greeks"
+      }
+    ],
+    "particularSyllogism": false
   },
   "level3": {
-    "type" : "syllogism",
+    "type": "syllogism",
+    "levelNumber": 3,
     "correctSyllogism": {
       "subject": false,
       "middleSubjectIntersection": true,
@@ -127,23 +149,163 @@
       "middle": false
     },
     "circlesNeeded": 3,
-    "staticTextArray": [{
-      "text": "All Rabbits Have Fur"
-    }, {
-      "text": "Some Pets Are Rabbits"
-    }, {
-      "text": "Some Pets Have Fur"
-    }],
-    "movableTextArray": [{
-      "text": "Rabbit"
-    }, {
-      "text": "Fur"
-    }, {
-      "text": "Pet"
-    },{
-      "text": "X"
-    }],
-    "particularSyllogism" : true,
-    "particularSyllogismLocation" : "middleSubjectPredicateIntersection"
+    "staticTextArray": [
+      {
+        "text": "All Rabbits Have Fur"
+      },
+      {
+        "text": "Some Pets Are Rabbits"
+      },
+      {
+        "text": "Some Pets Have Fur"
+      }
+    ],
+    "movableTextArray": [
+      {
+        "text": "Rabbit"
+      },
+      {
+        "text": "Fur"
+      },
+      {
+        "text": "Pet"
+      },
+      {
+        "text": "X"
+      }
+    ],
+    "particularSyllogism": true,
+    "particularSyllogismLocation": "middleSubjectPredicateIntersection"
+  },
+  "level4": {
+    "type": "setTheory",
+    "levelNumber": 4,
+    "correctSyllogism": {
+      "subject": true,
+      "middleSubjectIntersection": true,
+      "subjectPredicateIntersection": true,
+      "middlePredicateIntersection": false,
+      "middleSubjectPredicateIntersection": false,
+      "predicate": false,
+      "middle": true
+    },
+    "majorPremise": {
+      "middle": true,
+      "middleSubjectIntersection": true,
+      "middleSubjectPredicateIntersection": false,
+      "middlePredicateIntersection": false
+    },
+    "minorPremise": {
+      "subject": true,
+      "subjectPredicateIntersection": true
+    },
+    "blankSyllogism": {
+      "subject": false,
+      "middleSubjectIntersection": false,
+      "subjectPredicateIntersection": false,
+      "middlePredicateIntersection": false,
+      "middleSubjectPredicateIntersection": false,
+      "predicate": false,
+      "middle": false
+    },
+    "particularSyllogism": false,
+    "circlesNeeded": 2,
+    "staticTextArray": [
+      {
+        "text": "Even Numbers"
+      },
+      {
+        "text": "Multiples of 5"
+      }
+    ],
+    "circle1": [
+      2
+    ],
+    "circle2": [
+      5
+    ],
+    "intersection": [
+      10
+    ],
+    "movableTextArray": [
+      {
+        "text": "2"
+      },
+      {
+        "text": "5"
+      },
+      {
+        "text": "10"
+      }
+    ]
+  },
+  "level5": {
+    "type": "setTheory",
+    "levelNumber": 5,
+    "parts": 3,
+    "correctPlacement": [
+      {
+        "a": true,
+        "b": true,
+        "c": false,
+        "acIntersection": true,
+        "cbIntersection": true,
+        "abIntersection": true,
+        "acbIntersection": true
+      },
+      {
+        "a": true,
+        "b": false,
+        "c": true,
+        "acIntersection": true,
+        "cbIntersection": true,
+        "abIntersection": true,
+        "acbIntersection": true
+      },
+      {
+        "a": true,
+        "b": false,
+        "c": false,
+        "acIntersection": true,
+        "cbIntersection": true,
+        "abIntersection": true,
+        "acbIntersection": true
+      }
+    ],
+    "majorPremise": {
+      "middleIntersection": true,
+      "middleSubjectIntersection": true
+    },
+    "minorPremise": {
+      "subject": true,
+      "subjectPredicateIntersection": true
+    },
+    "blankSyllogism": {
+      "a": false,
+      "b": false,
+      "c": false,
+      "acIntersection": false,
+      "cbIntersection": false,
+      "abIntersection": false,
+      "acbIntersection": false
+    },
+    "circlesNeeded": 3,
+    "staticTextArray": [
+      {
+        "text": "A u (B n C) = (A u B) n (A u C)"
+      }
+    ],
+    "movableTextArray": [
+      {
+        "text": "A"
+      },
+      {
+        "text": "B"
+      },
+      {
+        "text": "C"
+      }
+    ],
+    "particularSyllogism": false
   }
 }
