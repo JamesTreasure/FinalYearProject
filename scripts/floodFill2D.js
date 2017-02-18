@@ -10,7 +10,7 @@ const floodFill = (function(){
         left : 0,
         bottom : 0,
         right : 0,
-    }
+    };
     var keepMask = false; // if true then a mask of the filled area is returned as a canvas image
     var extentOnly = false;  // if true then the extent of the fill is returned
     var copyPixels = false; // if true then creating a copy of filled pixels
