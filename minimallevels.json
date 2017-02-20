@@ -132,7 +132,7 @@
     },
     "correctXPlacement": "middleSubjectPredicateIntersection",
     "majorPremise": {
-      "middleIntersection": true,
+      "middle": true,
       "middleSubjectIntersection": true
     },
     "minorPremise": {
@@ -178,7 +178,7 @@
     "particularSyllogismLocation": "middleSubjectPredicateIntersection"
   },
   "level4": {
-    "type": "setTheory",
+    "type": "unionIntersectionTutorial",
     "levelNumber": 4,
     "correctSyllogism": {
       "subject": true,
@@ -292,7 +292,7 @@
     "circlesNeeded": 3,
     "staticTextArray": [
       {
-        "text": "A u (B n C) = (A u B) n (A u C)"
+        "text": "A ∪ (B ∩ C) = (A ∪ B) ∩ (A ∪ C)"
       }
     ],
     "movableTextArray": [

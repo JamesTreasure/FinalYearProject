@@ -1,22 +1,11 @@
-function drawNumbersForSetTheoryTutorial(tutorialCanvasContext, circlesArray, canvasWidth) {
-    tutorialCanvasContext.fillText("2", circlesArray[0].x - (circlesArray[0].radius / 2), circlesArray[0].y);
-    tutorialCanvasContext.fillText("12", circlesArray[0].x - (circlesArray[0].radius / 4), circlesArray[0].y + (circlesArray[0].radius / 2));
-    tutorialCanvasContext.fillText("8", circlesArray[0].x - (circlesArray[0].radius / 4), circlesArray[0].y - (circlesArray[0].radius / 2));
-
-    tutorialCanvasContext.fillText("15", circlesArray[1].x + (circlesArray[1].radius / 2), circlesArray[1].y);
-    tutorialCanvasContext.fillText("25", circlesArray[1].x + (circlesArray[1].radius / 4), circlesArray[1].y + (circlesArray[1].radius / 2));
-    tutorialCanvasContext.fillText("5", circlesArray[1].x + (circlesArray[1].radius / 4), circlesArray[1].y - (circlesArray[1].radius / 2));
-
-    tutorialCanvasContext.fillText("10", canvasWidth / 2 - (canvasWidth / 50), circlesArray[0].y - circlesArray[0].radius / 4);
-    tutorialCanvasContext.fillText("40", canvasWidth / 2 + (canvasWidth / 50), circlesArray[0].y + circlesArray[0].radius / 4);
-}
 $(document).ready(function () {
     var layer1 = document.getElementById('layer1');
     var layer2 = document.getElementById('layer2');
     var layer3 = document.getElementById('layer3');
+    var layer4 = document.getElementById('layer4');
     var circleBorder = document.getElementById('circleBorder');
     var tutorialCanvas = document.getElementById('tutorialCanvas');
-    var guidelines = document.getElementById('guidelines');
+    var circleOutlineCanvas = document.getElementById('circleOutlineCanvas');
 
     //Context 1 has undo, redo and refresh. Also has static text, circles.
     var context1 = layer1.getContext('2d');
@@ -27,11 +16,16 @@ $(document).ready(function () {
     //Context 3 has win screen
     var context3 = layer3.getContext('2d');
 
+    var context4 = layer4.getContext('2d');
+
     //Layer for the second circles
     var circleBorderContext = circleBorder.getContext('2d');
 
     //Layer for the tutorial
     var tutorialCanvasContext = tutorialCanvas.getContext('2d');
+
+    var circleOutlineContext = circleOutlineCanvas.getContext('2d');
+
 
     window.addEventListener('resize', resizeCanvas, false);
     var canvasWidth;
@@ -50,6 +44,7 @@ $(document).ready(function () {
     var currentFontSize;
     var setTheoryCurrentStage = 0;
     var font;
+    var setTheoryColours = ["#3498db", "#f1c40f", "#f1c40f"];
 
     var GameState = function (movableTextArray, clickedInArray) {
         this.movableTextArray = movableTextArray;
@@ -79,7 +74,7 @@ $(document).ready(function () {
         tutorialCanvasContext.fillText(text, ((canvasWidth / 2) - (textWidth.width / 2)), canvasHeight / 4);
     }
 
-    // document.fonts.load('18pt "comicNeue"').then(renderText);
+    document.fonts.load('18pt "comicNeue"').then(renderText);
 
     function resizeCanvas() {
         layer1.width = window.innerWidth;
@@ -97,6 +92,9 @@ $(document).ready(function () {
         tutorialCanvas.height = window.innerHeight;
         tutorialCanvas.width = window.innerWidth;
 
+        circleOutlineCanvas.height = window.innerHeight;
+        circleOutlineCanvas.width = window.innerWidth;
+
         canvasWidth = layer1.width;
         canvasHeight = layer1.height;
         font = getFont();
@@ -110,8 +108,10 @@ $(document).ready(function () {
         if (!levelComplete && !tutorialMode) {
             var clickedOn = textClickedOn(pos.x, pos.y);
             if (clickedOn >= 0) {
-                tutorialCanvasContext.clearRect(0, 0, canvasWidth, canvasHeight);
-                tutorialStage = 0;
+                if (level.type != "setTheory") {
+                    tutorialCanvasContext.clearRect(0, 0, canvasWidth, canvasHeight);
+                    tutorialStage = 0;
+                }
                 $("#tutorialBackwards").invisible();
                 $("#tutorialForwards").invisible();
                 if (pos.x > 0 && pos.x < canvasWidth && pos.y > 0 && pos.y < canvasHeight) {
@@ -169,7 +169,8 @@ $(document).ready(function () {
                 checkIfSetTheoryIsMet(level.correctPlacement[setTheoryCurrentStage]);
             }
             if (drag) {
-                tutorialCanvasContext.clearRect(0, 0, canvasWidth, canvasHeight);
+                circleOutlineContext.clearRect(0, 0, canvasWidth, canvasHeight);
+
             }
             drag = false;
             dragId = -1;
@@ -189,16 +190,22 @@ $(document).ready(function () {
             tutorialStage++;
             someXTutorial();
         }
-        if (level.type === "setTheory") {
+        if (level.type === "unionIntersectionTutorial") {
             if (!tutorialMode) {
                 $("#tutorialForwards").invisible();
                 $("#tutorialBackwards").invisible();
                 tearDown();
-                main(5);
+                tutorialStage = 0;
+                setTheoryTutorial();
             } else {
                 tutorialStage++;
                 unionIntersectionTutorial();
             }
+        }
+        if (level.type === "setTheory") {
+            tutorialStage++;
+            setTheoryTutorial();
+            return;
         }
     });
 
@@ -253,7 +260,7 @@ $(document).ready(function () {
             syllogismTutorial();
         } else if (nextLevel == 3) {
             someXTutorial();
-        } else if (nextLevel === 4){
+        } else if (nextLevel === 4) {
             unionIntersectionTutorial();
         } else {
             tearDown();
@@ -269,6 +276,10 @@ $(document).ready(function () {
         }
         if (level.type === "syllogism") {
             syllogismTutorial();
+        }
+        if(level.type === "setTheory"){
+            tutorialStage = 0;
+            setTheoryTutorial();
         }
     });
 
@@ -358,6 +369,30 @@ $(document).ready(function () {
         $("#nextLevelButton").css({left: x}).visible();
         context3.font = font;
         var text = "Level complete!";
+        var textWidth = (context3.measureText(text).width);
+        context3.fillText(text, ((canvasWidth / 2) - (textWidth / 2)), canvasHeight / 2);
+    }
+
+    function gameCompleteScreen(){
+        levelComplete = true;
+        clearAllCanvases();
+        drawCircles();
+        if (level.type === "venn") {
+            drawStaticTextForVennDiagram();
+        }
+        drawMovableText();
+
+        //refill circles with faded black
+        for (var i = 0; i < clickedInArray.length; i++) {
+            context1.globalAlpha = fadedAlphaLevel;
+            context1.fillStyle = "#1d1d1d";
+            floodFill.fill(clickedInArray[i].x, clickedInArray[i].y, 100, context1, null, null, 90);
+            context1.globalAlpha = 1;
+        }
+
+        $("#nextLevelButton").invisible();
+        context3.font = font;
+        var text = "Game complete!";
         var textWidth = (context3.measureText(text).width);
         context3.fillText(text, ((canvasWidth / 2) - (textWidth / 2)), canvasHeight / 2);
     }
@@ -647,7 +682,6 @@ $(document).ready(function () {
 
         if (_.isEqual(level.blankSyllogism, correctSyllogism)) {
             isTextMovable = false;
-            console.log("Correctomundo");
             if (setTheoryCurrentStage < level.correctPlacement.length - 1) {
                 setTheoryCurrentStage++;
                 var tempClickedInArray = clone(clickedInArray);
@@ -658,13 +692,18 @@ $(document).ready(function () {
                 drawCircles();
                 for (var i = 0; i < tempClickedInArray.length; i++) {
                     context1.globalAlpha = fadedAlphaLevel;
-                    context1.fillStyle = "#1d1d1d";
+                    context1.fillStyle = setTheoryColours[setTheoryCurrentStage - 1];
                     floodFill.fill(tempClickedInArray[i].x, tempClickedInArray[i].y, 100, context1, null, null, 90);
                     context1.globalAlpha = 1;
 
                 }
+                tutorialStage++;
+                tutorialMode = true;
+                setTheoryTutorial();
             } else {
-                console.log("fully completed it mate");
+                levelCompleteScreen();
+                gameCompleteScreen();
+                setInterval(drawConfetti, 20);
             }
         }
     }
@@ -724,16 +763,16 @@ $(document).ready(function () {
             }
 
             if (circlePremiseIsIn) {
-                tutorialCanvasContext.clearRect(0, 0, canvasWidth, canvasHeight);
+                circleOutlineContext.clearRect(0, 0, canvasWidth, canvasHeight);
                 var circle = circlesArray[circlePremiseIsIn[0]];
-                tutorialCanvasContext.beginPath();
-                tutorialCanvasContext.arc(circle.x, circle.y, circle.radius, 0, Math.PI * 2, false);
-                tutorialCanvasContext.lineWidth = 6;
-                tutorialCanvasContext.strokeStyle = '#2ecc71';
-                tutorialCanvasContext.stroke();
-                tutorialCanvasContext.closePath();
+                circleOutlineContext.beginPath();
+                circleOutlineContext.arc(circle.x, circle.y, circle.radius, 0, Math.PI * 2, false);
+                circleOutlineContext.lineWidth = 5;
+                circleOutlineContext.strokeStyle = '#2ecc71';
+                circleOutlineContext.stroke();
+                circleOutlineContext.closePath();
             } else {
-                tutorialCanvasContext.clearRect(0, 0, canvasWidth, canvasHeight);
+                circleOutlineContext.clearRect(0, 0, canvasWidth, canvasHeight);
             }
         }
     }
@@ -915,9 +954,16 @@ $(document).ready(function () {
             tempArray.sort();
             clickedInArray.push(new Click(tempArray, x, y))
             // context1.fillStyle = "#252525";
-            context1.fillStyle = "#1d1d1d";
 
-            floodFill.fill(x, y, 100, context1, null, null, 90)
+            if (level.type === "setTheory") {
+                context1.fillStyle = setTheoryColours[setTheoryCurrentStage];
+                context1.globalAlpha = 0.5;
+                floodFill.fill(x, y, 100, context1, null, null, 90)
+                context1.globalAlpha = 1;
+            } else {
+                context1.fillStyle = "#1d1d1d";
+                floodFill.fill(x, y, 100, context1, null, null, 90)
+            }
         } else {
             clickedInArray.splice(clickedInArrayLocation, 1);
             context1.fillStyle = "white";
@@ -1431,17 +1477,17 @@ $(document).ready(function () {
             floodFill.fill(Math.round(circlesArray[1].x + (circlesArray[1].radius / 2)), Math.round(circlesArray[1].y), 100, context1, null, null, 90);
             floodFill.fill(Math.round(canvasWidth / 2), Math.round(canvasHeight / 2), 100, context1, null, null, 90);
 
-            var endpointx1 = circlesArray[0].x-(circlesArray[0].radius/2);
-            var endpointy1 = circlesArray[0].y+(circlesArray[0].radius/2);
+            var endpointx1 = circlesArray[0].x - (circlesArray[0].radius / 2);
+            var endpointy1 = circlesArray[0].y + (circlesArray[0].radius / 2);
 
-            var endpointx2 = canvasWidth/2;
-            var endpointy2 = canvasHeight/2+(circlesArray[0].radius/2);
+            var endpointx2 = canvasWidth / 2;
+            var endpointy2 = canvasHeight / 2 + (circlesArray[0].radius / 2);
 
-            var endpointx3 = circlesArray[1].x+(circlesArray[1].radius/2);
-            var endpointy3 = circlesArray[1].y+(circlesArray[1].radius/2);
+            var endpointx3 = circlesArray[1].x + (circlesArray[1].radius / 2);
+            var endpointy3 = circlesArray[1].y + (circlesArray[1].radius / 2);
 
 
-            drawCurvedArrow(startX, startY, endpointx1 , endpointy1, (startX + endpointx1) / 2.5, ((startY + endpointy1) / 2) + canvasHeight / 5);
+            drawCurvedArrow(startX, startY, endpointx1, endpointy1, (startX + endpointx1) / 2.5, ((startY + endpointy1) / 2) + canvasHeight / 5);
             drawCurvedArrow(startX, startY, endpointx2, endpointy2, (startX + endpointx2) / 2.2, ((startY + endpointy2) / 2) + canvasHeight / 6);
             drawCurvedArrow(startX, startY, endpointx3, endpointy3, (startX + endpointx3) / 2.2, ((startY + endpointy3) / 2) + canvasHeight / 12);
         }
@@ -1486,6 +1532,148 @@ $(document).ready(function () {
         }
     }
 
+    function setTheoryTutorial() {
+        tutorialMode = true;
+        $("#undoButton").invisible();
+        $("#redoButton").invisible();
+        $("#refreshButton").invisible();
+        $("#tutorial").invisible();
+
+        if (tutorialStage === 0) {
+            $("#tutorialBackwards").invisible();
+            $("#tutorialForwards").visible();
+            tearDown();
+            setupLevel(5);
+            setupMovableText();
+            createCircles();
+            drawCircles();
+            drawStaticText();
+
+            // tutorialCanvasContext.clearRect(0, 0, canvasWidth, canvasHeight);
+            tutorialCanvasContext.font = getFont();
+
+            var text = "This is the distributive law of sets. You will need to show that this is true.";
+            var maxWidth = canvasWidth / 6;
+            var textX = circlesArray[1].x - circlesArray[1].radius - maxWidth;
+            var textY = circlesArray[0].y;
+            var lastY = wrapText(tutorialCanvasContext, text, textX, textY, canvasWidth / 6, currentFontSize);
+            context1.fillStyle = "#1d1d1d";
+
+            var startX = textX + (maxWidth / 2);
+            var startY = textY - (currentFontSize);
+
+
+            var endpointX = canvasWidth / 2;
+            var endpointY = level.staticTextArray[0].y + currentFontSize;
+
+            var midpointX = (startX + endpointX) / 2;
+            var midpointY = ((startY + endpointY) / 2) + canvasHeight / 24;
+
+            drawCurvedArrow(startX, startY, endpointX, endpointY, midpointX, midpointY);
+
+        }
+
+        if (tutorialStage === 1) {
+            $("#tutorialForwards").invisible();
+            $("#undoButton").visible();
+            $("#redoButton").visible();
+            $("#refreshButton").visible();
+            $("#tutorial").visible();
+            tearDown();
+            setupMovableText();
+            drawMovableText();
+            createCircles();
+            drawCircles();
+            drawStaticText();
+            tutorialCanvasContext.clearRect(0, 0, canvasWidth, canvasHeight);
+            tutorialCanvasContext.font = getFont();
+
+            tutorialCanvasContext.clearRect(0, 0, canvasWidth, canvasHeight);
+            tutorialCanvasContext.font = getFont();
+
+            var text = "First show (A ∪ B) by dragging in the letters and filling in the correct circle segments";
+            var maxWidth = canvasWidth / 3;
+            var textX = circlesArray[2].x + circlesArray[2].radius;
+            var textY = circlesArray[0].y;
+            var lastY = wrapText(tutorialCanvasContext, text, textX, textY, maxWidth, currentFontSize);
+            context1.fillStyle = "#1d1d1d";
+
+            var startX = textX + (maxWidth / 2);
+            var startY = textY - (currentFontSize);
+
+
+            var endpointX = canvasWidth / 2 + canvasWidth/36;
+            var endpointY = level.staticTextArray[0].y + currentFontSize / 2;
+
+            var midpointX = (startX + endpointX) / 2;
+            var midpointY = ((startY + endpointY) / 2) + canvasHeight / 24;
+
+            drawCurvedArrow(startX, startY, endpointX, endpointY, midpointX, midpointY);
+            tutorialMode = false;
+        }
+
+        if (tutorialStage === 2) {
+            $("#undoButton").visible();
+            $("#redoButton").visible();
+            $("#refreshButton").visible();
+            $("#tutorial").visible();
+            tutorialCanvasContext.clearRect(0, 0, canvasWidth, canvasHeight);
+            tutorialCanvasContext.font = getFont();
+
+            var text = "Now show (A ∪ C)";
+            var maxWidth = canvasWidth / 6;
+            var textX = circlesArray[1].x - circlesArray[1].radius - maxWidth;
+            var textY = circlesArray[0].y;
+            var lastY = wrapText(tutorialCanvasContext, text, textX, textY, canvasWidth / 6, currentFontSize);
+            context1.fillStyle = "#1d1d1d";
+
+            var startX = textX + (maxWidth / 2);
+            var startY = textY - (currentFontSize);
+
+
+            var textWidth = (context3.measureText(level.staticTextArray[0].text).width);
+
+            var endpointX = (canvasWidth / 2) + textWidth/3;
+            var endpointY = level.staticTextArray[0].y + currentFontSize / 2;
+
+            var midpointX = (startX + endpointX) / 2;
+            var midpointY = ((startY + endpointY) / 2) + canvasHeight / 24;
+
+            drawCurvedArrow(startX, startY, endpointX, endpointY, midpointX, midpointY);
+            tutorialMode = false;
+        }
+
+        if (tutorialStage === 3) {
+            $("#undoButton").visible();
+            $("#redoButton").visible();
+            $("#refreshButton").visible();
+            $("#tutorial").visible();
+            tutorialCanvasContext.clearRect(0, 0, canvasWidth, canvasHeight);
+            tutorialCanvasContext.font = getFont();
+
+            var text = "Now using what you've just done show (A ∪ B) ∩ (A ∪ C)";
+            var maxWidth = canvasWidth / 6;
+            var textX = circlesArray[2].x + circlesArray[2].radius;
+            var textY = circlesArray[0].y;
+            var lastY = wrapText(tutorialCanvasContext, text, textX, textY, canvasWidth / 6, currentFontSize);
+            context1.fillStyle = "#1d1d1d";
+
+            var startX = textX + (maxWidth / 2);
+            var startY = textY - (currentFontSize);
+
+
+            var endpointX = canvasWidth / 2;
+            var endpointY = level.staticTextArray[0].y + currentFontSize / 2;
+
+            var midpointX = (startX + endpointX) / 2;
+            var midpointY = ((startY + endpointY) / 2) + canvasHeight / 24;
+
+            // drawCurvedArrow(startX, startY, endpointX, endpointY, midpointX, midpointY);
+            tutorialMode = false;
+        }
+
+    }
+
     function wrapText(context, text, x, y, maxWidth, lineHeight) {
         var words = text.split(' ');
         var line = '';
@@ -1519,6 +1707,19 @@ $(document).ready(function () {
             temp[key] = clone(object[key]);
         }
         return temp;
+    }
+
+    function drawNumbersForSetTheoryTutorial(tutorialCanvasContext, circlesArray, canvasWidth) {
+        tutorialCanvasContext.fillText("2", circlesArray[0].x - (circlesArray[0].radius / 2), circlesArray[0].y);
+        tutorialCanvasContext.fillText("12", circlesArray[0].x - (circlesArray[0].radius / 4), circlesArray[0].y + (circlesArray[0].radius / 2));
+        tutorialCanvasContext.fillText("8", circlesArray[0].x - (circlesArray[0].radius / 4), circlesArray[0].y - (circlesArray[0].radius / 2));
+
+        tutorialCanvasContext.fillText("15", circlesArray[1].x + (circlesArray[1].radius / 2), circlesArray[1].y);
+        tutorialCanvasContext.fillText("25", circlesArray[1].x + (circlesArray[1].radius / 4), circlesArray[1].y + (circlesArray[1].radius / 2));
+        tutorialCanvasContext.fillText("5", circlesArray[1].x + (circlesArray[1].radius / 4), circlesArray[1].y - (circlesArray[1].radius / 2));
+
+        tutorialCanvasContext.fillText("10", canvasWidth / 2 - (canvasWidth / 50), circlesArray[0].y - circlesArray[0].radius / 4);
+        tutorialCanvasContext.fillText("40", canvasWidth / 2 + (canvasWidth / 50), circlesArray[0].y + circlesArray[0].radius / 4);
     }
 
     function drawCurvedArrow(startPointX, startPointY, endPointX, endPointY, quadPointX, quadPointY) {
@@ -1567,6 +1768,7 @@ $(document).ready(function () {
     // someXTutorial();
     // unionIntersectionTutorial();
     // main(4);
+    // setTheoryTutorial();
 
     function getFont() {
         // var ratio = fontSize / fontBase;   // calc ratio
@@ -1575,6 +1777,93 @@ $(document).ready(function () {
         currentFontSize = size;
         return (size | 0) + 'px comicNeue'; // set font
     }
+
+    var mp = 400; //max particles
+    var particles = [];
+    for (var i = 0; i < mp; i++) {
+        particles.push({
+            x: Math.random() * layer1.width, //x-coordinate
+            y: Math.random() * layer1.height, //y-coordinate
+            r: Math.random() * 15 + 1, //radius
+            d: Math.random() * mp, //density
+            color: "rgba(" + Math.floor((Math.random() * 255)) + ", " + Math.floor((Math.random() * 255)) + ", " + Math.floor((Math.random() * 255)) + ", 0.8)",
+            tilt: Math.floor(Math.random() * 5) - 5
+        });
+    }
+
+    function drawConfetti() {
+        circleOutlineContext.clearRect(0, 0, canvasWidth, canvasHeight);
+
+        for (var i = 0; i < mp; i++) {
+            var p = particles[i];
+            circleOutlineContext.beginPath();
+            circleOutlineContext.lineWidth = p.r;
+            circleOutlineContext.strokeStyle = p.color; // Green path
+            circleOutlineContext.moveTo(p.x, p.y);
+            circleOutlineContext.lineTo(p.x + p.tilt + p.r / 2, p.y + p.tilt);
+            circleOutlineContext.stroke(); // Draw it
+        }
+
+        update();
+    }
+
+    //Function to move the snowflakes
+    //angle will be an ongoing incremental flag. Sin and Cos functions will be applied to it to create vertical and horizontal movements of the flakes
+    var angle = 0;
+
+    function update() {
+        angle += 0.01;
+        for (var i = 0; i < mp; i++) {
+            var p = particles[i];
+            //Updating X and Y coordinates
+            //We will add 1 to the cos function to prevent negative values which will lead flakes to move upwards
+            //Every particle has its own density which can be used to make the downward movement different for each flake
+            //Lets make it more random by adding in the radius
+            p.y += Math.cos(angle + p.d) + 1 + p.r / 2;
+            p.x += Math.sin(angle) * 2;
+
+            //Sending flakes back from the top when it exits
+            //Lets make it a bit more organic and let flakes enter from the left and right also.
+            if (p.x > canvasWidth + 5 || p.x < -5 || p.y > canvasHeight) {
+                if (i % 3 > 0) //66.67% of the flakes
+                {
+                    particles[i] = {
+                        x: Math.random() * canvasWidth,
+                        y: -10,
+                        r: p.r,
+                        d: p.d,
+                        color: p.color,
+                        tilt: p.tilt
+                    };
+                } else {
+                    //If the flake is exitting from the right
+                    if (Math.sin(angle) > 0) {
+                        //Enter from the left
+                        particles[i] = {
+                            x: -5,
+                            y: Math.random() * canvasHeight,
+                            r: p.r,
+                            d: p.d,
+                            color: p.color,
+                            tilt: p.tilt
+                        };
+                    } else {
+                        //Enter from the right
+                        particles[i] = {
+                            x: canvasWidth + 5,
+                            y: Math.random() * canvasHeight,
+                            r: p.r,
+                            d: p.d,
+                            color: p.color,
+                            tilt: p.tilt
+                        };
+                    }
+                }
+            }
+        }
+    }
+
+
 
 })
 ;
