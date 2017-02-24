@@ -63,8 +63,76 @@
     ]
   },
   "level2": {
-    "type": "syllogism",
+    "type": "emptySet",
     "levelNumber": 2,
+    "correctSyllogism": {
+      "subject": true,
+      "middleSubjectIntersection": true,
+      "subjectPredicateIntersection": true,
+      "middlePredicateIntersection": false,
+      "middleSubjectPredicateIntersection": false,
+      "predicate": false,
+      "middle": true
+    },
+    "majorPremise": {
+      "middle": true,
+      "middleSubjectIntersection": true,
+      "middleSubjectPredicateIntersection": false,
+      "middlePredicateIntersection": false
+    },
+    "minorPremise": {
+      "subject": true,
+      "subjectPredicateIntersection": true
+    },
+    "blankSyllogism": {
+      "subject": false,
+      "middleSubjectIntersection": false,
+      "subjectPredicateIntersection": false,
+      "middlePredicateIntersection": false,
+      "middleSubjectPredicateIntersection": false,
+      "predicate": false,
+      "middle": false
+    },
+    "particularSyllogism": false,
+    "circlesNeeded": 2,
+    "staticTextArray": [
+      {
+        "text": "Even Numbers"
+      },
+      {
+        "text": "Odd Numbers"
+      }
+    ],
+    "circle1": [
+      2, 18
+    ],
+    "circle2": [
+      5, 11, 13
+    ],
+    "intersection": [
+
+    ],
+    "movableTextArray": [
+      {
+        "text": "2"
+      },
+      {
+        "text": "5"
+      },
+      {
+        "text": "11"
+      },
+      {
+        "text": "18"
+      },
+      {
+        "text": "13"
+      }
+    ]
+  },
+  "level3": {
+    "type": "syllogism",
+    "levelNumber": 3,
     "correctSyllogism": {
       "subject": true,
       "middleSubjectIntersection": true,
@@ -118,9 +186,9 @@
     ],
     "particularSyllogism": false
   },
-  "level3": {
+  "level4": {
     "type": "syllogism",
-    "levelNumber": 3,
+    "levelNumber": 4,
     "correctSyllogism": {
       "subject": false,
       "middleSubjectIntersection": true,
@@ -177,9 +245,9 @@
     "particularSyllogism": true,
     "particularSyllogismLocation": "middleSubjectPredicateIntersection"
   },
-  "level4": {
+  "level5": {
     "type": "unionIntersectionTutorial",
-    "levelNumber": 4,
+    "levelNumber": 5,
     "correctSyllogism": {
       "subject": true,
       "middleSubjectIntersection": true,
@@ -239,9 +307,9 @@
       }
     ]
   },
-  "level5": {
+  "level6": {
     "type": "setTheory",
-    "levelNumber": 5,
+    "levelNumber": 6,
     "parts": 3,
     "correctPlacement": [
       {
