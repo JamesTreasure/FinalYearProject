@@ -2098,13 +2098,13 @@ $(document).ready(function () {
 
     resizeCanvas();
 
-    // vennDiagramTutorial();
+    vennDiagramTutorial();
     // syllogismTutorial();
     // someXTutorial();
     // unionIntersectionTutorial();
     // main(4);
     // setTheoryTutorial();
-    emptySetTutorial();
+    // emptySetTutorial();
 
     function getFont() {
         // var ratio = fontSize / fontBase;   // calc ratio
