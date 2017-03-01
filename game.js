@@ -272,7 +272,9 @@ $(document).ready(function () {
         minorPremiseMet = false;
         var currentLevel = level.levelNumber;
         var nextLevel = currentLevel + 1;
-        if (nextLevel == 3) {
+        if (nextLevel == 2) {
+            emptySetTutorial();
+        } else if (nextLevel == 3){
             syllogismTutorial();
         } else if (nextLevel == 4) {
             someXTutorial();
@@ -324,7 +326,7 @@ $(document).ready(function () {
             createCircles();
             drawCircles();
             drawMovableText();
-            drawStaticTextForVennDiagram();
+            drawStaticTextForVennDiagram(level.staticTextArray);
         }
         if (level.type === "syllogism") {
             setupMovableText();
@@ -368,7 +370,7 @@ $(document).ready(function () {
         clearAllCanvases();
         drawCircles();
         if (level.type === "venn") {
-            drawStaticTextForVennDiagram();
+            drawStaticTextForVennDiagram(level.staticTextArray);
         }
         drawMovableText();
 
@@ -394,7 +396,7 @@ $(document).ready(function () {
         clearAllCanvases();
         drawCircles();
         if (level.type === "venn") {
-            drawStaticTextForVennDiagram();
+            drawStaticTextForVennDiagram(level.staticTextArray);
         }
         drawMovableText();
 
@@ -578,7 +580,7 @@ $(document).ready(function () {
             drawStaticText();
         }
         if (level.type === "venn") {
-            drawStaticTextForVennDiagram();
+            drawStaticTextForVennDiagram(level.staticTextArray);
         }
     }
 
@@ -1398,7 +1400,7 @@ $(document).ready(function () {
             drawCircles();
             tutorialCanvasContext.clearRect(0, 0, canvasWidth, canvasHeight);
             tutorialCanvasContext.font = getFont();
-            var text = "Clicking in a segment of the circle will fill it in. This represents the empty set. The empty set is a set with nothing in. For example, the set of dogs with six legs is an empty set.";
+            var text = "Remember, to represent the empty set just click in the circle.";
             var textWidth = tutorialCanvasContext.measureText(text).width;
             var maxWidth = canvasWidth / 6;
             var textX = circlesArray[2].x + circlesArray[2].radius;
@@ -1493,7 +1495,7 @@ $(document).ready(function () {
             $("#tutorialBackwards").invisible();
             $("#tutorialForwards").visible();
             tearDown();
-            setupLevel(3);
+            setupLevel(4);
             setupMovableText();
             drawStaticText();
             createCircles();
@@ -1565,11 +1567,11 @@ $(document).ready(function () {
             $("#tutorialBackwards").invisible();
             $("#tutorialForwards").visible();
             tearDown();
-            setupLevel(4);
+            setupLevel(5);
             setupMovableText();
             createCircles();
             drawCircles();
-            drawStaticTextForVennDiagram();
+            drawStaticTextForVennDiagram(level.staticTextArray);
 
             tutorialCanvasContext.font = getFont();
             tutorialCanvasContext.clearRect(0, 0, canvasWidth, canvasHeight);
@@ -1598,7 +1600,7 @@ $(document).ready(function () {
             setupMovableText();
             createCircles();
             drawCircles();
-            drawStaticTextForVennDiagram();
+            drawStaticTextForVennDiagram(level.staticTextArray);
 
             tutorialCanvasContext.clearRect(0, 0, canvasWidth, canvasHeight);
             tutorialCanvasContext.font = getFont();
@@ -1641,7 +1643,7 @@ $(document).ready(function () {
             setupMovableText();
             createCircles();
             drawCircles();
-            drawStaticTextForVennDiagram();
+            drawStaticTextForVennDiagram(level.staticTextArray);
 
             tutorialCanvasContext.clearRect(0, 0, canvasWidth, canvasHeight);
             tutorialCanvasContext.font = getFont();
@@ -1686,7 +1688,7 @@ $(document).ready(function () {
             $("#tutorialBackwards").invisible();
             $("#tutorialForwards").visible();
             tearDown();
-            setupLevel(5);
+            setupLevel(6);
             setupMovableText();
             createCircles();
             drawCircles();
