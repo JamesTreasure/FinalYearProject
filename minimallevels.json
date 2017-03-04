@@ -1,8 +1,70 @@
 {
   "globalSettings": [],
   "level1": {
-    "type": "venn",
+    "type": "",
     "levelNumber": 1,
+    "tutorialText": [
+      "This is the set of dogs."
+    ],
+    "correctSyllogism": {
+      "subject": true,
+      "middleSubjectIntersection": true,
+      "subjectPredicateIntersection": true,
+      "middlePredicateIntersection": false,
+      "middleSubjectPredicateIntersection": false,
+      "predicate": false,
+      "middle": true
+    },
+    "majorPremise": {
+      "middle": true,
+      "middleSubjectIntersection": true,
+      "middleSubjectPredicateIntersection": false,
+      "middlePredicateIntersection": false
+    },
+    "minorPremise": {
+      "subject": true,
+      "subjectPredicateIntersection": true
+    },
+    "blankSyllogism": {
+      "subject": false,
+      "middleSubjectIntersection": false,
+      "subjectPredicateIntersection": false,
+      "middlePredicateIntersection": false,
+      "middleSubjectPredicateIntersection": false,
+      "predicate": false,
+      "middle": false
+    },
+    "particularSyllogism": false,
+    "circlesNeeded": 1,
+    "staticTextArray": [
+      {
+        "text": "Dogs"
+      }
+    ],
+    "circle1": [
+      2
+    ],
+    "circle2": [
+      5
+    ],
+    "intersection": [
+      10
+    ],
+    "movableTextArray": [
+      {
+        "id": "dog1"
+      },
+      {
+        "id": "dog2"
+      },
+      {
+        "id": "dog3"
+      }
+    ]
+  },
+  "level2": {
+    "type": "venn",
+    "levelNumber": 2,
     "correctSyllogism": {
       "subject": true,
       "middleSubjectIntersection": true,
@@ -62,9 +124,9 @@
       }
     ]
   },
-  "level2": {
+  "level3": {
     "type": "emptySet",
-    "levelNumber": 2,
+    "levelNumber": 3,
     "correctSyllogism": {
       "subject": true,
       "middleSubjectIntersection": true,
@@ -104,13 +166,15 @@
       }
     ],
     "circle1": [
-      2, 18
+      2,
+      18
     ],
     "circle2": [
-      5, 11, 13
+      5,
+      11,
+      13
     ],
     "intersection": [
-
     ],
     "movableTextArray": [
       {
@@ -130,9 +194,9 @@
       }
     ]
   },
-  "level3": {
+  "level4": {
     "type": "syllogism",
-    "levelNumber": 3,
+    "levelNumber": 4,
     "correctSyllogism": {
       "subject": true,
       "middleSubjectIntersection": true,
@@ -186,9 +250,9 @@
     ],
     "particularSyllogism": false
   },
-  "level4": {
+  "level5": {
     "type": "syllogism",
-    "levelNumber": 4,
+    "levelNumber": 5,
     "correctSyllogism": {
       "subject": false,
       "middleSubjectIntersection": true,
@@ -245,9 +309,9 @@
     "particularSyllogism": true,
     "particularSyllogismLocation": "middleSubjectPredicateIntersection"
   },
-  "level5": {
+  "level6": {
     "type": "unionIntersectionTutorial",
-    "levelNumber": 5,
+    "levelNumber": 6,
     "correctSyllogism": {
       "subject": true,
       "middleSubjectIntersection": true,
@@ -307,10 +371,16 @@
       }
     ]
   },
-  "level6": {
+  "level7": {
     "type": "setTheory",
-    "levelNumber": 6,
+    "levelNumber": 7,
     "parts": 3,
+    "tutorialText": [
+      "This is the distributive law of sets. You will need to show that this is true.",
+      "First show (A ∪ B) by dragging in the letters and filling in the correct circle segments",
+      "Now show (A ∪ C)",
+      "Now using what you've just done show (A ∪ B) ∩ (A ∪ C)"
+    ],
     "correctPlacement": [
       {
         "a": true,
@@ -361,6 +431,81 @@
     "staticTextArray": [
       {
         "text": "A ∪ (B ∩ C) = (A ∪ B) ∩ (A ∪ C)"
+      }
+    ],
+    "movableTextArray": [
+      {
+        "text": "A"
+      },
+      {
+        "text": "B"
+      },
+      {
+        "text": "C"
+      }
+    ],
+    "particularSyllogism": false
+  },
+  "level8": {
+    "type": "setTheory",
+    "levelNumber": 8,
+    "parts": 3,
+    "tutorialText": [
+      "This is the associative law of sets. You will need to show that this is true.",
+      "First show A by dragging in the letters and filling in the correct circle segments",
+      "Now show (B ∪ C)",
+      "Now using what you've just done show (A ∪ (B ∪ C)"
+    ],
+    "correctPlacement": [
+      {
+        "a": true,
+        "b": false,
+        "c": false,
+        "acIntersection": true,
+        "cbIntersection": false,
+        "abIntersection": true,
+        "acbIntersection": true
+      },
+      {
+        "a": true,
+        "b": false,
+        "c": true,
+        "acIntersection": true,
+        "cbIntersection": true,
+        "abIntersection": true,
+        "acbIntersection": true
+      },
+      {
+        "a": true,
+        "b": true,
+        "c": true,
+        "acIntersection": true,
+        "cbIntersection": true,
+        "abIntersection": true,
+        "acbIntersection": true
+      }
+    ],
+    "majorPremise": {
+      "middleIntersection": true,
+      "middleSubjectIntersection": true
+    },
+    "minorPremise": {
+      "subject": true,
+      "subjectPredicateIntersection": true
+    },
+    "blankSyllogism": {
+      "a": false,
+      "b": false,
+      "c": false,
+      "acIntersection": false,
+      "cbIntersection": false,
+      "abIntersection": false,
+      "acbIntersection": false
+    },
+    "circlesNeeded": 3,
+    "staticTextArray": [
+      {
+        "text": "(A ∪ B) ∪ C = A ∪ (B ∪ C)"
       }
     ],
     "movableTextArray": [

@@ -44,6 +44,8 @@ $(document).ready(function () {
     var setTheoryCurrentStage = 0;
     var font;
     var setTheoryColours = ["#3498db", "#2ecc71", "#f1c40f"];
+    var setTheoryLevel = 7;
+    var dogs = false;
 
     var GameState = function (movableTextArray, clickedInArray) {
         this.movableTextArray = movableTextArray;
@@ -65,6 +67,7 @@ $(document).ready(function () {
     var redoStack = [];
     var clickedInArray = [];
     var isTextMovable = true;
+    var isImageMovable = false;
 
     function renderText() {
         tutorialCanvasContext.font = font;
@@ -105,8 +108,13 @@ $(document).ready(function () {
         var pos = getMousePos(layer1, e);
 
         if (!levelComplete && !tutorialMode) {
-            var clickedOn = textClickedOn(pos.x, pos.y);
+            if (level.levelNumber === 1) {
+                var clickedOn = imageClickedOn(pos.x, pos.y, level.movableTextArray);
+            } else {
+                var clickedOn = textClickedOn(pos.x, pos.y, level.movableTextArray);
+            }
             if (clickedOn >= 0) {
+                console.log("Clicked on!!!");
                 if (level.type != "setTheory") {
                     tutorialCanvasContext.clearRect(0, 0, canvasWidth, canvasHeight);
                     tutorialStage = 0;
@@ -118,14 +126,24 @@ $(document).ready(function () {
                     var clonedClickedInArray = clone(clickedInArray);
                     undoStack.push(new GameState(clonedMovableTextArray, clonedClickedInArray));
                 }
-                var textX = level.movableTextArray[clickedOn].x;
-                var textY = level.movableTextArray[clickedOn].y;
+                var clickedOnX;
+                var clickedOnY
+                if (level.levelNumber === 1) {
+                    clickedOnX = level.movableTextArray[clickedOn].x;
+                    clickedOnY = level.movableTextArray[clickedOn].y;
+                } else {
+                    clickedOnX = level.movableTextArray[clickedOn].x;
+                    clickedOnY = level.movableTextArray[clickedOn].y;
+                }
                 dragId = clickedOn;
-                dragOffsetX = pos.x - textX;
-                dragOffsetY = pos.y - textY;
+                dragOffsetX = pos.x - clickedOnX;
+                dragOffsetY = pos.y - clickedOnY;
                 drag = true;
             }
             if (!drag) {
+                if(level.levelNumber === 1){
+                    checkIfLevel1IsCorrect();
+                }
                 if (level.type === "syllogism") {
                     whichCircleClickedIn(pos.x, pos.y);
                     checkIfSyllogismIsMet();
@@ -138,7 +156,7 @@ $(document).ready(function () {
                     whichCircleClickedIn(pos.x, pos.y);
                     checkIfSetTheoryIsMet(level.correctPlacement[setTheoryCurrentStage]);
                 }
-                if (level.type === "emptySet"){
+                if (level.type === "emptySet") {
                     whichCircleClickedIn(pos.x, pos.y);
                     checkIfEmptySetIsCorrect();
                 }
@@ -156,11 +174,21 @@ $(document).ready(function () {
                 requestAnimationFrame(animate);
             }
         }
+        if (isImageMovable) {
+            if (drag) {
+                level.movableTextArray[dragId].x = pos.x - dragOffsetX;
+                level.movableTextArray[dragId].y = pos.y - dragOffsetY;
+                requestAnimationFrame(animate);
+            }
+        }
     }));
 
     $(window).mouseup(function () {
 
         if (!tutorialMode) {
+            if(level.levelNumber === 1){
+                checkIfLevel1IsCorrect();
+            }
             if (level.type === "venn") {
                 checkIfVennDiagramIsCorrect();
             }
@@ -171,7 +199,7 @@ $(document).ready(function () {
             if (level.type === "setTheory") {
                 checkIfSetTheoryIsMet(level.correctPlacement[setTheoryCurrentStage]);
             }
-            if (level.type === "emptySet"){
+            if (level.type === "emptySet") {
                 checkIfEmptySetIsCorrect();
             }
             if (drag) {
@@ -184,6 +212,11 @@ $(document).ready(function () {
     });
 
     $("#tutorialForwards").click(function () {
+        if (level.levelNumber === 1) {
+            tutorialStage++;
+            level1Tutorial();
+            return;
+        }
         if (level.type === "venn") {
             tutorialStage++;
             vennDiagramTutorial();
@@ -202,7 +235,7 @@ $(document).ready(function () {
                 $("#tutorialBackwards").invisible();
                 tearDown();
                 tutorialStage = 0;
-                setTheoryTutorial();
+                setTheoryLevels();
             } else {
                 tutorialStage++;
                 unionIntersectionTutorial();
@@ -210,10 +243,10 @@ $(document).ready(function () {
         }
         if (level.type === "setTheory") {
             tutorialStage++;
-            setTheoryTutorial();
+            setTheoryLevels();
             return;
         }
-        if (level.type === "emptySet"){
+        if (level.type === "emptySet") {
             tutorialStage++;
             emptySetTutorial();
             return;
@@ -221,6 +254,11 @@ $(document).ready(function () {
     });
 
     $("#tutorialBackwards").click(function () {
+        if (level.levelNumber === 1) {
+            tutorialStage--;
+            level1Tutorial();
+            return;
+        }
         if (level.type === "venn") {
             tutorialStage--;
             vennDiagramTutorial();
@@ -237,7 +275,7 @@ $(document).ready(function () {
             tutorialStage++;
             unionIntersectionTutorial();
         }
-        if (level.type === "emptySet"){
+        if (level.type === "emptySet") {
             tutorialStage--;
             emptySetTutorial();
             return;
@@ -273,13 +311,18 @@ $(document).ready(function () {
         var currentLevel = level.levelNumber;
         var nextLevel = currentLevel + 1;
         if (nextLevel == 2) {
+            vennDiagramTutorial();
+        } else if (nextLevel == 3) {
             emptySetTutorial();
-        } else if (nextLevel == 3){
-            syllogismTutorial();
         } else if (nextLevel == 4) {
-            someXTutorial();
+            syllogismTutorial();
         } else if (nextLevel === 5) {
+            someXTutorial();
+        } else if (nextLevel === 6) {
             unionIntersectionTutorial();
+        } else if (nextLevel === 8) {
+            setTheoryLevel++;
+            setTheoryLevels();
         } else {
             tearDown();
             setupLevel(nextLevel);
@@ -297,7 +340,7 @@ $(document).ready(function () {
         }
         if (level.type === "setTheory") {
             tutorialStage = 0;
-            setTheoryTutorial();
+            setTheoryLevels();
         }
     });
 
@@ -323,7 +366,7 @@ $(document).ready(function () {
         context1.fillRect(0, 0, layer1.width, layer1.height);
         if (level.type === "venn") {
             setupMovableText();
-            createCircles();
+            createCircles(level.circlesNeeded);
             drawCircles();
             drawMovableText();
             drawStaticTextForVennDiagram(level.staticTextArray);
@@ -332,14 +375,14 @@ $(document).ready(function () {
             setupMovableText();
             drawStaticText();
             drawMovableText();
-            createCircles();
+            createCircles(level.circlesNeeded);
             drawCircles();
         }
         if (level.type === "setTheory") {
             setupMovableText();
             drawStaticText();
             drawMovableText();
-            createCircles();
+            createCircles(level.circlesNeeded);
             drawCircles();
         }
     }
@@ -372,7 +415,10 @@ $(document).ready(function () {
         if (level.type === "venn") {
             drawStaticTextForVennDiagram(level.staticTextArray);
         }
-        drawMovableText();
+        //need to only do this if not level 1
+        if(level.levelNumber !== 1){
+            drawMovableText();
+        }
 
         //refill circles with faded black
         for (var i = 0; i < clickedInArray.length; i++) {
@@ -413,6 +459,22 @@ $(document).ready(function () {
         var text = "Game complete!";
         var textWidth = (context3.measureText(text).width);
         context3.fillText(text, ((canvasWidth / 2) - (textWidth / 2)), canvasHeight / 2);
+    }
+
+    function checkIfLevel1IsCorrect(){
+        console.log("Checking...");
+        for (var i = 0; i < level.movableTextArray.length; i++) {
+            var inCircle = whichCircleIsPremiseIn(level.movableTextArray[i]);
+            if(inCircle === null){
+                return false;
+            }
+        }
+        if (!levelComplete) {
+            levelComplete = true;
+            isTextMovable = true;
+            isImageMovable = false;
+            levelCompleteScreen();
+        }
     }
 
     function checkIfVennDiagramIsCorrect() {
@@ -462,12 +524,24 @@ $(document).ready(function () {
         }
 
         var correctEmptyLocation = false;
-        if(clickedInArray.length > 0){
-            correctEmptyLocation = (clickedInArray[0].circleClickedIn.equals([0,1]) && clickedInArray.length === 1);
+        if (clickedInArray.length > 0) {
+            correctEmptyLocation = (clickedInArray[0].circleClickedIn.equals([0, 1]) && clickedInArray.length === 1);
         }
 
-        if (tempCircle1.equals(level.circle1) && tempCircle2.equals(level.circle2) && tempIntersection.equals(level.intersection) && correctEmptyLocation) {
-            if (!levelComplete) {
+        if (tempCircle1.equals(level.circle1) && tempCircle2.equals(level.circle2) && tempIntersection.equals(level.intersection)) {
+            tutorialCanvasContext.clearRect(0, 0, canvasWidth, canvasHeight);
+            tutorialCanvasContext.font = getFont();
+
+            var text = "Remember to fill in the empty set!";
+            var textWidth = (tutorialCanvasContext.measureText(text).width);
+            var maxWidth = canvasWidth / 6;
+            var textX = canvasWidth / 6;
+            var textY = (circlesArray[0].y + (circlesArray[0].radius / 2));
+            wrapText(tutorialCanvasContext, text, textX, textY, maxWidth, currentFontSize);
+
+
+            if (!levelComplete && correctEmptyLocation) {
+                tutorialCanvasContext.clearRect(0, 0, canvasWidth, canvasHeight);
                 levelComplete = true;
                 levelCompleteScreen();
             }
@@ -490,7 +564,11 @@ $(document).ready(function () {
             if (clickedInArray.length != clickedInArrayBeforePop.length) {
                 undoRedoRepaintCheck(clickedInArrayBeforePop, clickedInArray);
             }
-            drawMovableText();
+            if(level.levelNumber === 1){
+                drawDogs();
+            }else{
+                drawMovableText();
+            }
             checkIfSyllogismIsMet();
             checkIfAnyPropositionsAreMet();
         }
@@ -506,7 +584,11 @@ $(document).ready(function () {
             if (clickedInArray.length != clickedInArrayBeforePop.length) {
                 undoRedoRepaintCheck(clickedInArrayBeforePop, clickedInArray);
             }
-            drawMovableText();
+            if(level.levelNumber === 1){
+                drawDogs();
+            }else{
+                drawMovableText();
+            }
             checkIfSyllogismIsMet();
             checkIfAnyPropositionsAreMet();
         }
@@ -749,11 +831,14 @@ $(document).ready(function () {
                 }
                 tutorialStage++;
                 tutorialMode = true;
-                setTheoryTutorial();
+                setTheoryLevels();
             } else {
+                isTextMovable = true;
+                // setTheoryLevel++;
+                tutorialStage = 0;
                 levelCompleteScreen();
-                gameCompleteScreen();
-                requestAnimationFrame(drawConfetti);
+                // gameCompleteScreen();
+                // requestAnimationFrame(drawConfetti);
                 // setTimeout(drawConfetti, 20);
             }
         }
@@ -793,7 +878,12 @@ $(document).ready(function () {
     }
 
     function animate() {
-        drawMovableText();
+
+        if (level.levelNumber === 1) {
+            drawDogs();
+        } else {
+            drawMovableText();
+        }
 
         if (dragId === 3) {
             return;
@@ -936,6 +1026,21 @@ $(document).ready(function () {
         context1.globalAlpha = 1;
     }
 
+    function drawStaticTextForOneCircle(staticTextArray) {
+        if (levelComplete) {
+            context1.globalAlpha = fadedAlphaLevel;
+        }
+        context1.font = font;
+        context1.fillStyle = "#1d1d1d";
+        context1.font = getFont();
+        staticTextArray[0].width = (context1.measureText(staticTextArray[0].text).width);
+        staticTextArray[0].x = ((layer1.width / 2) - (staticTextArray[0].width / 2));
+        staticTextArray[0].y = circlesArray[0].y - circlesArray[0].radius - (canvasHeight / 30);
+        staticTextArray[0].height = currentFontSize;
+        context1.fillText(staticTextArray[0].text, staticTextArray[0].x, staticTextArray[0].y);
+        context1.globalAlpha = 1;
+    }
+
     function drawMovableText() {
         if (levelComplete) {
             context2.globalAlpha = fadedAlphaLevel;
@@ -952,10 +1057,19 @@ $(document).ready(function () {
         context2.globalAlpha = 1;
     }
 
-    function textClickedOn(x, y) {
-        for (var i = 0; i < level.movableTextArray.length; i++) {
-            var textWidth = context1.measureText(level.movableTextArray[i].text).width;
-            if (x >= level.movableTextArray[i].x && x <= level.movableTextArray[i].x + textWidth && y >= (level.movableTextArray[i].y - 20) && y <= level.movableTextArray[i].y) {
+    function textClickedOn(x, y, movableTextArray) {
+        for (var i = 0; i < movableTextArray.length; i++) {
+            var textWidth = context1.measureText(movableTextArray[i].text).width;
+            if (x >= movableTextArray[i].x && x <= movableTextArray[i].x + textWidth && y >= (movableTextArray[i].y - 20) && y <= movableTextArray[i].y) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    function imageClickedOn(x, y, movableTextArray) {
+        for (var i = 0; i < movableTextArray.length; i++) {
+            if (x >= movableTextArray[i].x && x <= movableTextArray[i].x + movableTextArray[i].width && y >= movableTextArray[i].y && y <= movableTextArray[i].y + movableTextArray[i].height) {
                 return i;
             }
         }
@@ -1059,15 +1173,21 @@ $(document).ready(function () {
         }
     }
 
-    function createCircles() {
-        if (level.circlesNeeded == 2) {
+    function createCircles(circlesNeeded) {
+        if (circlesNeeded == 1) {
+            var maxHeight = canvasHeight / 3;
+            var radius = maxHeight / 2;
+            var overlap = radius / 2;
+            circlesArray.push(new Circle((canvasWidth / 2), (canvasHeight / 2), radius));
+        }
+        else if (circlesNeeded == 2) {
             var maxHeight = canvasHeight / 3;
             var radius = maxHeight / 2;
             var overlap = radius / 2;
             circlesArray.push(new Circle((canvasWidth / 2) - (overlap), (canvasHeight / 2), radius));
             circlesArray.push(new Circle((canvasWidth / 2) + (overlap), (canvasHeight / 2), radius));
         }
-        else if (level.circlesNeeded === 3) {
+        else if (circlesNeeded === 3) {
             var segments = canvasHeight / 4;
             var radius = segments / 2 * 1.25;
             var overlap = radius / 2;
@@ -1111,6 +1231,187 @@ $(document).ready(function () {
         circleBorderContext.globalAlpha = 1;
     }
 
+    function setupMovableImageArray() {
+        for (var i = 0; i < level.movableTextArray.length; i++) {
+            level.movableTextArray[i].width = circlesArray[0].radius / 3;
+            level.movableTextArray[i].height = circlesArray[0].radius / 3;
+
+            var regions = canvasWidth / level.movableTextArray.length;
+            var middleOfRegion = regions / 2;
+            var middleOffSet = level.movableTextArray[i].width / 2;
+
+            level.movableTextArray[i].y = (canvasHeight / 1.09);
+            level.movableTextArray[i].x = ((i + 1) * regions) - middleOfRegion - middleOffSet;
+        }
+
+    }
+
+    var dog1, dog2, dog3;
+
+    function loadImages() {
+        dog1 = new Image();
+        dog1.onload = function () {
+            console.log("loaded 1");
+            drawDogs();
+        };
+        dog1.src = "images/dog.svg";
+
+        dog2 = new Image();
+        dog2.onload = function () {
+            console.log("loaded 2");
+            drawDogs();
+        };
+        dog2.src = "images/bulldog.svg";
+
+        dog3 = new Image();
+        dog3.onload = function () {
+            console.log("loaded 3");
+            drawDogs();
+        };
+        dog3.src = "images/bulldog-1.svg";
+    }
+
+    function drawDogs() {
+        if (levelComplete) {
+            context2.globalAlpha = fadedAlphaLevel;
+        }
+        context2.clearRect(0, 0, layer1.width, layer2.height);
+
+        context2.drawImage(dog1, level.movableTextArray[0].x,
+            level.movableTextArray[0].y, level.movableTextArray[0].width, level.movableTextArray[0].height);
+
+        context2.drawImage(dog2, level.movableTextArray[1].x,
+            level.movableTextArray[1].y, level.movableTextArray[1].width, level.movableTextArray[1].height);
+
+
+        context2.drawImage(dog3, level.movableTextArray[2].x,
+            level.movableTextArray[2].y, level.movableTextArray[2].width, level.movableTextArray[2].height);
+
+
+        context2.globalAlpha = 1;
+    }
+
+    function level1Tutorial() {
+        tutorialMode = true;
+        $("#undoButton").invisible();
+        $("#redoButton").invisible();
+        $("#refreshButton").invisible();
+        $("#tutorial").invisible();
+
+        if (tutorialStage === 0) {
+            $("#tutorialBackwards").invisible();
+            $("#tutorialForwards").visible();
+            tearDown();
+            setupLevel(1);
+            createCircles(level.circlesNeeded);
+            drawCircles();
+            drawStaticText();
+
+            // tutorialCanvasContext.clearRect(0, 0, canvasWidth, canvasHeight);
+            tutorialCanvasContext.font = getFont();
+
+            var text = level.tutorialText[0];
+            var maxWidth = canvasWidth / 6;
+            var textX = circlesArray[1].x - circlesArray[1].radius - maxWidth;
+            var textY = circlesArray[0].y;
+            var lastY = wrapText(tutorialCanvasContext, text, textX, textY, canvasWidth / 6, currentFontSize);
+            context1.fillStyle = "#1d1d1d";
+
+            var startX = textX + (maxWidth / 2);
+            var startY = textY - (currentFontSize);
+
+
+            var endpointX = canvasWidth / 2;
+            var endpointY = level.staticTextArray[0].y + currentFontSize;
+
+            var midpointX = (startX + endpointX) / 2;
+            var midpointY = ((startY + endpointY) / 2) + canvasHeight / 24;
+
+            drawCurvedArrow(startX, startY, endpointX, endpointY, midpointX, midpointY);
+        }
+
+        if (tutorialStage === 1) {
+            $("#tutorialBackwards").visible();
+            $("#tutorialForwards").visible();
+            tearDown();
+            createCircles(level.circlesNeeded);
+            drawCircles();
+            drawStaticTextForOneCircle(level.staticTextArray);
+
+            tutorialCanvasContext.clearRect(0, 0, canvasWidth, canvasHeight);
+            tutorialCanvasContext.font = getFont();
+
+            var text = level.tutorialText[0];
+            var maxWidth = canvasWidth / 6;
+            var textX = circlesArray[0].x - circlesArray[0].radius - maxWidth;
+            var textY = circlesArray[0].y;
+            var lastY = wrapText(tutorialCanvasContext, text, textX, textY, canvasWidth / 6, currentFontSize);
+            context1.fillStyle = "#1d1d1d";
+
+            var startX = textX + (maxWidth / 2);
+            var startY = lastY + (currentFontSize);
+
+
+            var endpointX = canvasWidth / 2;
+            var endpointY = canvasHeight / 2;
+
+            var midpointX = (startX + endpointX) / 2;
+            var midpointY = ((startY + endpointY) / 2) + canvasHeight / 24;
+
+            drawCurvedArrow(startX, startY, endpointX, endpointY, midpointX, midpointY);
+
+        }
+
+        if (tutorialStage === 2) {
+            $("#tutorialBackwards").visible();
+            $("#tutorialForwards").invisible();
+            tearDown();
+            createCircles(level.circlesNeeded);
+            drawCircles();
+            drawStaticTextForOneCircle(level.staticTextArray);
+
+            tutorialCanvasContext.clearRect(0, 0, canvasWidth, canvasHeight);
+            tutorialCanvasContext.font = getFont();
+
+            var segment = canvasWidth / 6;
+
+            var text = "Drag the dogs below into the circle to add them to the set";
+
+
+            var textWidth = (tutorialCanvasContext.measureText(text).width);
+            var maxWidth = segment;
+            var textX = segment;
+            var textY = (circlesArray[0].y + (circlesArray[0].radius / 2));
+
+
+            var lastY = wrapText(tutorialCanvasContext, text, textX, textY, maxWidth, currentFontSize);
+
+
+            var startX = textX + (maxWidth / 2);
+            var startY = lastY + currentFontSize;
+
+            var endpointX = canvasWidth / 3;
+            var endpointY = (canvasHeight / 3 * 2) + canvasHeight / 3 / 2;
+
+            var midpointX = (startX + endpointX) / 2;
+            var midpointY = ((startY + endpointY) / 2) + canvasHeight / 24;
+
+            drawCurvedArrow(startX, startY, endpointX, endpointY, midpointX, midpointY);
+            dogs = true;
+            tutorialMode = false;
+            setupMovableImageArray();
+            loadImages();
+            drawDogs();
+            isImageMovable = true;
+            isTextMovable = false;
+            $("#undoButton").visible();
+            $("#redoButton").visible();
+            $("#refreshButton").visible();
+            $("#tutorial").visible();
+        }
+
+    }
+
     function vennDiagramTutorial() {
         tutorialMode = true;
         $("#undoButton").invisible();
@@ -1120,30 +1421,15 @@ $(document).ready(function () {
 
 
         if (tutorialStage === 0) {
-            $("#tutorialBackwards").invisible();
-            $("#tutorialForwards").visible();
-            tearDown();
-            setupLevel(1);
-            setupMovableText();
-            createCircles();
-            drawCircles();
-
-            // var segment = canvasWidth/6;
-            // for (var i = 1; i < 6; i++) {
-            //     context1.beginPath();
-            //     context1.moveTo(segment*i,0);
-            //     context1.lineTo(segment*i,canvasHeight);
-            //     context1.stroke();
-            // }
-
-            tutorialCanvasContext.clearRect(0, 0, canvasWidth, canvasHeight);
-            tutorialCanvasContext.font = font;
-            tutorialCanvasContext.fillStyle = 'black';
-        }
-
-        if (tutorialStage === 1) {
             $("#tutorialBackwards").visible();
             $("#tutorialForwards").visible();
+            tearDown();
+            setupLevel(2);
+            setupMovableText();
+            createCircles(level.circlesNeeded);
+            drawCircles();
+
+
             drawStaticTextForVennDiagram(level.staticTextArray);
             tutorialCanvasContext.clearRect(0, 0, canvasWidth, canvasHeight);
             tutorialCanvasContext.font = font;
@@ -1177,7 +1463,7 @@ $(document).ready(function () {
             drawCurvedArrow(startX, startY, endpointX, endpointY, midpointX, midpointY);
         }
 
-        if (tutorialStage === 2) {
+        if (tutorialStage === 1) {
             $("#tutorialForwards").visible();
             tutorialCanvasContext.clearRect(0, 0, canvasWidth, canvasHeight);
             tutorialCanvasContext.font = font;
@@ -1211,7 +1497,7 @@ $(document).ready(function () {
             drawCurvedArrow(startX, startY, endpointX, endpointY, midpointX, midpointY + 40);
         }
 
-        if (tutorialStage === 3) {
+        if (tutorialStage === 2) {
             $("#tutorialForwards").visible();
             tutorialCanvasContext.clearRect(0, 0, canvasWidth, canvasHeight);
             tutorialCanvasContext.font = font;
@@ -1238,7 +1524,7 @@ $(document).ready(function () {
             drawCurvedArrow(startX, startY, endpointX, endpointY, midpointX, midpointY + 40);
         }
 
-        if (tutorialStage === 4) {
+        if (tutorialStage === 3) {
             tutorialCanvasContext.clearRect(0, 0, canvasWidth, canvasHeight);
             drawMovableText();
             context1.fillStyle = "white";
@@ -1293,8 +1579,8 @@ $(document).ready(function () {
             $("#tutorialBackwards").invisible();
             $("#tutorialForwards").visible();
             tearDown();
-            setupLevel(3);
-            createCircles();
+            setupLevel(4);
+            createCircles(level.circlesNeeded);
             drawStaticText();
             tutorialCanvasContext.clearRect(0, 0, canvasWidth, canvasHeight);
             tutorialCanvasContext.font = getFont();
@@ -1322,8 +1608,7 @@ $(document).ready(function () {
         if (tutorialStage === 1) {
             $("#tutorialForwards").visible();
             tearDown();
-            setupLevel(3);
-            createCircles();
+            createCircles(level.circlesNeeded);
             drawStaticText();
             tutorialCanvasContext.clearRect(0, 0, canvasWidth, canvasHeight);
             tutorialCanvasContext.font = getFont();
@@ -1351,8 +1636,7 @@ $(document).ready(function () {
             $("#tutorialBackwards").invisible();
             $("#tutorialForwards").visible();
             tearDown();
-            setupLevel(3);
-            createCircles();
+            createCircles(level.circlesNeeded);
             drawStaticText();
             tutorialCanvasContext.clearRect(0, 0, canvasWidth, canvasHeight);
             tutorialCanvasContext.font = getFont();
@@ -1380,9 +1664,8 @@ $(document).ready(function () {
             $("#tutorialBackwards").invisible();
             $("#tutorialForwards").visible();
             tearDown();
-            setupLevel(3);
             setupMovableText();
-            createCircles();
+            createCircles(level.circlesNeeded);
             drawCircles();
             tutorialCanvasContext.clearRect(0, 0, canvasWidth, canvasHeight);
             tutorialCanvasContext.font = getFont();
@@ -1396,7 +1679,7 @@ $(document).ready(function () {
         if (tutorialStage === 4) {
             tearDown();
             setupMovableText();
-            createCircles();
+            createCircles(level.circlesNeeded);
             drawCircles();
             tutorialCanvasContext.clearRect(0, 0, canvasWidth, canvasHeight);
             tutorialCanvasContext.font = getFont();
@@ -1426,7 +1709,7 @@ $(document).ready(function () {
         if (tutorialStage === 5) {
             tearDown();
             setupMovableText();
-            createCircles();
+            createCircles(level.circlesNeeded);
             drawCircles();
             drawStaticText();
             drawMovableText();
@@ -1495,10 +1778,10 @@ $(document).ready(function () {
             $("#tutorialBackwards").invisible();
             $("#tutorialForwards").visible();
             tearDown();
-            setupLevel(4);
+            setupLevel(5);
             setupMovableText();
             drawStaticText();
-            createCircles();
+            createCircles(level.circlesNeeded);
             drawCircles();
 
             tutorialCanvasContext.clearRect(0, 0, canvasWidth, canvasHeight);
@@ -1523,7 +1806,7 @@ $(document).ready(function () {
             tearDown();
             setupMovableText();
             drawStaticText();
-            createCircles();
+            createCircles(level.circlesNeeded);
             drawCircles();
             drawMovableText();
             drawStaticText();
@@ -1567,9 +1850,9 @@ $(document).ready(function () {
             $("#tutorialBackwards").invisible();
             $("#tutorialForwards").visible();
             tearDown();
-            setupLevel(5);
+            setupLevel(6);
             setupMovableText();
-            createCircles();
+            createCircles(level.circlesNeeded);
             drawCircles();
             drawStaticTextForVennDiagram(level.staticTextArray);
 
@@ -1598,7 +1881,7 @@ $(document).ready(function () {
             $("#tutorialBackwards").visible();
             tearDown();
             setupMovableText();
-            createCircles();
+            createCircles(level.circlesNeeded);
             drawCircles();
             drawStaticTextForVennDiagram(level.staticTextArray);
 
@@ -1641,7 +1924,7 @@ $(document).ready(function () {
             $("#tutorialBackwards").visible();
             tearDown();
             setupMovableText();
-            createCircles();
+            createCircles(level.circlesNeeded);
             drawCircles();
             drawStaticTextForVennDiagram(level.staticTextArray);
 
@@ -1677,7 +1960,7 @@ $(document).ready(function () {
         }
     }
 
-    function setTheoryTutorial() {
+    function setTheoryLevels() {
         tutorialMode = true;
         $("#undoButton").invisible();
         $("#redoButton").invisible();
@@ -1688,16 +1971,16 @@ $(document).ready(function () {
             $("#tutorialBackwards").invisible();
             $("#tutorialForwards").visible();
             tearDown();
-            setupLevel(6);
+            setupLevel(setTheoryLevel);
             setupMovableText();
-            createCircles();
+            createCircles(level.circlesNeeded);
             drawCircles();
             drawStaticText();
 
             // tutorialCanvasContext.clearRect(0, 0, canvasWidth, canvasHeight);
             tutorialCanvasContext.font = getFont();
 
-            var text = "This is the distributive law of sets. You will need to show that this is true.";
+            var text = level.tutorialText[0];
             var maxWidth = canvasWidth / 6;
             var textX = circlesArray[1].x - circlesArray[1].radius - maxWidth;
             var textY = circlesArray[0].y;
@@ -1727,7 +2010,7 @@ $(document).ready(function () {
             tearDown();
             setupMovableText();
             drawMovableText();
-            createCircles();
+            createCircles(level.circlesNeeded);
             drawCircles();
             drawStaticText();
             tutorialCanvasContext.clearRect(0, 0, canvasWidth, canvasHeight);
@@ -1736,7 +2019,7 @@ $(document).ready(function () {
             tutorialCanvasContext.clearRect(0, 0, canvasWidth, canvasHeight);
             tutorialCanvasContext.font = getFont();
 
-            var text = "First show (A ∪ B) by dragging in the letters and filling in the correct circle segments";
+            var text = level.tutorialText[1];
             var maxWidth = canvasWidth / 3;
             var textX = circlesArray[2].x + circlesArray[2].radius;
             var textY = circlesArray[0].y;
@@ -1765,7 +2048,7 @@ $(document).ready(function () {
             tutorialCanvasContext.clearRect(0, 0, canvasWidth, canvasHeight);
             tutorialCanvasContext.font = getFont();
 
-            var text = "Now show (A ∪ C)";
+            var text = level.tutorialText[2];
             var maxWidth = canvasWidth / 6;
             var textX = circlesArray[1].x - circlesArray[1].radius - maxWidth;
             var textY = circlesArray[0].y;
@@ -1796,7 +2079,7 @@ $(document).ready(function () {
             tutorialCanvasContext.clearRect(0, 0, canvasWidth, canvasHeight);
             tutorialCanvasContext.font = getFont();
 
-            var text = "Now using what you've just done show (A ∪ B) ∩ (A ∪ C)";
+            var text = level.tutorialText[3];
             var maxWidth = canvasWidth / 6;
             var textX = circlesArray[2].x + circlesArray[2].radius;
             var textY = circlesArray[0].y;
@@ -1815,11 +2098,12 @@ $(document).ready(function () {
 
             // drawCurvedArrow(startX, startY, endpointX, endpointY, midpointX, midpointY);
             tutorialMode = false;
+
         }
 
     }
 
-    function emptySetTutorial(){
+    function emptySetTutorial() {
         tutorialMode = true;
         $("#undoButton").invisible();
         $("#redoButton").invisible();
@@ -1834,9 +2118,9 @@ $(document).ready(function () {
             //     circlesNeeded: 2,
             //     particularSyllogism: false
             // };
-            setupLevel(2);
+            setupLevel(3);
             tearDown();
-            createCircles();
+            createCircles(level.circlesNeeded);
             drawCircles();
 
             tutorialCanvasContext.clearRect(0, 0, canvasWidth, canvasHeight);
@@ -1862,7 +2146,7 @@ $(document).ready(function () {
             $("#tutorialBackwards").visible();
             $("#tutorialForwards").visible();
             tearDown();
-            createCircles();
+            createCircles(level.circlesNeeded);
             drawCircles();
 
             tutorialCanvasContext.clearRect(0, 0, canvasWidth, canvasHeight);
@@ -1897,7 +2181,7 @@ $(document).ready(function () {
             $("#tutorialBackwards").visible();
             $("#tutorialForwards").visible();
             tearDown();
-            createCircles();
+            createCircles(level.circlesNeeded);
             drawCircles();
 
             tutorialCanvasContext.clearRect(0, 0, canvasWidth, canvasHeight);
@@ -1971,9 +2255,9 @@ $(document).ready(function () {
             $("#tutorialBackwards").visible();
             $("#tutorialForwards").visible();
             tearDown();
-            createCircles();
+            createCircles(level.circlesNeeded);
             drawCircles();
-            setupLevel(2)
+            setupLevel(3);
             drawStaticTextForVennDiagram(level.staticTextArray);
             setupMovableText();
             drawMovableText();
@@ -1993,8 +2277,8 @@ $(document).ready(function () {
             var startX = textX + (maxWidth / 2);
             var startY = lastY + currentFontSize;
 
-            var endpointX = canvasWidth/2;
-            var endpointY = level.movableTextArray[0].y - (currentFontSize*2);
+            var endpointX = canvasWidth / 2;
+            var endpointY = level.movableTextArray[0].y - (currentFontSize * 2);
 
             var midpointX = (startX + endpointX) / 2;
             var midpointY = ((startY + endpointY) / 2) + canvasHeight / 24;
@@ -2100,13 +2384,14 @@ $(document).ready(function () {
 
     resizeCanvas();
 
-    vennDiagramTutorial();
-    // syllogismTutorial();
-    // someXTutorial();
-    // unionIntersectionTutorial();
-    // main(4);
-    // setTheoryTutorial();
-    // emptySetTutorial();
+    level1Tutorial();
+// vennDiagramTutorial();
+// syllogismTutorial();
+// someXTutorial();
+// unionIntersectionTutorial();
+// main(7);
+// setTheoryLevels();
+// emptySetTutorial();
 
     function getFont() {
         // var ratio = fontSize / fontBase;   // calc ratio
@@ -2145,8 +2430,8 @@ $(document).ready(function () {
         update();
     }
 
-    //Function to move the snowflakes
-    //angle will be an ongoing incremental flag. Sin and Cos functions will be applied to it to create vertical and horizontal movements of the flakes
+//Function to move the snowflakes
+//angle will be an ongoing incremental flag. Sin and Cos functions will be applied to it to create vertical and horizontal movements of the flakes
     var angle = 0;
 
     function update() {
