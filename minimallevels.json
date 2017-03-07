@@ -520,5 +520,67 @@
       }
     ],
     "particularSyllogism": false
+  },
+  "level9": {
+    "type": "venn",
+    "levelNumber": 9,
+    "correctSyllogism": {
+      "subject": true,
+      "middleSubjectIntersection": true,
+      "subjectPredicateIntersection": true,
+      "middlePredicateIntersection": false,
+      "middleSubjectPredicateIntersection": false,
+      "predicate": false,
+      "middle": true
+    },
+    "majorPremise": {
+      "middle": true,
+      "middleSubjectIntersection": true,
+      "middleSubjectPredicateIntersection": false,
+      "middlePredicateIntersection": false
+    },
+    "minorPremise": {
+      "subject": true,
+      "subjectPredicateIntersection": true
+    },
+    "blankSyllogism": {
+      "subject": false,
+      "middleSubjectIntersection": false,
+      "subjectPredicateIntersection": false,
+      "middlePredicateIntersection": false,
+      "middleSubjectPredicateIntersection": false,
+      "predicate": false,
+      "middle": false
+    },
+    "particularSyllogism": false,
+    "circlesNeeded": 2,
+    "staticTextArray": [
+      {
+        "text": "Men"
+      },
+      {
+        "text": "Mortal"
+      }
+    ],
+    "circle1": [
+      2
+    ],
+    "circle2": [
+      5
+    ],
+    "intersection": [
+      10
+    ],
+    "movableTextArray": [
+      {
+        "text": "2"
+      },
+      {
+        "text": "5"
+      },
+      {
+        "text": "10"
+      }
+    ]
   }
 }

@@ -68,6 +68,9 @@ $(document).ready(function () {
     var clickedInArray = [];
     var isTextMovable = true;
     var isImageMovable = false;
+    var dog1, dog2, dog3;
+    //angle will be an ongoing incremental flag for confetti. Sin and Cos functions will be applied to it
+    var angle = 0;
 
     function renderText() {
         tutorialCanvasContext.font = font;
@@ -75,8 +78,6 @@ $(document).ready(function () {
         var textWidth = tutorialCanvasContext.measureText(text);
         tutorialCanvasContext.fillText(text, ((canvasWidth / 2) - (textWidth.width / 2)), canvasHeight / 4);
     }
-
-    document.fonts.load('18pt "comicNeue"').then(renderText);
 
     function resizeCanvas() {
         layer1.width = window.innerWidth;
@@ -141,7 +142,7 @@ $(document).ready(function () {
                 drag = true;
             }
             if (!drag) {
-                if(level.levelNumber === 1){
+                if (level.levelNumber === 1) {
                     checkIfLevel1IsCorrect();
                 }
                 if (level.type === "syllogism") {
@@ -186,7 +187,7 @@ $(document).ready(function () {
     $(window).mouseup(function () {
 
         if (!tutorialMode) {
-            if(level.levelNumber === 1){
+            if (level.levelNumber === 1) {
                 checkIfLevel1IsCorrect();
             }
             if (level.type === "venn") {
@@ -215,6 +216,11 @@ $(document).ready(function () {
         if (level.levelNumber === 1) {
             tutorialStage++;
             level1Tutorial();
+            return;
+        }
+        if (level.levelNumber === 9) {
+            tutorialStage++;
+            menMortalTutorial();
             return;
         }
         if (level.type === "venn") {
@@ -310,24 +316,7 @@ $(document).ready(function () {
         minorPremiseMet = false;
         var currentLevel = level.levelNumber;
         var nextLevel = currentLevel + 1;
-        if (nextLevel == 2) {
-            vennDiagramTutorial();
-        } else if (nextLevel == 3) {
-            emptySetTutorial();
-        } else if (nextLevel == 4) {
-            syllogismTutorial();
-        } else if (nextLevel === 5) {
-            someXTutorial();
-        } else if (nextLevel === 6) {
-            unionIntersectionTutorial();
-        } else if (nextLevel === 8) {
-            setTheoryLevel++;
-            setTheoryLevels();
-        } else {
-            tearDown();
-            setupLevel(nextLevel);
-            main(nextLevel);
-        }
+        main(nextLevel);
         $("#nextLevelButton").invisible();
     });
 
@@ -364,27 +353,48 @@ $(document).ready(function () {
         setupLevel(levelNumber);
         context1.fillStyle = "white";
         context1.fillRect(0, 0, layer1.width, layer1.height);
-        if (level.type === "venn") {
-            setupMovableText();
-            createCircles(level.circlesNeeded);
-            drawCircles();
-            drawMovableText();
-            drawStaticTextForVennDiagram(level.staticTextArray);
+        if (levelNumber == 1) {
+            level1Tutorial();
+        } else if (levelNumber == 2) {
+            vennDiagramTutorial();
+        } else if (levelNumber == 3) {
+            emptySetTutorial();
+        } else if (levelNumber == 4) {
+            syllogismTutorial();
+        } else if (levelNumber === 5) {
+            someXTutorial();
+        } else if (levelNumber === 6) {
+            unionIntersectionTutorial();
+        } else if (levelNumber === 8) {
+            setTheoryLevel++;
+            setTheoryLevels();
+        } else {
+            tearDown();
+            setupLevel(nextLevel);
+            if (level.type === "venn") {
+                setupMovableText();
+                createCircles(level.circlesNeeded);
+                drawCircles();
+                drawMovableText();
+                drawStaticTextForVennDiagram(level.staticTextArray);
+            }
+            if (level.type === "syllogism") {
+                setupMovableText();
+                drawStaticText();
+                drawMovableText();
+                createCircles(level.circlesNeeded);
+                drawCircles();
+            }
+            if (level.type === "setTheory") {
+                setupMovableText();
+                drawStaticText();
+                drawMovableText();
+                createCircles(level.circlesNeeded);
+                drawCircles();
+            }
+            ;
         }
-        if (level.type === "syllogism") {
-            setupMovableText();
-            drawStaticText();
-            drawMovableText();
-            createCircles(level.circlesNeeded);
-            drawCircles();
-        }
-        if (level.type === "setTheory") {
-            setupMovableText();
-            drawStaticText();
-            drawMovableText();
-            createCircles(level.circlesNeeded);
-            drawCircles();
-        }
+
     }
 
     function enableOrDisableUndoRedoButtons() {
@@ -416,7 +426,7 @@ $(document).ready(function () {
             drawStaticTextForVennDiagram(level.staticTextArray);
         }
         //need to only do this if not level 1
-        if(level.levelNumber !== 1){
+        if (level.levelNumber !== 1) {
             drawMovableText();
         }
 
@@ -461,11 +471,11 @@ $(document).ready(function () {
         context3.fillText(text, ((canvasWidth / 2) - (textWidth / 2)), canvasHeight / 2);
     }
 
-    function checkIfLevel1IsCorrect(){
+    function checkIfLevel1IsCorrect() {
         console.log("Checking...");
         for (var i = 0; i < level.movableTextArray.length; i++) {
             var inCircle = whichCircleIsPremiseIn(level.movableTextArray[i]);
-            if(inCircle === null){
+            if (inCircle === null) {
                 return false;
             }
         }
@@ -564,9 +574,9 @@ $(document).ready(function () {
             if (clickedInArray.length != clickedInArrayBeforePop.length) {
                 undoRedoRepaintCheck(clickedInArrayBeforePop, clickedInArray);
             }
-            if(level.levelNumber === 1){
+            if (level.levelNumber === 1) {
                 drawDogs();
-            }else{
+            } else {
                 drawMovableText();
             }
             checkIfSyllogismIsMet();
@@ -584,9 +594,9 @@ $(document).ready(function () {
             if (clickedInArray.length != clickedInArrayBeforePop.length) {
                 undoRedoRepaintCheck(clickedInArrayBeforePop, clickedInArray);
             }
-            if(level.levelNumber === 1){
+            if (level.levelNumber === 1) {
                 drawDogs();
-            }else{
+            } else {
                 drawMovableText();
             }
             checkIfSyllogismIsMet();
@@ -838,7 +848,8 @@ $(document).ready(function () {
                 tutorialStage = 0;
                 levelCompleteScreen();
                 // gameCompleteScreen();
-                // requestAnimationFrame(drawConfetti);
+                var confetti = createConfetti();
+                // requestAnimationFrame(drawConfetti(confetti));
                 // setTimeout(drawConfetti, 20);
             }
         }
@@ -974,14 +985,16 @@ $(document).ready(function () {
                 level.staticTextArray[i].y += (currentFontSize / 2);
             }
 
-            drawLineBetween();
+            if (level.type === "syllogism") {
+                drawLineBetweenPremisesAndConclusion();
+            }
 
             context1.fillText(level.staticTextArray[i].text, level.staticTextArray[i].x, level.staticTextArray[i].y);
         }
         context1.globalAlpha = 1;
     }
 
-    function drawLineBetween() {
+    function drawLineBetweenPremisesAndConclusion() {
         if (!(level.type === "setTheory")) {
             var biggestLineWidthIndex = 0;
             var biggestLineWidth = 0;
@@ -1039,6 +1052,22 @@ $(document).ready(function () {
         staticTextArray[0].height = currentFontSize;
         context1.fillText(staticTextArray[0].text, staticTextArray[0].x, staticTextArray[0].y);
         context1.globalAlpha = 1;
+    }
+
+    function drawStaticTextForMenMortalLevel(staticTextArray) {
+        if (levelComplete) {
+            context1.globalAlpha = fadedAlphaLevel;
+        }
+        context1.font = font;
+        context1.fillStyle = "#1d1d1d";
+        context1.font = getFont();
+        staticTextArray[0].width = (context1.measureText(staticTextArray[0].text).width);
+        staticTextArray[0].x = ((layer1.width / 2) - (staticTextArray[0].width / 2));
+        staticTextArray[0].y = (1 * (canvasHeight / 30) + (canvasHeight / 6.5));
+        staticTextArray[0].height = currentFontSize;
+        context1.fillText(staticTextArray[0].text, staticTextArray[0].x, staticTextArray[0].y);
+        context1.globalAlpha = 1;
+        return staticTextArray;
     }
 
     function drawMovableText() {
@@ -1246,8 +1275,6 @@ $(document).ready(function () {
 
     }
 
-    var dog1, dog2, dog3;
-
     function loadImages() {
         dog1 = new Image();
         dog1.onload = function () {
@@ -1291,6 +1318,172 @@ $(document).ready(function () {
         context2.globalAlpha = 1;
     }
 
+    function wrapText(context, text, x, y, maxWidth, lineHeight) {
+        var words = text.split(' ');
+        var line = '';
+        var lastY = y;
+
+        for (var n = 0; n < words.length; n++) {
+            var testLine = line + words[n] + ' ';
+            var metrics = context.measureText(testLine);
+            var testWidth = metrics.width;
+            if (testWidth > maxWidth && n > 0) {
+                context.fillText(line, x, y);
+                line = words[n] + ' ';
+                y += lineHeight;
+                lastY = y;
+            }
+            else {
+                line = testLine;
+            }
+
+        }
+        context.fillText(line, x, y);
+        return lastY;
+    }
+
+    function clone(object) {
+        if (object == null || typeof(object) != 'object') {
+            return object;
+        }
+        var temp = new object.constructor();
+        for (var key in object) {
+            temp[key] = clone(object[key]);
+        }
+        return temp;
+    }
+
+    function drawNumbersForSetTheoryTutorial(tutorialCanvasContext, circlesArray, canvasWidth) {
+        tutorialCanvasContext.fillText("2", circlesArray[0].x - (circlesArray[0].radius / 2), circlesArray[0].y);
+        tutorialCanvasContext.fillText("12", circlesArray[0].x - (circlesArray[0].radius / 4), circlesArray[0].y + (circlesArray[0].radius / 2));
+        tutorialCanvasContext.fillText("8", circlesArray[0].x - (circlesArray[0].radius / 4), circlesArray[0].y - (circlesArray[0].radius / 2));
+
+        tutorialCanvasContext.fillText("15", circlesArray[1].x + (circlesArray[1].radius / 2), circlesArray[1].y);
+        tutorialCanvasContext.fillText("25", circlesArray[1].x + (circlesArray[1].radius / 4), circlesArray[1].y + (circlesArray[1].radius / 2));
+        tutorialCanvasContext.fillText("5", circlesArray[1].x + (circlesArray[1].radius / 4), circlesArray[1].y - (circlesArray[1].radius / 2));
+
+        tutorialCanvasContext.fillText("10", canvasWidth / 2 - (canvasWidth / 50), circlesArray[0].y - circlesArray[0].radius / 4);
+        tutorialCanvasContext.fillText("40", canvasWidth / 2 + (canvasWidth / 50), circlesArray[0].y + circlesArray[0].radius / 4);
+    }
+
+    function drawCurvedArrow(startPointX, startPointY, endPointX, endPointY, quadPointX, quadPointY) {
+
+        tutorialCanvasContext.strokeStyle = '#2ecc71';
+        tutorialCanvasContext.lineWidth = 6;
+        tutorialCanvasContext.lineCap = "round";
+
+        var arrowAngle = Math.atan2(quadPointX - endPointX, quadPointY - endPointY) + Math.PI;
+        var arrowWidth = 20;
+
+        tutorialCanvasContext.beginPath();
+        tutorialCanvasContext.moveTo(startPointX, startPointY);
+
+        tutorialCanvasContext.quadraticCurveTo(quadPointX, quadPointY, endPointX, endPointY);
+
+        tutorialCanvasContext.moveTo(endPointX - (arrowWidth * Math.sin(arrowAngle - Math.PI / 6)),
+            endPointY - (arrowWidth * Math.cos(arrowAngle - Math.PI / 6)));
+
+        tutorialCanvasContext.lineTo(endPointX, endPointY);
+
+        tutorialCanvasContext.lineTo(endPointX - (arrowWidth * Math.sin(arrowAngle + Math.PI / 6)),
+            endPointY - (arrowWidth * Math.cos(arrowAngle + Math.PI / 6)));
+
+        tutorialCanvasContext.stroke();
+        tutorialCanvasContext.closePath();
+    }
+
+    function getFont() {
+        // var ratio = fontSize / fontBase;   // calc ratio
+        var ratio = 24 / 1440;   // calc ratio
+        var size = canvasWidth * ratio;   // get font size based on current width
+        currentFontSize = size;
+        return (size | 0) + 'px comicNeue'; // set font
+    }
+
+    function createConfetti() {
+        var mp = 200; //max particles
+        var particles = [];
+        for (var i = 0; i < mp; i++) {
+            particles.push({
+                x: Math.random() * layer1.width, //x-coordinate
+                y: Math.random() * layer1.height, //y-coordinate
+                r: Math.random() * 15 + 1, //radius
+                d: Math.random() * mp, //density
+                color: "rgba(" + Math.floor((Math.random() * 255)) + ", " + Math.floor((Math.random() * 255)) + ", " + Math.floor((Math.random() * 255)) + ", 0.8)",
+                tilt: Math.floor(Math.random() * 5) - 5
+            });
+        }
+        return particles;
+    }
+
+    function drawConfetti() {
+        circleOutlineContext.clearRect(0, 0, canvasWidth, canvasHeight);
+
+        for (var i = 0; i < mp; i++) {
+            var p = particles[i];
+            circleOutlineContext.beginPath();
+            circleOutlineContext.lineWidth = p.r;
+            circleOutlineContext.strokeStyle = p.color; // Green path
+            circleOutlineContext.moveTo(p.x, p.y);
+            circleOutlineContext.lineTo(p.x + p.tilt + p.r / 2, p.y + p.tilt);
+            circleOutlineContext.stroke(); // Draw it
+        }
+
+        update();
+    }
+
+    function update() {
+        angle += 0.01;
+        for (var i = 0; i < mp; i++) {
+            var p = particles[i];
+            //Updating X and Y coordinates
+            //We will add 1 to the cos function to prevent negative values which will lead flakes to move upwards
+            //Every particle has its own density which can be used to make the downward movement different for each flake
+            //Lets make it more random by adding in the radius
+            p.y += Math.cos(angle + p.d) + 1 + p.r / 2;
+            p.x += Math.sin(angle) * 2;
+
+            //Sending flakes back from the top when it exits
+            //Lets make it a bit more organic and let flakes enter from the left and right also.
+            if (p.x > canvasWidth + 5 || p.x < -5 || p.y > canvasHeight) {
+                if (i % 3 > 0) //66.67% of the flakes
+                {
+                    particles[i] = {
+                        x: Math.random() * canvasWidth,
+                        y: -10,
+                        r: p.r,
+                        d: p.d,
+                        color: p.color,
+                        tilt: p.tilt
+                    };
+                } else {
+                    //If the flake is exitting from the right
+                    if (Math.sin(angle) > 0) {
+                        //Enter from the left
+                        particles[i] = {
+                            x: -5,
+                            y: Math.random() * canvasHeight,
+                            r: p.r,
+                            d: p.d,
+                            color: p.color,
+                            tilt: p.tilt
+                        };
+                    } else {
+                        //Enter from the right
+                        particles[i] = {
+                            x: canvasWidth + 5,
+                            y: Math.random() * canvasHeight,
+                            r: p.r,
+                            d: p.d,
+                            color: p.color,
+                            tilt: p.tilt
+                        };
+                    }
+                }
+            }
+        }
+    }
+
     function level1Tutorial() {
         tutorialMode = true;
         $("#undoButton").invisible();
@@ -1303,31 +1496,9 @@ $(document).ready(function () {
             $("#tutorialForwards").visible();
             tearDown();
             setupLevel(1);
+            document.fonts.load('18pt "comicNeue"').then(renderText);
             createCircles(level.circlesNeeded);
             drawCircles();
-            drawStaticText();
-
-            // tutorialCanvasContext.clearRect(0, 0, canvasWidth, canvasHeight);
-            tutorialCanvasContext.font = getFont();
-
-            var text = level.tutorialText[0];
-            var maxWidth = canvasWidth / 6;
-            var textX = circlesArray[1].x - circlesArray[1].radius - maxWidth;
-            var textY = circlesArray[0].y;
-            var lastY = wrapText(tutorialCanvasContext, text, textX, textY, canvasWidth / 6, currentFontSize);
-            context1.fillStyle = "#1d1d1d";
-
-            var startX = textX + (maxWidth / 2);
-            var startY = textY - (currentFontSize);
-
-
-            var endpointX = canvasWidth / 2;
-            var endpointY = level.staticTextArray[0].y + currentFontSize;
-
-            var midpointX = (startX + endpointX) / 2;
-            var midpointY = ((startY + endpointY) / 2) + canvasHeight / 24;
-
-            drawCurvedArrow(startX, startY, endpointX, endpointY, midpointX, midpointY);
         }
 
         if (tutorialStage === 1) {
@@ -1567,6 +1738,209 @@ $(document).ready(function () {
 
 
     }
+
+    function menMortalTutorial() {
+        tutorialMode = true;
+        $("#undoButton").invisible();
+        $("#redoButton").invisible();
+        $("#refreshButton").invisible();
+        $("#tutorial").invisible();
+
+        if (tutorialStage === 0) {
+            $("#tutorialBackwards").visible();
+            $("#tutorialForwards").visible();
+            tearDown();
+            setupLevel(9);
+            setupMovableText();
+            createCircles(level.circlesNeeded);
+            drawCircles();
+
+
+            drawStaticTextForVennDiagram(level.staticTextArray);
+            tutorialCanvasContext.clearRect(0, 0, canvasWidth, canvasHeight);
+            tutorialCanvasContext.font = font;
+            tutorialCanvasContext.fillStyle = 'black';
+            var text = "This set represents all immortal men";
+            var maxWidth = canvasWidth / 6;
+            var textX = circlesArray[0].x - circlesArray[0].radius - maxWidth;
+            var textY = circlesArray[0].y;
+            var lastY = wrapText(tutorialCanvasContext, text, textX, textY, canvasWidth / 6, currentFontSize);
+            context1.fillStyle = "#1d1d1d";
+
+
+            var startX = textX + (maxWidth / 2);
+            var startY = lastY + currentFontSize;
+
+            var endpointX = circlesArray[0].x - circlesArray[0].radius / 2;
+            var endpointY = circlesArray[0].y;
+
+            var midpointX = (startX + endpointX) / 2;
+            var midpointY = ((startY + endpointY) / 2) + canvasHeight / 24;
+
+            drawCurvedArrow(startX, startY, endpointX, endpointY, midpointX, midpointY);
+            context1.fillStyle = "#c0392b";
+            floodFill.fill(circlesArray[0].x - circlesArray[0].radius / 2, circlesArray[0].y, 100, context1, null, null, 90);
+        }
+
+        if (tutorialStage === 1) {
+            context1.fillStyle = "white";
+            floodFill.fill(circlesArray[0].x - circlesArray[0].radius / 2, circlesArray[0].y, 100, context1, null, null, 90);
+            $("#tutorialForwards").visible();
+            tutorialCanvasContext.clearRect(0, 0, canvasWidth, canvasHeight);
+            tutorialCanvasContext.font = font;
+            tutorialCanvasContext.fillStyle = 'black';
+
+            var text = "This set represents anything that is mortal";
+            var textWidth = (tutorialCanvasContext.measureText(text).width);
+            var maxWidth = canvasWidth / 6;
+            var textX = circlesArray[1].x + circlesArray[1].radius + maxWidth / 6;
+            var textY = circlesArray[1].y;
+            var lastY = wrapText(tutorialCanvasContext, text, textX, textY, canvasWidth / 6, currentFontSize);
+
+            var startX = textX;
+            var startY = lastY + (currentFontSize / 2);
+
+            var endpointX = circlesArray[1].x + circlesArray[1].radius / 2;
+            var endpointY = circlesArray[1].y;
+
+            var midpointX = (startX + endpointX) / 2;
+            var midpointY = (startY + endpointY) / 2;
+
+            drawCurvedArrow(startX, startY, endpointX, endpointY, midpointX, midpointY + 40);
+
+            tutorialCanvasContext.fillStyle = 'black';
+            var text = "This set represents all immortal men";
+            var maxWidth = canvasWidth / 6;
+            var textX = circlesArray[0].x - circlesArray[0].radius - maxWidth;
+            var textY = circlesArray[0].y;
+            var lastY = wrapText(tutorialCanvasContext, text, textX, textY, canvasWidth / 6, currentFontSize);
+            context1.fillStyle = "#1d1d1d";
+
+
+            var startX = textX + (maxWidth / 2);
+            var startY = lastY + currentFontSize;
+
+            var endpointX = circlesArray[0].x - circlesArray[0].radius / 2;
+            var endpointY = circlesArray[0].y;
+
+            var midpointX = (startX + endpointX) / 2;
+            var midpointY = ((startY + endpointY) / 2) + canvasHeight / 24;
+
+            drawCurvedArrow(startX, startY, endpointX, endpointY, midpointX, midpointY);
+            context1.fillStyle = "#c0392b";
+            floodFill.fill(circlesArray[1].x + circlesArray[1].radius / 2, circlesArray[1].y, 100, context1, null, null, 90);
+        }
+
+        if (tutorialStage === 2) {
+            context1.fillStyle = "white";
+            floodFill.fill(circlesArray[1].x + circlesArray[1].radius / 2, circlesArray[1].y, 100, context1, null, null, 90);
+
+            $("#tutorialForwards").visible();
+            tutorialCanvasContext.clearRect(0, 0, canvasWidth, canvasHeight);
+            tutorialCanvasContext.font = font;
+            tutorialCanvasContext.fillStyle = 'black';
+            var text = "This represents the set of mortal men";
+            var textWidth = (tutorialCanvasContext.measureText(text).width);
+            var textX = ((canvasWidth / 2) - (textWidth / 2));
+            var textY = (canvasHeight / 3) * 2 + (canvasHeight / 3 / 2);
+            tutorialCanvasContext.fillText(text, textX, textY);
+
+
+            context1.fillStyle = "#c0392b";
+            floodFill.fill(Math.round(canvasWidth / 2), Math.round(canvasHeight / 2), 100, context1, null, null, 90);
+
+            var startX = textX + (textWidth / 2);
+            var startY = textY - currentFontSize - 5;
+
+            var endpointX = canvasWidth / 2;
+            var endpointY = circlesArray[0].y + circlesArray[0].radius;
+
+            var midpointX = (startX + endpointX) / 2;
+            var midpointY = (startY + endpointY) / 2;
+
+            drawCurvedArrow(startX, startY, endpointX, endpointY, midpointX, midpointY + 40);
+
+            tutorialCanvasContext.fillStyle = 'black';
+
+            var text = "This set represents anything that is mortal";
+            var textWidth = (tutorialCanvasContext.measureText(text).width);
+            var maxWidth = canvasWidth / 6;
+            var textX = circlesArray[1].x + circlesArray[1].radius + maxWidth / 6;
+            var textY = circlesArray[1].y;
+            var lastY = wrapText(tutorialCanvasContext, text, textX, textY, canvasWidth / 6, currentFontSize);
+
+            var startX = textX;
+            var startY = lastY + (currentFontSize / 2);
+
+            var endpointX = circlesArray[1].x + circlesArray[1].radius / 2;
+            var endpointY = circlesArray[1].y;
+
+            var midpointX = (startX + endpointX) / 2;
+            var midpointY = (startY + endpointY) / 2;
+
+            drawCurvedArrow(startX, startY, endpointX, endpointY, midpointX, midpointY + 40);
+
+            tutorialCanvasContext.fillStyle = 'black';
+            var text = "This set represents all immortal men";
+            var maxWidth = canvasWidth / 6;
+            var textX = circlesArray[0].x - circlesArray[0].radius - maxWidth;
+            var textY = circlesArray[0].y;
+            var lastY = wrapText(tutorialCanvasContext, text, textX, textY, canvasWidth / 6, currentFontSize);
+            context1.fillStyle = "#1d1d1d";
+
+
+            var startX = textX + (maxWidth / 2);
+            var startY = lastY + currentFontSize;
+
+            var endpointX = circlesArray[0].x - circlesArray[0].radius / 2;
+            var endpointY = circlesArray[0].y;
+
+            var midpointX = (startX + endpointX) / 2;
+            var midpointY = ((startY + endpointY) / 2) + canvasHeight / 24;
+
+            drawCurvedArrow(startX, startY, endpointX, endpointY, midpointX, midpointY);
+        }
+
+        if (tutorialStage === 3) {
+
+            context1.fillStyle = "white";
+            floodFill.fill(Math.round(canvasWidth / 2), Math.round(canvasHeight / 2), 100, context1, null, null, 90);
+
+            var staticTextArray = drawStaticTextForMenMortalLevel([
+                {
+                    "text": "All men are mortal"
+                }
+            ]);
+
+            tutorialCanvasContext.fillStyle = 'black';
+            var text = "Fill in the empty set to make the sentence true";
+            var maxWidth = canvasWidth / 6;
+            var textX = staticTextArray[0].x + staticTextArray[0].width + maxWidth;
+            var textY = circlesArray[0].y - circlesArray[0].radius;
+            var lastY = wrapText(tutorialCanvasContext, text, textX, textY, canvasWidth / 6, currentFontSize);
+            context1.fillStyle = "#1d1d1d";
+
+
+            var startX = textX + (maxWidth / 2);
+            var startY = textY - currentFontSize;
+
+            var endpointX = staticTextArray[0].x + staticTextArray[0].width + currentFontSize;
+            var endpointY = staticTextArray[0].y;
+
+            var midpointX = (startX + endpointX) / 2;
+            var midpointY = ((startY + endpointY) / 2) + canvasHeight / 24;
+
+            drawCurvedArrow(startX, startY, endpointX, endpointY, midpointX, midpointY);
+
+            tutorialMode = false;
+            $("#undoButton").visible();
+            $("#redoButton").visible();
+            $("#refreshButton").visible();
+            $("#tutorial").visible();
+            $("#tutorialForwards").invisible();
+        }
+    }
+
 
     function syllogismTutorial() {
         tutorialMode = true;
@@ -2190,7 +2564,7 @@ $(document).ready(function () {
             var staticTextArray =
                 [
                     {
-                        "text": "Dogs with 16 legs"
+                        "text": "Dogs that can fly"
                     },
                     {
                         "text": "Dogs with 4 legs"
@@ -2224,7 +2598,7 @@ $(document).ready(function () {
             dog3.src = "images/bulldog-1.svg";
 
 
-            var text = "Here the set of dogs with 16 legs is empty because there are no dogs with 16 legs!";
+            var text = "Here the set of dogs that can fly is empty because there are no flying dogs!";
             var segment = canvasWidth / 6;
 
             var maxWidth = segment;
@@ -2237,7 +2611,7 @@ $(document).ready(function () {
             var startX = textX + (maxWidth / 2);
             var startY = textY - currentFontSize;
 
-            var endpointX = circlesArray[0].x;
+            var endpointX = circlesArray[0].x - circlesArray[0].radius / 2;
             var endpointY = circlesArray[0].y;
 
             var midpointX = (startX + endpointX) / 2;
@@ -2295,80 +2669,6 @@ $(document).ready(function () {
         }
     }
 
-    function wrapText(context, text, x, y, maxWidth, lineHeight) {
-        var words = text.split(' ');
-        var line = '';
-        var lastY;
-
-        for (var n = 0; n < words.length; n++) {
-            var testLine = line + words[n] + ' ';
-            var metrics = context.measureText(testLine);
-            var testWidth = metrics.width;
-            if (testWidth > maxWidth && n > 0) {
-                context.fillText(line, x, y);
-                line = words[n] + ' ';
-                y += lineHeight;
-                lastY = y;
-            }
-            else {
-                line = testLine;
-            }
-
-        }
-        context.fillText(line, x, y);
-        return lastY;
-    }
-
-    function clone(object) {
-        if (object == null || typeof(object) != 'object') {
-            return object;
-        }
-        var temp = new object.constructor();
-        for (var key in object) {
-            temp[key] = clone(object[key]);
-        }
-        return temp;
-    }
-
-    function drawNumbersForSetTheoryTutorial(tutorialCanvasContext, circlesArray, canvasWidth) {
-        tutorialCanvasContext.fillText("2", circlesArray[0].x - (circlesArray[0].radius / 2), circlesArray[0].y);
-        tutorialCanvasContext.fillText("12", circlesArray[0].x - (circlesArray[0].radius / 4), circlesArray[0].y + (circlesArray[0].radius / 2));
-        tutorialCanvasContext.fillText("8", circlesArray[0].x - (circlesArray[0].radius / 4), circlesArray[0].y - (circlesArray[0].radius / 2));
-
-        tutorialCanvasContext.fillText("15", circlesArray[1].x + (circlesArray[1].radius / 2), circlesArray[1].y);
-        tutorialCanvasContext.fillText("25", circlesArray[1].x + (circlesArray[1].radius / 4), circlesArray[1].y + (circlesArray[1].radius / 2));
-        tutorialCanvasContext.fillText("5", circlesArray[1].x + (circlesArray[1].radius / 4), circlesArray[1].y - (circlesArray[1].radius / 2));
-
-        tutorialCanvasContext.fillText("10", canvasWidth / 2 - (canvasWidth / 50), circlesArray[0].y - circlesArray[0].radius / 4);
-        tutorialCanvasContext.fillText("40", canvasWidth / 2 + (canvasWidth / 50), circlesArray[0].y + circlesArray[0].radius / 4);
-    }
-
-    function drawCurvedArrow(startPointX, startPointY, endPointX, endPointY, quadPointX, quadPointY) {
-
-        tutorialCanvasContext.strokeStyle = '#2ecc71';
-        tutorialCanvasContext.lineWidth = 6;
-        tutorialCanvasContext.lineCap = "round";
-
-        var arrowAngle = Math.atan2(quadPointX - endPointX, quadPointY - endPointY) + Math.PI;
-        var arrowWidth = 20;
-
-        tutorialCanvasContext.beginPath();
-        tutorialCanvasContext.moveTo(startPointX, startPointY);
-
-        tutorialCanvasContext.quadraticCurveTo(quadPointX, quadPointY, endPointX, endPointY);
-
-        tutorialCanvasContext.moveTo(endPointX - (arrowWidth * Math.sin(arrowAngle - Math.PI / 6)),
-            endPointY - (arrowWidth * Math.cos(arrowAngle - Math.PI / 6)));
-
-        tutorialCanvasContext.lineTo(endPointX, endPointY);
-
-        tutorialCanvasContext.lineTo(endPointX - (arrowWidth * Math.sin(arrowAngle + Math.PI / 6)),
-            endPointY - (arrowWidth * Math.cos(arrowAngle + Math.PI / 6)));
-
-        tutorialCanvasContext.stroke();
-        tutorialCanvasContext.closePath();
-    }
-
     (function ($) {
         $.fn.invisible = function () {
             return this.each(function () {
@@ -2383,8 +2683,8 @@ $(document).ready(function () {
     }(jQuery));
 
     resizeCanvas();
-
-    level1Tutorial();
+    // level1Tutorial();
+    menMortalTutorial();
 // vennDiagramTutorial();
 // syllogismTutorial();
 // someXTutorial();
@@ -2392,100 +2692,6 @@ $(document).ready(function () {
 // main(7);
 // setTheoryLevels();
 // emptySetTutorial();
-
-    function getFont() {
-        // var ratio = fontSize / fontBase;   // calc ratio
-        var ratio = 24 / 1440;   // calc ratio
-        var size = canvasWidth * ratio;   // get font size based on current width
-        currentFontSize = size;
-        return (size | 0) + 'px comicNeue'; // set font
-    }
-
-    var mp = 200; //max particles
-    var particles = [];
-    for (var i = 0; i < mp; i++) {
-        particles.push({
-            x: Math.random() * layer1.width, //x-coordinate
-            y: Math.random() * layer1.height, //y-coordinate
-            r: Math.random() * 15 + 1, //radius
-            d: Math.random() * mp, //density
-            color: "rgba(" + Math.floor((Math.random() * 255)) + ", " + Math.floor((Math.random() * 255)) + ", " + Math.floor((Math.random() * 255)) + ", 0.8)",
-            tilt: Math.floor(Math.random() * 5) - 5
-        });
-    }
-
-    function drawConfetti() {
-        circleOutlineContext.clearRect(0, 0, canvasWidth, canvasHeight);
-
-        for (var i = 0; i < mp; i++) {
-            var p = particles[i];
-            circleOutlineContext.beginPath();
-            circleOutlineContext.lineWidth = p.r;
-            circleOutlineContext.strokeStyle = p.color; // Green path
-            circleOutlineContext.moveTo(p.x, p.y);
-            circleOutlineContext.lineTo(p.x + p.tilt + p.r / 2, p.y + p.tilt);
-            circleOutlineContext.stroke(); // Draw it
-        }
-
-        update();
-    }
-
-//Function to move the snowflakes
-//angle will be an ongoing incremental flag. Sin and Cos functions will be applied to it to create vertical and horizontal movements of the flakes
-    var angle = 0;
-
-    function update() {
-        angle += 0.01;
-        for (var i = 0; i < mp; i++) {
-            var p = particles[i];
-            //Updating X and Y coordinates
-            //We will add 1 to the cos function to prevent negative values which will lead flakes to move upwards
-            //Every particle has its own density which can be used to make the downward movement different for each flake
-            //Lets make it more random by adding in the radius
-            p.y += Math.cos(angle + p.d) + 1 + p.r / 2;
-            p.x += Math.sin(angle) * 2;
-
-            //Sending flakes back from the top when it exits
-            //Lets make it a bit more organic and let flakes enter from the left and right also.
-            if (p.x > canvasWidth + 5 || p.x < -5 || p.y > canvasHeight) {
-                if (i % 3 > 0) //66.67% of the flakes
-                {
-                    particles[i] = {
-                        x: Math.random() * canvasWidth,
-                        y: -10,
-                        r: p.r,
-                        d: p.d,
-                        color: p.color,
-                        tilt: p.tilt
-                    };
-                } else {
-                    //If the flake is exitting from the right
-                    if (Math.sin(angle) > 0) {
-                        //Enter from the left
-                        particles[i] = {
-                            x: -5,
-                            y: Math.random() * canvasHeight,
-                            r: p.r,
-                            d: p.d,
-                            color: p.color,
-                            tilt: p.tilt
-                        };
-                    } else {
-                        //Enter from the right
-                        particles[i] = {
-                            x: canvasWidth + 5,
-                            y: Math.random() * canvasHeight,
-                            r: p.r,
-                            d: p.d,
-                            color: p.color,
-                            tilt: p.tilt
-                        };
-                    }
-                }
-            }
-        }
-    }
-
 
 })
 ;
