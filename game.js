@@ -145,6 +145,10 @@ $(document).ready(function () {
                 if (level.levelNumber === 1) {
                     checkIfLevel1IsCorrect();
                 }
+                if (level.levelNumber === 9){
+                    whichCircleClickedIn(pos.x, pos.y);
+                    checkIfMenMortalIsCorrect();
+                }
                 if (level.type === "syllogism") {
                     whichCircleClickedIn(pos.x, pos.y);
                     checkIfSyllogismIsMet();
@@ -556,6 +560,19 @@ $(document).ready(function () {
                 levelCompleteScreen();
             }
         }
+    }
+
+    function checkIfMenMortalIsCorrect(){
+        var correctEmptyLocation = false;
+        if (clickedInArray.length > 0) {
+            correctEmptyLocation = (clickedInArray[0].circleClickedIn.equals([0]) && clickedInArray.length === 1);
+        }
+        if (!levelComplete && correctEmptyLocation) {
+            tutorialCanvasContext.clearRect(0, 0, canvasWidth, canvasHeight);
+            levelComplete = true;
+            levelCompleteScreen();
+        }
+
     }
 
     function undo() {
@@ -1778,13 +1795,13 @@ $(document).ready(function () {
             var midpointY = ((startY + endpointY) / 2) + canvasHeight / 24;
 
             drawCurvedArrow(startX, startY, endpointX, endpointY, midpointX, midpointY);
-            context1.fillStyle = "#c0392b";
-            floodFill.fill(circlesArray[0].x - circlesArray[0].radius / 2, circlesArray[0].y, 100, context1, null, null, 90);
+            context1.fillStyle = "#3498db";
+            floodFill.fill(Math.round(circlesArray[0].x - circlesArray[0].radius / 2), Math.round(circlesArray[0].y), 100, context1, null, null, 90);
         }
 
         if (tutorialStage === 1) {
             context1.fillStyle = "white";
-            floodFill.fill(circlesArray[0].x - circlesArray[0].radius / 2, circlesArray[0].y, 100, context1, null, null, 90);
+            floodFill.fill(Math.round(circlesArray[0].x - circlesArray[0].radius / 2), Math.round(circlesArray[0].y), 100, context1, null, null, 90);
             $("#tutorialForwards").visible();
             tutorialCanvasContext.clearRect(0, 0, canvasWidth, canvasHeight);
             tutorialCanvasContext.font = font;
@@ -1827,13 +1844,13 @@ $(document).ready(function () {
             var midpointY = ((startY + endpointY) / 2) + canvasHeight / 24;
 
             drawCurvedArrow(startX, startY, endpointX, endpointY, midpointX, midpointY);
-            context1.fillStyle = "#c0392b";
-            floodFill.fill(circlesArray[1].x + circlesArray[1].radius / 2, circlesArray[1].y, 100, context1, null, null, 90);
+            context1.fillStyle = "#3498db";
+            floodFill.fill(Math.round(circlesArray[1].x + circlesArray[1].radius / 2), Math.round(circlesArray[1].y), 100, context1, null, null, 90);
         }
 
         if (tutorialStage === 2) {
             context1.fillStyle = "white";
-            floodFill.fill(circlesArray[1].x + circlesArray[1].radius / 2, circlesArray[1].y, 100, context1, null, null, 90);
+            floodFill.fill(Math.round(circlesArray[1].x + circlesArray[1].radius / 2), Math.round(circlesArray[1].y), 100, context1, null, null, 90);
 
             $("#tutorialForwards").visible();
             tutorialCanvasContext.clearRect(0, 0, canvasWidth, canvasHeight);
@@ -1846,7 +1863,7 @@ $(document).ready(function () {
             tutorialCanvasContext.fillText(text, textX, textY);
 
 
-            context1.fillStyle = "#c0392b";
+            context1.fillStyle = "#3498db";
             floodFill.fill(Math.round(canvasWidth / 2), Math.round(canvasHeight / 2), 100, context1, null, null, 90);
 
             var startX = textX + (textWidth / 2);
@@ -1888,7 +1905,6 @@ $(document).ready(function () {
             var lastY = wrapText(tutorialCanvasContext, text, textX, textY, canvasWidth / 6, currentFontSize);
             context1.fillStyle = "#1d1d1d";
 
-
             var startX = textX + (maxWidth / 2);
             var startY = lastY + currentFontSize;
 
@@ -1920,7 +1936,6 @@ $(document).ready(function () {
             var lastY = wrapText(tutorialCanvasContext, text, textX, textY, canvasWidth / 6, currentFontSize);
             context1.fillStyle = "#1d1d1d";
 
-
             var startX = textX + (maxWidth / 2);
             var startY = textY - currentFontSize;
 
@@ -1940,7 +1955,6 @@ $(document).ready(function () {
             $("#tutorialForwards").invisible();
         }
     }
-
 
     function syllogismTutorial() {
         tutorialMode = true;
