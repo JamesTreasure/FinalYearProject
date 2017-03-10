@@ -1,3 +1,6 @@
+var drawConfetti;
+var level1Tutorial;
+
 $(document).ready(function () {
     var layer1 = document.getElementById('layer1');
     var layer2 = document.getElementById('layer2');
@@ -44,8 +47,9 @@ $(document).ready(function () {
     var setTheoryCurrentStage = 0;
     var font;
     var setTheoryColours = ["#3498db", "#2ecc71", "#f1c40f"];
-    var setTheoryLevel = 7;
+    var setTheoryLevel = 8;
     var dogs = false;
+    var mp = 200;
 
     var GameState = function (movableTextArray, clickedInArray) {
         this.movableTextArray = movableTextArray;
@@ -145,7 +149,7 @@ $(document).ready(function () {
                 if (level.levelNumber === 1) {
                     checkIfLevel1IsCorrect();
                 }
-                if (level.levelNumber === 9){
+                if (level.levelNumber === 4) {
                     whichCircleClickedIn(pos.x, pos.y);
                     checkIfMenMortalIsCorrect();
                 }
@@ -219,25 +223,25 @@ $(document).ready(function () {
     $("#tutorialForwards").click(function () {
         if (level.levelNumber === 1) {
             tutorialStage++;
-            level1Tutorial();
+            level1Tutorial(1);
             return;
         }
-        if (level.levelNumber === 9) {
+        if (level.levelNumber === 4) {
             tutorialStage++;
-            menMortalTutorial();
+            level4Tutorial(4);
             return;
         }
         if (level.type === "venn") {
             tutorialStage++;
-            vennDiagramTutorial();
+            vennDiagramTutorial(2);
             return;
         }
         if (level.type === "syllogism" && level.particularSyllogism === false) {
             tutorialStage++;
-            syllogismTutorial();
+            syllogismTutorial(5);
         } else if (level.type === "syllogism" && level.particularSyllogism) {
             tutorialStage++;
-            someXTutorial();
+            someXTutorial(6);
         }
         if (level.type === "unionIntersectionTutorial") {
             if (!tutorialMode) {
@@ -248,7 +252,7 @@ $(document).ready(function () {
                 setTheoryLevels();
             } else {
                 tutorialStage++;
-                unionIntersectionTutorial();
+                unionIntersectionTutorial(7);
             }
         }
         if (level.type === "setTheory") {
@@ -266,24 +270,29 @@ $(document).ready(function () {
     $("#tutorialBackwards").click(function () {
         if (level.levelNumber === 1) {
             tutorialStage--;
-            level1Tutorial();
+            level1Tutorial(1);
+            return;
+        }
+        if (level.levelNumber === 4) {
+            tutorialStage--;
+            level4Tutorial(4);
             return;
         }
         if (level.type === "venn") {
             tutorialStage--;
-            vennDiagramTutorial();
+            vennDiagramTutorial(2);
             return;
         }
         if (level.type === "syllogism" && level.particularSyllogism === false) {
             tutorialStage--;
-            syllogismTutorial();
+            syllogismTutorial(5);
         } else if (level.type === "syllogism" && level.particularSyllogism) {
             tutorialStage--;
-            someXTutorial();
+            someXTutorial(6);
         }
         if (level.type === "setTheory") {
             tutorialStage++;
-            unionIntersectionTutorial();
+            unionIntersectionTutorial(7);
         }
         if (level.type === "emptySet") {
             tutorialStage--;
@@ -320,16 +329,17 @@ $(document).ready(function () {
         minorPremiseMet = false;
         var currentLevel = level.levelNumber;
         var nextLevel = currentLevel + 1;
+        $('#levelSelect').text('Level ' + nextLevel);
         main(nextLevel);
         $("#nextLevelButton").invisible();
     });
 
     $("#tutorial").click(function () {
         if (level.type === "venn") {
-            vennDiagramTutorial()
+            vennDiagramTutorial(2);
         }
         if (level.type === "syllogism") {
-            syllogismTutorial();
+            syllogismTutorial(5);
         }
         if (level.type === "setTheory") {
             tutorialStage = 0;
@@ -345,7 +355,7 @@ $(document).ready(function () {
         var currentLevel = level.levelNumber;
         var nextLevel = currentLevel + 1;
         if (nextLevel == 2) {
-            syllogismTutorial();
+            syllogismTutorial(5);
         } else {
             setupLevel(nextLevel);
             main(nextLevel);
@@ -353,25 +363,39 @@ $(document).ready(function () {
         $("#nextLevelButton").invisible();
     });
 
+    function drawLevelNumber(levelNumber){
+        var text = "Level " + levelNumber;
+        var textWidth = (context3.measureText(text).width);
+
+        var x = canvasWidth - (textWidth*1.5);
+        var y = currentFontSize;
+        context1.fillText(text, x, y);
+    }
+
     function main(levelNumber) {
         setupLevel(levelNumber);
         context1.fillStyle = "white";
         context1.fillRect(0, 0, layer1.width, layer1.height);
+        drawLevelNumber(levelNumber);
         if (levelNumber == 1) {
-            level1Tutorial();
+            level1Tutorial(1);
         } else if (levelNumber == 2) {
-            vennDiagramTutorial();
+            vennDiagramTutorial(2);
         } else if (levelNumber == 3) {
-            emptySetTutorial();
+            emptySetTutorial(3);
         } else if (levelNumber == 4) {
-            syllogismTutorial();
-        } else if (levelNumber === 5) {
-            someXTutorial();
+            level4Tutorial(4);
+        } else if (levelNumber == 5) {
+            syllogismTutorial(5);
         } else if (levelNumber === 6) {
-            unionIntersectionTutorial();
+            someXTutorial(6);
+        } else if (levelNumber === 7) {
+            unionIntersectionTutorial(7);
         } else if (levelNumber === 8) {
+            setTheoryLevels(setTheoryLevel);
+        } else if (levelNumber === 9) {
             setTheoryLevel++;
-            setTheoryLevels();
+            setTheoryLevels(9);
         } else {
             tearDown();
             setupLevel(nextLevel);
@@ -562,7 +586,7 @@ $(document).ready(function () {
         }
     }
 
-    function checkIfMenMortalIsCorrect(){
+    function checkIfMenMortalIsCorrect() {
         var correctEmptyLocation = false;
         if (clickedInArray.length > 0) {
             correctEmptyLocation = (clickedInArray[0].circleClickedIn.equals([0]) && clickedInArray.length === 1);
@@ -861,7 +885,7 @@ $(document).ready(function () {
                 setTheoryLevels();
             } else {
                 isTextMovable = true;
-                // setTheoryLevel++;
+                setTheoryCurrentStage = 0;
                 tutorialStage = 0;
                 levelCompleteScreen();
                 // gameCompleteScreen();
@@ -1433,7 +1457,7 @@ $(document).ready(function () {
         return particles;
     }
 
-    function drawConfetti() {
+    drawConfetti = function drawConfetti() {
         circleOutlineContext.clearRect(0, 0, canvasWidth, canvasHeight);
 
         for (var i = 0; i < mp; i++) {
@@ -1501,8 +1525,9 @@ $(document).ready(function () {
         }
     }
 
-    function level1Tutorial() {
+    level1Tutorial = function level1Tutorial(levelNumber) {
         tutorialMode = true;
+        resizeCanvas();
         $("#undoButton").invisible();
         $("#redoButton").invisible();
         $("#refreshButton").invisible();
@@ -1512,7 +1537,7 @@ $(document).ready(function () {
             $("#tutorialBackwards").invisible();
             $("#tutorialForwards").visible();
             tearDown();
-            setupLevel(1);
+            setupLevel(levelNumber);
             document.fonts.load('18pt "comicNeue"').then(renderText);
             createCircles(level.circlesNeeded);
             drawCircles();
@@ -1600,7 +1625,7 @@ $(document).ready(function () {
 
     }
 
-    function vennDiagramTutorial() {
+    function vennDiagramTutorial(levelNumber) {
         tutorialMode = true;
         $("#undoButton").invisible();
         $("#redoButton").invisible();
@@ -1612,7 +1637,7 @@ $(document).ready(function () {
             $("#tutorialBackwards").visible();
             $("#tutorialForwards").visible();
             tearDown();
-            setupLevel(2);
+            setupLevel(levelNumber);
             setupMovableText();
             createCircles(level.circlesNeeded);
             drawCircles();
@@ -1756,7 +1781,7 @@ $(document).ready(function () {
 
     }
 
-    function menMortalTutorial() {
+    function level4Tutorial(levelNumber) {
         tutorialMode = true;
         $("#undoButton").invisible();
         $("#redoButton").invisible();
@@ -1767,7 +1792,7 @@ $(document).ready(function () {
             $("#tutorialBackwards").visible();
             $("#tutorialForwards").visible();
             tearDown();
-            setupLevel(9);
+            setupLevel(levelNumber);
             setupMovableText();
             createCircles(level.circlesNeeded);
             drawCircles();
@@ -1956,7 +1981,7 @@ $(document).ready(function () {
         }
     }
 
-    function syllogismTutorial() {
+    function syllogismTutorial(levelNumber) {
         tutorialMode = true;
         $("#undoButton").invisible();
         $("#redoButton").invisible();
@@ -1967,7 +1992,7 @@ $(document).ready(function () {
             $("#tutorialBackwards").invisible();
             $("#tutorialForwards").visible();
             tearDown();
-            setupLevel(4);
+            setupLevel(levelNumber);
             createCircles(level.circlesNeeded);
             drawStaticText();
             tutorialCanvasContext.clearRect(0, 0, canvasWidth, canvasHeight);
@@ -1992,7 +2017,6 @@ $(document).ready(function () {
             tutorialCanvasContext.fillText(text, textX, textY);
 
         }
-
         if (tutorialStage === 1) {
             $("#tutorialForwards").visible();
             tearDown();
@@ -2155,7 +2179,7 @@ $(document).ready(function () {
         }
     }
 
-    function someXTutorial() {
+    function someXTutorial(levelNumber) {
         tutorialMode = true;
         $("#undoButton").invisible();
         $("#redoButton").invisible();
@@ -2166,7 +2190,7 @@ $(document).ready(function () {
             $("#tutorialBackwards").invisible();
             $("#tutorialForwards").visible();
             tearDown();
-            setupLevel(5);
+            setupLevel(levelNumber);
             setupMovableText();
             drawStaticText();
             createCircles(level.circlesNeeded);
@@ -2227,7 +2251,7 @@ $(document).ready(function () {
 
     }
 
-    function unionIntersectionTutorial() {
+    function unionIntersectionTutorial(levelNumber) {
         tutorialMode = true;
         $("#undoButton").invisible();
         $("#redoButton").invisible();
@@ -2238,7 +2262,7 @@ $(document).ready(function () {
             $("#tutorialBackwards").invisible();
             $("#tutorialForwards").visible();
             tearDown();
-            setupLevel(6);
+            setupLevel(levelNumber);
             setupMovableText();
             createCircles(level.circlesNeeded);
             drawCircles();
@@ -2491,7 +2515,7 @@ $(document).ready(function () {
 
     }
 
-    function emptySetTutorial() {
+    function emptySetTutorial(levelNumber) {
         tutorialMode = true;
         $("#undoButton").invisible();
         $("#redoButton").invisible();
@@ -2501,12 +2525,7 @@ $(document).ready(function () {
         if (tutorialStage === 0) {
             $("#tutorialBackwards").invisible();
             $("#tutorialForwards").visible();
-            // level = {
-            //     type: "syllogism",
-            //     circlesNeeded: 2,
-            //     particularSyllogism: false
-            // };
-            setupLevel(3);
+            setupLevel(levelNumber);
             tearDown();
             createCircles(level.circlesNeeded);
             drawCircles();
@@ -2540,7 +2559,7 @@ $(document).ready(function () {
             tutorialCanvasContext.clearRect(0, 0, canvasWidth, canvasHeight);
             tutorialCanvasContext.font = getFont();
 
-            var text = "Clicking in a circle will fill it black. This is how we represent the empty set.";
+            var text = "Clicking in a segment will fill it black. This is how we represent the empty set.";
             var textWidth = tutorialCanvasContext.measureText(text).width;
             var maxWidth = canvasWidth / 6;
             var textX = circlesArray[0].x - circlesArray[0].radius - maxWidth;
@@ -2562,7 +2581,7 @@ $(document).ready(function () {
             var y = circlesArray[0].y - circlesArray[0].radius + (circlesArray[0].radius / 5);
             context1.fillStyle = "#2c3e50";
             floodFill.fill(Math.round(x), Math.round(y), 100, context1, null, null, 90);
-            floodFill.fill(Math.round(canvasWidth / 2), Math.round(canvasHeight / 2), 100, context1, null, null, 90);
+            // floodFill.fill(Math.round(canvasWidth / 2), Math.round(canvasHeight / 2), 100, context1, null, null, 90);
         }
 
         if (tutorialStage === 2) {
@@ -2636,7 +2655,6 @@ $(document).ready(function () {
             var y = circlesArray[0].y - circlesArray[0].radius + (circlesArray[0].radius / 5);
             context1.fillStyle = "#2c3e50";
             floodFill.fill(Math.round(x), Math.round(y), 100, context1, null, null, 90);
-            floodFill.fill(Math.round(canvasWidth / 2), Math.round(canvasHeight / 2), 100, context1, null, null, 90);
         }
 
         if (tutorialStage === 3) {
@@ -2645,7 +2663,81 @@ $(document).ready(function () {
             tearDown();
             createCircles(level.circlesNeeded);
             drawCircles();
-            setupLevel(3);
+
+            tutorialCanvasContext.clearRect(0, 0, canvasWidth, canvasHeight);
+            tutorialCanvasContext.font = getFont();
+
+            var staticTextArray =
+                [
+                    {
+                        "text": "Dogs that can fly"
+                    },
+                    {
+                        "text": "Dogs with 4 legs"
+                    }
+                ];
+
+
+            drawStaticTextForVennDiagram(staticTextArray);
+
+            var dog1 = new Image();
+            dog1.onload = function () {
+                tutorialCanvasContext.drawImage(dog1, circlesArray[1].x + (circlesArray[1].radius / 2),
+                    circlesArray[1].y - (circlesArray[0].radius / 3 / 2), circlesArray[0].radius / 3, circlesArray[0].radius / 3);
+            }
+            dog1.src = "images/dog.svg";
+
+            var dog2 = new Image();
+            dog2.onload = function () {
+                tutorialCanvasContext.drawImage(dog2, circlesArray[1].x + (circlesArray[1].radius / 4),
+                    circlesArray[1].y + (circlesArray[1].radius / 2) - (circlesArray[0].radius / 3 / 2),
+                    circlesArray[0].radius / 3, circlesArray[0].radius / 3);
+            }
+            dog2.src = "images/bulldog.svg";
+
+            var dog3 = new Image();
+            dog3.onload = function () {
+                tutorialCanvasContext.drawImage(dog3, circlesArray[1].x + (circlesArray[1].radius / 4),
+                    circlesArray[1].y - (circlesArray[1].radius / 2) - (circlesArray[0].radius / 3 / 2),
+                    circlesArray[0].radius / 3, circlesArray[0].radius / 3);
+            }
+            dog3.src = "images/bulldog-1.svg";
+
+
+            var text = "And the set of flying dogs with 4 legs is also empty";
+            var segment = canvasWidth / 6;
+
+            var maxWidth = segment;
+            var textX = segment;
+            var textY = (circlesArray[1].y + (circlesArray[1].radius));
+
+            var lastY = wrapText(tutorialCanvasContext, text, textX, textY, maxWidth, currentFontSize);
+
+
+            var startX = textX + (maxWidth / 2);
+            var startY = textY - currentFontSize;
+
+            var endpointX = canvasWidth/2;
+            var endpointY = canvasHeight/2;
+
+            var midpointX = (startX + endpointX) / 2;
+            var midpointY = ((startY + endpointY) / 2) + canvasHeight / 24;
+
+            drawCurvedArrow(startX, startY, endpointX, endpointY, midpointX, midpointY);
+            var x = circlesArray[0].x;
+            var y = circlesArray[0].y - circlesArray[0].radius + (circlesArray[0].radius / 5);
+            context1.fillStyle = "#2c3e50";
+            floodFill.fill(Math.round(canvasWidth / 2), Math.round(canvasHeight / 2), 100, context1, null, null, 90);
+            floodFill.fill(Math.round(x), Math.round(y), 100, context1, null, null, 90);
+        }
+
+        if (tutorialStage === 4) {
+            $("#tutorialBackwards").visible();
+            $("#tutorialForwards").visible();
+            tearDown();
+            createCircles(level.circlesNeeded);
+            drawCircles();
+            // setupLevel(levelNumber);
             drawStaticTextForVennDiagram(level.staticTextArray);
             setupMovableText();
             drawMovableText();
@@ -2697,15 +2789,8 @@ $(document).ready(function () {
     }(jQuery));
 
     resizeCanvas();
-    // level1Tutorial();
-    menMortalTutorial();
-// vennDiagramTutorial();
-// syllogismTutorial();
-// someXTutorial();
-// unionIntersectionTutorial();
-// main(7);
-// setTheoryLevels();
-// emptySetTutorial();
-
+    // drawLevelNumber(1);
+    level1Tutorial(1);
+    // emptySetTutorial(3);
 })
 ;

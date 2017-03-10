@@ -14,13 +14,30 @@
                                      supported by Chrome and Opera */
 }
 
-html, body {
-    height: 100%;
+html, body, .container {
+    margin: 0;
+    padding: 0;
     width: 100%;
+    height: 100%;
+    display: table
 }
-
 .wrapper canvas {
     position: absolute;
+}
+
+#content {
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle
+}
+
+
+.levelSelect{
+    position: relative;
+    float: right;
+    margin-right: 3%;
+    font-family: 'comicNeue';
+    font-size: 1.875em;
 }
 
 #undoButton {
@@ -29,6 +46,7 @@ html, body {
     width: 4%;
     height: 4%;
     outline: none;
+    visibility: hidden;
 }
 
 #redoButton {
@@ -37,6 +55,7 @@ html, body {
     width: 4%;
     height: 4%;
     outline: none;
+    visibility: hidden;
 }
 
 #refreshButton {
@@ -45,6 +64,7 @@ html, body {
     width: 4%;
     height: 4%;
     outline: none;
+    visibility: hidden;
 }
 
 #tutorial {
@@ -53,6 +73,7 @@ html, body {
     width: 4%;
     height: 4%;
     outline: none;
+    visibility: hidden;
 }
 
 #nextLevelButton {
@@ -62,6 +83,7 @@ html, body {
     left: 50%;
     width: 4%;
     height: auto;
+    visibility: hidden;
 }
 
 #tutorialForwards {
@@ -70,6 +92,7 @@ html, body {
     left: 90%;
     width: 4%;
     height: auto;
+    visibility: hidden;
 }
 
 #tutorialBackwards {
@@ -78,6 +101,7 @@ html, body {
     left: 6%;
     width: 4%;
     height: auto;
+    visibility: hidden;
 }
 
 #skipLevel {
@@ -86,6 +110,11 @@ html, body {
     width: 4%;
     height: 4%;
     outline: none;
+    visibility: hidden;
+}
+
+.myButton{
+    visibility: hidden;
 }
 
 @font-face {

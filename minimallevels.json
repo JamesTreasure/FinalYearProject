@@ -195,8 +195,70 @@
     ]
   },
   "level4": {
-    "type": "syllogism",
+    "type": "venn",
     "levelNumber": 4,
+    "correctSyllogism": {
+      "subject": true,
+      "middleSubjectIntersection": true,
+      "subjectPredicateIntersection": true,
+      "middlePredicateIntersection": false,
+      "middleSubjectPredicateIntersection": false,
+      "predicate": false,
+      "middle": true
+    },
+    "majorPremise": {
+      "middle": true,
+      "middleSubjectIntersection": true,
+      "middleSubjectPredicateIntersection": false,
+      "middlePredicateIntersection": false
+    },
+    "minorPremise": {
+      "subject": true,
+      "subjectPredicateIntersection": true
+    },
+    "blankSyllogism": {
+      "subject": false,
+      "middleSubjectIntersection": false,
+      "subjectPredicateIntersection": false,
+      "middlePredicateIntersection": false,
+      "middleSubjectPredicateIntersection": false,
+      "predicate": false,
+      "middle": false
+    },
+    "particularSyllogism": false,
+    "circlesNeeded": 2,
+    "staticTextArray": [
+      {
+        "text": "Men"
+      },
+      {
+        "text": "Mortal"
+      }
+    ],
+    "circle1": [
+      2
+    ],
+    "circle2": [
+      5
+    ],
+    "intersection": [
+      10
+    ],
+    "movableTextArray": [
+      {
+        "text": "2"
+      },
+      {
+        "text": "5"
+      },
+      {
+        "text": "10"
+      }
+    ]
+  },
+  "level5": {
+    "type": "syllogism",
+    "levelNumber": 5,
     "correctSyllogism": {
       "subject": true,
       "middleSubjectIntersection": true,
@@ -250,9 +312,9 @@
     ],
     "particularSyllogism": false
   },
-  "level5": {
+  "level6": {
     "type": "syllogism",
-    "levelNumber": 5,
+    "levelNumber": 6,
     "correctSyllogism": {
       "subject": false,
       "middleSubjectIntersection": true,
@@ -309,9 +371,9 @@
     "particularSyllogism": true,
     "particularSyllogismLocation": "middleSubjectPredicateIntersection"
   },
-  "level6": {
+  "level7": {
     "type": "unionIntersectionTutorial",
-    "levelNumber": 6,
+    "levelNumber": 7,
     "correctSyllogism": {
       "subject": true,
       "middleSubjectIntersection": true,
@@ -371,9 +433,9 @@
       }
     ]
   },
-  "level7": {
+  "level8": {
     "type": "setTheory",
-    "levelNumber": 7,
+    "levelNumber": 8,
     "parts": 3,
     "tutorialText": [
       "This is the distributive law of sets. You will need to show that this is true.",
@@ -446,9 +508,9 @@
     ],
     "particularSyllogism": false
   },
-  "level8": {
+  "level9": {
     "type": "setTheory",
-    "levelNumber": 8,
+    "levelNumber": 9,
     "parts": 3,
     "tutorialText": [
       "This is the associative law of sets. You will need to show that this is true.",
@@ -467,8 +529,8 @@
         "acbIntersection": true
       },
       {
-        "a": true,
-        "b": false,
+        "a": false,
+        "b": true,
         "c": true,
         "acIntersection": true,
         "cbIntersection": true,
@@ -520,67 +582,5 @@
       }
     ],
     "particularSyllogism": false
-  },
-  "level9": {
-    "type": "venn",
-    "levelNumber": 9,
-    "correctSyllogism": {
-      "subject": true,
-      "middleSubjectIntersection": true,
-      "subjectPredicateIntersection": true,
-      "middlePredicateIntersection": false,
-      "middleSubjectPredicateIntersection": false,
-      "predicate": false,
-      "middle": true
-    },
-    "majorPremise": {
-      "middle": true,
-      "middleSubjectIntersection": true,
-      "middleSubjectPredicateIntersection": false,
-      "middlePredicateIntersection": false
-    },
-    "minorPremise": {
-      "subject": true,
-      "subjectPredicateIntersection": true
-    },
-    "blankSyllogism": {
-      "subject": false,
-      "middleSubjectIntersection": false,
-      "subjectPredicateIntersection": false,
-      "middlePredicateIntersection": false,
-      "middleSubjectPredicateIntersection": false,
-      "predicate": false,
-      "middle": false
-    },
-    "particularSyllogism": false,
-    "circlesNeeded": 2,
-    "staticTextArray": [
-      {
-        "text": "Men"
-      },
-      {
-        "text": "Mortal"
-      }
-    ],
-    "circle1": [
-      2
-    ],
-    "circle2": [
-      5
-    ],
-    "intersection": [
-      10
-    ],
-    "movableTextArray": [
-      {
-        "text": "2"
-      },
-      {
-        "text": "5"
-      },
-      {
-        "text": "10"
-      }
-    ]
   }
 }
