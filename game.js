@@ -1442,7 +1442,7 @@ $(document).ready(function () {
     function getFont() {
         circleOutlineCanvas.style.font = '1.4em comicNeue';
         // currentFontSize = Number(getComputedStyle(circleOutlineCanvas).fontSize.replace(/\D/g,''));
-        currentFontSize = parseInt(getComputedStyle(circleOutlineCanvas).fontSize.replace(/\D/g,''));
+        currentFontSize = parseInt(getComputedStyle(circleOutlineCanvas).fontSize);
         return '1.4em comicNeue'; // set font
     }
 
