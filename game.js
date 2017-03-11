@@ -565,7 +565,7 @@ $(document).ready(function () {
 
         if (tempCircle1.equals(level.circle1) && tempCircle2.equals(level.circle2) && tempIntersection.equals(level.intersection)) {
             tutorialCanvasContext.clearRect(0, 0, canvasWidth, canvasHeight);
-            tutorialCanvasContext.font = getFont();
+            tutorialCanvasContext.font = font;
 
             var text = "Remember to fill in the empty set!";
             var textWidth = (tutorialCanvasContext.measureText(text).width);
@@ -1013,7 +1013,7 @@ $(document).ready(function () {
                 context1.fillStyle = "#003300";
             }
 
-            context1.font = getFont();
+            context1.font = font;
             level.staticTextArray[i].width = (context1.measureText(level.staticTextArray[i].text).width);
             level.staticTextArray[i].x = ((layer1.width / 2) - (level.staticTextArray[i].width / 2));
             level.staticTextArray[i].y = (i * (canvasHeight / 30) + (canvasHeight / 6.5));
@@ -1083,7 +1083,7 @@ $(document).ready(function () {
         }
         context1.font = font;
         context1.fillStyle = "#1d1d1d";
-        context1.font = getFont();
+        context1.font = font;
         staticTextArray[0].width = (context1.measureText(staticTextArray[0].text).width);
         staticTextArray[0].x = ((layer1.width / 2) - (staticTextArray[0].width / 2));
         staticTextArray[0].y = circlesArray[0].y - circlesArray[0].radius - (canvasHeight / 30);
@@ -1098,7 +1098,7 @@ $(document).ready(function () {
         }
         context1.font = font;
         context1.fillStyle = "#1d1d1d";
-        context1.font = getFont();
+        context1.font = font;
         staticTextArray[0].width = (context1.measureText(staticTextArray[0].text).width);
         staticTextArray[0].x = ((layer1.width / 2) - (staticTextArray[0].width / 2));
         staticTextArray[0].y = (1 * (canvasHeight / 30) + (canvasHeight / 6.5));
@@ -1440,12 +1440,9 @@ $(document).ready(function () {
     }
 
     function getFont() {
-        // var ratio = fontSize / fontBase;   // calc ratio
-        var ratio = 24 / 1440;   // calc ratio
-        var size = canvasWidth * ratio;   // get font size based on current width
-        currentFontSize = size;
-        // return (size | 0) + 'em comicNeue'; // set font
-        return '1.8em comicNeue'; // set font
+        circleOutlineCanvas.style.font = '1.4em comicNeue';
+        currentFontSize = Number(getComputedStyle(circleOutlineCanvas).fontSize.replace(/\D/g,''));
+        return '1.4em comicNeue'; // set font
     }
 
     function createConfetti() {
@@ -1559,7 +1556,7 @@ $(document).ready(function () {
             drawStaticTextForOneCircle(level.staticTextArray);
 
             tutorialCanvasContext.clearRect(0, 0, canvasWidth, canvasHeight);
-            tutorialCanvasContext.font = getFont();
+            tutorialCanvasContext.font = font;
 
             var text = level.tutorialText[0];
             var maxWidth = canvasWidth / 6;
@@ -1591,7 +1588,7 @@ $(document).ready(function () {
             drawStaticTextForOneCircle(level.staticTextArray);
 
             tutorialCanvasContext.clearRect(0, 0, canvasWidth, canvasHeight);
-            tutorialCanvasContext.font = getFont();
+            tutorialCanvasContext.font = font;
 
             var segment = canvasWidth / 6;
 
@@ -2024,7 +2021,7 @@ $(document).ready(function () {
             createCircles(level.circlesNeeded);
             drawStaticText();
             tutorialCanvasContext.clearRect(0, 0, canvasWidth, canvasHeight);
-            tutorialCanvasContext.font = getFont();
+            tutorialCanvasContext.font = font;
             var text2 = "These three lines are what makes up a syllogism";
             var maxWidth = canvasWidth / 6;
             var textWidth = tutorialCanvasContext.measureText(text2).width;
@@ -2051,7 +2048,7 @@ $(document).ready(function () {
             createCircles(level.circlesNeeded);
             drawStaticText();
             tutorialCanvasContext.clearRect(0, 0, canvasWidth, canvasHeight);
-            tutorialCanvasContext.font = getFont();
+            tutorialCanvasContext.font = font;
             var text2 = "The first two lines are called premises.";
             var maxWidth = canvasWidth / 6;
             var textWidth = tutorialCanvasContext.measureText(text2).width;
@@ -2079,7 +2076,7 @@ $(document).ready(function () {
             createCircles(level.circlesNeeded);
             drawStaticText();
             tutorialCanvasContext.clearRect(0, 0, canvasWidth, canvasHeight);
-            tutorialCanvasContext.font = getFont();
+            tutorialCanvasContext.font = font;
             var text2 = "The last line is the conclusion. It follows on logically from the two premises.";
             var maxWidth = canvasWidth / 6;
             var textWidth = tutorialCanvasContext.measureText(text2).width;
@@ -2108,7 +2105,7 @@ $(document).ready(function () {
             createCircles(level.circlesNeeded);
             drawCircles();
             tutorialCanvasContext.clearRect(0, 0, canvasWidth, canvasHeight);
-            tutorialCanvasContext.font = getFont();
+            tutorialCanvasContext.font = font;
             var text = "So now we have three sets.";
             var textWidth = tutorialCanvasContext.measureText(text).width;
             var textX = circlesArray[1].x - circlesArray[1].radius - textWidth;
@@ -2122,7 +2119,7 @@ $(document).ready(function () {
             createCircles(level.circlesNeeded);
             drawCircles();
             tutorialCanvasContext.clearRect(0, 0, canvasWidth, canvasHeight);
-            tutorialCanvasContext.font = getFont();
+            tutorialCanvasContext.font = font;
             var text = "Remember, to represent the empty set just click in the circle.";
             var textWidth = tutorialCanvasContext.measureText(text).width;
             var maxWidth = canvasWidth / 6;
@@ -2225,7 +2222,7 @@ $(document).ready(function () {
             drawCircles();
 
             tutorialCanvasContext.clearRect(0, 0, canvasWidth, canvasHeight);
-            tutorialCanvasContext.font = getFont();
+            tutorialCanvasContext.font = font;
             var text = "Now we have the term 'some'";
             var maxWidth = canvasWidth / 6;
             var textX = circlesArray[1].x - circlesArray[1].radius - maxWidth;
@@ -2253,7 +2250,7 @@ $(document).ready(function () {
 
 
             tutorialCanvasContext.clearRect(0, 0, canvasWidth, canvasHeight);
-            tutorialCanvasContext.font = getFont();
+            tutorialCanvasContext.font = font;
             var text = "Drag the 'X' into the correct segment to represent 'some'";
             var maxWidth = canvasWidth / 6;
             var segment = canvasWidth / 6;
@@ -2296,7 +2293,7 @@ $(document).ready(function () {
             drawCircles();
             drawStaticTextForVennDiagram(level.staticTextArray);
 
-            tutorialCanvasContext.font = getFont();
+            tutorialCanvasContext.font = font;
             tutorialCanvasContext.clearRect(0, 0, canvasWidth, canvasHeight);
             drawNumbersForSetTheoryTutorial(tutorialCanvasContext, circlesArray, canvasWidth);
 
@@ -2326,7 +2323,7 @@ $(document).ready(function () {
             drawStaticTextForVennDiagram(level.staticTextArray);
 
             tutorialCanvasContext.clearRect(0, 0, canvasWidth, canvasHeight);
-            tutorialCanvasContext.font = getFont();
+            tutorialCanvasContext.font = font;
             tutorialCanvasContext.fillStyle = "#3498db";
 
             drawNumbersForSetTheoryTutorial(tutorialCanvasContext, circlesArray, canvasWidth);
@@ -2369,7 +2366,7 @@ $(document).ready(function () {
             drawStaticTextForVennDiagram(level.staticTextArray);
 
             tutorialCanvasContext.clearRect(0, 0, canvasWidth, canvasHeight);
-            tutorialCanvasContext.font = getFont();
+            tutorialCanvasContext.font = font;
             tutorialCanvasContext.fillStyle = "#3498db";
 
             drawNumbersForSetTheoryTutorial(tutorialCanvasContext, circlesArray, canvasWidth);
@@ -2418,7 +2415,7 @@ $(document).ready(function () {
             drawStaticText();
 
             // tutorialCanvasContext.clearRect(0, 0, canvasWidth, canvasHeight);
-            tutorialCanvasContext.font = getFont();
+            tutorialCanvasContext.font = font;
 
             var text = level.tutorialText[0];
             var maxWidth = canvasWidth / 6;
@@ -2454,10 +2451,10 @@ $(document).ready(function () {
             drawCircles();
             drawStaticText();
             tutorialCanvasContext.clearRect(0, 0, canvasWidth, canvasHeight);
-            tutorialCanvasContext.font = getFont();
+            tutorialCanvasContext.font = font;
 
             tutorialCanvasContext.clearRect(0, 0, canvasWidth, canvasHeight);
-            tutorialCanvasContext.font = getFont();
+            tutorialCanvasContext.font = font;
 
             var text = level.tutorialText[1];
             var maxWidth = canvasWidth / 3;
@@ -2486,7 +2483,7 @@ $(document).ready(function () {
             $("#refreshButton").visible();
             $("#tutorial").visible();
             tutorialCanvasContext.clearRect(0, 0, canvasWidth, canvasHeight);
-            tutorialCanvasContext.font = getFont();
+            tutorialCanvasContext.font = font;
 
             var text = level.tutorialText[2];
             var maxWidth = canvasWidth / 6;
@@ -2517,7 +2514,7 @@ $(document).ready(function () {
             $("#refreshButton").visible();
             $("#tutorial").visible();
             tutorialCanvasContext.clearRect(0, 0, canvasWidth, canvasHeight);
-            tutorialCanvasContext.font = getFont();
+            tutorialCanvasContext.font = font;
 
             var text = level.tutorialText[3];
             var maxWidth = canvasWidth / 6;
@@ -2559,7 +2556,7 @@ $(document).ready(function () {
             drawCircles();
 
             tutorialCanvasContext.clearRect(0, 0, canvasWidth, canvasHeight);
-            tutorialCanvasContext.font = getFont();
+            tutorialCanvasContext.font = font;
             var text = "Next you need to understand the empty set. This is a set with nothing in it.";
             var textWidth = tutorialCanvasContext.measureText(text).width;
             var maxWidth = canvasWidth / 6;
@@ -2585,7 +2582,7 @@ $(document).ready(function () {
             drawCircles();
 
             tutorialCanvasContext.clearRect(0, 0, canvasWidth, canvasHeight);
-            tutorialCanvasContext.font = getFont();
+            tutorialCanvasContext.font = font;
 
             var text = "Clicking in a segment will fill it black. This is how we represent the empty set.";
             var textWidth = tutorialCanvasContext.measureText(text).width;
@@ -2620,7 +2617,7 @@ $(document).ready(function () {
             drawCircles();
 
             tutorialCanvasContext.clearRect(0, 0, canvasWidth, canvasHeight);
-            tutorialCanvasContext.font = getFont();
+            tutorialCanvasContext.font = font;
 
             var staticTextArray =
                 [
@@ -2693,7 +2690,7 @@ $(document).ready(function () {
             drawCircles();
 
             tutorialCanvasContext.clearRect(0, 0, canvasWidth, canvasHeight);
-            tutorialCanvasContext.font = getFont();
+            tutorialCanvasContext.font = font;
 
             var staticTextArray =
                 [
@@ -2771,7 +2768,7 @@ $(document).ready(function () {
             drawMovableText();
 
             tutorialCanvasContext.clearRect(0, 0, canvasWidth, canvasHeight);
-            tutorialCanvasContext.font = getFont();
+            tutorialCanvasContext.font = font;
 
             var text = "Drag the numbers in to the correct place and fill in the empty set";
             var segment = canvasWidth / 6;
