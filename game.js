@@ -305,6 +305,34 @@ $(document).ready(function () {
         }
     });
 
+    $(window).bind('touchend', function(jQueryEvent) {
+        if (!tutorialMode) {
+            if (level.levelNumber === 1) {
+                checkIfLevel1IsCorrect();
+            }
+            if (level.type === "venn") {
+                checkIfVennDiagramIsCorrect();
+            }
+            if (level.type === "syllogism") {
+                checkIfSyllogismIsMet();
+                checkIfAnyPropositionsAreMet();
+            }
+            if (level.type === "setTheory") {
+                checkIfSetTheoryIsMet(level.correctPlacement[setTheoryCurrentStage]);
+            }
+            if (level.type === "emptySet") {
+                checkIfEmptySetIsCorrect();
+            }
+            if (drag) {
+                circleOutlineContext.clearRect(0, 0, canvasWidth, canvasHeight);
+
+            }
+            drag = false;
+            dragId = -1;
+        }
+
+    });
+
     $("#tutorialForwards").click(function () {
         if (level.levelNumber === 1) {
             tutorialStage++;
