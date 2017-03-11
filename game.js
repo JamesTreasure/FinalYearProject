@@ -217,6 +217,94 @@ $(document).ready(function () {
         }
     });
 
+    $(window).bind('touchstart', function(jQueryEvent) {
+        jQueryEvent.preventDefault();
+        var event = window.event;
+        console.log('x='+event.touches[0].pageX + '  y= ' + event.touches[0].pageY);
+
+        if (!levelComplete && !tutorialMode) {
+            if (level.levelNumber === 1) {
+                var clickedOn = imageClickedOn(event.touches[0].pageX, event.touches[0].pageY, level.movableTextArray);
+            } else {
+                var clickedOn = textClickedOn(event.touches[0].pageX, event.touches[0].pageY, level.movableTextArray);
+            }
+            if (clickedOn >= 0) {
+                console.log("Clicked on!!!");
+                if (level.type != "setTheory") {
+                    tutorialCanvasContext.clearRect(0, 0, canvasWidth, canvasHeight);
+                    tutorialStage = 0;
+                }
+                $("#tutorialBackwards").invisible();
+                $("#tutorialForwards").invisible();
+                if (event.touches[0].pageX > 0 && event.touches[0].pageX < canvasWidth && event.touches[0].pageY > 0 && event.touches[0].pageY < canvasHeight) {
+                    var clonedMovableTextArray = clone(level.movableTextArray);
+                    var clonedClickedInArray = clone(clickedInArray);
+                    undoStack.push(new GameState(clonedMovableTextArray, clonedClickedInArray));
+                }
+                var clickedOnX;
+                var clickedOnY
+                if (level.levelNumber === 1) {
+                    clickedOnX = level.movableTextArray[clickedOn].x;
+                    clickedOnY = level.movableTextArray[clickedOn].y;
+                } else {
+                    clickedOnX = level.movableTextArray[clickedOn].x;
+                    clickedOnY = level.movableTextArray[clickedOn].y;
+                }
+                dragId = clickedOn;
+                dragOffsetX = event.touches[0].pageX - clickedOnX;
+                dragOffsetY = event.touches[0].pageY - clickedOnY;
+                drag = true;
+            }
+            if (!drag) {
+                if (level.levelNumber === 1) {
+                    checkIfLevel1IsCorrect();
+                }
+                if (level.levelNumber === 4) {
+                    whichCircleClickedIn(event.touches[0].pageX, event.touches[0].pageY);
+                    checkIfMenMortalIsCorrect();
+                }
+                if (level.type === "syllogism") {
+                    whichCircleClickedIn(event.touches[0].pageX, event.touches[0].pageY);
+                    checkIfSyllogismIsMet();
+                    checkIfAnyPropositionsAreMet();
+                }
+                if (level.type === "venn") {
+                    checkIfVennDiagramIsCorrect();
+                }
+                if (level.type === "setTheory") {
+                    whichCircleClickedIn(event.touches[0].pageX, event.touches[0].pageY);
+                    checkIfSetTheoryIsMet(level.correctPlacement[setTheoryCurrentStage]);
+                }
+                if (level.type === "emptySet") {
+                    whichCircleClickedIn(event.touches[0].pageX, event.touches[0].pageY);
+                    checkIfEmptySetIsCorrect();
+                }
+            }
+        }
+
+    });
+
+    $(window).bind('touchmove', function(jQueryEvent) {
+        jQueryEvent.preventDefault();
+        var event = window.event;
+        console.log('x='+event.touches[0].pageX + '  y= ' + event.touches[0].pageY);
+        enableOrDisableUndoRedoButtons();
+        if (isTextMovable) {
+            if (drag) {
+                level.movableTextArray[dragId].x = event.touches[0].pageX - dragOffsetX;
+                level.movableTextArray[dragId].y = event.touches[0].pageY - dragOffsetY;
+                requestAnimationFrame(animate);
+            }
+        }
+        if (isImageMovable) {
+            if (drag) {
+                level.movableTextArray[dragId].x = event.touches[0].pageX - dragOffsetX;
+                level.movableTextArray[dragId].y = event.touches[0].pageY - dragOffsetY;
+                requestAnimationFrame(animate);
+            }
+        }
+    });
+
     $("#tutorialForwards").click(function () {
         if (level.levelNumber === 1) {
             tutorialStage++;
