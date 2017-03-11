@@ -1444,7 +1444,8 @@ $(document).ready(function () {
         var ratio = 24 / 1440;   // calc ratio
         var size = canvasWidth * ratio;   // get font size based on current width
         currentFontSize = size;
-        return (size | 0) + 'px comicNeue'; // set font
+        // return (size | 0) + 'em comicNeue'; // set font
+        return '1.8em comicNeue'; // set font
     }
 
     function createConfetti() {
