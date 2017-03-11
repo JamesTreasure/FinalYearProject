@@ -227,7 +227,12 @@
     },
     "particularSyllogism": false,
     "circlesNeeded": 2,
-    "staticTextArray": [
+    "titleArray": [
+      {
+        "text": "All men are mortal"
+      }
+    ],
+    "staticTextArray" : [
       {
         "text": "Men"
       },
@@ -439,7 +444,7 @@
     "parts": 3,
     "tutorialText": [
       "This is the distributive law of sets. You will need to show that this is true.",
-      "First show (A ∪ B) by dragging in the letters and filling in the correct circle segments",
+      "First show (A ∪ B) by dragging in the letters and filling in the correct circle segments. Remember, ∪ means union which is everything in both sets.",
       "Now show (A ∪ C)",
       "Now using what you've just done show (A ∪ B) ∩ (A ∪ C)"
     ],
