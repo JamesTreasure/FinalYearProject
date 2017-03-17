@@ -49,6 +49,7 @@ $(document).ready(function () {
     var mp = 200;
     var startTime, endTime;
     var levelsSkipped = [];
+    var playerName;
 
     var GameState = function (movableTextArray, clickedInArray) {
         this.movableTextArray = movableTextArray;
@@ -77,10 +78,10 @@ $(document).ready(function () {
 
     var mySpreadsheet = "https://docs.google.com/spreadsheets/d/1JMUw0MvV7Yksj8SejL_YM2CgrumpafeoPwPSRsqi1Vw/edit?usp=sharing#gid=0";
     var spreadsheetData;
-    var level1startTime, level2startTime,level3startTime,level4startTime,level5startTime,level6startTime,level7startTime,
-        level8startTime,level9startTime, level10startTime;
-    var level1endTime, level2endTime,level3endTime,level4endTime,level5endTime,level6endTime,level7endTime,
-        level8endTime,level9endTime, level10endTime;
+    var level1startTime, level2startTime, level3startTime, level4startTime, level5startTime, level6startTime, level7startTime,
+        level8startTime, level9startTime, level10startTime;
+    var level1endTime, level2endTime, level3endTime, level4endTime, level5endTime, level6endTime, level7endTime,
+        level8endTime, level9endTime, level10endTime;
     var level1moves, level2moves, level3moves, level4moves, level5moves, level6moves, level7moves, level8moves, level9moves, level10moves;
     var moveCounter = 0;
 
@@ -117,12 +118,9 @@ $(document).ready(function () {
 
     // window.addEventListener("resize", resizeCanvas);
 
+
     $(window).mousedown(function (e) {
         var pos = getMousePos(layer1, e);
-        // $('#statistics').sheetrock({
-        //     url: mySpreadsheet
-        // });
-
         if (!levelComplete && !tutorialMode) {
             moveCounter++;
             if (level.levelNumber === 1) {
@@ -214,14 +212,14 @@ $(document).ready(function () {
                 checkIfVennDiagramIsCorrect();
             }
             if (level.type === "syllogism") {
-                if(tutorialStage === 5){
-                    if(checkPremiseAllInTheirOwnCircle()){
+                if (tutorialStage === 5) {
+                    if (checkPremiseAllInTheirOwnCircle()) {
                         tutorialStage++;
                         level5Tutorial(5);
                     }
                 }
-                if(tutorialStage === 6){
-                    if(checkIfMajorPremiseIsMet()){
+                if (tutorialStage === 6) {
+                    if (checkIfMajorPremiseIsMet()) {
                         tutorialStage++;
                         level5Tutorial(5);
                     }
@@ -244,10 +242,11 @@ $(document).ready(function () {
         }
     });
 
-    $(window).bind('touchstart', function(jQueryEvent) {
+    $(window).bind('touchstart', function (jQueryEvent) {
         jQueryEvent.preventDefault();
         var event = window.event;
         if (!levelComplete && !tutorialMode) {
+            moveCounter++;
             if (level.levelNumber === 1) {
                 var clickedOn = imageClickedOn(event.touches[0].pageX, event.touches[0].pageY, level.movableTextArray);
             } else {
@@ -258,7 +257,8 @@ $(document).ready(function () {
                 if (level.type != "setTheory" || level.levelNumber != 5) {
                     tutorialCanvasContext.clearRect(0, 0, canvasWidth, canvasHeight);
                     tutorialStage = 0;
-                };
+                }
+                ;
                 $("#tutorialBackwards").invisible();
                 $("#tutorialForwards").invisible();
                 if (event.touches[0].pageX > 0 && event.touches[0].pageX < canvasWidth && event.touches[0].pageY > 0 && event.touches[0].pageY < canvasHeight) {
@@ -309,7 +309,7 @@ $(document).ready(function () {
 
     });
 
-    $(window).bind('touchmove', function(jQueryEvent) {
+    $(window).bind('touchmove', function (jQueryEvent) {
         jQueryEvent.preventDefault();
         var event = window.event;
         enableOrDisableUndoRedoButtons();
@@ -329,7 +329,7 @@ $(document).ready(function () {
         }
     });
 
-    $(window).bind('touchend', function(jQueryEvent) {
+    $(window).bind('touchend', function (jQueryEvent) {
         if (!tutorialMode) {
             if (level.levelNumber === 1) {
                 checkIfLevel1IsCorrect();
@@ -375,10 +375,10 @@ $(document).ready(function () {
             return;
         }
         if (level.type === "syllogism" && level.particularSyllogism === false) {
-            if(tutorialStage === 8){
+            if (tutorialStage === 8) {
                 tutorialStage = 0;
                 setupNextLevel();
-            }else{
+            } else {
                 tutorialStage++;
                 level5Tutorial(5);
             }
@@ -462,7 +462,7 @@ $(document).ready(function () {
 
     $("#refreshButton").click(function () {
         tearDown();
-        setupLevel(level.levelNumber);
+        tutorialStage = 0;
         main(level.levelNumber);
         $("#nextLevelButton").invisible();
     });
@@ -479,32 +479,35 @@ $(document).ready(function () {
         main(nextLevel);
     }
 
-    function postDataToGoogleSheets(name, time){
+    function postDataToGoogleSheets(name, time) {
         var allSkippedLevels = (levelsSkipped.join(", "));
 
         var myData = {
-            "name": "James",
-            "level1time": (level1endTime-level1startTime)/1000,
-            "level1moves" : level1moves,
-            "level2time": (level2endTime-level2startTime)/1000,
-            "level2moves" : level2moves,
-            "level3time": (level3endTime-level3startTime)/1000,
-            "level3moves" : level3moves,
-            "level4time": (level4endTime-level4startTime)/1000,
-            "level4moves" : level4moves,
-            "level5time": (level5endTime-level5startTime)/1000,
-            "level5moves" : level5moves,
-            "level6time": (level6endTime-level6startTime)/1000,
-            "level6moves" : level6moves,
-            "level7time": (level7endTime-level7startTime)/1000,
-            "level7moves" : level7moves,
-            "level8time": (level8endTime-level8startTime)/1000,
-            "level8moves" : level8moves,
-            "level9time": (level9endTime-level9startTime)/1000,
-            "level9moves" : level9moves,
-            "level10time": (level10endTime-level10startTime)/1000,
-            "level10moves" : level10moves,
-            "levelsSkipped" : allSkippedLevels
+            "name": playerName,
+            "level1time": (level1endTime - level1startTime) / 1000,
+            "level1moves": level1moves,
+            "level2time": (level2endTime - level2startTime) / 1000,
+            "level2moves": level2moves,
+            "level3time": (level3endTime - level3startTime) / 1000,
+            "level3moves": level3moves,
+            "level4time": (level4endTime - level4startTime) / 1000,
+            "level4moves": level4moves,
+            "level5time": (level5endTime - level5startTime) / 1000,
+            "level5moves": level5moves,
+            "level6time": (level6endTime - level6startTime) / 1000,
+            "level6moves": level6moves,
+            "level7time": (level7endTime - level7startTime) / 1000,
+            "level7moves": level7moves,
+            "level8time": (level8endTime - level8startTime) / 1000,
+            "level8moves": level8moves,
+            "level9time": (level9endTime - level9startTime) / 1000,
+            "level9moves": level9moves,
+            "level10time": (level10endTime - level10startTime) / 1000,
+            "level10moves": level10moves,
+            "levelsSkipped": allSkippedLevels,
+            "totalTime": ((level1endTime - level1startTime) / 1000) + ((level2endTime - level2startTime) / 1000) + ((level3endTime - level3startTime) / 1000) +
+            ((level4endTime - level4startTime) / 1000) + ((level5endTime - level5startTime) / 1000) + ((level6endTime - level6startTime) / 1000) + ((level7endTime - level7startTime) / 1000)
+            + ((level8endTime - level8startTime) / 1000) + ((level9endTime - level9startTime) / 1000) + ((level10endTime - level10startTime) / 1000)
         }
 
         postData(myData);
@@ -512,19 +515,6 @@ $(document).ready(function () {
 
     $("#nextLevelButton").click(function () {
         setupNextLevel();
-    });
-
-    $("#tutorial").click(function () {
-        if (level.type === "venn") {
-            level2Tutorial(2);
-        }
-        if (level.type === "syllogism") {
-            level5Tutorial(5);
-        }
-        if (level.type === "setTheory") {
-            tutorialStage = 0;
-            setTheoryLevels();
-        }
     });
 
     $("#skip").click(function () {
@@ -536,20 +526,20 @@ $(document).ready(function () {
         var currentLevel = level.levelNumber;
         var nextLevel = currentLevel + 1;
         console.log("Current level number is " + nextLevel);
-        if(nextLevel === 11){
+        if (nextLevel === 11) {
             gameCompleteScreen();
-        }else{
+        } else {
             tutorialStage = 0;
             setupNextLevel();
         }
         $("#nextLevelButton").invisible();
     });
 
-    function drawLevelNumber(levelNumber){
+    function drawLevelNumber(levelNumber) {
         var text = "Level " + levelNumber;
         var textWidth = (context3.measureText(text).width);
 
-        var x = canvasWidth - (textWidth*1.5);
+        var x = canvasWidth - (textWidth * 1.5);
         var y = currentFontSize;
         context1.fillText(text, x, y);
     }
@@ -721,7 +711,15 @@ $(document).ready(function () {
         endTime = performance.now();
         level10moves = moveCounter;
         moveCounter = 0;
-        postDataToGoogleSheets("James", (endTime - startTime)/1000);
+        postDataToGoogleSheets("James", (endTime - startTime) / 1000);
+
+        $(".wrapper").hide();
+
+        $('#statistics').sheetrock({
+            url: mySpreadsheet,
+            query: "select B,W,X order by X asc",
+            fetchSize: 5
+        });
     }
 
     function checkIfLevel1IsCorrect() {
@@ -950,14 +948,14 @@ $(document).ready(function () {
         }
     }
 
-    function checkPremiseAllInTheirOwnCircle(){
+    function checkPremiseAllInTheirOwnCircle() {
         var middle = whichCircleIsPremiseIn(level.movableTextArray[0]);
         var predicate = whichCircleIsPremiseIn(level.movableTextArray[1]);
         var subject = whichCircleIsPremiseIn(level.movableTextArray[2]);
 
-        if(middle == null || predicate == null || subject == null){
+        if (middle == null || predicate == null || subject == null) {
             return false
-        }else{
+        } else {
             return !(middle.equals(predicate) || middle.equals(subject) || predicate.equals(subject));
 
         }
@@ -1033,11 +1031,11 @@ $(document).ready(function () {
             }
         } else if (level.type === "syllogism") {
             if (_.isEqual(level.blankSyllogism, level.correctSyllogism)) {
-                if(level.levelNumber === 5){
+                if (level.levelNumber === 5) {
                     tutorialStage++;
                     level5Tutorial(5);
                 }
-                if(level.levelNumber === 6){
+                if (level.levelNumber === 6) {
                     levelComplete = true;
                     levelCompleteScreen();
                 }
@@ -1132,9 +1130,9 @@ $(document).ready(function () {
                 isTextMovable = true;
                 setTheoryCurrentStage = 0;
                 tutorialStage = 0;
-                if(level.levelNumber === 10){
+                if (level.levelNumber === 10) {
                     gameCompleteScreen();
-                }else{
+                } else {
                     levelCompleteScreen();
                 }
                 // gameCompleteScreen();
@@ -1145,7 +1143,7 @@ $(document).ready(function () {
         }
     }
 
-    function checkIfMajorPremiseIsMet(){
+    function checkIfMajorPremiseIsMet() {
         for (var key in level.majorPremise) {
             var valueInMajorPremise = level.majorPremise[key];
             var valueInBlankSyllogism = level.blankSyllogism[key];
@@ -1362,7 +1360,7 @@ $(document).ready(function () {
         context1.globalAlpha = 1;
     }
 
-    function drawStaticTextForMenMortalLevel(titleArray, staticTextArray ) {
+    function drawStaticTextForMenMortalLevel(titleArray, staticTextArray) {
         if (levelComplete) {
             context1.globalAlpha = fadedAlphaLevel;
         }
@@ -1381,12 +1379,12 @@ $(document).ready(function () {
             staticTextArray[i].width = (context1.measureText(staticTextArray[i].text).width);
             if (i === 0) {
                 // staticTextArray[i].x = (layer1.width / 2) - staticTextArray[i].width - (layer1.width / 25);
-                staticTextArray[i].x = circlesArray[0].x - staticTextArray[i].width - circlesArray[0].radius/6;
+                staticTextArray[i].x = circlesArray[0].x - staticTextArray[i].width - circlesArray[0].radius / 6;
             }
             if (i === 1) {
-                staticTextArray[i].x = circlesArray[1].x + circlesArray[0].radius/6;
+                staticTextArray[i].x = circlesArray[1].x + circlesArray[0].radius / 6;
             }
-            staticTextArray[i].y = circlesArray[0].y - circlesArray[0].radius/2;
+            staticTextArray[i].y = circlesArray[0].y - circlesArray[0].radius / 2;
             staticTextArray[i].height = currentFontSize;
             context2.fillText(staticTextArray[i].text, staticTextArray[i].x, staticTextArray[i].y);
 
@@ -1491,11 +1489,11 @@ $(document).ready(function () {
                 clickedInArray.splice(clickedInArrayLocation, 1);
                 context1.fillStyle = "white";
                 floodFill.fill(x, y, 100, context1, null, null, 90)
-                context1.fillStyle = setTheoryColours[setTheoryCurrentStage-1];
+                context1.fillStyle = setTheoryColours[setTheoryCurrentStage - 1];
                 context1.globalAlpha = 0.5;
                 floodFill.fill(x, y, 100, context1, null, null, 90)
                 context1.globalAlpha = 1;
-            }else{
+            } else {
                 clickedInArray.splice(clickedInArrayLocation, 1);
                 context1.fillStyle = "white";
                 floodFill.fill(x, y, 100, context1, null, null, 90)
@@ -2151,7 +2149,6 @@ $(document).ready(function () {
             var y = circlesArray[0].y - circlesArray[0].radius + (circlesArray[0].radius / 5);
             context1.fillStyle = "#2c3e50";
             floodFill.fill(Math.round(x), Math.round(y), 100, context1, null, null, 90);
-            // floodFill.fill(Math.round(canvasWidth / 2), Math.round(canvasHeight / 2), 100, context1, null, null, 90);
         }
 
         if (tutorialStage === 2) {
@@ -2351,7 +2348,7 @@ $(document).ready(function () {
         $("#tutorial").invisible();
         $("#skip").invisible();
 
-        if (tutorialStage === 0){
+        if (tutorialStage === 0) {
             $("#tutorialForwards").visible();
             $("#tutorialBackwards").invisible();
             tearDown();
@@ -2738,6 +2735,12 @@ $(document).ready(function () {
             tutorialMode = false;
             $("#tutorialForwards").invisible();
             $("#tutorialBackwards").visible();
+            $("#undoButton").visible();
+            $("#redoButton").visible();
+            $("#refreshButton").visible();
+            $("#tutorial").visible();
+            $("#skip").visible();
+            $("#tutorialForwards").invisible();
         }
 
         if (tutorialStage === 6) {
@@ -2831,13 +2834,13 @@ $(document).ready(function () {
         }
     }
 
-    function level6Tutorial(levelNumber){
+    function level6Tutorial(levelNumber) {
         tutorialMode = true;
-        $("#undoButton").invisible();
-        $("#redoButton").invisible();
-        $("#refreshButton").invisible();
-        $("#tutorial").invisible();
-        $("#skip").invisible();
+        $("#undoButton").visible();
+        $("#redoButton").visible();
+        $("#refreshButton").visible();
+        $("#tutorial").visible();
+        $("#skip").visible();
         $("#tutorialForwards").invisible();
 
         if (tutorialStage === 0) {
@@ -3231,9 +3234,20 @@ $(document).ready(function () {
         };
     }(jQuery));
 
+
+    $("#Start").click(function () {
+        console.log("clikedddddd");
+        playerName = $('#name').val();
+        $(".launchPage").remove();
+        $(".wrapper").show();
+        drawLevelNumber(1);
+        main(1);
+    });
+
     resizeCanvas();
-    drawLevelNumber(1);
-    main(1);
+    $(".wrapper").hide();
+    // drawLevelNumber(1);
+    // main(1);
     // someXTutorial(7);
 })
 ;

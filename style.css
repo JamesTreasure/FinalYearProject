@@ -22,6 +22,7 @@ html, body, .container {
     display: table;
     touch-action: none;
 }
+
 .wrapper canvas {
     position: absolute;
 }
@@ -32,8 +33,7 @@ html, body, .container {
     vertical-align: middle
 }
 
-
-.levelSelect{
+.levelSelect {
     position: relative;
     float: right;
     margin-right: 3%;
@@ -68,15 +68,6 @@ html, body, .container {
     visibility: hidden;
 }
 
-#tutorial {
-    position: relative;
-    float: left;
-    width: 4%;
-    height: 4%;
-    outline: none;
-    visibility: hidden;
-}
-
 #skip {
     position: relative;
     float: left;
@@ -85,6 +76,18 @@ html, body, .container {
     outline: none;
     visibility: hidden;
     padding: 10px 10px 10px 10px;
+}
+
+table {
+    max-width: 40%;
+    max-height: 25%;
+    position: absolute;
+    left: 32.5%;
+    top: 25%;
+
+    /* Set negative margins equal to half the size */
+    margin-left​: -50px;
+    margin-top: -25px;
 }
 
 #nextLevelButton {
@@ -115,7 +118,7 @@ html, body, .container {
     visibility: hidden;
 }
 
-.myButton{
+.myButton {
     visibility: hidden;
 }
 

@@ -20,8 +20,15 @@
 </head>
 <body>
 
+<table id="statistics" class="table table-condensed table-striped"></table>
+
+<div class="launchPage">
+    <form>
+        First name: <input type="text" name="FirstName" value="Mickey" id="name" style="width: 300px;" ><br>
+        <input type="submit" value="Submit" id="Start" style="width: 300px;" >
+    </form>
+</div>
 <div class="wrapper">
-    <table id="statistics" class="table table-condensed table-striped"></table>
     <canvas id="tutorialCanvas" style="z-index: 3;">No canvas support</canvas>
     <canvas id="circleOutlineCanvas" style="z-index: 3;">No canvas support</canvas>
     <canvas id="circleBorder" style="z-index: 2;">No canvas support</canvas>
@@ -42,8 +49,6 @@
            src="images/right-arrow-forward.png"/>
     <input class="tutorialBackwards noselect" type="image" style="z-index: 4" id="tutorialBackwards"
            src="images/go-back-left-arrow.png"/>
-    <input class="tutorial noselect" type="image" style="z-index: 4" id="tutorial"
-           src="images/ic_help_outline_black_48dp_2x.png"/>
     <input class="skip noselect" type="image" style="z-index: 4" id="skip"
            src="images/fast-forward-arrows.png"/>
 </div>
