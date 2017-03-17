@@ -77,6 +77,16 @@ html, body, .container {
     visibility: hidden;
 }
 
+#skip {
+    position: relative;
+    float: left;
+    width: 4%;
+    height: 4%;
+    outline: none;
+    visibility: hidden;
+    padding: 10px 10px 10px 10px;
+}
+
 #nextLevelButton {
     visibility: hidden;
     position: absolute;
@@ -102,15 +112,6 @@ html, body, .container {
     left: 6%;
     width: 4%;
     height: auto;
-    visibility: hidden;
-}
-
-#skipLevel {
-    position: relative;
-    float: left;
-    width: 4%;
-    height: 4%;
-    outline: none;
     visibility: hidden;
 }
 

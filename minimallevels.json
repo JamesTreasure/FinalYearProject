@@ -232,7 +232,7 @@
         "text": "All men are mortal"
       }
     ],
-    "staticTextArray" : [
+    "staticTextArray": [
       {
         "text": "Men"
       },
@@ -321,6 +321,60 @@
     "type": "syllogism",
     "levelNumber": 6,
     "correctSyllogism": {
+      "middleSubjectIntersection": true,
+      "middleSubjectPredicateIntersection": true,
+      "subjectPredicateIntersection": true,
+      "predicate": true,
+      "subject": false,
+      "middle": false,
+      "middlePredicateIntersection": false
+    },
+    "majorPremise": {
+      "predicate": true,
+      "subjectPredicateIntersection": true
+    },
+    "minorPremise": {
+      "middleSubjectIntersection": true,
+      "middleSubjectPredicateIntersection": true
+    },
+    "blankSyllogism": {
+      "subject": false,
+      "middleSubjectIntersection": false,
+      "subjectPredicateIntersection": false,
+      "middlePredicateIntersection": false,
+      "middleSubjectPredicateIntersection": false,
+      "predicate": false,
+      "middle": false
+    },
+    "circlesNeeded": 3,
+    "staticTextArray": [
+      {
+        "text": "All Labradors Are Dogs"
+      },
+      {
+        "text": "No Cats Are Dogs"
+      },
+      {
+        "text": "No Cats Are Labradors"
+      }
+    ],
+    "movableTextArray": [
+      {
+        "text": "Dogs"
+      },
+      {
+        "text": "Labradors"
+      },
+      {
+        "text": "Cats"
+      }
+    ],
+    "particularSyllogism": false
+  },
+  "level7": {
+    "type": "syllogism",
+    "levelNumber": 7,
+    "correctSyllogism": {
       "subject": false,
       "middleSubjectIntersection": true,
       "subjectPredicateIntersection": false,
@@ -376,9 +430,9 @@
     "particularSyllogism": true,
     "particularSyllogismLocation": "middleSubjectPredicateIntersection"
   },
-  "level7": {
+  "level8": {
     "type": "unionIntersectionTutorial",
-    "levelNumber": 7,
+    "levelNumber": 8,
     "correctSyllogism": {
       "subject": true,
       "middleSubjectIntersection": true,
@@ -438,9 +492,9 @@
       }
     ]
   },
-  "level8": {
+  "level9": {
     "type": "setTheory",
-    "levelNumber": 8,
+    "levelNumber": 9,
     "parts": 3,
     "tutorialText": [
       "This is the distributive law of sets. You will need to show that this is true.",
@@ -513,9 +567,9 @@
     ],
     "particularSyllogism": false
   },
-  "level9": {
+  "level10": {
     "type": "setTheory",
-    "levelNumber": 9,
+    "levelNumber": 10,
     "parts": 3,
     "tutorialText": [
       "This is the associative law of sets. You will need to show that this is true.",

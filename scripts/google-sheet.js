@@ -3,9 +3,9 @@ var request;
 
 // Bind to the submit event of our form
 
-function postData(){
+function postData(data){
+    var serializedData = $.param(data);
 
-    var serializedData ="name=James&time=100";
     // $inputs.prop("disabled", true);
 
     // Fire off the request to /form.php
