@@ -3235,7 +3235,7 @@ $(document).ready(function () {
     }(jQuery));
 
 
-    $("#Start").click(function () {
+    $("#start").click(function () {
         console.log("clikedddddd");
         playerName = $('#name').val();
         $(".launchPage").remove();

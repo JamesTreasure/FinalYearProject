@@ -14,7 +14,6 @@
     <!--<script src="scripts/confetti.js"></script>-->
     <script type='application/javascript' src='/scripts/fastclick.js'></script>
     <script type="text/javascript" src="game.js"></script>
-    <script type="text/javascript" src="materialize.min.js"></script>
     <script src='scripts/google-sheet.js'></script>
     <script src="scripts/sheetrock.min.js"></script>
 </head>
@@ -22,10 +21,20 @@
 
 <table id="statistics" class="table table-condensed table-striped"></table>
 
-<div class="launchPage">
+<div class="launchPage" align="center">
+    <!--<form>-->
+        <!--First name: <input type="text" name="FirstName" value="Mickey" id="name" style="width: 300px;" ><br>-->
+        <!--<button class="btn" id="start" type="button"><span>Start</span></button>-->
+
+    <!--</form>-->
     <form>
-        First name: <input type="text" name="FirstName" value="Mickey" id="name" style="width: 300px;" ><br>
-        <input type="submit" value="Submit" id="Start" style="width: 300px;" >
+        <div class="group">
+            <input type="text" required>
+            <span class="highlight"></span>
+            <span class="bar"></span>
+            <label>Name</label>
+        </div>
+        <button class="btn" id="start" type="button"><span>Start</span></button>
     </form>
 </div>
 <div class="wrapper">
