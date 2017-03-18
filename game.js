@@ -3236,13 +3236,19 @@ $(document).ready(function () {
 
 
     $("#start").click(function () {
+        start();
+    });
+
+    function start(){
         console.log("clikedddddd");
         playerName = $('#name').val();
         $(".launchPage").remove();
         $(".wrapper").show();
         drawLevelNumber(1);
         main(1);
-    });
+    }
+
+    $('form').submit( function() { start(); } );
 
     resizeCanvas();
     $(".wrapper").hide();
