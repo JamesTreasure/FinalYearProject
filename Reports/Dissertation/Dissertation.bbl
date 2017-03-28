@@ -1,0 +1,191 @@
+\begin{thebibliography}{30}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Abuhamdeh and Csikszentmihalyi(2012)]{abuhamdeh2012importance}
+Sami Abuhamdeh and Mihaly Csikszentmihalyi.
+\newblock The importance of challenge for the enjoyment of intrinsically
+  motivated, goal-directed activities.
+\newblock \emph{Personality and Social Psychology Bulletin}, 38\penalty0
+  (3):\penalty0 317--330, 2012.
+
+\bibitem[Bagaria(2016)]{sep-set-theory}
+Joan Bagaria.
+\newblock Set theory.
+\newblock In Edward~N. Zalta, editor, \emph{The Stanford Encyclopedia of
+  Philosophy}. Metaphysics Research Lab, Stanford University, fall 2016
+  edition, 2016.
+
+\bibitem[Cheng(2014)]{cheng2014graphical}
+Peter C-H Cheng.
+\newblock Graphical notations for syllogisms: how alternative representations
+  impact the accessibility of concepts.
+\newblock \emph{Journal of Visual Languages \& Computing}, 25\penalty0
+  (3):\penalty0 170--185, 2014.
+
+\bibitem[Cheng(2012)]{cheng2012visualizing}
+Peter~CH Cheng.
+\newblock Visualizing syllogisms: category pattern diagrams versus venn
+  diagrams.
+\newblock 2012.
+
+\bibitem[Clariana et~al.(2000)Clariana, Wagner, and
+  Murphy]{clariana2000applying}
+Roy~B Clariana, Daren Wagner, and Lucia C~Roher Murphy.
+\newblock Applying a connectionist description of feedback timing.
+\newblock \emph{Educational Technology Research and Development}, 48\penalty0
+  (3):\penalty0 5--22, 2000.
+
+\bibitem[Csikszentmihalyi et~al.(1997)Csikszentmihalyi, Rathunde, and
+  Whalen]{csikszentmihalyi1997talented}
+Mihaly Csikszentmihalyi, Kevin Rathunde, and Samuel Whalen.
+\newblock \emph{Talented teenagers: The roots of success and failure}.
+\newblock Cambridge University Press, 1997.
+
+\bibitem[Englebretsen(1991)]{englebretsen1991}
+George Englebretsen.
+\newblock Linear diagrams for syllogisms (with relationals).
+\newblock \emph{Notre Dame J. Formal Logic}, 33\penalty0 (1):\penalty0 37--69,
+  12 1991.
+\newblock \doi{10.1305/ndjfl/1093636009}.
+\newblock URL \url{http://dx.doi.org/10.1305/ndjfl/1093636009}.
+
+\bibitem[Erickson(1978)]{Erickson1978-ERIROS}
+J.~R. Erickson.
+\newblock Research on syllogistic reasoning.
+\newblock In Russell Revlin and Richard~E. Mayer, editors, \emph{Human
+  Reasoning}, pages 39--50. Distributed Solely by Halsted Press, 1978.
+
+\bibitem[Griffiths(2002)]{griffiths2002educational}
+Mark Griffiths.
+\newblock The educational benefits of videogames.
+\newblock \emph{Education and Health}, 20\penalty0 (3):\penalty0 47--51, 2002.
+
+\bibitem[Hattie and Timperley(2007)]{hattie2007power}
+John Hattie and Helen Timperley.
+\newblock The power of feedback.
+\newblock \emph{Review of educational research}, 77\penalty0 (1):\penalty0
+  81--112, 2007.
+
+\bibitem[Hill(2016)]{hammerhill}
+Hammer Hill.
+\newblock Existential import.
+\newblock http://cstl-cla.semo.edu/hhill/pl120/notes/existential\%20import.htm,
+  2016.
+
+\bibitem[Homan and Williams(1998)]{111701519980901}
+Willem Homan and Kathleen Williams.
+\newblock Pc-based flight simulators: No more games.
+\newblock \emph{Tech Directions}, 58\penalty0 (2):\penalty0 33, 1998.
+\newblock ISSN 10629351.
+\newblock URL
+  \url{http://search.ebscohost.com.ezproxy1.bath.ac.uk/login.aspx?direct=true&db=bth&AN=1117015&site=ehost-live}.
+
+\bibitem[Hurley(2005)]{hurley2005concise}
+Patrick Hurley.
+\newblock \emph{A concise introduction to logic}.
+\newblock Cengage Learning, 2005.
+
+\bibitem[Irons(2007)]{irons2007enhancing}
+Alastair Irons.
+\newblock \emph{Enhancing learning through formative assessment and feedback}.
+\newblock Routledge, 2007.
+
+\bibitem[Johnson-Laird(1980)]{johnson1980mental}
+Philip~N Johnson-Laird.
+\newblock Mental models in cognitive science.
+\newblock \emph{Cognitive science}, 4\penalty0 (1):\penalty0 71--115, 1980.
+
+\bibitem[Kawachi(2003)]{kawachi2003initiating}
+Paul Kawachi.
+\newblock Initiating intrinsic motivation in online education: Review of the
+  current state of the art.
+\newblock \emph{Interactive Learning Environments}, 11\penalty0 (1):\penalty0
+  59--81, 2003.
+
+\bibitem[Lamport(1983)]{lamport1983good}
+Leslie Lamport.
+\newblock What good is temporal logic?
+\newblock In \emph{IFIP congress}, volume~83, pages 657--668, 1983.
+
+\bibitem[Larkin and Simon(1987)]{larkin1987diagram}
+Jill~H Larkin and Herbert~A Simon.
+\newblock Why a diagram is (sometimes) worth ten thousand words.
+\newblock \emph{Cognitive science}, 11\penalty0 (1):\penalty0 65--100, 1987.
+
+\bibitem[Lee and Johnston-Wilder(2013)]{lee2013learning}
+Clare Lee and Sue Johnston-Wilder.
+\newblock Learning mathematics—letting the pupils have their say.
+\newblock \emph{Educational Studies in Mathematics}, 83\penalty0 (2):\penalty0
+  163--180, 2013.
+
+\bibitem[Lemon et~al.(1998)Lemon, Pratt, et~al.]{lemon1998insufficiency}
+Oliver Lemon, Ian Pratt, et~al.
+\newblock On the insufficiency of linear diagrams for syllogisms.
+\newblock \emph{Notre Dame Journal of Formal Logic}, 39\penalty0 (4):\penalty0
+  573--580, 1998.
+
+\bibitem[Lepper(1988)]{lepper1988motivational}
+Mark~R Lepper.
+\newblock Motivational considerations in the study of instruction.
+\newblock \emph{Cognition and instruction}, 5\penalty0 (4):\penalty0 289--309,
+  1988.
+
+\bibitem[Lim(2008)]{lim2008spirit}
+Cher~Ping Lim.
+\newblock Spirit of the game: Empowering students as designers in schools?
+\newblock \emph{British Journal of Educational Technology}, 39\penalty0
+  (6):\penalty0 996--1003, 2008.
+
+\bibitem[Lumsden and Scott(1988)]{lumsden1988characteristics}
+Keith Lumsden and Alex Scott.
+\newblock A characteristics approach to the evaluation of economics software
+  packages.
+\newblock \emph{The Journal of Economic Education}, 19\penalty0 (4):\penalty0
+  353--362, 1988.
+
+\bibitem[Malone(1981)]{malone1981toward}
+Thomas~W Malone.
+\newblock Toward a theory of intrinsically motivating instruction.
+\newblock \emph{Cognitive science}, 5\penalty0 (4):\penalty0 333--369, 1981.
+
+\bibitem[Michael and Chen(2005)]{michael2005serious}
+David~R Michael and Sandra~L Chen.
+\newblock \emph{Serious games: Games that educate, train, and inform}.
+\newblock Muska \& Lipman/Premier-Trade, 2005.
+
+\bibitem[Oblinger et~al.(2005)Oblinger, Oblinger, and
+  Lippincott]{oblinger2005educating}
+Diana Oblinger, James~L Oblinger, and Joan~K Lippincott.
+\newblock \emph{Educating the net generation}.
+\newblock Boulder, Colo.: EDUCAUSE, c2005. 1 v.(various pagings):
+  illustrations., 2005.
+
+\bibitem[{Office For National Statistics}(2016)]{onssurvey}
+{Office For National Statistics}.
+\newblock Internet access - households and individuals.
+\newblock Technical report, 2016.
+\newblock URL
+  \url{http://www.ons.gov.uk/peoplepopulationandcommunity/householdcharacteristics/homeinternetandsocialmediausage/bulletins/internetaccesshouseholdsandindividuals/2016}.
+
+\bibitem[Prensky(2001)]{prensky2001games}
+Marc Prensky.
+\newblock The games generations: How learners have changed.
+\newblock \emph{Digital game-based learning}, 1, 2001.
+
+\bibitem[Smith(2016)]{sep-aristotle-logic}
+Robin Smith.
+\newblock Aristotle's logic.
+\newblock In Edward~N. Zalta, editor, \emph{The Stanford Encyclopedia of
+  Philosophy}. Winter 2016 edition, 2016.
+
+\bibitem[Zalta(1988)]{zalta1988basic}
+Edward~N Zalta.
+\newblock Basic concepts in modal logic.
+\newblock \emph{Center for the Study of Language and Information Publications},
+  page~2, 1988.
+
+\end{thebibliography}
