@@ -431,8 +431,66 @@
     "particularSyllogismLocation": "middleSubjectPredicateIntersection"
   },
   "level8": {
-    "type": "unionIntersectionTutorial",
+    "type": "syllogism",
     "levelNumber": 8,
+    "correctSyllogism": {
+      "middleSubjectIntersection": false,
+      "middleSubjectPredicateIntersection": true,
+      "subjectPredicateIntersection": false,
+      "predicate": false,
+      "subject": false,
+      "middle": true,
+      "middlePredicateIntersection": true
+    },
+    "correctXPlacement": "middleSubjectIntersection",
+    "majorPremise": {
+      "middlePredicateIntersection": true,
+      "middleSubjectPredicateIntersection": true
+    },
+    "minorPremise": {
+      "middlePredicateIntersection": true,
+      "middle": true
+    },
+    "blankSyllogism": {
+      "subject": false,
+      "middleSubjectIntersection": false,
+      "subjectPredicateIntersection": false,
+      "middlePredicateIntersection": false,
+      "middleSubjectPredicateIntersection": false,
+      "predicate": false,
+      "middle": false
+    },
+    "circlesNeeded": 3,
+    "staticTextArray": [
+      {
+        "text": "No flowers are animals"
+      },
+      {
+        "text": "All flowers are plants"
+      },
+      {
+        "text": "Some plants are not animals"
+      }
+    ],
+    "movableTextArray": [
+      {
+        "text": "Flowers"
+      },
+      {
+        "text": "Animals"
+      },
+      {
+        "text": "Plants"
+      },
+      {
+        "text": "X"
+      }
+    ],
+    "particularSyllogism": true
+  },
+  "level9": {
+    "type": "unionIntersectionTutorial",
+    "levelNumber": 9,
     "correctSyllogism": {
       "subject": true,
       "middleSubjectIntersection": true,
@@ -492,9 +550,9 @@
       }
     ]
   },
-  "level9": {
+  "level10": {
     "type": "setTheory",
-    "levelNumber": 9,
+    "levelNumber": 10,
     "parts": 3,
     "tutorialText": [
       "This is the distributive law of sets. You will need to show that this is true.",
@@ -567,9 +625,9 @@
     ],
     "particularSyllogism": false
   },
-  "level10": {
+  "level11": {
     "type": "setTheory",
-    "levelNumber": 10,
+    "levelNumber": 11,
     "parts": 3,
     "tutorialText": [
       "This is the associative law of sets. You will need to show that this is true.",

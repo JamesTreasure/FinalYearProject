@@ -13,18 +13,19 @@
 
 <body>
 
-<table id="statistics" class="table table-condensed table-striped"></table>
+<table id="spreadsheet" class="table table-condensed table-striped"></table>
 
 <div class="launchPage" align="center">
     <form>
         <div class="group">
-            <input type="text" required>
+            <input type="text" id="playerInputId" required>
             <span class="highlight"></span>
             <span class="bar"></span>
             <label>Name (Optional)</label>
         </div>
-        <button class="btn" id="startButton" type="button"><span>Start</span>
-        </button>
+        <button class="btn" id="startButton" type="button"><span>New Game</span></button>
+        <button class="btn" id="continueButton" type="button"><span>Continue</span></button>
+        <button class="btn" id="leaderboard" type="button"><span>Leaderboard</span></button>
     </form>
 </div>
 <div class="wrapper">
@@ -48,6 +49,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
 
+
 <!--Libraries-->
 <script src="js/eventHandlers.js"></script>
 <script src="js/helper.js"></script>
@@ -59,9 +61,10 @@
 
 <script src="js/lib/arrayHelper.js" type="text/javascript"></script>
 <script src="js/lib/floodFill2D.js"></script>
+<script src="js/lib/oldFloodFill.js"></script>
 <script src="js/lib/throttle.js"></script>
 <!--<script src="lib/confetti.js"></script>-->
-<script type='application/javascript' src='/js/lib/fastclick.js'></script>
+<script src='js/lib/fastclick.js'type = 'application/javascript'></script>
 <script type="text/javascript" src="js/game.js"></script>
 <script src='js/lib/google-sheet.js'></script>
 <script src="js/lib/sheetrock.min.js"></script>

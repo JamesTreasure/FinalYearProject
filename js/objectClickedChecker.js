@@ -70,7 +70,12 @@ function whichCircleClickedIn(x, y) {
             context1.globalAlpha = 1;
         } else {
             context1.fillStyle = "#1d1d1d";
+            var t0 = performance.now();
             floodFill.fill(x, y, 100, context1, null, null, 90)
+            // paintLocation(x,y,0,0,0);
+            var t1 = performance.now();
+            var totalTime = t1-t0;
+            console.log(totalTime);
         }
     } else {
         if (level.type === "setTheory" && setTheoryCurrentStage > 0) {

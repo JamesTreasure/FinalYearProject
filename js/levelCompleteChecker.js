@@ -194,14 +194,14 @@ function checkIfSyllogismIsMet() {
     }
 }
 
-function checkIfSetTheoryIsMet(correctSyllogism) {
+function checkIfSetTheoryIsMet(levelObject, correctSyllogism) {
     //all of these are arrays
-    var a = whichCircleIsPremiseIn(level.movableTextArray[0]);
-    var b = whichCircleIsPremiseIn(level.movableTextArray[1]);
-    var c = whichCircleIsPremiseIn(level.movableTextArray[2]);
+    var a = whichCircleIsPremiseIn(levelObject.movableTextArray[0]);
+    var b = whichCircleIsPremiseIn(levelObject.movableTextArray[1]);
+    var c = whichCircleIsPremiseIn(levelObject.movableTextArray[2]);
     var particular;
-    if (level.movableTextArray.length > 3) {
-        particular = whichCircleIsPremiseInReturnsAllCircles(level.movableTextArray[3]);
+    if (levelObject.movableTextArray.length > 3) {
+        particular = whichCircleIsPremiseInReturnsAllCircles(levelObject.movableTextArray[3]);
     }
 
 
@@ -217,13 +217,13 @@ function checkIfSetTheoryIsMet(correctSyllogism) {
         acbIntersection = [a[0], c[0], b[0]].sort();
     }
 
-    level.blankSyllogism.c = arrayContainsAnotherArray(clickedInArray, c);
-    level.blankSyllogism.a = arrayContainsAnotherArray(clickedInArray, a);
-    level.blankSyllogism.b = arrayContainsAnotherArray(clickedInArray, b);
-    level.blankSyllogism.acIntersection = arrayContainsAnotherArray(clickedInArray, acIntersection);
-    level.blankSyllogism.abIntersection = arrayContainsAnotherArray(clickedInArray, abIntersection);
-    level.blankSyllogism.acbIntersection = arrayContainsAnotherArray(clickedInArray, acbIntersection);
-    level.blankSyllogism.cbIntersection = arrayContainsAnotherArray(clickedInArray, cbIntersection);
+    levelObject.blankSyllogism.c = arrayContainsAnotherArray(clickedInArray, c);
+    levelObject.blankSyllogism.a = arrayContainsAnotherArray(clickedInArray, a);
+    levelObject.blankSyllogism.b = arrayContainsAnotherArray(clickedInArray, b);
+    levelObject.blankSyllogism.acIntersection = arrayContainsAnotherArray(clickedInArray, acIntersection);
+    levelObject.blankSyllogism.abIntersection = arrayContainsAnotherArray(clickedInArray, abIntersection);
+    levelObject.blankSyllogism.acbIntersection = arrayContainsAnotherArray(clickedInArray, acbIntersection);
+    levelObject.blankSyllogism.cbIntersection = arrayContainsAnotherArray(clickedInArray, cbIntersection);
 
 
     var particularLocation;
@@ -257,9 +257,9 @@ function checkIfSetTheoryIsMet(correctSyllogism) {
         }
     }
 
-    if (_.isEqual(level.blankSyllogism, correctSyllogism)) {
+    if (_.isEqual(levelObject.blankSyllogism, correctSyllogism)) {
         isTextMovable = false;
-        if (setTheoryCurrentStage < level.correctPlacement.length - 1) {
+        if (setTheoryCurrentStage < levelObject.correctPlacement.length - 1) {
             setTheoryCurrentStage++;
             var tempClickedInArray = clone(clickedInArray);
             clickedInArray = [];
@@ -276,12 +276,12 @@ function checkIfSetTheoryIsMet(correctSyllogism) {
             }
             tutorialStage++;
             tutorialMode = true;
-            level9And10Tutorial();
+            level10And11Tutorial();
         } else {
             isTextMovable = true;
             setTheoryCurrentStage = 0;
             tutorialStage = 0;
-            if (level.levelNumber === 10) {
+            if (levelObject.levelNumber === 11) {
                 gameCompleteScreen();
             } else {
                 levelCompleteScreen();

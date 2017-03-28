@@ -227,12 +227,3 @@ function drawDogs() {
 
     context2.globalAlpha = 1;
 }
-
-function drawLevelNumber(levelNumber) {
-    var text = "Level " + levelNumber;
-    var textWidth = (context3.measureText(text).width);
-
-    var x = canvasWidth - (textWidth * 1.5);
-    var y = currentFontSize;
-    context1.fillText(text, x, y);
-}

@@ -51,10 +51,10 @@ describe("Given x and y mouse coordinates", function () {
     });
 });
 
+//levelCompleteCheckerTests
+
 describe("Given x and y mouse coordinates", function () {
-    it("textClickedOn returns which image was clicked on", function () {
-
-
+    it("imageClickedOn returns which image was clicked on", function () {
 
         var x = 714;
         var y = 702;
@@ -86,6 +86,4 @@ describe("Given x and y mouse coordinates", function () {
         expect(imageClickedOn(x,y,movableImageArray)).toEqual(1);
     });
 });
-
-
 

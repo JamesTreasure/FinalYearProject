@@ -1131,7 +1131,7 @@ function level7Tutorial(levelNumber) {
 
 }
 
-function level8Tutorial(levelNumber) {
+function level9Tutorial(levelNumber) {
     tutorialMode = true;
     $("#undoButton").invisible();
     $("#redoButton").invisible();
@@ -1254,7 +1254,7 @@ function level8Tutorial(levelNumber) {
     }
 }
 
-function level9And10Tutorial() {
+function level10And11Tutorial() {
     tutorialMode = true;
     $("#undoButton").invisible();
     $("#redoButton").invisible();

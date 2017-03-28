@@ -41,12 +41,12 @@ $("#tutorialForwards").click(function () {
             main(nextLevel);
         } else {
             tutorialStage++;
-            level8Tutorial(8);
+            level9Tutorial(8);
         }
     }
     if (level.type === "setTheory") {
         tutorialStage++;
-        level9And10Tutorial();
+        level10And11Tutorial();
         return;
     }
     if (level.type === "emptySet") {
@@ -81,7 +81,7 @@ $("#tutorialBackwards").click(function () {
     }
     if (level.type === "setTheory") {
         tutorialStage++;
-        level8Tutorial(8);
+        level9Tutorial(8);
     }
     if (level.type === "emptySet") {
         tutorialStage--;
@@ -125,13 +125,22 @@ $("#skip").click(function () {
     var currentLevel = level.levelNumber;
     var nextLevel = currentLevel + 1;
     console.log("Current level number is " + nextLevel);
-    if (nextLevel === 11) {
+    if (nextLevel === 12) {
         gameCompleteScreen();
     } else {
         tutorialStage = 0;
         setupNextLevel();
     }
     $("#nextLevelButton").invisible();
+});
+
+$("#continueButton").click(function () {
+    continueGame();
+});
+
+$("#leaderboard").click(function () {
+    $(".launchPage").remove();
+    setupLeaderboard();
 });
 
 $('form').submit(function () {

@@ -15,11 +15,13 @@ var currentFontSize;
 var setTheoryCurrentStage = 0;
 var font;
 var setTheoryColours = ["#3498db", "#2ecc71", "#f1c40f"];
-var setTheoryLevel = 9;
+var setTheoryLevel = 10;
 var dogs = false;
 var startTime, endTime;
 var levelsSkipped = [];
 var playerName;
+var gameStarted = false;
+var retrievedObject = JSON.parse(localStorage.getItem('gameObject'));
 
 var layer1;
 var layer2;
@@ -78,7 +80,6 @@ function setupCanvases() {
 
 // window.addEventListener('resize', resizeCanvas, false);
 
-
 var GameState = function (movableTextArray, clickedInArray) {
     this.movableTextArray = movableTextArray;
     this.clickedInArray = clickedInArray;
@@ -105,10 +106,10 @@ var dog1, dog2, dog3;
 var mySpreadsheet = "https://docs.google.com/spreadsheets/d/1JMUw0MvV7Yksj8SejL_YM2CgrumpafeoPwPSRsqi1Vw/edit?usp=sharing#gid=0";
 var spreadsheetData;
 var level1startTime, level2startTime, level3startTime, level4startTime, level5startTime, level6startTime, level7startTime,
-    level8startTime, level9startTime, level10startTime;
+    level8startTime, level9startTime, level10startTime, level11startTime;
 var level1endTime, level2endTime, level3endTime, level4endTime, level5endTime, level6endTime, level7endTime,
-    level8endTime, level9endTime, level10endTime;
-var level1moves, level2moves, level3moves, level4moves, level5moves, level6moves, level7moves, level8moves, level9moves, level10moves;
+    level8endTime, level9endTime, level10endTime, level11endTime;
+var level1moves, level2moves, level3moves, level4moves, level5moves, level6moves, level7moves, level8moves, level9moves, level10moves, level11moves;
 var moveCounter = 0;
 
 function renderText() {
@@ -145,6 +146,12 @@ function resizeCanvas() {
 // window.addEventListener("resize", resizeCanvas);
 
 function setupNextLevel() {
+    if(playerName == null){
+        playerName = retrievedObject.playerName;
+    }
+    var game = new gameObject(level.levelNumber, playerName);
+    console.log(game);
+    localStorage.setItem('gameObject', JSON.stringify(game));
     tearDown();
     majorPremiseMet = false;
     minorPremiseMet = false;
@@ -154,6 +161,11 @@ function setupNextLevel() {
     $('#levelSelect').text('Level ' + nextLevel);
     $("#nextLevelButton").invisible();
     main(nextLevel);
+}
+
+function gameObject(levelNumber, playerName) {
+    this.levelNumber = levelNumber;
+    this.playerName = playerName;
 }
 
 function postDataToGoogleSheets(name, time) {
@@ -181,10 +193,12 @@ function postDataToGoogleSheets(name, time) {
         "level9moves": level9moves,
         "level10time": (level10endTime - level10startTime) / 1000,
         "level10moves": level10moves,
+        "level11time": (level11endTime - level11startTime) / 1000,
+        "level11moves": level11moves,
         "levelsSkipped": allSkippedLevels,
         "totalTime": ((level1endTime - level1startTime) / 1000) + ((level2endTime - level2startTime) / 1000) + ((level3endTime - level3startTime) / 1000) +
         ((level4endTime - level4startTime) / 1000) + ((level5endTime - level5startTime) / 1000) + ((level6endTime - level6startTime) / 1000) + ((level7endTime - level7startTime) / 1000)
-        + ((level8endTime - level8startTime) / 1000) + ((level9endTime - level9startTime) / 1000) + ((level10endTime - level10startTime) / 1000)
+        + ((level8endTime - level8startTime) / 1000) + ((level9endTime - level9startTime) / 1000) + ((level10endTime - level10startTime) / 1000) + ((level11endTime - level11startTime) / 1000)
     }
 
     postData(myData);
@@ -194,7 +208,7 @@ function main(levelNumber) {
     setupLevel(levelNumber);
     context1.fillStyle = "white";
     context1.fillRect(0, 0, layer1.width, layer1.height);
-    drawLevelNumber(levelNumber);
+    $('#levelSelect').text('Level ' + levelNumber);
     if (levelNumber == 1) {
         level1startTime = performance.now();
         level1Tutorial(1);
@@ -234,28 +248,39 @@ function main(levelNumber) {
         level6endTime = performance.now();
         level7startTime = performance.now();
         level7Tutorial(levelNumber);
-    } else if (levelNumber === 8) {
+    }else if (levelNumber === 8){
         level7moves = moveCounter;
         moveCounter = 0;
         level7endTime = performance.now();
         level8startTime = performance.now();
-        level8Tutorial(levelNumber);
+
+        setupMovableText();
+        drawStaticText();
+        drawMovableText();
+        setupCircles(level.circlesNeeded, canvasHeight);
+        drawCircles();
     } else if (levelNumber === 9) {
         level8moves = moveCounter;
         moveCounter = 0;
         level8endTime = performance.now();
         level9startTime = performance.now();
-        level9And10Tutorial(setTheoryLevel);
+        level9Tutorial(levelNumber);
     } else if (levelNumber === 10) {
         level9moves = moveCounter;
         moveCounter = 0;
         level9endTime = performance.now();
         level10startTime = performance.now();
+        level10And11Tutorial(setTheoryLevel);
+    } else if (levelNumber === 11) {
+        level10moves = moveCounter;
+        moveCounter = 0;
+        level10endTime = performance.now();
+        level11startTime = performance.now();
         setTheoryLevel++;
-        level9And10Tutorial(10);
+        level10And11Tutorial(11);
     } else {
         tearDown();
-        setupLevel(nextLevel);
+        setupLevel(levelNumber);
         if (level.type === "venn") {
             setupMovableText();
             setupCircles(level.circlesNeeded, canvasHeight);
@@ -332,7 +357,7 @@ function levelCompleteScreen() {
 }
 
 function gameCompleteScreen() {
-    level10endTime = performance.now();
+    level11endTime = performance.now();
     levelComplete = true;
     clearAllCanvases();
     drawCircles();
@@ -358,7 +383,12 @@ function gameCompleteScreen() {
     level10moves = moveCounter;
     moveCounter = 0;
     postDataToGoogleSheets("James", (endTime - startTime) / 1000);
+    setupLeaderboard();
 
+
+}
+
+function setupLeaderboard(){
     $(".wrapper").hide();
 
     var fileref = document.createElement("link");
@@ -368,9 +398,10 @@ function gameCompleteScreen() {
     fileref.media = "screen,projection";
     document.getElementsByTagName("head")[0].appendChild(fileref)
 
-    $('#statistics').sheetrock({
+    $('#spreadsheet').sheetrock({
         url: mySpreadsheet,
-        query: "select B,W,X order by X asc",
+        query: "select B,Y,Z order by Z asc",
+        labels: ['Name', 'Levels Skipped', 'Total Time Taken'],
         fetchSize: 5
     });
 }
@@ -616,19 +647,28 @@ function getFont() {
     };
 }(jQuery));
 
-
 function start() {
-    console.log("clikedddddd");
+    gameStarted = true;
+    playerName = $('#playerInputId').val();
+    $(".launchPage").remove();
+    $(".wrapper").show();
+    console.log("Nothing saved!");
+    // drawLevelNumber(1);
+    main(1);
+}
+
+function continueGame() {
+    gameStarted = true;
     playerName = $('#name').val();
     $(".launchPage").remove();
     $(".wrapper").show();
-    drawLevelNumber(1);
-    main(1);
+    // drawLevelNumber(retrievedObject.levelNumber);
+    main(retrievedObject.levelNumber);
 }
 
 $(window).mousedown(function (e) {
     var pos = getMousePos(layer1, e);
-    if (!levelComplete && !tutorialMode) {
+    if (!levelComplete && !tutorialMode && gameStarted) {
         moveCounter++;
         if (level.levelNumber === 1) {
             var clickedOn = imageClickedOn(pos.x, pos.y, level.movableTextArray);
@@ -680,7 +720,7 @@ $(window).mousedown(function (e) {
             }
             if (level.type === "setTheory") {
                 whichCircleClickedIn(pos.x, pos.y);
-                checkIfSetTheoryIsMet(level.correctPlacement[setTheoryCurrentStage]);
+                checkIfSetTheoryIsMet(level, level.correctPlacement[setTheoryCurrentStage]);
             }
             if (level.type === "emptySet") {
                 whichCircleClickedIn(pos.x, pos.y);
@@ -710,7 +750,7 @@ $(window).mousemove($.throttle(10, function (e) {
 }));
 
 $(window).mouseup(function () {
-    if (!tutorialMode) {
+    if (!tutorialMode && gameStarted) {
         if (level.levelNumber === 1) {
             checkIfLevel1IsCorrect();
         }
@@ -734,7 +774,7 @@ $(window).mouseup(function () {
             checkIfAnyPropositionsAreMet();
         }
         if (level.type === "setTheory") {
-            checkIfSetTheoryIsMet(level.correctPlacement[setTheoryCurrentStage]);
+            checkIfSetTheoryIsMet(level, level.correctPlacement[setTheoryCurrentStage]);
         }
         if (level.type === "emptySet") {
             checkIfEmptySetIsCorrect();
@@ -751,7 +791,7 @@ $(window).mouseup(function () {
 $(window).bind('touchstart', function (jQueryEvent) {
     jQueryEvent.preventDefault();
     var event = window.event;
-    if (!levelComplete && !tutorialMode) {
+    if (!levelComplete && !tutorialMode && gameStarted) {
         moveCounter++;
         if (level.levelNumber === 1) {
             var clickedOn = imageClickedOn(event.touches[0].pageX, event.touches[0].pageY, level.movableTextArray);
@@ -804,7 +844,7 @@ $(window).bind('touchstart', function (jQueryEvent) {
             }
             if (level.type === "setTheory") {
                 whichCircleClickedIn(event.touches[0].pageX, event.touches[0].pageY);
-                checkIfSetTheoryIsMet(level.correctPlacement[setTheoryCurrentStage]);
+                checkIfSetTheoryIsMet(level, level.correctPlacement[setTheoryCurrentStage]);
             }
             if (level.type === "emptySet") {
                 whichCircleClickedIn(event.touches[0].pageX, event.touches[0].pageY);
@@ -848,7 +888,7 @@ $(window).bind('touchend', function (jQueryEvent) {
             checkIfAnyPropositionsAreMet();
         }
         if (level.type === "setTheory") {
-            checkIfSetTheoryIsMet(level.correctPlacement[setTheoryCurrentStage]);
+            checkIfSetTheoryIsMet(level, level.correctPlacement[setTheoryCurrentStage]);
         }
         if (level.type === "emptySet") {
             checkIfEmptySetIsCorrect();
@@ -867,3 +907,8 @@ setupCanvases();
 resizeCanvas();
 $(".wrapper").hide();
 
+if (retrievedObject != null) {
+    $("#continueButton").visible();
+}
+
+document.getElementById("playerInputId").value = retrievedObject.playerName;

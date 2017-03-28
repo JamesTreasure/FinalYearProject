@@ -23,6 +23,10 @@ html, body, .container {
     touch-action: none;
 }
 
+#continueButton{
+    visibility: hidden;
+}
+
 .launchPage {
     margin: 8px 0;
     box-sizing: border-box;
@@ -78,9 +82,9 @@ html, body, .container {
     float: left;
     width: 4%;
     height: 4%;
+    padding: 10px 10px 10px 10px;
     outline: none;
     visibility: hidden;
-    padding: 10px 10px 10px 10px;
 }
 
 table {
@@ -229,10 +233,6 @@ h2 {
     box-sizing: border-box;
 }
 
-/* basic stylings ------------------------------------------ */
-body {
-    background: url(http://scotch.io/wp-content/uploads/2014/07/61.jpg);
-}
 
 .launchPage {
     font-family: 'Roboto';
