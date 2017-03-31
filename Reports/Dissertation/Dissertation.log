@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.10.8)  28 MAR 2017 17:17
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.10.8)  31 MAR 2017 13:53
 entering extended mode
 **./Dissertation.tex
 (Dissertation.tex
@@ -986,7 +986,14 @@ File: listings.cfg 2015/06/04 1.6 listings configuration
 ))
 Package: listings 2015/06/04 1.6 (Carsten Heinz)
 
-(Dissertation.aux)
+(Dissertation.aux
+
+LaTeX Warning: Label `fig:floodFillBad' multiply defined.
+
+
+LaTeX Warning: Label `fig:floodFillBad' multiply defined.
+
+)
 \openout1 = `Dissertation.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 123.
@@ -1082,20 +1089,21 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 \c__siunitx_mathtt_int=\count345
  [1
 
-{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}] (Dissertation.toc)
+{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}] (Dissertation.tocpdfTeX w
+arning (ext4): destination with the same identifier (name{page.1}) has been alr
+eady used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.48 ....6}Reading from database}{33}{section.4.6}
+                                                   [1
+
+])
 \tf@toc=\write4
 \openout4 = `Dissertation.toc'.
 
-pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has 
-been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.141 \chapter
-              {Literature Review} [1
-
-]
+ [2]
 Chapter 1.
-[2
+[3
 
 ]
 LaTeX Font Info:    Try loading font information for OMS+cmr on input line 160.
@@ -1105,26 +1113,26 @@ File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 160.
- [3] [4]
-<images/AVenn.png, id=185, 513.92pt x 513.92pt>
+ [4] [5]
+<images/AVenn.png, id=254, 513.92pt x 513.92pt>
 File: images/AVenn.png Graphic file (type png)
  <use images/AVenn.png>
 Package pdftex.def Info: images/AVenn.png used on input line 239.
 (pdftex.def)             Requested size: 85.80048pt x 85.79688pt.
 
-<images/IVenn.png, id=186, 513.92pt x 513.92pt>
+<images/IVenn.png, id=255, 513.92pt x 513.92pt>
 File: images/IVenn.png Graphic file (type png)
  <use images/IVenn.png>
 Package pdftex.def Info: images/IVenn.png used on input line 243.
 (pdftex.def)             Requested size: 85.80048pt x 85.79688pt.
 
-<images/EVenn.png, id=187, 513.92pt x 513.92pt>
+<images/EVenn.png, id=256, 513.92pt x 513.92pt>
 File: images/EVenn.png Graphic file (type png)
  <use images/EVenn.png>
 Package pdftex.def Info: images/EVenn.png used on input line 247.
 (pdftex.def)             Requested size: 85.80048pt x 85.79688pt.
 
-<images/OVenn.png, id=188, 513.92pt x 513.92pt>
+<images/OVenn.png, id=257, 513.92pt x 513.92pt>
 File: images/OVenn.png Graphic file (type png)
  <use images/OVenn.png>
 Package pdftex.def Info: images/OVenn.png used on input line 251.
@@ -1134,7 +1142,7 @@ Overfull \hbox (1.2019pt too wide) in paragraph at lines 236--255
  [][] 
  []
 
-<images/VennAllMenAreMortal.png, id=189, 432.61626pt x 269.50688pt>
+<images/VennAllMenAreMortal.png, id=258, 432.61626pt x 269.50688pt>
 File: images/VennAllMenAreMortal.png Graphic file (type png)
 
 <use images/VennAllMenAreMortal.png>
@@ -1142,7 +1150,7 @@ Package pdftex.def Info: images/VennAllMenAreMortal.png used on input line 267.
 
 (pdftex.def)             Requested size: 108.1538pt x 67.37654pt.
 
-<images/VennAllGreeksAreMen.png, id=191, 430.60875pt x 277.035pt>
+<images/VennAllGreeksAreMen.png, id=260, 430.60875pt x 277.035pt>
 File: images/VennAllGreeksAreMen.png Graphic file (type png)
 
 <use images/VennAllGreeksAreMen.png>
@@ -1150,16 +1158,16 @@ Package pdftex.def Info: images/VennAllGreeksAreMen.png used on input line 274.
 
 (pdftex.def)             Requested size: 107.65192pt x 69.25858pt.
 
-<images/VennAllGreeksAreMortal.png, id=192, 431.11063pt x 449.68pt>
+<images/VennAllGreeksAreMortal.png, id=261, 431.11063pt x 449.68pt>
 File: images/VennAllGreeksAreMortal.png Graphic file (type png)
 
 <use images/VennAllGreeksAreMortal.png>
 Package pdftex.def Info: images/VennAllGreeksAreMortal.png used on input line 2
 81.
 (pdftex.def)             Requested size: 68.9791pt x 71.95026pt.
- [5 <./images/AVenn.png> <./images/IVenn.png> <./images/EVenn.png> <./images/OV
+ [6 <./images/AVenn.png> <./images/IVenn.png> <./images/EVenn.png> <./images/OV
 enn.png>]
-<images/VennNoLizardsAreMammals.png, id=202, 396.98312pt x 274.02374pt>
+<images/VennNoLizardsAreMammals.png, id=272, 396.98312pt x 274.02374pt>
 File: images/VennNoLizardsAreMammals.png Graphic file (type png)
 
 <use images/VennNoLizardsAreMammals.png>
@@ -1167,7 +1175,7 @@ Package pdftex.def Info: images/VennNoLizardsAreMammals.png used on input line
 299.
 (pdftex.def)             Requested size: 99.24553pt x 68.50577pt.
 
-<images/VennAllLizardsAreReptiles.png, id=203, 395.4775pt x 280.04625pt>
+<images/VennAllLizardsAreReptiles.png, id=273, 395.4775pt x 280.04625pt>
 File: images/VennAllLizardsAreReptiles.png Graphic file (type png)
 
 <use images/VennAllLizardsAreReptiles.png>
@@ -1175,7 +1183,7 @@ Package pdftex.def Info: images/VennAllLizardsAreReptiles.png used on input lin
 e 306.
 (pdftex.def)             Requested size: 98.86913pt x 70.01138pt.
 
-<images/VennSomeReptilesAreNotMammals.png, id=204, 380.92313pt x 406.01688pt>
+<images/VennSomeReptilesAreNotMammals.png, id=274, 380.92313pt x 406.01688pt>
 File: images/VennSomeReptilesAreNotMammals.png Graphic file (type png)
 
 <use images/VennSomeReptilesAreNotMammals.png>
@@ -1183,25 +1191,25 @@ Package pdftex.def Info: images/VennSomeReptilesAreNotMammals.png used on input
  line 313.
 (pdftex.def)             Requested size: 95.23055pt x 101.50397pt.
 
-<images/AEuler.png, id=208, 509.40312pt x 269.005pt>
+<images/AEuler.png, id=278, 509.40312pt x 269.005pt>
 File: images/AEuler.png Graphic file (type png)
  <use images/AEuler.png>
 Package pdftex.def Info: images/AEuler.png used on input line 335.
 (pdftex.def)             Requested size: 85.80048pt x 45.30745pt.
 
-<images/IEuler.png, id=209, 433.11812pt x 252.945pt>
+<images/IEuler.png, id=279, 433.11812pt x 252.945pt>
 File: images/IEuler.png Graphic file (type png)
  <use images/IEuler.png>
 Package pdftex.def Info: images/IEuler.png used on input line 339.
 (pdftex.def)             Requested size: 85.80048pt x 50.10564pt.
 
-<images/EEuler.png, id=210, 506.89375pt x 266.49562pt>
+<images/EEuler.png, id=280, 506.89375pt x 266.49562pt>
 File: images/EEuler.png Graphic file (type png)
  <use images/EEuler.png>
 Package pdftex.def Info: images/EEuler.png used on input line 343.
 (pdftex.def)             Requested size: 85.80048pt x 45.10846pt.
 
-<images/OEuler.png, id=211, 435.12563pt x 296.10625pt>
+<images/OEuler.png, id=281, 435.12563pt x 296.10625pt>
 File: images/OEuler.png Graphic file (type png)
  <use images/OEuler.png>
 Package pdftex.def Info: images/OEuler.png used on input line 347.
@@ -1211,7 +1219,7 @@ Overfull \hbox (1.2019pt too wide) in paragraph at lines 332--351
  [][] 
  []
 
-<images/EulerAllMenAreMortal.png, id=212, 285.56688pt x 268.50313pt>
+<images/EulerAllMenAreMortal.png, id=282, 285.56688pt x 268.50313pt>
 File: images/EulerAllMenAreMortal.png Graphic file (type png)
 
 <use images/EulerAllMenAreMortal.png>
@@ -1219,7 +1227,7 @@ Package pdftex.def Info: images/EulerAllMenAreMortal.png used on input line 362
 .
 (pdftex.def)             Requested size: 71.39154pt x 67.12561pt.
 
-<images/EulerAllGreeksAreMen.png, id=213, 272.51813pt x 270.00874pt>
+<images/EulerAllGreeksAreMen.png, id=283, 272.51813pt x 270.00874pt>
 File: images/EulerAllGreeksAreMen.png Graphic file (type png)
 
 <use images/EulerAllGreeksAreMen.png>
@@ -1227,26 +1235,26 @@ Package pdftex.def Info: images/EulerAllGreeksAreMen.png used on input line 368
 .
 (pdftex.def)             Requested size: 68.12936pt x 67.50201pt.
 
-<images/EulerAllGreeksAreMortal.png, id=214, 277.035pt x 269.50688pt>
+<images/EulerAllGreeksAreMortal.png, id=284, 277.035pt x 269.50688pt>
 File: images/EulerAllGreeksAreMortal.png Graphic file (type png)
 
 <use images/EulerAllGreeksAreMortal.png>
 Package pdftex.def Info: images/EulerAllGreeksAreMortal.png used on input line 
 374.
 (pdftex.def)             Requested size: 69.25858pt x 67.37654pt.
- [6 <./images/VennAllMenAreMortal.png> <./images/VennAllGreeksAreMen.png> <./im
+ [7 <./images/VennAllMenAreMortal.png> <./images/VennAllGreeksAreMen.png> <./im
 ages/VennAllGreeksAreMortal.png> <./images/VennNoLizardsAreMammals.png> <./imag
 es/VennAllLizardsAreReptiles.png> <./images/VennSomeReptilesAreNotMammals.png> 
 <./images/AEuler.png> <./images/IEuler.png> <./images/EEuler.png> <./images/OEu
 ler.png>]
-<EulerNoHomeworkFun.png, id=236, 513.92pt x 513.92pt>
+<EulerNoHomeworkFun.png, id=305, 513.92pt x 513.92pt>
 File: EulerNoHomeworkFun.png Graphic file (type png)
 
 <use EulerNoHomeworkFun.png>
 Package pdftex.def Info: EulerNoHomeworkFun.png used on input line 389.
 (pdftex.def)             Requested size: 85.80048pt x 85.79688pt.
 
-<images/EulerSomeReadingIsHomework.png, id=237, 513.92pt x 513.92pt>
+<images/EulerSomeReadingIsHomework.png, id=306, 513.92pt x 513.92pt>
 File: images/EulerSomeReadingIsHomework.png Graphic file (type png)
 
 <use images/EulerSomeReadingIsHomework.png>
@@ -1254,7 +1262,7 @@ Package pdftex.def Info: images/EulerSomeReadingIsHomework.png used on input li
 ne 393.
 (pdftex.def)             Requested size: 85.80048pt x 85.79688pt.
 
-<images/EulerSomeReadingIsNotFun1.png, id=238, 513.92pt x 183.68625pt>
+<images/EulerSomeReadingIsNotFun1.png, id=307, 513.92pt x 183.68625pt>
 File: images/EulerSomeReadingIsNotFun1.png Graphic file (type png)
 
 <use images/EulerSomeReadingIsNotFun1.png>
@@ -1262,7 +1270,7 @@ Package pdftex.def Info: images/EulerSomeReadingIsNotFun1.png used on input lin
 e 397.
 (pdftex.def)             Requested size: 85.80048pt x 30.66568pt.
 
-<images/EulerSomeReadingIsNotFun2.png, id=239, 513.92pt x 513.92pt>
+<images/EulerSomeReadingIsNotFun2.png, id=308, 513.92pt x 513.92pt>
 File: images/EulerSomeReadingIsNotFun2.png Graphic file (type png)
 
 <use images/EulerSomeReadingIsNotFun2.png>
@@ -1270,7 +1278,7 @@ Package pdftex.def Info: images/EulerSomeReadingIsNotFun2.png used on input lin
 e 403.
 (pdftex.def)             Requested size: 85.80048pt x 85.79688pt.
 
-<images/EulerSomeReadingIsNotFun3.png, id=240, 513.92pt x 513.92pt>
+<images/EulerSomeReadingIsNotFun3.png, id=309, 513.92pt x 513.92pt>
 File: images/EulerSomeReadingIsNotFun3.png Graphic file (type png)
 
 <use images/EulerSomeReadingIsNotFun3.png>
@@ -1282,35 +1290,35 @@ Overfull \hbox (8.72108pt too wide) in paragraph at lines 386--413
  [][] 
  []
 
-[7 <./images/EulerAllMenAreMortal.png> <./images/EulerAllGreeksAreMen.png> <./i
+[8 <./images/EulerAllMenAreMortal.png> <./images/EulerAllGreeksAreMen.png> <./i
 mages/EulerAllGreeksAreMortal.png> <./EulerNoHomeworkFun.png> <./images/EulerSo
 meReadingIsHomework.png> <./images/EulerSomeReadingIsNotFun1.png> <./images/Eul
 erSomeReadingIsNotFun2.png> <./images/EulerSomeReadingIsNotFun3.png>]
-<images/ALinear.png, id=256, 513.92pt x 513.92pt>
+<images/ALinear.png, id=325, 513.92pt x 513.92pt>
 File: images/ALinear.png Graphic file (type png)
  <use images/ALinear.png>
 Package pdftex.def Info: images/ALinear.png used on input line 427.
 (pdftex.def)             Requested size: 85.80048pt x 85.79688pt.
 
-<images/ILinear.png, id=257, 513.92pt x 513.92pt>
+<images/ILinear.png, id=326, 513.92pt x 513.92pt>
 File: images/ILinear.png Graphic file (type png)
  <use images/ILinear.png>
 Package pdftex.def Info: images/ILinear.png used on input line 431.
 (pdftex.def)             Requested size: 85.80048pt x 85.79688pt.
 
-<images/ELinear.png, id=258, 513.92pt x 513.92pt>
+<images/ELinear.png, id=327, 513.92pt x 513.92pt>
 File: images/ELinear.png Graphic file (type png)
  <use images/ELinear.png>
 Package pdftex.def Info: images/ELinear.png used on input line 435.
 (pdftex.def)             Requested size: 85.80048pt x 85.79688pt.
 
-<images/O1Linear.png, id=259, 513.92pt x 513.92pt>
+<images/O1Linear.png, id=328, 513.92pt x 513.92pt>
 File: images/O1Linear.png Graphic file (type png)
  <use images/O1Linear.png>
 Package pdftex.def Info: images/O1Linear.png used on input line 439.
 (pdftex.def)             Requested size: 85.80048pt x 85.79688pt.
 
-<images/O2Linear.png, id=260, 513.92pt x 513.92pt>
+<images/O2Linear.png, id=329, 513.92pt x 513.92pt>
 File: images/O2Linear.png Graphic file (type png)
  <use images/O2Linear.png>
 Package pdftex.def Info: images/O2Linear.png used on input line 446.
@@ -1320,25 +1328,25 @@ Overfull \hbox (1.2019pt too wide) in paragraph at lines 424--450
  [][] 
  []
 
-<images/CPDA.png, id=267, 120.45pt x 112.16907pt>
+<images/CPDA.png, id=336, 120.45pt x 112.16907pt>
 File: images/CPDA.png Graphic file (type png)
  <use images/CPDA.png>
 Package pdftex.def Info: images/CPDA.png used on input line 466.
 (pdftex.def)             Requested size: 60.22484pt x 56.08438pt.
 
-<images/CPDI.png, id=268, 118.19156pt x 113.67468pt>
+<images/CPDI.png, id=337, 118.19156pt x 113.67468pt>
 File: images/CPDI.png Graphic file (type png)
  <use images/CPDI.png>
 Package pdftex.def Info: images/CPDI.png used on input line 470.
 (pdftex.def)             Requested size: 59.09563pt x 56.83719pt.
 
-<images/CPDE.png, id=269, 121.95563pt x 110.66344pt>
+<images/CPDE.png, id=338, 121.95563pt x 110.66344pt>
 File: images/CPDE.png Graphic file (type png)
  <use images/CPDE.png>
 Package pdftex.def Info: images/CPDE.png used on input line 474.
 (pdftex.def)             Requested size: 60.97765pt x 55.33157pt.
 
-<images/CPDO.png, id=270, 119.69719pt x 117.43875pt>
+<images/CPDO.png, id=339, 119.69719pt x 117.43875pt>
 File: images/CPDO.png Graphic file (type png)
  <use images/CPDO.png>
 Package pdftex.def Info: images/CPDO.png used on input line 478.
@@ -1351,16 +1359,16 @@ Overfull \hbox (1.2019pt too wide) in paragraph at lines 463--482
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[8 <./images/ALinear.png> <./images/ILinear.png> <./images/ELinear.png> <./imag
+[9 <./images/ALinear.png> <./images/ILinear.png> <./images/ELinear.png> <./imag
 es/O1Linear.png> <./images/O2Linear.png>]
-<images/4SetVennDiagram.jpg, id=287, 346.29375pt x 333.245pt>
+<images/4SetVennDiagram.jpg, id=356, 346.29375pt x 333.245pt>
 File: images/4SetVennDiagram.jpg Graphic file (type jpg)
 
 <use images/4SetVennDiagram.jpg>
 Package pdftex.def Info: images/4SetVennDiagram.jpg used on input line 497.
 (pdftex.def)             Requested size: 155.99762pt x 150.12157pt.
 
-<images/5SetVennDiagram.png, id=288, 547.3248pt x 370.986pt>
+<images/5SetVennDiagram.png, id=357, 547.3248pt x 370.986pt>
 File: images/5SetVennDiagram.png Graphic file (type png)
 
 <use images/5SetVennDiagram.png>
@@ -1370,8 +1378,8 @@ Package pdftex.def Info: images/5SetVennDiagram.png used on input line 503.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[9 <./images/CPDA.png> <./images/CPDI.png> <./images/CPDE.png> <./images/CPDO.p
-ng>] <images/LinearTemporalLogic.png, id=305, 513.92pt x 513.92pt>
+[10 <./images/CPDA.png> <./images/CPDI.png> <./images/CPDE.png> <./images/CPDO.
+png>] <images/LinearTemporalLogic.png, id=374, 513.92pt x 513.92pt>
 File: images/LinearTemporalLogic.png Graphic file (type png)
 
 <use images/LinearTemporalLogic.png>
@@ -1379,7 +1387,7 @@ Package pdftex.def Info: images/LinearTemporalLogic.png used on input line 529.
 
 (pdftex.def)             Requested size: 155.99762pt x 155.99648pt.
 
-<images/BranchingTemporalLogic.png, id=306, 513.92pt x 513.92pt>
+<images/BranchingTemporalLogic.png, id=375, 513.92pt x 513.92pt>
 File: images/BranchingTemporalLogic.png Graphic file (type png)
 
 <use images/BranchingTemporalLogic.png>
@@ -1390,83 +1398,134 @@ Package pdftex.def Info: images/BranchingTemporalLogic.png used on input line 5
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[10 <./images/4SetVennDiagram.jpg> <./images/5SetVennDiagram.png>] [11 <./image
-s/LinearTemporalLogic.png> <./images/BranchingTemporalLogic.png>] [12] [13]
-[14] <images/mymaths.png, id=401, 867.24pt x 487.8225pt>
+[11 <./images/4SetVennDiagram.jpg> <./images/5SetVennDiagram.png>] [12 <./image
+s/LinearTemporalLogic.png> <./images/BranchingTemporalLogic.png>] [13] [14]
+[15] <images/mymaths.png, id=470, 867.24pt x 487.8225pt>
 File: images/mymaths.png Graphic file (type png)
 
 <use images/mymaths.png>
 Package pdftex.def Info: images/mymaths.png used on input line 603.
 (pdftex.def)             Requested size: 390.0pt x 219.37666pt.
- [15] [16 <./images/mymaths.png>]
+ [16] [17 <./images/mymaths.png>]
 Chapter 2.
-[17
+[18
 
-] [18] [19]
+] [19] [20]
 
-Package natbib Warning: Citation `nielsen1994usability' on page 20 undefined on
+Package natbib Warning: Citation `nielsen1994usability' on page 21 undefined on
  input line 687.
 
-[20] [21]
+[21] [22]
 Chapter 3.
-LaTeX Font Info:    Try loading font information for T1+cmtt on input line 709.
+[23
+
+] [24]
+<images/EvenNumbersMultiple5Mockup.png, id=532, 1303.87125pt x 905.3825pt>
+File: images/EvenNumbersMultiple5Mockup.png Graphic file (type png)
+
+<use images/EvenNumbersMultiple5Mockup.png>
+Package pdftex.def Info: images/EvenNumbersMultiple5Mockup.png used on input li
+ne 730.
+(pdftex.def)             Requested size: 390.0pt x 270.80176pt.
+ [25 <./images/EvenNumbersMultiple5Mockup.png>] <images/NavigationBar.png, id=5
+39, 566.115pt x 333.245pt>
+File: images/NavigationBar.png Graphic file (type png)
+
+<use images/NavigationBar.png>
+Package pdftex.def Info: images/NavigationBar.png used on input line 741.
+(pdftex.def)             Requested size: 283.05681pt x 166.62209pt.
+ [26 <./images/NavigationBar.png>] [27]
+Chapter 4.
+LaTeX Font Info:    Try loading font information for T1+cmtt on input line 776.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\base\t1cmtt.fd"
 File: t1cmtt.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `T1/cmtt/bx/n' in size <10> not available
-(Font)              Font shape `T1/cmtt/m/n' tried instead on input line 710.
- [22
+(Font)              Font shape `T1/cmtt/m/n' tried instead on input line 777.
+ [28
 
-] [23] [24]
-[25] <images/REST.png, id=520, 809.0225pt x 181.67876pt>
+] [29] [30]
+[31] <images/REST.png, id=616, 809.0225pt x 181.67876pt>
 File: images/REST.png Graphic file (type png)
  <use images/REST.png>
-Package pdftex.def Info: images/REST.png used on input line 820.
+Package pdftex.def Info: images/REST.png used on input line 896.
 (pdftex.def)             Requested size: 390.0pt x 87.58182pt.
 
-[26 <./images/REST.png>]
+[32 <./images/REST.png>] [33]
 ("C:\Program Files\MiKTeX 2.9\tex\latex\listings\lstlang1.sty"
 File: lstlang1.sty 2015/06/04 1.6 listings language file
 )
 LaTeX Font Info:    Font shape `T1/cmtt/bx/n' in size <12> not available
-(Font)              Font shape `T1/cmtt/m/n' tried instead on input line 857.
- [27] [28]
-[29] <images/floodFillBad.png, id=573, 403.5075pt x 336.25626pt>
+(Font)              Font shape `T1/cmtt/m/n' tried instead on input line 933.
+ [34] [35]
+<images/floodFillBad.png, id=670, 403.5075pt x 336.25626pt>
 File: images/floodFillBad.png Graphic file (type png)
 
 <use images/floodFillBad.png>
-Package pdftex.def Info: images/floodFillBad.png used on input line 937.
+Package pdftex.def Info: images/floodFillBad.png used on input line 1013.
 (pdftex.def)             Requested size: 201.75325pt x 168.12772pt.
- [30 <./images/floodFillBad.png>]
-(Dissertation.bbl [31] [32
+ [36 <./images/floodFillBad.png>] [37]
+<images/GreenHighlightCorrectPlacement.png, id=697, 624.3325pt x 674.52pt>
+File: images/GreenHighlightCorrectPlacement.png Graphic file (type png)
 
-] [33])
+<use images/GreenHighlightCorrectPlacement.png>
+Package pdftex.def Info: images/GreenHighlightCorrectPlacement.png used on inpu
+t line 1067.
+(pdftex.def)             Requested size: 155.99762pt x 168.53696pt.
+
+<images/GreenHighlightIncorrectPlacement.png, id=698, 644.4075pt x 645.41125pt>
+File: images/GreenHighlightIncorrectPlacement.png Graphic file (type png)
+<use images/GreenHighlightIncorrectPlacement.png>
+Package pdftex.def Info: images/GreenHighlightIncorrectPlacement.png used on in
+put line 1072.
+(pdftex.def)             Requested size: 155.99762pt x 156.24121pt.
+
+<images/PremiseHighlight.png, id=699, 746.03719pt x 484.81125pt>
+File: images/PremiseHighlight.png Graphic file (type png)
+
+<use images/PremiseHighlight.png>
+Package pdftex.def Info: images/PremiseHighlight.png used on input line 1083.
+(pdftex.def)             Requested size: 373.01767pt x 242.40503pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[38 <./images/GreenHighlightCorrectPlacement.png> <./images/GreenHighlightIncor
+rectPlacement.png>] (Dissertation.bbl [39 <./images/PremiseHighlight.png>]
+[40
+
+] [41])
 
 Package natbib Warning: There were undefined citations.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 976.
-[34]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 976.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1093.
+[42]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1093.
  (Dissertation.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 976.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 976.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1093.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1093.
+
 Package rerunfilecheck Info: File `Dissertation.out' has not changed.
-(rerunfilecheck)             Checksum: 14DDCD5ABFFD08583463BA42634CDBA3;1698.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 976.
+(rerunfilecheck)             Checksum: C0748599CE88EC3E93E41C918F1080BC;2440.
+
+
+LaTeX Warning: There were multiply-defined labels.
+
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1093.
  )
 (\end occurred inside a group at level 1)
 
 ### simple group (level 1) entered at line 1061 ({)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 24384 strings out of 493334
- 451194 string characters out of 3139252
- 728022 words of memory out of 3000000
- 27370 multiletter control sequences out of 15000+200000
+ 24465 strings out of 493334
+ 452832 string characters out of 3139252
+ 726213 words of memory out of 3000000
+ 27407 multiletter control sequences out of 15000+200000
  23447 words of font info for 63 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 44i,18n,77p,10386b,9451s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 44i,18n,77p,10386b,9335s stack positions out of 5000i,500n,10000p,200000b,50000s
  <C:\Users\james\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknap
 pen\ec\dpi600\ecrm1095.pk> <C:\Users\james\AppData\Local\MiKTeX\2.9\fonts\pk\lj
 four\jknappen\ec\dpi600\ectt1200.pk> <C:\Users\james\AppData\Local\MiKTeX\2.9\f
@@ -1489,9 +1548,9 @@ C:\Users\james\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\eccc
 am Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files
 /MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msam10.pfb><C:/Program Files/Mi
 KTeX 2.9/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on Dissertation.pdf (35 pages, 1278097 bytes).
+Output written on Dissertation.pdf (43 pages, 1411246 bytes).
 PDF statistics:
- 1273 PDF objects out of 1440 (max. 8388607)
- 233 named destinations out of 1000 (max. 500000)
- 399 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1423 PDF objects out of 1440 (max. 8388607)
+ 272 named destinations out of 1000 (max. 500000)
+ 528 words of extra memory for PDF output out of 10000 (max. 10000000)
 

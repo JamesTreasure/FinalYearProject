@@ -694,6 +694,73 @@ It is important that the navigation bar does not change location throughout the 
 }\\
 The game must engage with the user and maintain their attention. It's important to create an environment where the user wants to be playing the game so that the intrinsic desire to play through the levels is strong. It is therefore important to balance the educational aspect with enjoyment and getting the difficulty of the levels correct as to not demotivate the user.
             \end{enumerate}
+            
+\chapter{Design}
+
+\section{HTML}
+HTML (Hyper Text Markup Language) describes the structure of web pages. The purpose of a web browser is to read and display HTML pages. HTML is only used to define the content of a web page and not how it should be formatted for the end user.
+An important part of HTML is the DOM (document object model). When a web page is opened the browser creates a document model of the page to which objects can be added, modified and removed.
+
+\section{CSS}
+CSS (Cascading Style Sheets) defines how HTML elements are displayed on a page, essentially allowing formatting to be added such as colour, fonts and layout. It allows web pages to react to different screen sizes and speeds up the development of projects as styles can be applied to groups of HTML elements. 
+
+\section{JavaScript}
+Initially the web was made up of sites built using HTML and CSS serving static content. As the web progressed there was a desire from developers to create more interactive websites and to respond to these interactions without needing to make relatively expensive calls to a server. This is where JavaScript, a client side programming language, came in. JavaScript allowed elements in the DOM to be interacted with dynamically resulting in a much richer web experience.
+
+\section{SVG}
+SVG (Scalable vector graphics) is a technology that was released in 2001. 
+It uses XML to define vector images that are retained by the browser. SVG is used with the <svg> tag and acts similarly to a <div> HTML tag. It acts on a higher level than Canvas, mentioned later, as objects are stored and remembered in the DOM. This means that all objects created are remembered by the DOM meaning they can be kept track of much easier and natively handle events such as mouse clicks.
+
+\section{Canvas}
+Canvas is a technology that was originally designed by Apple in 2004. It was later adopted as a web standard and included as part of HTML5, the current HTML standard introduced in 2014. By adding the <canvas> element to HTML it is possible to draw graphics using JavaScript. Canvas allows for the drawing of immediate mode graphics, meaning that once the pixels have been draw to the screen there is no record of these pixels maintained. In turn this means that any time something on the Canvas changes, everything needs to be redrawn. 
+
+\section{Canvas Libraries}
+There are a large number of Canvas libraries out there that aim to simplify many aspects of using Canvas. Fabric.js, Paper.js, Easel.js and Phaser were all looked at with regards to being used in this project. The main features of these libraries include adding support for clicking and dragging objects on the Canvas, simplifying the drawing shapes and assist in animation.
+The disadvantage of using these libraries is that they are more focussed on traditional games that rely heavily on animations and not the slower puzzle style that is being developed in this situation. They also abstract away the inner workings of Canvas and can add unnecessary complications to developing what is a reasonably simple game. For this reason it was decided to write the game with no libraries but to just use pure JavaScript.
+
+\section{Game Design}
+The overall design of the game is that of a puzzle style with the user working their way through multiple levels of increasing difficulty. The basic mechanics require the user to drag and drop items, usually numbers and shapes, into Venn Diagrams. Each level usually has a statement or fact that must be represented diagrammatically through the correct placement of objects in the venn diagrams.
+
+\section{User Interface}
+The goal of the user interface was to be as simple as it possibly could be whilst still allowing all the required functionality to be added. The approach taken with the design was to keep it as clean and minimalist as possible so not distract the player with unnecessary clutter. The relatively small amount of on-screen items also was a benefit when ensuring the game worked well on smaller resolution devices where screen real estate is at a premium. UI mock ups were created that could be shown to users for feedback and acted as a starting point once development began.
+
+\begin{figure}[h]
+  \centering
+  \begin{minipage}[b]{1\textwidth}
+    \includegraphics[width=\textwidth]{EvenNumbersMultiple5Mockup}
+    \caption{UI Mockup}
+  \end{minipage}
+\end{figure}
+\FloatBarrier
+
+\section{Control Bar}
+There are a number of controls that are needed to be present at all times apart from when the user is going through a tutorial. A control bar that remains consistent both in its placement and options available throughout the game will stop the user from feeling confused and allow them to feel confident when interacting with it. The icons chosen were hugely important as there would be no labelling of them so there functionality would have to be shown purely through their image. The icons chosen are based on Google's Material Design icons. It is hoped that through this choice the icons that have been chosen will be familiar to users and as such their function is obvious.
+
+\begin{figure}[h]
+\centering
+    \includegraphics[scale=0.5]{NavigationBar}
+    \caption{Control Bar}
+    \label{fig:floodFillBad}
+\end{figure}
+\FloatBarrier
+
+\section{Tutorial Design}
+There will be a number of tutorials throughout the game so it is important to have a clear and consistent structure to them throughout. This will let the user know when a tutorial is happening so they can pay close attention as it will mean new ideas are about to be introduced. The general structure to the templates involves instructions being displayed on the screen with arrows being drawn to point to the relevant area. There are also forwards and backwards buttons at either side of the screen for the user to navigate their way through the tutorials. 
+
+\section{Level Design}
+It was very important to design the levels with the correct level of difficulty. If the game started off too hard it would demotivate the player and stop them from wanting to play. Conversely, if the game was too easy and did not introduce harder concepts as the levels progressed their would be no challenge to keep the user interested.
+
+The general idea was to initially have very simple levels that introduced the mechanisms and controls for how the game worked. It also acted as a refreshed on some basic set theory ideas such as empty sets. 
+
+From there a level was added that discussed with a simple example how venn diagrams worked. This would most likely have been a refresher as opposed to new content for most users as venn diagrams are a commonly taught way to represent sets in UK schools.
+
+In response to early stage user testing a level was also added that taught the user about empty sets. This was initially an oversight and it was not until users tried to complete the game it became clear that the concept and understanding of empty sets was less prevalent than first thought.
+
+After this there are a number of syllogism levels. The first one is structured with a very tutorial heavy focus. Every step of process from dragging the words into the correct circles to completing the syllogism line by line is aided by the tutorial system guiding the user through the process. After the tutorial the syllogisms get progressively harder with particular syllogisms added, involving the word "some".
+
+As an addition to the game, once the syllogism levels are completed there are a few levels that cover set theory. They aim to teach the basics such as the union and intersection of sets as well as the distributive and associative laws. 
+
+
 
 \chapter{Implementation}
 
@@ -713,8 +780,9 @@ var GameState = function (movableTextArray, clickedInArray) {
 };
 \end{lstlisting}
 
+
 \section{Clicking on items}
-As previously mentioned, Canvas uses immediate mode graphics to draw pixels to the screen meaning that once they’ve been draw Canvas forgets about them. So this means that recognising when a user clicks on an object is not something that is natively supported by Canvas and must be implemented manually. 
+As previously mentioned, Canvas uses immediate mode graphics to draw pixels to the screen meaning that once they've been draw Canvas forgets about them. So this means that recognising when a user clicks on an object is not something that is natively supported by Canvas and must be implemented manually. 
 For example, take the level where there are 3 dogs that need to be dragged into the circle. First once the levels loads an array is created which holds the three images as well as properties such as the location of the image and its width and height.
 \begin{lstlisting}[language=json]
 [
@@ -790,23 +858,31 @@ window.requestAnimFrame = (function(){
 \end{table} 
 
 \section{Saving the game}
-The requirement states that it must be possible for the game to be saved. 
-Previously to store any data this would have been done through the use of cookies, which allows up to 4KB of data to be sent from the server via HTTP. These cookies have an expiration date and only allowed data to be stored as strings which can prove troublesome. HTML5 has introduced a new way in which data can be stored in the browser, localStorage. This new mechanism allows 5MB of data to be stored locally on the browser directly through the JavaScript meaning there is no need for interactions between the browser and the server, cutting down on bandwidth. This localStorage is then accessible through any JavaScript that is running on the same domain. It has been implemented here by saving the user’s progression after every level that is completed.
+One requirement was that it must be possible for the game to be saved so that the user could return at a later date and carry on playing from where they left off. There are a number of possible solutions for saving the state of a game in the browser.
+
+Previously to achieve this any storage of data would have to have been done through the use of cookies. A cookie is a way to store a small amount of data, up to a maximum of 4kb, in a text file on a user's computer which expire after a certain amount of time.
+
+With the introduction of HTML5 a new method for storing data in the browser was added, localStorage. This new mechanism allows 5MB of data to be stored locally on the browser and is then accessible through any JavaScript that is running on the same domain. It has been implemented here by saving the user's progression after every level that is completed.
+
+So in order to save the game an object is created that holds the current state of the game. This contains both the current level number and the name of the user. Every time a level is completed the object is updated with the new level number and that object is then saved. There is no need to remove the old object as the localStorage API silently overwrites the existing object if the key already exists.
+
 
 \begin{lstlisting}[language=JavaScript]
+\\save object
 localStorage.setItem('gameObject', JSON.stringify(game));
 \end{lstlisting}
-This persists both the current level number and the name of the user and is saved after every level. There is no need to remove the old object as the localStorage API silently overwrites the existing object if the key already exists.
-The next time the user returns to the webpage this can be object can be retrieved.
+
+The next time the user returns to the web page this saved object can be retrieved.
 \begin{lstlisting}[language=JavaScript]
 var retrievedObject = JSON.parse(localStorage.getItem('gameObject'));
 \end{lstlisting}
-The continue button, allowing the user to resume play from where they left off, is only presented to the user provided that a previous session has session has been successfully found in storage.
+
+The option to resume play is presented to the user through a 'continue' button on the home page. The continue button is initially hidden and by checking that the object retrieved from local storage is not null it can be made visible.
+
 \begin{lstlisting}[language=JavaScript]
 if (retrievedObject != null) {
    $("#continueButton").visible();
 }
-
 \end{lstlisting}
 
 \section{Saving data to database}
@@ -857,7 +933,7 @@ For example, in traditional SQL the query to get the 5 fastest play though times
 SELECT TOP 5 time_taken, moves_made, levels_skipped FROM leaderboard ORDER BY time_taken ASC;
 \end{lstlisting}
 
-In Sheetrock\.js a similar syntax is used:
+In Sheetrock.js a similar syntax is used:
 
 \begin{lstlisting}[language=JavaScript]
 $('#spreadsheet').sheetrock({
@@ -943,7 +1019,6 @@ This algorithm works well but unfortunately has a few problems. Figure \ref{fig:
 	A solution was found by using the library FloodFill2D which implements a more sophisticated floodfill algorithm to specifically deal with the anti-aliasing issue. This library allows a tolerance fade to be set that allows a soft edge to be created at boundaries. However, even that did not completely resolve the problem. In order to get a completely clean appearance to a floodfill more needed to be done. The solution was to create a new Canvas element that sat on top of the one currently being used to draw the circles. This new layer would be used to draw identical circles at a thicket width that would cover up the rough edges on the inner perimeter of the circle. This would not effect the floodfill as the algorithm only floodfills on one Canvas so has no knowledge of these new, wider diameter circles.
 
 \section{Recognising when level is complete}
-Recognise when level is complete
 The location of each text item is found:
 \begin{lstlisting}[language=JavaScript]
     var middle = whichCircleIsPremiseIn(level.movableTextArray[0]);
@@ -968,6 +1043,48 @@ The correct answer is for each level is stored in the JSON as so:
 A new object is created with the same structure as the correct syllogism object.
 Every time the user clicks in a segment of the circles, which fills it black, the location of the click is stored. This is array of user clicks is used in conjunction with the location of the text to set each location to true or false. From there the correctSyllogism object stored in the game level JSON can be compared with the new object that has been built up by checking the location of the terms to see if they are the same. If both objects are equal then it means that the level has been completed.
 
+\section{Visual Feedback}
+As previously mentioned one of the big advantages to using games to educate is that they can provide the user with immediate feedback. There are a number of ways that this have been achieved in this game. When placing items in the circle, the game checks to perform that the placement is valid and if so highlights the circle in green. This immediately shows the user that they have made a correct move.  This is achieved by checking each premise is inside the same circle as another premise.
+
+\begin{lstlisting}[language=JavaScript]
+function checkPremiseAllInTheirOwnCircle() {
+    var middle = whichCircleIsPremiseIn(level.movableTextArray[0]);
+    var predicate = whichCircleIsPremiseIn(level.movableTextArray[1]);
+    var subject = whichCircleIsPremiseIn(level.movableTextArray[2]);
+
+    if (middle == null || predicate == null || subject == null) {
+        return false
+    } else {
+        return !(middle.equals(predicate) || middle.equals(subject) || predicate.equals(subject));
+
+    }
+}
+\end{lstlisting}
+
+\begin{figure}[!h]
+  \centering
+  \begin{minipage}[b]{0.4\textwidth}
+    \includegraphics[width=\textwidth]{GreenHighlightCorrectPlacement}
+    \caption{Correct Placement}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[b]{0.4\textwidth}
+    \includegraphics[width=\textwidth]{GreenHighlightIncorrectPlacement}
+    \caption{Branching Temporal Logic}
+  \end{minipage}
+\end{figure}
+\FloatBarrier
+
+When completing the syllogism levels there are 3 statements that must be made true; the major premise, the minor premise and the conclusion. When the user makes any of these three true the words font colour of the sentence changes to green.
+
+
+\begin{figure}[h]
+\centering
+    \includegraphics[scale=0.5]{PremiseHighlight}
+    \caption{Premise Highlighting}
+    \label{fig:floodFillBad}
+\end{figure}
+\FloatBarrier
 
 
 \bibliographystyle{plainnat}

@@ -633,7 +633,7 @@
       "This is the associative law of sets. You will need to show that this is true.",
       "First show A by dragging in the letters and filling in the correct circle segments",
       "Now show (B ∪ C)",
-      "Now using what you've just done show (A ∪ (B ∪ C)"
+      "Now using what you've just done show A ∪ (B ∪ C)"
     ],
     "correctPlacement": [
       {
