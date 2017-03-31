@@ -1044,7 +1044,7 @@ A new object is created with the same structure as the correct syllogism object.
 Every time the user clicks in a segment of the circles, which fills it black, the location of the click is stored. This is array of user clicks is used in conjunction with the location of the text to set each location to true or false. From there the correctSyllogism object stored in the game level JSON can be compared with the new object that has been built up by checking the location of the terms to see if they are the same. If both objects are equal then it means that the level has been completed.
 
 \section{Visual Feedback}
-As previously mentioned one of the big advantages to using games to educate is that they can provide the user with immediate feedback. There are a number of ways that this have been achieved in this game. When placing items in the circle, the game checks to perform that the placement is valid and if so highlights the circle in green. This immediately shows the user that they have made a correct move.  This is achieved by checking each premise is inside the same circle as another premise.
+As previously mentioned one of the big advantages to using games to educate is that they can provide the user with immediate feedback. There are a number of ways that this have been achieved in this game. When placing items in the circle, the game checks to perform that the placement is valid and if so highlights the circle in green. This immediately shows the user that they have made a correct move.  This is achieved by checking each premise is inside the same circle as another premise. If the premise is in its own circle then a new, green circle is drawn over the top to indicate a valid placement and remains highlighted until the user releases their mouse.
 
 \begin{lstlisting}[language=JavaScript]
 function checkPremiseAllInTheirOwnCircle() {
@@ -1086,6 +1086,14 @@ When completing the syllogism levels there are 3 statements that must be made tr
 \end{figure}
 \FloatBarrier
 
+\section{Multiple Canvases}
+One of the biggest optimisations that can be made to the Canvas environment is to use multiple Canvas elements to act as layers. By doing it is possible to be selective about what items are cleared and redrawn in the animation loop. As mentioned in a previous section, when dragging items across the screen the Canvas is constantly being cleared and redrawn. Initially, when only one Canvas was in use this meant redrawing the circles every time. Drawing 3 circles is obviously negligible but when the ability to flood fill segments of the circle issues began to arise. Initially, when the user floodFilled an area, the X and Y coordinates were saved. Then, when in the animating loop this was cleared every time the coordinates that had been filled were passed to the flood fill algorithm to refill. So on every single run of the animation loop, around 60 per second, the flood fill was being carried out. This was a performance killer and almost instantly ground the game to a halt causing the game to become very laggy.
+
+Tests carried out by show that creating as many as 500 Canvas elements had no noticeable effect on the time it took requestAnimationFrame to complete an animation render cycle. It was therefore decided to separate the game into its individual parts and draw each one on its own Canvas. This resulted in a total of 7 Canvases being used to create the game.
+
+https://www.ibm.com/developerworks/library/wa-canvashtml5layering/
+
+http://mcgivery.com/how-many-stacked-canvas-elements-is-too-much/
 
 \bibliographystyle{plainnat}
 \bibliography{bibliography} 

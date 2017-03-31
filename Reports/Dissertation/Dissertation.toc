@@ -50,4 +50,5 @@
 \contentsline {section}{\numberline {4.8}Floodfill}{35}{section.4.8}
 \contentsline {section}{\numberline {4.9}Recognising when level is complete}{37}{section.4.9}
 \contentsline {section}{\numberline {4.10}Visual Feedback}{37}{section.4.10}
+\contentsline {section}{\numberline {4.11}Multiple Canvases}{39}{section.4.11}
 \contentsfinish 
