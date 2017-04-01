@@ -34,7 +34,7 @@ var circleOutlineCanvas;
 //Context 1 has undo, redo and refresh. Also has static text, circles.
 var context1;
 
-//Context 2 has movable text
+//Context 2 has movable textf
 var context2;
 
 //Context 3 has win screen
@@ -50,6 +50,8 @@ var tutorialCanvasContext;
 
 var circleOutlineContext;
 
+var staticTextContext;
+
 function setupCanvases() {
     layer1 = document.getElementById('layer1');
     layer2 = document.getElementById('layer2');
@@ -58,6 +60,7 @@ function setupCanvases() {
     circleBorder = document.getElementById('circleBorder');
     tutorialCanvas = document.getElementById('tutorialCanvas');
     circleOutlineCanvas = document.getElementById('circleOutlineCanvas');
+    staticTextCanvas = document.getElementById('staticTextCanvas');
     //Context 1 has undo, redo and refresh. Also has static text, circles.
     context1 = layer1.getContext('2d');
 
@@ -76,6 +79,7 @@ function setupCanvases() {
     tutorialCanvasContext = tutorialCanvas.getContext('2d');
 
     circleOutlineContext = circleOutlineCanvas.getContext('2d');
+    staticTextContext = staticTextCanvas.getContext('2d');
 }
 
 // window.addEventListener('resize', resizeCanvas, false);
@@ -138,8 +142,12 @@ function resizeCanvas() {
     circleOutlineCanvas.height = window.innerHeight;
     circleOutlineCanvas.width = window.innerWidth;
 
+    staticTextCanvas.height = window.innerHeight;
+    staticTextCanvas.width = window.innerWidth;
+
     canvasWidth = layer1.width;
     canvasHeight = layer1.height;
+
     font = getFont();
 }
 
@@ -325,6 +333,7 @@ function clearAllCanvases() {
     context3.clearRect(0, 0, canvasWidth, canvasHeight);
     circleBorderContext.clearRect(0, 0, canvasWidth, canvasHeight);
     tutorialCanvasContext.clearRect(0, 0, canvasWidth, canvasHeight);
+    staticTextContext.clearRect(0, 0, canvasWidth, canvasHeight);
 }
 
 function levelCompleteScreen() {
@@ -411,6 +420,7 @@ function undo() {
     if (levelComplete) {
         levelComplete = false;
         context1.clearRect(0, 0, canvasWidth, canvasHeight);
+        staticTextContext.clearRect(0, 0, canvasWidth, canvasHeight);
         drawCircles();
         context3.clearRect(0, 0, canvasWidth, canvasHeight);
     }
@@ -526,7 +536,7 @@ function redrawLayer1() {
 
 function clearStaticText() {
     for (var i = 0; i < level.staticTextArray.length; i++) {
-        context1.clearRect(level.staticTextArray[i].x, level.staticTextArray[i].y - level.staticTextArray[i].height,
+        staticTextContext.clearRect(level.staticTextArray[i].x, level.staticTextArray[i].y - level.staticTextArray[i].height,
             level.staticTextArray[i].width, level.staticTextArray[i].height + (canvasHeight / 40));
     }
 }

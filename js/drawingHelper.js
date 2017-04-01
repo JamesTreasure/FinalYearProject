@@ -1,20 +1,20 @@
 function drawStaticText() {
     if (levelComplete) {
-        context1.globalAlpha = fadedAlphaLevel;
+        staticTextContext.globalAlpha = fadedAlphaLevel;
     }
     for (var i = 0; i < level.staticTextArray.length; i++) {
         if (i === 0 && majorPremiseMet) {
-            context1.fillStyle = "#2ecc71";
+            staticTextContext.fillStyle = "#2ecc71";
         } else if (i === 1 && minorPremiseMet) {
-            context1.fillStyle = "#2ecc71";
+            staticTextContext.fillStyle = "#2ecc71";
         } else if (i === 2 && minorPremiseMet && majorPremiseMet) {
-            context1.fillStyle = "#2ecc71";
+            staticTextContext.fillStyle = "#2ecc71";
         } else {
-            context1.fillStyle = "#003300";
+            staticTextContext.fillStyle = "#003300";
         }
 
-        context1.font = font;
-        level.staticTextArray[i].width = (context1.measureText(level.staticTextArray[i].text).width);
+        staticTextContext.font = font;
+        level.staticTextArray[i].width = (staticTextContext.measureText(level.staticTextArray[i].text).width);
         level.staticTextArray[i].x = ((layer1.width / 2) - (level.staticTextArray[i].width / 2));
         level.staticTextArray[i].y = (i * (canvasHeight / 30) + (canvasHeight / 6.5));
         level.staticTextArray[i].height = currentFontSize;
@@ -27,9 +27,9 @@ function drawStaticText() {
             drawLineBetweenPremisesAndConclusion();
         }
 
-        context1.fillText(level.staticTextArray[i].text, level.staticTextArray[i].x, level.staticTextArray[i].y);
+        staticTextContext.fillText(level.staticTextArray[i].text, level.staticTextArray[i].x, level.staticTextArray[i].y);
     }
-    context1.globalAlpha = 1;
+    staticTextContext.globalAlpha = 1;
 }
 
 function drawLineBetweenPremisesAndConclusion() {
