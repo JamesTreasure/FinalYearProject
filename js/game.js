@@ -278,14 +278,14 @@ function main(levelNumber) {
         moveCounter = 0;
         level9endTime = performance.now();
         level10startTime = performance.now();
-        level10And11Tutorial(setTheoryLevel);
+        level10And11Tutorial(level.levelNumber);
     } else if (levelNumber === 11) {
         level10moves = moveCounter;
         moveCounter = 0;
         level10endTime = performance.now();
         level11startTime = performance.now();
         setTheoryLevel++;
-        level10And11Tutorial(11);
+        level10And11Tutorial(levelNumber);
     } else {
         tearDown();
         setupLevel(levelNumber);

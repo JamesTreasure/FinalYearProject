@@ -1254,7 +1254,7 @@ function level9Tutorial(levelNumber) {
     }
 }
 
-function level10And11Tutorial() {
+function level10And11Tutorial(levelNumber) {
     tutorialMode = true;
     $("#undoButton").invisible();
     $("#redoButton").invisible();
@@ -1266,7 +1266,7 @@ function level10And11Tutorial() {
         $("#tutorialBackwards").invisible();
         $("#tutorialForwards").visible();
         tearDown();
-        setupLevel(setTheoryLevel);
+        setupLevel(levelNumber);
         setupMovableText();
         setupCircles(level.circlesNeeded, canvasHeight);
         drawCircles();

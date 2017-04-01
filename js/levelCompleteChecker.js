@@ -276,7 +276,7 @@ function checkIfSetTheoryIsMet(levelObject, correctSyllogism) {
             }
             tutorialStage++;
             tutorialMode = true;
-            level10And11Tutorial();
+            level10And11Tutorial(level.levelNumber);
         } else {
             isTextMovable = true;
             setTheoryCurrentStage = 0;

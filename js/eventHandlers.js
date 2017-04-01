@@ -46,7 +46,7 @@ $("#tutorialForwards").click(function () {
     }
     if (level.type === "setTheory") {
         tutorialStage++;
-        level10And11Tutorial();
+        level10And11Tutorial(level.levelNumber);
         return;
     }
     if (level.type === "emptySet") {
