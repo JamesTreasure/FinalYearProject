@@ -85,7 +85,7 @@ function level1Tutorial(levelNumber) {
         drawCurvedArrow(startX, startY, endpointX, endpointY, midpointX, midpointY);
         dogs = true;
         tutorialMode = false;
-        setupMovableImageArray();
+        setupMovableImageArray(level.movableTextArray, circlesArray, canvasWidth, canvasHeight);
         loadImages();
         drawDogs();
         isImageMovable = true;

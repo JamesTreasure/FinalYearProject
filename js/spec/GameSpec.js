@@ -51,39 +51,61 @@ describe("Given x and y mouse coordinates", function () {
     });
 });
 
-//levelCompleteCheckerTests
-
-describe("Given x and y mouse coordinates", function () {
-    it("imageClickedOn returns which image was clicked on", function () {
+describe("Given image array and circle array", function () {
+    it("sets up images", function () {
 
         var x = 714;
         var y = 702;
+        var canvasWidth = 1920;
+        var canvasHeight = 935;
 
-        var movableImageArray = [
+        var circlesArray = [
+            {
+                "x": 960,
+                "y": 467.5,
+                "radius": 155.83333333333334
+            }
+        ]
+
+
+        var movableImageArrayBefore =  [
+            {
+                "id": "dog1"
+            },
+            {
+                "id": "dog2"
+            },
+            {
+                "id": "dog3"
+            }
+        ]
+
+        var movableImageArrayAfter = [
             {
                 "id": "dog1",
-                "width": 41.11111111111111,
-                "height": 41.11111111111111,
-                "y": 678.8990825688073,
-                "x": 219.44444444444446
+                "width": 51.94444444444445,
+                "height": 51.94444444444445,
+                "y": 857.7981651376147,
+                "x": 294.02777777777777
             },
             {
                 "id": "dog2",
-                "width": 41.11111111111111,
-                "height": 41.11111111111111,
-                "y": 678.8990825688073,
-                "x": 699.4444444444445
+                "width": 51.94444444444445,
+                "height": 51.94444444444445,
+                "y": 857.7981651376147,
+                "x": 934.0277777777778
             },
             {
                 "id": "dog3",
-                "width": 41.11111111111111,
-                "height": 41.11111111111111,
-                "y": 678.8990825688073,
-                "x": 1179.4444444444443
+                "width": 51.94444444444445,
+                "height": 51.94444444444445,
+                "y": 857.7981651376147,
+                "x": 1574.0277777777778
             }
         ];
 
-        expect(imageClickedOn(x,y,movableImageArray)).toEqual(1);
+        var actual = setupMovableImageArray(movableImageArrayBefore, circlesArray, canvasWidth, canvasHeight)
+
+        expect(movableImageArrayAfter).toEqual(actual);
     });
 });
-

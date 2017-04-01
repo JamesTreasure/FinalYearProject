@@ -218,73 +218,93 @@ function main(levelNumber) {
     context1.fillRect(0, 0, layer1.width, layer1.height);
     $('#levelSelect').text('Level ' + levelNumber);
     if (levelNumber == 1) {
-        level1startTime = performance.now();
+        if(level1startTime === undefined){
+            level1startTime = performance.now();
+        }
         level1Tutorial(1);
     } else if (levelNumber == 2) {
-        level1moves = moveCounter;
-        moveCounter = 0;
-        level1endTime = performance.now();
-        level2startTime = performance.now();
+        if(level1moves === undefined || level1endTime === undefined || level2startTime === undefined) {
+            level1moves = moveCounter;
+            moveCounter = 0;
+            level1endTime = performance.now();
+            level2startTime = performance.now();
+        }
         level2Tutorial(levelNumber);
     } else if (levelNumber == 3) {
-        level2moves = moveCounter;
-        moveCounter = 0;
-        level2endTime = performance.now();
-        level3startTime = performance.now();
+        if(level2moves === undefined || level2endTime === undefined || level4startTime === undefined) {
+            level2moves = moveCounter;
+            moveCounter = 0;
+            level2endTime = performance.now();
+            level3startTime = performance.now();
+        }
         level3Tutorial(levelNumber);
     } else if (levelNumber == 4) {
-        level3moves = moveCounter;
-        moveCounter = 0;
-        level3endTime = performance.now();
-        level4startTime = performance.now();
+        if(level3moves === undefined || level3endTime === undefined || level4startTime === undefined) {
+            level3moves = moveCounter;
+            moveCounter = 0;
+            level3endTime = performance.now();
+            level4startTime = performance.now();
+        }
         level4Tutorial(levelNumber);
     } else if (levelNumber == 5) {
-        level4moves = moveCounter;
-        moveCounter = 0;
-        level4endTime = performance.now();
-        level5startTime = performance.now();
+        if(level4moves === undefined || level4endTime === undefined || level5startTime === undefined) {
+            level4moves = moveCounter;
+            moveCounter = 0;
+            level4endTime = performance.now();
+            level5startTime = performance.now();
+        }
         level5Tutorial(levelNumber);
     } else if (levelNumber == 6) {
-        level5moves = moveCounter;
-        moveCounter = 0;
-        level5endTime = performance.now()
-        level6startTime = performance.now();
+        if(level5moves === undefined || level5endTime === undefined || level6startTime === undefined) {
+            level5moves = moveCounter;
+            moveCounter = 0;
+            level5endTime = performance.now()
+            level6startTime = performance.now();
+        }
         level6Tutorial(levelNumber);
     } else if (levelNumber === 7) {
-        level6moves = moveCounter;
-        moveCounter = 0;
-        level6endTime = performance.now();
-        level7startTime = performance.now();
+        if(level6moves === undefined || level6endTime === undefined || level7startTime === undefined){
+            level6moves = moveCounter;
+            moveCounter = 0;
+            level6endTime = performance.now();
+            level7startTime = performance.now();
+        }
         level7Tutorial(levelNumber);
     }else if (levelNumber === 8){
-        level7moves = moveCounter;
-        moveCounter = 0;
-        level7endTime = performance.now();
-        level8startTime = performance.now();
-
+        if(level7moves === undefined || level7endTime === undefined || level8startTime === undefined) {
+            level7moves = moveCounter;
+            moveCounter = 0;
+            level7endTime = performance.now();
+            level8startTime = performance.now();
+        }
         setupMovableText();
         drawStaticText();
         drawMovableText();
         setupCircles(level.circlesNeeded, canvasHeight);
         drawCircles();
     } else if (levelNumber === 9) {
-        level8moves = moveCounter;
-        moveCounter = 0;
-        level8endTime = performance.now();
-        level9startTime = performance.now();
+        if(level8moves === undefined || level8endTime === undefined || level9startTime === undefined) {
+            level8moves = moveCounter;
+            moveCounter = 0;
+            level8endTime = performance.now();
+            level9startTime = performance.now();
+        }
         level9Tutorial(levelNumber);
     } else if (levelNumber === 10) {
-        level9moves = moveCounter;
-        moveCounter = 0;
-        level9endTime = performance.now();
-        level10startTime = performance.now();
+        if(level9moves === undefined || level9endTime === undefined || level10startTime === undefined) {
+            level9moves = moveCounter;
+            moveCounter = 0;
+            level9endTime = performance.now();
+            level10startTime = performance.now();
+        }
         level10And11Tutorial(level.levelNumber);
     } else if (levelNumber === 11) {
-        level10moves = moveCounter;
-        moveCounter = 0;
-        level10endTime = performance.now();
-        level11startTime = performance.now();
-        setTheoryLevel++;
+        if(level10moves === undefined || level10endTime === undefined || level9startTime === undefined) {
+            level10moves = moveCounter;
+            moveCounter = 0;
+            level10endTime = performance.now();
+            level11startTime = performance.now();
+        }
         level10And11Tutorial(levelNumber);
     } else {
         tearDown();

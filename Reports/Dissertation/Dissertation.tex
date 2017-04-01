@@ -1091,6 +1091,14 @@ One of the biggest optimisations that can be made to the Canvas environment is t
 
 Tests carried out by show that creating as many as 500 Canvas elements had no noticeable effect on the time it took requestAnimationFrame to complete an animation render cycle. It was therefore decided to separate the game into its individual parts and draw each one on its own Canvas. This resulted in a total of 7 Canvases being used to create the game.
 
+\begin{figure}[h]
+\centering
+    \includegraphics[scale=0.5]{canvasLayers}
+    \caption{Canvas Layering}
+    \label{fig:canvasLayering}
+\end{figure}
+\FloatBarrier
+
 https://www.ibm.com/developerworks/library/wa-canvashtml5layering/
 
 http://mcgivery.com/how-many-stacked-canvas-elements-is-too-much/

@@ -12,18 +12,20 @@ function setupMovableText() {
     }
 }
 
-function setupMovableImageArray() {
-    for (var i = 0; i < level.movableTextArray.length; i++) {
-        level.movableTextArray[i].width = circlesArray[0].radius / 3;
-        level.movableTextArray[i].height = circlesArray[0].radius / 3;
+function setupMovableImageArray(movableImageArray, circlesArray, canvasWidth, canvasHeight) {
+    for (var i = 0; i < movableImageArray.length; i++) {
+        movableImageArray[i].width = circlesArray[0].radius / 3;
+        movableImageArray[i].height = circlesArray[0].radius / 3;
 
-        var regions = canvasWidth / level.movableTextArray.length;
+        var regions = canvasWidth / movableImageArray.length;
         var middleOfRegion = regions / 2;
-        var middleOffSet = level.movableTextArray[i].width / 2;
+        var middleOffSet = movableImageArray[i].width / 2;
 
-        level.movableTextArray[i].y = (canvasHeight / 1.09);
-        level.movableTextArray[i].x = ((i + 1) * regions) - middleOfRegion - middleOffSet;
+        movableImageArray[i].y = (canvasHeight / 1.09);
+        movableImageArray[i].x = ((i + 1) * regions) - middleOfRegion - middleOffSet;
     }
+
+    return movableImageArray;
 
 }
 
