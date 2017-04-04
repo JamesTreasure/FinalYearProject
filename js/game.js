@@ -410,7 +410,7 @@ function gameCompleteScreen() {
     var textWidth = (context3.measureText(text).width);
     context3.fillText(text, ((canvasWidth / 2) - (textWidth / 2)), canvasHeight / 2);
     endTime = performance.now();
-    level10moves = moveCounter;
+    level11moves = moveCounter;
     moveCounter = 0;
     postDataToGoogleSheets("James", (endTime - startTime) / 1000);
     setupLeaderboard();
