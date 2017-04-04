@@ -420,6 +420,7 @@ function gameCompleteScreen() {
 
 function setupLeaderboard(){
     $(".wrapper").hide();
+    console.log("leaderboard");
 
     var fileref = document.createElement("link");
     fileref.rel = "stylesheet";
