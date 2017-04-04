@@ -414,8 +414,6 @@ function gameCompleteScreen() {
     moveCounter = 0;
     postDataToGoogleSheets("James", (endTime - startTime) / 1000);
     setupLeaderboard();
-
-
 }
 
 function setupLeaderboard(){
