@@ -431,7 +431,7 @@ function setupLeaderboard(){
 
     $('#spreadsheet').sheetrock({
         url: mySpreadsheet,
-        query: "select B,Y,AB order by AB asc",
+        query: "select B,Y,AD order by AB asc",
         labels: ['Name', 'Levels Skipped', 'Time'],
         fetchSize: 10
     });
