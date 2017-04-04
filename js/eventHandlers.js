@@ -108,7 +108,11 @@ $("#redoButton").click(function () {
 $("#refreshButton").click(function () {
     tearDown();
     tutorialStage = 0;
-    main(level.levelNumber);
+    if(level.levelNumber === 10){
+        main(9)
+    }else{
+        main(level.levelNumber);
+    }
     $("#nextLevelButton").invisible();
 });
 

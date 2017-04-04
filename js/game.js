@@ -210,7 +210,7 @@ function postDataToGoogleSheets(name, time) {
         + ((level8endTime - level8startTime) / 1000) + ((level9endTime - level9startTime) / 1000) + ((level10endTime - level10startTime) / 1000) + ((level11endTime - level11startTime) / 1000)
     }
 
-    postData(myData);
+    // postData(myData);
 }
 
 function main(levelNumber) {
@@ -298,6 +298,7 @@ function main(levelNumber) {
             level9endTime = performance.now();
             level10startTime = performance.now();
         }
+        setTheoryCurrentStage = 0;
         level10And11Tutorial(level.levelNumber);
     } else if (levelNumber === 11) {
         if(level10moves === undefined || level10endTime === undefined || level9startTime === undefined) {
@@ -306,6 +307,7 @@ function main(levelNumber) {
             level10endTime = performance.now();
             level11startTime = performance.now();
         }
+        setTheoryCurrentStage = 0;
         level10And11Tutorial(levelNumber);
     } else {
         tearDown();
