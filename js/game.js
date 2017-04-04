@@ -433,7 +433,7 @@ function setupLeaderboard(){
         url: mySpreadsheet,
         query: "select B,Y,AB order by AB asc",
         labels: ['Name', 'Levels Skipped', 'Time'],
-        fetchSize: 5
+        fetchSize: 10
     });
 
 }
