@@ -29,7 +29,7 @@ function setupMovableImageArray(movableImageArray, circlesArray, canvasWidth, ca
 
 }
 
-function setupCircles(circlesNeeded, canvasHeight) {
+function setupCircles(circlesNeeded, canvasHeight, canvasWidth, circlesArray) {
     if (circlesNeeded == 1) {
         var maxHeight = canvasHeight / 3;
         var radius = maxHeight / 2;
@@ -58,4 +58,7 @@ function setupCircles(circlesNeeded, canvasHeight) {
         circlesArray.push(new Circle((canvasWidth / 2) - (overlap), (canvasHeight / 2), radius));
         circlesArray.push(new Circle((canvasWidth / 2) + (overlap), (canvasHeight / 2), radius));
     }
+
+    return circlesArray;
+
 }

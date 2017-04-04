@@ -1,3 +1,5 @@
+//helper tests
+
 describe("Array contains another array", function () {
     it("returns true", function () {
 
@@ -13,9 +15,32 @@ describe("Array contains another array", function () {
 
         var array2 = [1];
 
-        expect(arrayContainsAnotherArray(array1,array2)).toEqual(true);
+        expect(arrayContainsAnotherArray(array1, array2)).toEqual(true);
     });
 });
+
+describe("When the clone function is given an object", function () {
+    it("creates a duplicate object", function () {
+
+        var testObject = [
+            {
+                "circleClickedIn": [
+                    1
+                ],
+                "x": 619,
+                "y": 420
+            }
+        ];
+
+        var cloned = clone(testObject);
+
+        expect(testObject).not.toBe(cloned);
+    });
+});
+
+//drawingHelpers are hard to test because I can't test if something is drawn on Canvas
+
+//setupDrawableObjects tests
 
 describe("Given x and y mouse coordinates", function () {
     it("imageClickedOn returns which image was clicked on", function () {
@@ -47,7 +72,7 @@ describe("Given x and y mouse coordinates", function () {
             }
         ];
 
-        expect(imageClickedOn(x,y,movableImageArray)).toEqual(1);
+        expect(imageClickedOn(x, y, movableImageArray)).toEqual(1);
     });
 });
 
@@ -68,7 +93,7 @@ describe("Given image array and circle array", function () {
         ]
 
 
-        var movableImageArrayBefore =  [
+        var movableImageArrayBefore = [
             {
                 "id": "dog1"
             },
@@ -107,5 +132,24 @@ describe("Given image array and circle array", function () {
         var actual = setupMovableImageArray(movableImageArrayBefore, circlesArray, canvasWidth, canvasHeight)
 
         expect(movableImageArrayAfter).toEqual(actual);
+    });
+});
+
+describe("Given a number of circles to setup", function () {
+    it("sets up that many circles images", function () {
+
+        var x = 714;
+        var y = 702;
+        var canvasWidth = 1920;
+        var canvasHeight = 935;
+
+        var circlesArray = [];
+
+        var expected =[];
+        expected.push(new Circle(960, 467.5, 155.83333333333334));
+
+        var actual = setupCircles(1, canvasHeight, canvasWidth, circlesArray);
+
+        expect(_.isEqual(actual, expected)).toEqual(true);
     });
 });

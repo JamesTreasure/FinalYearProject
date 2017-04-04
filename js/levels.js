@@ -12,7 +12,7 @@ function level1Tutorial(levelNumber) {
         tearDown();
         setupLevel(levelNumber);
         document.fonts.load('18pt "comicNeue"').then(renderText);
-        setupCircles(level.circlesNeeded, canvasHeight);
+        setupCircles(level.circlesNeeded, canvasHeight, canvasWidth, circlesArray);
         drawCircles();
     }
 
@@ -20,7 +20,7 @@ function level1Tutorial(levelNumber) {
         $("#tutorialBackwards").visible();
         $("#tutorialForwards").visible();
         tearDown();
-        setupCircles(level.circlesNeeded, canvasHeight);
+        setupCircles(level.circlesNeeded, canvasHeight, canvasWidth, circlesArray);
         drawCircles();
         drawStaticTextForOneCircle(level.staticTextArray);
 
@@ -52,7 +52,7 @@ function level1Tutorial(levelNumber) {
         $("#tutorialBackwards").visible();
         $("#tutorialForwards").invisible();
         tearDown();
-        setupCircles(level.circlesNeeded, canvasHeight);
+        setupCircles(level.circlesNeeded, canvasHeight, canvasWidth, circlesArray);
         drawCircles();
         drawStaticTextForOneCircle(level.staticTextArray);
 
@@ -115,7 +115,7 @@ function level2Tutorial(levelNumber) {
         tearDown();
         setupLevel(levelNumber);
         setupMovableText();
-        setupCircles(level.circlesNeeded, canvasHeight);
+        setupCircles(level.circlesNeeded, canvasHeight, canvasWidth, circlesArray);
         drawCircles();
 
 
@@ -274,7 +274,7 @@ function level3Tutorial(levelNumber) {
         $("#tutorialForwards").visible();
         setupLevel(levelNumber);
         tearDown();
-        setupCircles(level.circlesNeeded, canvasHeight);
+        setupCircles(level.circlesNeeded, canvasHeight, canvasWidth, circlesArray);
         drawCircles();
 
         tutorialCanvasContext.clearRect(0, 0, canvasWidth, canvasHeight);
@@ -301,7 +301,7 @@ function level3Tutorial(levelNumber) {
         $("#tutorialBackwards").visible();
         $("#tutorialForwards").visible();
         tearDown();
-        setupCircles(level.circlesNeeded, canvasHeight);
+        setupCircles(level.circlesNeeded, canvasHeight, canvasWidth, circlesArray);
         drawCircles();
 
         tutorialCanvasContext.clearRect(0, 0, canvasWidth, canvasHeight);
@@ -335,7 +335,7 @@ function level3Tutorial(levelNumber) {
         $("#tutorialBackwards").visible();
         $("#tutorialForwards").visible();
         tearDown();
-        setupCircles(level.circlesNeeded, canvasHeight);
+        setupCircles(level.circlesNeeded, canvasHeight, canvasWidth, circlesArray);
         drawCircles();
 
         tutorialCanvasContext.clearRect(0, 0, canvasWidth, canvasHeight);
@@ -408,7 +408,7 @@ function level3Tutorial(levelNumber) {
         $("#tutorialBackwards").visible();
         $("#tutorialForwards").visible();
         tearDown();
-        setupCircles(level.circlesNeeded, canvasHeight);
+        setupCircles(level.circlesNeeded, canvasHeight, canvasWidth, circlesArray);
         drawCircles();
 
         tutorialCanvasContext.clearRect(0, 0, canvasWidth, canvasHeight);
@@ -479,7 +479,7 @@ function level3Tutorial(levelNumber) {
         $("#tutorialBackwards").visible();
         $("#tutorialForwards").visible();
         tearDown();
-        setupCircles(level.circlesNeeded, canvasHeight);
+        setupCircles(level.circlesNeeded, canvasHeight, canvasWidth, circlesArray);
         drawCircles();
         // setupLevel(levelNumber);
         drawStaticTextForVennDiagram(level.staticTextArray);
@@ -534,7 +534,7 @@ function level4Tutorial(levelNumber) {
         tearDown();
         setupLevel(levelNumber);
         setupMovableText();
-        setupCircles(level.circlesNeeded, canvasHeight);
+        setupCircles(level.circlesNeeded, canvasHeight, canvasWidth, circlesArray);
         drawCircles();
         context1.fillStyle = "white";
         floodFill.fill(Math.round(canvasWidth / 2), Math.round(canvasHeight / 2), 100, context1, null, null, 90);
@@ -753,7 +753,7 @@ function level5Tutorial(levelNumber) {
         $("#tutorialForwards").visible();
         tearDown();
         setupLevel(levelNumber);
-        setupCircles(level.circlesNeeded, canvasHeight);
+        setupCircles(level.circlesNeeded, canvasHeight, canvasWidth, circlesArray);
         drawStaticText();
         tutorialCanvasContext.clearRect(0, 0, canvasWidth, canvasHeight);
         tutorialCanvasContext.font = font;
@@ -780,7 +780,7 @@ function level5Tutorial(levelNumber) {
     if (tutorialStage === 1) {
         $("#tutorialForwards").visible();
         tearDown();
-        setupCircles(level.circlesNeeded, canvasHeight);
+        setupCircles(level.circlesNeeded, canvasHeight, canvasWidth, circlesArray);
         drawStaticText();
         tutorialCanvasContext.clearRect(0, 0, canvasWidth, canvasHeight);
         tutorialCanvasContext.font = font;
@@ -808,7 +808,7 @@ function level5Tutorial(levelNumber) {
         $("#tutorialBackwards").invisible();
         $("#tutorialForwards").visible();
         tearDown();
-        setupCircles(level.circlesNeeded, canvasHeight);
+        setupCircles(level.circlesNeeded, canvasHeight, canvasWidth, circlesArray);
         drawStaticText();
         tutorialCanvasContext.clearRect(0, 0, canvasWidth, canvasHeight);
         tutorialCanvasContext.font = font;
@@ -837,7 +837,7 @@ function level5Tutorial(levelNumber) {
         $("#tutorialForwards").visible();
         tearDown();
         setupMovableText();
-        setupCircles(level.circlesNeeded, canvasHeight);
+        setupCircles(level.circlesNeeded, canvasHeight, canvasWidth, circlesArray);
         drawCircles();
         drawStaticText();
         tutorialCanvasContext.clearRect(0, 0, canvasWidth, canvasHeight);
@@ -852,7 +852,7 @@ function level5Tutorial(levelNumber) {
     if (tutorialStage === 4) {
         tearDown();
         setupMovableText();
-        setupCircles(level.circlesNeeded, canvasHeight);
+        setupCircles(level.circlesNeeded, canvasHeight, canvasWidth, circlesArray);
         drawCircles();
         drawStaticText();
         tutorialCanvasContext.clearRect(0, 0, canvasWidth, canvasHeight);
@@ -883,7 +883,7 @@ function level5Tutorial(levelNumber) {
     if (tutorialStage === 5) {
         tearDown();
         setupMovableText();
-        setupCircles(level.circlesNeeded, canvasHeight);
+        setupCircles(level.circlesNeeded, canvasHeight, canvasWidth, circlesArray);
         drawCircles();
         drawStaticText();
         drawMovableText();
@@ -1026,7 +1026,7 @@ function level6Tutorial(levelNumber) {
     if (tutorialStage === 0) {
         tearDown();
         setupLevel(levelNumber);
-        setupCircles(level.circlesNeeded, canvasHeight);
+        setupCircles(level.circlesNeeded, canvasHeight, canvasWidth, circlesArray);
         drawStaticText();
         drawCircles();
         setupMovableText();
@@ -1072,7 +1072,7 @@ function level7Tutorial(levelNumber) {
         setupLevel(levelNumber);
         setupMovableText();
         drawStaticText();
-        setupCircles(level.circlesNeeded, canvasHeight);
+        setupCircles(level.circlesNeeded, canvasHeight, canvasWidth, circlesArray);
         drawCircles();
 
         tutorialCanvasContext.clearRect(0, 0, canvasWidth, canvasHeight);
@@ -1097,7 +1097,7 @@ function level7Tutorial(levelNumber) {
         tearDown();
         setupMovableText();
         drawStaticText();
-        setupCircles(level.circlesNeeded, canvasHeight);
+        setupCircles(level.circlesNeeded, canvasHeight, canvasWidth, circlesArray);
         drawCircles();
         drawMovableText();
         drawStaticText();
@@ -1145,7 +1145,7 @@ function level9Tutorial(levelNumber) {
         tearDown();
         setupLevel(levelNumber);
         setupMovableText();
-        setupCircles(level.circlesNeeded, canvasHeight);
+        setupCircles(level.circlesNeeded, canvasHeight, canvasWidth, circlesArray);
         drawCircles();
         drawStaticTextForVennDiagram(level.staticTextArray);
 
@@ -1174,7 +1174,7 @@ function level9Tutorial(levelNumber) {
         $("#tutorialBackwards").visible();
         tearDown();
         setupMovableText();
-        setupCircles(level.circlesNeeded, canvasHeight);
+        setupCircles(level.circlesNeeded, canvasHeight, canvasWidth, circlesArray);
         drawCircles();
         drawStaticTextForVennDiagram(level.staticTextArray);
 
@@ -1217,7 +1217,7 @@ function level9Tutorial(levelNumber) {
         $("#tutorialBackwards").visible();
         tearDown();
         setupMovableText();
-        setupCircles(level.circlesNeeded, canvasHeight);
+        setupCircles(level.circlesNeeded, canvasHeight, canvasWidth, circlesArray);
         drawCircles();
         drawStaticTextForVennDiagram(level.staticTextArray);
 
@@ -1268,7 +1268,7 @@ function level10And11Tutorial(levelNumber) {
         tearDown();
         setupLevel(levelNumber);
         setupMovableText();
-        setupCircles(level.circlesNeeded, canvasHeight);
+        setupCircles(level.circlesNeeded, canvasHeight, canvasWidth, circlesArray);
         drawCircles();
         drawStaticText();
 
@@ -1306,7 +1306,7 @@ function level10And11Tutorial(levelNumber) {
         tearDown();
         setupMovableText();
         drawMovableText();
-        setupCircles(level.circlesNeeded, canvasHeight);
+        setupCircles(level.circlesNeeded, canvasHeight, canvasWidth, circlesArray);
         drawCircles();
         drawStaticText();
         tutorialCanvasContext.clearRect(0, 0, canvasWidth, canvasHeight);

@@ -281,7 +281,7 @@ function main(levelNumber) {
         setupMovableText();
         drawStaticText();
         drawMovableText();
-        setupCircles(level.circlesNeeded, canvasHeight);
+        setupCircles(level.circlesNeeded, canvasHeight, canvasWidth, circlesArray);
         drawCircles();
     } else if (levelNumber === 9) {
         if(level8moves === undefined || level8endTime === undefined || level9startTime === undefined) {
@@ -312,7 +312,7 @@ function main(levelNumber) {
         setupLevel(levelNumber);
         if (level.type === "venn") {
             setupMovableText();
-            setupCircles(level.circlesNeeded, canvasHeight);
+            setupCircles(level.circlesNeeded, canvasHeight, canvasWidth, circlesArray);
             drawCircles();
             drawMovableText();
             drawStaticTextForVennDiagram(level.staticTextArray);
@@ -321,14 +321,14 @@ function main(levelNumber) {
             setupMovableText();
             drawStaticText();
             drawMovableText();
-            setupCircles(level.circlesNeeded, canvasHeight);
+            setupCircles(level.circlesNeeded, canvasHeight, canvasWidth, circlesArray);
             drawCircles();
         }
         if (level.type === "setTheory") {
             setupMovableText();
             drawStaticText();
             drawMovableText();
-            setupCircles(level.circlesNeeded, canvasHeight);
+            setupCircles(level.circlesNeeded, canvasHeight, canvasWidth, circlesArray);
             drawCircles();
         }
     }
@@ -430,8 +430,8 @@ function setupLeaderboard(){
 
     $('#spreadsheet').sheetrock({
         url: mySpreadsheet,
-        query: "select B,Y,Z order by Z asc",
-        labels: ['Name', 'Levels Skipped', 'Total Time Taken'],
+        query: "select B,Y,AB order by AB asc",
+        labels: ['Name', 'Levels Skipped', 'Time'],
         fetchSize: 5
     });
 }

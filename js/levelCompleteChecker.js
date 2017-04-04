@@ -1,5 +1,4 @@
 function checkIfLevel1IsCorrect() {
-    console.log("Checking...");
     for (var i = 0; i < level.movableTextArray.length; i++) {
         var inCircle = whichCircleIsPremiseIn(level.movableTextArray[i]);
         if (inCircle === null) {
