@@ -434,6 +434,7 @@ function setupLeaderboard(){
         labels: ['Name', 'Levels Skipped', 'Time'],
         fetchSize: 5
     });
+
 }
 
 function undo() {
