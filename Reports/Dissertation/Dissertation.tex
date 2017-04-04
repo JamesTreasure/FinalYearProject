@@ -606,6 +606,25 @@ As Figure 2.1 shows, MyMaths makes use of fast feedback to provide the player wi
 \end{figure}
 \FloatBarrier
 
+\subsubsection{BBC Bitesize}
+BBC Bitesize is a website maintained by the BBC that provides resources for children in the United Kingdom on a variety of school subjects. Bitesize provides educational information on many subjects, but Maths is one of their main focuses with both static content and a number of educational games. As such Bitesize has a huge number of games available, with 11 KS1 games, 25 KS2 games and 4 KS3 games.
+
+With such a large number of games it allows each game to be very focussed on the topic it is teaching. This is also a disadvantage as for simpler games there is only so much that can be done within a certain topic before the user will start to get bored. As a further criticism the vast majority of games remain at the same difficulty level throughout failing to increase the challenge as the player becomes more proficient. This lack of challenge will lead to players becoming bored and not want to continue playing. 
+
+From a technical perspective all of BBC Bitesize games are built using Adobe Flash. This is a serious accessibility problem with major browsers phasing out support for this ageing technology. On top of this Google's Android operating system and Apple's iOS do not support Adobe Flash at all so with most of these games targeted at school children between the ages of 4-14 and with the popularity of tablets and smartphones it possible that they are severely limiting their accessibility.
+
+\begin{figure}[!tbp]
+  \centering
+  \begin{minipage}[b]{1\textwidth}
+    \includegraphics[width=\textwidth]{BBCBitesize}
+    \caption{Addition and Subtraction game on BBC Bitesize}
+  \end{minipage}
+\end{figure}
+\FloatBarrier
+
+From the above examples a trend can be seen that shows that whilst there are a extensive number of educational maths games available on the internet they are aimed almost exclusively at a younger audience. This is perhaps because of the connotations that games are predominantly for children but as discussed previously the benefits of using games for education apply to all ages. This means that most games are based on rather simple, concrete mathematical ideas. There are very few games out there that tackle harder, more abstract concepts such as syllogisms. Also it could be said that the majority of existing games are used to reinforce concepts that have been taught in schools by teachers. The games are aimed at practising those concepts by repeating the ideas over and over. This in turn means that the games themselves are not responsible for actually teaching the core ideas as that is not their purpose. As syllogisms will almost certainly be completely new to anyone playing the game this is something that will have to be focussed
+
+
 \chapter{Requirements}
 \section{Introduction}
 As stated in section the main aim of this project is to build an educational game to explain formal logic, mainly through the use of Aristotle's syllogisms. The following requirements are separated into functional and nonfunctional requirements. Functional requirements are concerned with how the game should behave in particular situations with relation to the game's functionality. 
@@ -697,24 +716,32 @@ The game must engage with the user and maintain their attention. It's important 
             
 \chapter{Design}
 
-\section{HTML}
-HTML (Hyper Text Markup Language) describes the structure of web pages. The purpose of a web browser is to read and display HTML pages. HTML is only used to define the content of a web page and not how it should be formatted for the end user.
-An important part of HTML is the DOM (document object model). When a web page is opened the browser creates a document model of the page to which objects can be added, modified and removed.
+\section{Technologies}
 
-\section{CSS}
-CSS (Cascading Style Sheets) defines how HTML elements are displayed on a page, essentially allowing formatting to be added such as colour, fonts and layout. It allows web pages to react to different screen sizes and speeds up the development of projects as styles can be applied to groups of HTML elements. 
+Certain technologies must be used when developing applications for the web but there are some areas where there is a choice. The following discusses what technologies will be used in order to create the game and discussion on the potential options available where a choice is available. 
 
-\section{JavaScript}
-Initially the web was made up of sites built using HTML and CSS serving static content. As the web progressed there was a desire from developers to create more interactive websites and to respond to these interactions without needing to make relatively expensive calls to a server. This is where JavaScript, a client side programming language, came in. JavaScript allowed elements in the DOM to be interacted with dynamically resulting in a much richer web experience.
+\subsection{HTML}
+HTML (Hyper Text Markup Language) describes the structure of web pages. Websites created with HTML are then able to be viewed by a web browser. HTML uses tags to tell the web browser how to display certain content with support for links, pictures and video. HTML is only used to define the content of a web page and not how it should be formatted for the end user.
 
-\section{SVG}
+An important part of HTML is the DOM (document object model). When a web page is opened, the browser creates a document model of the page to which objects can be added, modified and removed. 
+
+\subsection{CSS}
+CSS (Cascading Style Sheets) defines how HTML elements are displayed on a page, essentially allowing formatting to be added such as colour, fonts and layouts. It allows web pages to react to different screen sizes and speeds up the development of projects as styles can be applied to groups of HTML elements. 
+
+\subsection{JavaScript}
+Initially the web was made up of sites built using HTML and CSS serving static content. As the web progressed there was a desire from developers to create more interactive websites and to respond to these interactions without needing to make relatively expensive calls to a server. This is where JavaScript, a client side programming language, came in. JavaScript allowed elements in the DOM to be interacted with dynamically resulting in a much richer browsing experience.
+
+\subsection{Web game technologies}
+There are three potential choices when making a web based game - Adobe Flash, SVG and Canvas. Adobe Flash has been around for the longest, being released in 1996, and became hugely popular in the early 2000s as both a medium to show videos and make games. In 2001 SVG (Scalable vector graphics) was released as alternative followed by Canvas a few years later. The choice of which one to use is not an easy one and can greatly impact the development time, accessibility and appearance of a game. 
+
+\subsection{SVG}
 SVG (Scalable vector graphics) is a technology that was released in 2001. 
 It uses XML to define vector images that are retained by the browser. SVG is used with the <svg> tag and acts similarly to a <div> HTML tag. It acts on a higher level than Canvas, mentioned later, as objects are stored and remembered in the DOM. This means that all objects created are remembered by the DOM meaning they can be kept track of much easier and natively handle events such as mouse clicks.
 
-\section{Canvas}
+\subsection{Canvas}
 Canvas is a technology that was originally designed by Apple in 2004. It was later adopted as a web standard and included as part of HTML5, the current HTML standard introduced in 2014. By adding the <canvas> element to HTML it is possible to draw graphics using JavaScript. Canvas allows for the drawing of immediate mode graphics, meaning that once the pixels have been draw to the screen there is no record of these pixels maintained. In turn this means that any time something on the Canvas changes, everything needs to be redrawn. 
 
-\section{Canvas Libraries}
+\subsection{Canvas Libraries}
 There are a large number of Canvas libraries out there that aim to simplify many aspects of using Canvas. Fabric.js, Paper.js, Easel.js and Phaser were all looked at with regards to being used in this project. The main features of these libraries include adding support for clicking and dragging objects on the Canvas, simplifying the drawing shapes and assist in animation.
 The disadvantage of using these libraries is that they are more focussed on traditional games that rely heavily on animations and not the slower puzzle style that is being developed in this situation. They also abstract away the inner workings of Canvas and can add unnecessary complications to developing what is a reasonably simple game. For this reason it was decided to write the game with no libraries but to just use pure JavaScript.
 
@@ -1103,6 +1130,44 @@ https://www.ibm.com/developerworks/library/wa-canvashtml5layering/
 
 http://mcgivery.com/how-many-stacked-canvas-elements-is-too-much/
 
+\chapter{Testing}
+
+\section{Test Driven Development}
+Test Driven Development is a process that involves incrementally developing software by writing unit tests before any functional code is written. The process is as follows:
+
+\begin{itemize}
+   \item Write a unit test
+   \item Run the unit test to ensure that it fails
+   \item Write the bare minimum functional code to make the unit test pass
+   \item Refactor the code
+\end{itemize}
+   
+   There are a number of benefits to using test driven development when working on large software projects. \cite{muller2003return} found that whilst test driven development might result in more overall code being written for a project the total time to actually complete it can be shorter. One of the main benefits is that it provides security when making any major code changes as happened frequently during the development stage of this project. It means that the suite of tests can immediately be re-run and any breaking changes are highlighted which can then be quickly fixed.
+
+As the entire user interface is written exclusively in Canvas and the use of HTML and CSS is very minimal any unit tests would be explicitly testing the Canvas aspect of the code. Writing unit tests to ensure that certain UI elements are drawn, such as circles, text or images is not really possible given Canvas' 'draw and forget' approach. Therefore, all testing of the UI was done manually and through user testing.
+
+There are a number of functions that do lend themselves to be unit tested. Functions that simply take data in and perform checks and operations on it are perfect examples. In the scope of this project this concerns functions that check to see when levels are complete, check to see if user clicks are in a certain place and setting up shapes ready to be drawn. Jasmine, a behaviour driven framework for testing JavaScript code was used to write the unit tests.
+
+\begin{lstlisting}[language=JavaScript]
+describe("Array contains another array", function () {
+    it("returns true", function () {
+
+        var array1 = [
+            {
+                "circleClickedIn": [
+                    1
+                ],
+                "x": 619,
+                "y": 420
+            }
+        ];
+
+        var array2 = [1];
+
+        expect(arrayContainsAnotherArray(array1, array2)).toEqual(true);
+    });
+});
+\end{lstlisting}
 \bibliographystyle{plainnat}
 \bibliography{bibliography} 
 

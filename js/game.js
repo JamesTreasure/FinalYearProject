@@ -169,6 +169,7 @@ function setupNextLevel() {
     $('#levelSelect').text('Level ' + nextLevel);
     $("#nextLevelButton").invisible();
     main(nextLevel);
+    postDataToGoogleSheets(playerName);
 }
 
 function gameObject(levelNumber, playerName) {
