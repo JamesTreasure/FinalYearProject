@@ -20,25 +20,22 @@
 \BOOKMARK [2][-]{subsection.3.1.2}{CSS}{section.3.1}% 20
 \BOOKMARK [2][-]{subsection.3.1.3}{JavaScript}{section.3.1}% 21
 \BOOKMARK [2][-]{subsection.3.1.4}{Web game technologies}{section.3.1}% 22
-\BOOKMARK [2][-]{subsection.3.1.5}{SVG}{section.3.1}% 23
-\BOOKMARK [2][-]{subsection.3.1.6}{Canvas}{section.3.1}% 24
-\BOOKMARK [2][-]{subsection.3.1.7}{Canvas Libraries}{section.3.1}% 25
-\BOOKMARK [1][-]{section.3.2}{Game Design}{chapter.3}% 26
-\BOOKMARK [1][-]{section.3.3}{User Interface}{chapter.3}% 27
-\BOOKMARK [1][-]{section.3.4}{Control Bar}{chapter.3}% 28
-\BOOKMARK [1][-]{section.3.5}{Tutorial Design}{chapter.3}% 29
-\BOOKMARK [1][-]{section.3.6}{Level Design}{chapter.3}% 30
-\BOOKMARK [0][-]{chapter.4}{Implementation}{}% 31
-\BOOKMARK [1][-]{section.4.1}{Undo and Redo}{chapter.4}% 32
-\BOOKMARK [1][-]{section.4.2}{Clicking on items}{chapter.4}% 33
-\BOOKMARK [1][-]{section.4.3}{Dragging items}{chapter.4}% 34
-\BOOKMARK [1][-]{section.4.4}{Saving the game}{chapter.4}% 35
-\BOOKMARK [1][-]{section.4.5}{Saving data to database}{chapter.4}% 36
-\BOOKMARK [1][-]{section.4.6}{Reading from database}{chapter.4}% 37
-\BOOKMARK [1][-]{section.4.7}{Working across multiple platforms}{chapter.4}% 38
-\BOOKMARK [1][-]{section.4.8}{Floodfill}{chapter.4}% 39
-\BOOKMARK [1][-]{section.4.9}{Recognising when level is complete}{chapter.4}% 40
-\BOOKMARK [1][-]{section.4.10}{Visual Feedback}{chapter.4}% 41
-\BOOKMARK [1][-]{section.4.11}{Multiple Canvases}{chapter.4}% 42
-\BOOKMARK [0][-]{chapter.5}{Testing}{}% 43
-\BOOKMARK [1][-]{section.5.1}{Test Driven Development}{chapter.5}% 44
+\BOOKMARK [1][-]{section.3.2}{Game Design}{chapter.3}% 23
+\BOOKMARK [1][-]{section.3.3}{User Interface}{chapter.3}% 24
+\BOOKMARK [1][-]{section.3.4}{Control Bar}{chapter.3}% 25
+\BOOKMARK [1][-]{section.3.5}{Tutorial Design}{chapter.3}% 26
+\BOOKMARK [1][-]{section.3.6}{Level Design}{chapter.3}% 27
+\BOOKMARK [0][-]{chapter.4}{Implementation}{}% 28
+\BOOKMARK [1][-]{section.4.1}{Undo and Redo}{chapter.4}% 29
+\BOOKMARK [1][-]{section.4.2}{Clicking on items}{chapter.4}% 30
+\BOOKMARK [1][-]{section.4.3}{Dragging items}{chapter.4}% 31
+\BOOKMARK [1][-]{section.4.4}{Saving the game}{chapter.4}% 32
+\BOOKMARK [1][-]{section.4.5}{Saving data to database}{chapter.4}% 33
+\BOOKMARK [1][-]{section.4.6}{Reading from database}{chapter.4}% 34
+\BOOKMARK [1][-]{section.4.7}{Working across multiple platforms}{chapter.4}% 35
+\BOOKMARK [1][-]{section.4.8}{Floodfill}{chapter.4}% 36
+\BOOKMARK [1][-]{section.4.9}{Recognising when level is complete}{chapter.4}% 37
+\BOOKMARK [1][-]{section.4.10}{Visual Feedback}{chapter.4}% 38
+\BOOKMARK [1][-]{section.4.11}{Multiple Canvases}{chapter.4}% 39
+\BOOKMARK [0][-]{chapter.5}{Testing}{}% 40
+\BOOKMARK [1][-]{section.5.1}{Test Driven Development}{chapter.5}% 41

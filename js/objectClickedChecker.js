@@ -24,6 +24,7 @@ function circleEdgeClicked(x, y) {
 
 function whichCircleClickedIn(x, y) {
     if (circleEdgeClicked(x, y)) {
+        console.log("edge clicked");
         return false;
     }
 

@@ -34,9 +34,10 @@
 \contentsline {subsection}{\numberline {3.1.2}CSS}{24}{subsection.3.1.2}
 \contentsline {subsection}{\numberline {3.1.3}JavaScript}{24}{subsection.3.1.3}
 \contentsline {subsection}{\numberline {3.1.4}Web game technologies}{25}{subsection.3.1.4}
-\contentsline {subsection}{\numberline {3.1.5}SVG}{25}{subsection.3.1.5}
-\contentsline {subsection}{\numberline {3.1.6}Canvas}{25}{subsection.3.1.6}
-\contentsline {subsection}{\numberline {3.1.7}Canvas Libraries}{25}{subsection.3.1.7}
+\contentsline {subsubsection}{Flash}{25}{subsubsection*.30}
+\contentsline {subsubsection}{SVG}{25}{subsubsection*.31}
+\contentsline {subsubsection}{Canvas}{25}{subsubsection*.32}
+\contentsline {subsubsection}{Canvas Libraries}{26}{subsubsection*.33}
 \contentsline {section}{\numberline {3.2}Game Design}{26}{section.3.2}
 \contentsline {section}{\numberline {3.3}User Interface}{26}{section.3.3}
 \contentsline {section}{\numberline {3.4}Control Bar}{27}{section.3.4}

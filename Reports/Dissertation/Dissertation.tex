@@ -732,16 +732,21 @@ CSS (Cascading Style Sheets) defines how HTML elements are displayed on a page, 
 Initially the web was made up of sites built using HTML and CSS serving static content. As the web progressed there was a desire from developers to create more interactive websites and to respond to these interactions without needing to make relatively expensive calls to a server. This is where JavaScript, a client side programming language, came in. JavaScript allowed elements in the DOM to be interacted with dynamically resulting in a much richer browsing experience.
 
 \subsection{Web game technologies}
-There are three potential choices when making a web based game - Adobe Flash, SVG and Canvas. Adobe Flash has been around for the longest, being released in 1996, and became hugely popular in the early 2000s as both a medium to show videos and make games. In 2001 SVG (Scalable vector graphics) was released as alternative followed by Canvas a few years later. The choice of which one to use is not an easy one and can greatly impact the development time, accessibility and appearance of a game. 
+There are three potential choices when making a web based game - Adobe Flash, SVG and Canvas. Adobe Flash has been around for the longest, being released in 1996, and became hugely popular in the early 2000s as both a medium to play videos and make games. In 2001 SVG (Scalable vector graphics) was released as alternative, followed by Canvas a few years later. The choice of which one to use is not an easy one and can greatly impact the development time, accessibility and appearance of a game. 
 
-\subsection{SVG}
+\subsubsection{Flash}
 SVG (Scalable vector graphics) is a technology that was released in 2001. 
 It uses XML to define vector images that are retained by the browser. SVG is used with the <svg> tag and acts similarly to a <div> HTML tag. It acts on a higher level than Canvas, mentioned later, as objects are stored and remembered in the DOM. This means that all objects created are remembered by the DOM meaning they can be kept track of much easier and natively handle events such as mouse clicks.
 
-\subsection{Canvas}
-Canvas is a technology that was originally designed by Apple in 2004. It was later adopted as a web standard and included as part of HTML5, the current HTML standard introduced in 2014. By adding the <canvas> element to HTML it is possible to draw graphics using JavaScript. Canvas allows for the drawing of immediate mode graphics, meaning that once the pixels have been draw to the screen there is no record of these pixels maintained. In turn this means that any time something on the Canvas changes, everything needs to be redrawn. 
 
-\subsection{Canvas Libraries}
+\subsubsection{SVG}
+SVG (Scalable vector graphics) is a technology that was released in 2001. 
+It uses XML to define vector images that are retained by the browser. SVG is used with the <svg> tag and acts similarly to a <div> HTML tag. It acts on a higher level than Canvas, mentioned later, as objects are stored and remembered in the DOM. This means that all objects created are remembered by the DOM meaning they can be kept track of much easier and natively handle events such as mouse clicks.
+
+\subsubsection{Canvas}
+Canvas is a technology that was originally designed by Apple in 2004. It was later adopted as a web standard and included as part of HTML5, the current HTML standard introduced in 2014. By adding the <canvas> element to HTML it is possible to draw graphics using JavaScript. Canvas allows for the drawing of immediate mode graphics, meaning that once the pixels have been draw to the screen there is no record of these pixels maintained. In turn this means that any time something on the Canvas changes, everything needs to be redrawn. Canvas has been chosen for this project over Flash and SVG as it is the current cutting edge technology for building web games whilst providing a greater deal of flexibility over the other two.
+
+\subsubsection{Canvas Libraries}
 There are a large number of Canvas libraries out there that aim to simplify many aspects of using Canvas. Fabric.js, Paper.js, Easel.js and Phaser were all looked at with regards to being used in this project. The main features of these libraries include adding support for clicking and dragging objects on the Canvas, simplifying the drawing shapes and assist in animation.
 The disadvantage of using these libraries is that they are more focussed on traditional games that rely heavily on animations and not the slower puzzle style that is being developed in this situation. They also abstract away the inner workings of Canvas and can add unnecessary complications to developing what is a reasonably simple game. For this reason it was decided to write the game with no libraries but to just use pure JavaScript.
 

@@ -152,7 +152,7 @@ function drawCircles() {
         context1.beginPath();
         context1.arc(circle.x, circle.y, circle.radius, 0, Math.PI * 2, false);
         context1.lineWidth = 2;
-        context1.strokeStyle = '#c0392b';
+        context1.strokeStyle = '#FF0000';
         context1.stroke();
         context1.closePath();
     }
