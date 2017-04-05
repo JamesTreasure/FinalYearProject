@@ -210,7 +210,7 @@ function postDataToGoogleSheets(name, time) {
         + ((level8endTime - level8startTime) / 1000) + ((level9endTime - level9startTime) / 1000) + ((level10endTime - level10startTime) / 1000) + ((level11endTime - level11startTime) / 1000)
     }
 
-    // postData(myData);
+    postData(myData);
 }
 
 function main(levelNumber) {
