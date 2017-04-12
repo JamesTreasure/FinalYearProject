@@ -123,17 +123,14 @@
 \begin{document}
 \begin{titlepage}
 	\centering
-	{\scshape\LARGE University of Bath \par}
-	\vspace{1cm}
-	{\scshape\Large Literature Review\par}
 	\vspace{1.5cm}
 	{\huge\bfseries The Development of a Serious Game to Teach Aristotle's Syllogisms\par}
 	\vspace{2cm}
 	{\Large\itshape James Treasure\par}
-	\vfill
-	supervised by\par
-	Dr.~Willem \textsc{Heijltjes}
-	\vfill
+	\vspace{2cm}
+	BSc (Hons) Computer Science\par
+	University of Bath\par
+	2016 - 2017
 	{\large \today\par}
 \end{titlepage}
 
@@ -622,7 +619,7 @@ From a technical perspective all of BBC Bitesize games are built using Adobe Fla
 \end{figure}
 \FloatBarrier
 
-From the above examples a trend can be seen that shows that whilst there are a extensive number of educational maths games available on the internet they are aimed almost exclusively at a younger audience. This is perhaps because of the connotations that games are predominantly for children but as discussed previously the benefits of using games for education apply to all ages. This means that most games are based on rather simple, concrete mathematical ideas. There are very few games out there that tackle harder, more abstract concepts such as syllogisms. Also it could be said that the majority of existing games are used to reinforce concepts that have been taught in schools by teachers. The games are aimed at practising those concepts by repeating the ideas over and over. This in turn means that the games themselves are not responsible for actually teaching the core ideas as that is not their purpose. As syllogisms will almost certainly be completely new to anyone playing the game this is something that will have to be focussed
+From the above examples a trend can be seen that shows that whilst there are a extensive number of educational maths games available on the internet they are aimed almost exclusively at a younger audience. This is perhaps because of the connotations that games are predominantly for children but as discussed previously the benefits of using games for education apply to all ages. This means that most games are based on rather simple, concrete mathematical ideas. There are very few games out there that tackle harder, more abstract concepts such as syllogisms. Also it could be said that the majority of existing games are used to reinforce concepts that have been taught in schools by teachers. The games are aimed at practising those concepts by repeating the ideas over and over. This in turn means that the games themselves are not responsible for actually teaching the core ideas as that is not their purpose. As syllogisms will almost certainly be completely new to anyone playing the game this is something that will have to be focussed.
 
 
 \chapter{Requirements}
@@ -633,6 +630,10 @@ Non-functional requirements place constraints on how the game's functions will c
 \section{Sources}
 \subsection{Literature Review}
 The main source of requirements has been drawn from the work in the literature survey. The work carried out that looked into why educational games were so effective allow requirements to be drawn up that ensure the same level of effectiveness when creating this game. Areas such as accessibility, motivation and feedback were extensively researched and the findings have been used to influence these requirements. The discussion of existing serious games and in particular their advantages and disadvantages also provide a source to draw upon.
+
+\subsection{Project Supervisor}
+Dr. Willem Heijltjes, the supervisor for this project, has experience with designing and building serious games. His opinion was given many times during the course of the project with regards to requirements, the direction of the project and and the content that should be included.
+
  \section{Functional}
    \begin{enumerate}[label*=\arabic*]
    
@@ -716,42 +717,24 @@ The game must engage with the user and maintain their attention. It's important 
             
 \chapter{Design}
 
-\section{Technologies}
-
-Certain technologies must be used when developing applications for the web but there are some areas where there is a choice. The following discusses what technologies will be used in order to create the game and discussion on the potential options available where a choice is available. 
-
-\subsection{HTML}
-HTML (Hyper Text Markup Language) describes the structure of web pages. Websites created with HTML are then able to be viewed by a web browser. HTML uses tags to tell the web browser how to display certain content with support for links, pictures and video. HTML is only used to define the content of a web page and not how it should be formatted for the end user.
-
-An important part of HTML is the DOM (document object model). When a web page is opened, the browser creates a document model of the page to which objects can be added, modified and removed. 
-
-\subsection{CSS}
-CSS (Cascading Style Sheets) defines how HTML elements are displayed on a page, essentially allowing formatting to be added such as colour, fonts and layouts. It allows web pages to react to different screen sizes and speeds up the development of projects as styles can be applied to groups of HTML elements. 
-
-\subsection{JavaScript}
-Initially the web was made up of sites built using HTML and CSS serving static content. As the web progressed there was a desire from developers to create more interactive websites and to respond to these interactions without needing to make relatively expensive calls to a server. This is where JavaScript, a client side programming language, came in. JavaScript allowed elements in the DOM to be interacted with dynamically resulting in a much richer browsing experience.
-
-\subsection{Web game technologies}
-There are three potential choices when making a web based game - Adobe Flash, SVG and Canvas. Adobe Flash has been around for the longest, being released in 1996, and became hugely popular in the early 2000s as both a medium to play videos and make games. In 2001 SVG (Scalable vector graphics) was released as alternative, followed by Canvas a few years later. The choice of which one to use is not an easy one and can greatly impact the development time, accessibility and appearance of a game. 
-
-\subsubsection{Flash}
-SVG (Scalable vector graphics) is a technology that was released in 2001. 
-It uses XML to define vector images that are retained by the browser. SVG is used with the <svg> tag and acts similarly to a <div> HTML tag. It acts on a higher level than Canvas, mentioned later, as objects are stored and remembered in the DOM. This means that all objects created are remembered by the DOM meaning they can be kept track of much easier and natively handle events such as mouse clicks.
-
-
-\subsubsection{SVG}
-SVG (Scalable vector graphics) is a technology that was released in 2001. 
-It uses XML to define vector images that are retained by the browser. SVG is used with the <svg> tag and acts similarly to a <div> HTML tag. It acts on a higher level than Canvas, mentioned later, as objects are stored and remembered in the DOM. This means that all objects created are remembered by the DOM meaning they can be kept track of much easier and natively handle events such as mouse clicks.
-
-\subsubsection{Canvas}
-Canvas is a technology that was originally designed by Apple in 2004. It was later adopted as a web standard and included as part of HTML5, the current HTML standard introduced in 2014. By adding the <canvas> element to HTML it is possible to draw graphics using JavaScript. Canvas allows for the drawing of immediate mode graphics, meaning that once the pixels have been draw to the screen there is no record of these pixels maintained. In turn this means that any time something on the Canvas changes, everything needs to be redrawn. Canvas has been chosen for this project over Flash and SVG as it is the current cutting edge technology for building web games whilst providing a greater deal of flexibility over the other two.
-
-\subsubsection{Canvas Libraries}
-There are a large number of Canvas libraries out there that aim to simplify many aspects of using Canvas. Fabric.js, Paper.js, Easel.js and Phaser were all looked at with regards to being used in this project. The main features of these libraries include adding support for clicking and dragging objects on the Canvas, simplifying the drawing shapes and assist in animation.
-The disadvantage of using these libraries is that they are more focussed on traditional games that rely heavily on animations and not the slower puzzle style that is being developed in this situation. They also abstract away the inner workings of Canvas and can add unnecessary complications to developing what is a reasonably simple game. For this reason it was decided to write the game with no libraries but to just use pure JavaScript.
 
 \section{Game Design}
-The overall design of the game is that of a puzzle style with the user working their way through multiple levels of increasing difficulty. The basic mechanics require the user to drag and drop items, usually numbers and shapes, into Venn Diagrams. Each level usually has a statement or fact that must be represented diagrammatically through the correct placement of objects in the venn diagrams.
+The overall style of the game is a drag and drop puzzle game that requires the player to move words, numbers and pictures in to venn diagrams. Each level usually has a statement or fact that must be represented diagrammatically through the correct placement of objects in the venn diagrams.
+
+There will be a number of tutorials throughout the game so it is important to have a clear and consistent structure to them. By making it obvious when in tutorial mode it will alert the user so they can pay close attention as it will mean new ideas are about to be introduced. The structure of the tutorial part of the game involves instructions and information being displayed on screen with relevant areas highlighted to the user. Forwards and backwards buttons are present at either side of the screen for the user to navigate their way through the tutorials. 
+
+\section{Level Design}
+It was very important to design the levels with the correct level of difficulty. If the game started off too hard it would demotivate the player and stop them from wanting to play. Conversely, if the game was too easy and did not introduce harder concepts as the levels progressed their would be no challenge to keep the user interested.
+
+The general idea was to initially have very simple levels that introduced the mechanisms and controls for how the game worked. It also acted as a refreshed on some basic set theory ideas such as empty sets. 
+
+From there a level was added that discussed with a simple example how venn diagrams worked. This would most likely have been a refresher as opposed to new content for most users as venn diagrams are a commonly taught way to represent sets in UK schools.
+
+In response to early stage user testing a level was also added that taught the user about empty sets. This was initially an oversight and it was not until users tried to complete the game it became clear that the concept and understanding of empty sets was less prevalent than first thought.
+
+After this there are a number of syllogism levels. The first one is structured with a very tutorial heavy focus. Every step of process from dragging the words into the correct circles to completing the syllogism line by line is aided by the tutorial system guiding the user through the process. After the tutorial the syllogisms get progressively harder with particular syllogisms added, involving the word "some".
+
+As an addition to the game, once the syllogism levels are completed there are a few levels that cover set theory. They aim to teach the basics such as the union and intersection of sets as well as the distributive and associative laws. 
 
 \section{User Interface}
 The goal of the user interface was to be as simple as it possibly could be whilst still allowing all the required functionality to be added. The approach taken with the design was to keep it as clean and minimalist as possible so not distract the player with unnecessary clutter. The relatively small amount of on-screen items also was a benefit when ensuring the game worked well on smaller resolution devices where screen real estate is at a premium. UI mock ups were created that could be shown to users for feedback and acted as a starting point once development began.
@@ -776,46 +759,78 @@ There are a number of controls that are needed to be present at all times apart 
 \end{figure}
 \FloatBarrier
 
-\section{Tutorial Design}
-There will be a number of tutorials throughout the game so it is important to have a clear and consistent structure to them throughout. This will let the user know when a tutorial is happening so they can pay close attention as it will mean new ideas are about to be introduced. The general structure to the templates involves instructions being displayed on the screen with arrows being drawn to point to the relevant area. There are also forwards and backwards buttons at either side of the screen for the user to navigate their way through the tutorials. 
+\section{Technologies}
+Certain technologies must be used when developing applications for the web but there are some areas where there is a choice. The following discusses what technologies will be used in order to create the game and discussion on the potential options available where a choice is available. 
 
-\section{Level Design}
-It was very important to design the levels with the correct level of difficulty. If the game started off too hard it would demotivate the player and stop them from wanting to play. Conversely, if the game was too easy and did not introduce harder concepts as the levels progressed their would be no challenge to keep the user interested.
+\subsection{HTML}
+HTML (Hyper Text Markup Language) describes the structure of web pages. Websites created with HTML are then able to be viewed by a web browser. HTML uses tags to tell the web browser how to display certain content with support for links, pictures and video. HTML is only used to define the content of a web page and not how it should be formatted for the end user.
 
-The general idea was to initially have very simple levels that introduced the mechanisms and controls for how the game worked. It also acted as a refreshed on some basic set theory ideas such as empty sets. 
+An important part of HTML is the DOM (document object model). When a web page is opened, the browser creates a document model of the page to which objects can be added, modified and removed. 
 
-From there a level was added that discussed with a simple example how venn diagrams worked. This would most likely have been a refresher as opposed to new content for most users as venn diagrams are a commonly taught way to represent sets in UK schools.
+\subsection{CSS}
+CSS (Cascading Style Sheets) defines how HTML elements are displayed on a page, essentially allowing formatting to be added such as colour, fonts and layouts. It allows web pages to react to different screen sizes and speeds up the development of projects as styles can be applied to groups of HTML elements. 
 
-In response to early stage user testing a level was also added that taught the user about empty sets. This was initially an oversight and it was not until users tried to complete the game it became clear that the concept and understanding of empty sets was less prevalent than first thought.
+\subsection{JavaScript}
+Initially the web was made up of sites built using HTML and CSS serving static content. As the web progressed there was a desire from developers to create more interactive websites and to respond to these interactions without needing to make relatively expensive calls to a server. This is where JavaScript, a client side programming language, came in. JavaScript allowed elements in the DOM to be interacted with dynamically resulting in a much richer browsing experience.
 
-After this there are a number of syllogism levels. The first one is structured with a very tutorial heavy focus. Every step of process from dragging the words into the correct circles to completing the syllogism line by line is aided by the tutorial system guiding the user through the process. After the tutorial the syllogisms get progressively harder with particular syllogisms added, involving the word "some".
+\subsection{Web game technologies}
+There are three potential choices when making a web based game - Adobe Flash, SVG and Canvas. Adobe Flash has been around for the longest, being released in 1996, and became hugely popular in the early 2000s as both a medium to play videos and make games. In 2001 SVG (Scalable vector graphics) was released as alternative, followed by Canvas a few years later. The choice of which one to use is not an easy one and can greatly impact the development time, accessibility and appearance of a game. 
 
-As an addition to the game, once the syllogism levels are completed there are a few levels that cover set theory. They aim to teach the basics such as the union and intersection of sets as well as the distributive and associative laws. 
+\subsubsection{Flash}
+Adobe Flash allows games, animations and much more to be written using a subset of the JavaScript language, ActionScript. Due to it's age it's a mature language and up until recently it was widely supported on all major platforms including the newest generation of video game console, PS4 and Xbox One. As of September 2016, Google Chrome, the world's most popular web browser began to block flash and request the user to enable it if needed \citep{FlashInChrome}. Flash is also completely unsupported on Apple's iOS and despite being briefly available for Android is also no longer supported. For these reasons it was decided that flash would not be used as the development language for this project.
 
+
+\subsubsection{SVG}
+SVG (Scalable vector graphics) is a technology that was released in 2001. 
+It uses XML to define vector images that are retained by the browser. SVG is used with the <svg> tag and acts similarly to a <div> HTML tag. It acts on a higher level than Canvas, mentioned later, as objects are stored and remembered in the DOM. This means that all objects created are remembered by the DOM meaning they can be kept track of much easier and natively handle events such as mouse clicks.
+
+\subsubsection{Canvas}
+Canvas is a technology that was originally designed by Apple in 2004. It was later adopted as a web standard and included as part of HTML5, the current HTML standard introduced in 2014. By adding the <canvas> element to HTML it is possible to draw graphics using JavaScript. Canvas allows for the drawing of immediate mode graphics, meaning that once the pixels have been draw to the screen there is no record of these pixels maintained. In turn this means that any time something on the Canvas changes, everything needs to be redrawn. Canvas has been chosen for this project over Flash and SVG as it is the current cutting edge technology for building web games whilst providing a greater deal of flexibility over the other two.
+
+\subsubsection{Canvas Libraries}
+There are a large number of Canvas libraries out there that aim to simplify many aspects of using Canvas. Fabric.js, Paper.js, Easel.js and Phaser were all looked at with regards to being used in this project. The main features of these libraries include adding support for clicking and dragging objects on the Canvas, simplifying the drawing shapes and assist in animation.
+The disadvantage of using these libraries is that they are more focussed on traditional games that rely heavily on animations and not the slower puzzle style that is being developed in this situation. They also abstract away the inner workings of Canvas and can add unnecessary complications to developing what is a reasonably simple game. For this reason it was decided to write the game with no libraries but to just use pure JavaScript.
 
 
 \chapter{Implementation}
 
-\section{Undo and Redo}
-As Canvas does not maintain any record of drawings on the canvas there is no in-built functionality that allows a user to undo or redo an action. In order to achieve this, it must be implemented manually.
+\section{Introduction}
+With essentially every feature of the game needing to be implemented from scratch there were a number of difficult problems that needed solving. This section discuses some of the more interesting and challenging algorithms that have been used. This section also discusses why certain decisions were made, specifically regarding performance of the game, including how multiple solutions were tried to determine the best approach. 
 
-There are two ways this can be done; storing everything that is drawn on the canvas in a stack or by capturing the screen as a image and using that image to redraw the canvas. Both options were investigated to see which was the best.
+\section{Multiple Canvases}
+One of the biggest optimisations that can be made to the Canvas environment is to use multiple Canvas elements to act as layers \citep{IBMCanvasLayers}. By doing this it is possible to be selective about what items are cleared and redrawn in the animation loop. As mentioned in a previous section, when dragging items across the screen the Canvas is constantly being cleared and redrawn. Initially, when only one Canvas was in use this meant redrawing the circles every time. Drawing three circles is negligible but a problem arises when the user has flood filled an area which then must be refilled every time the animation loop is ran.
 
-Tests were ran on the execution time of both saving the entire canvas image and using a data structure to store the game state. Saving the entire canvas took 16 milliseconds compared to just 0.1 milliseconds to push the GameState to the stack, 160 times faster. Whilst 16 milliseconds is an acceptable amount of time for an action to take and in isolation does not have an effect on user experience, in combination with other functions that must run on an undo or redo this begins to affect performance. Also as the number of moves increases the number of full canvas images must be stored increases which can lead to memory issues on certain browsers. Another issue with using the image method is that whilst the canvas will revert to its previous image, the underlying state of the game will be incorrect. This is not an issue when using a stack as the location of all the users clicks are stored so the game state is reflected to show this.
+\begin{figure}[h]
+\centering
+    \includegraphics[scale=0.5]{canvasLayers}
+    \caption{Canvas Layering}
+    \label{fig:canvasLayering}
+\end{figure}
 
-The best option was every time a move is made, the current state of all the objects is stored in a data structure and pushed to the stack. When the user presses the undo button, the top object in the stack is popped and everything is redrawn. Despite there being many different objects on the Canvas, the only ones that the user can interact with is the movable text, which can be dragged around, and filling in the circles. Therefore the current state of the game can be represented as:
 
-\begin{lstlisting}
-var GameState = function (movableTextArray, clickedInArray) {
-   this.movableTextArray = movableTextArray;
-   this.clickedInArray = clickedInArray;
-};
-\end{lstlisting}
+Initially, when the user floodFilled an area the X and Y coordinates of the mouse click were saved. Then, every time the animation loop ran these X and Y coordinates were used to refill the segment that the user clicked in. So on every single run of the animation loop, around 60 per second, the flood fill was being carried out. This had a huge impact of performance and almost instantly ground the game to a halt rendering the game almost unplayable.
+
+\citep{StackCanvasTest} ran a number of tests that showed that creating as many as 500 Canvas elements had no noticeable effect on the time it took the function requestAnimationFrame to complete an animation render cycle. Therefore seperating as many parts of the game in to their own Canvas environment added huge performance gains for only a marginal increase in complexity. These findings resulted in multiple Canvas elements being used in this project that allowed much finer control over when and what was being drawn to the Canvas.
+
+
+
 
 
 \section{Clicking on items}
-As previously mentioned, Canvas uses immediate mode graphics to draw pixels to the screen meaning that once they've been draw Canvas forgets about them. So this means that recognising when a user clicks on an object is not something that is natively supported by Canvas and must be implemented manually. 
-For example, take the level where there are 3 dogs that need to be dragged into the circle. First once the levels loads an array is created which holds the three images as well as properties such as the location of the image and its width and height.
+As previously mentioned, Canvas uses immediate mode graphics to draw pixels to the screen meaning that once they've been draw Canvas forgets about them. In turn this means that recognising when a user clicks on an object is not something that is natively supported  and must be implemented manually. 
+
+\begin{figure}[h]
+  \centering
+  \begin{minipage}[b]{1\textwidth}
+    \fbox{\includegraphics[width=\textwidth]{SelectDogs}}
+    \caption{First level of the game}
+    \label{fig:selectDogs}
+  \end{minipage}
+\end{figure}
+\FloatBarrier
+
+For example, in figure \ref{fig:selectDogs} there are 3 dogs that need to be dragged into the circle. In order to recognise when an object has been clicked on there a number of steps that must be taken. Firstly, when the level begins an array is created which holds the three images along with image properties such as the location on the canvas and its width and height.
+
 \begin{lstlisting}[language=json]
 [
   {
@@ -835,8 +850,8 @@ For example, take the level where there are 3 dogs that need to be dragged into 
 ]
 \end{lstlisting}
 
-Then, any time the user clicks on the screen a check if done to see if that mouse click is inside one of the images in the array.
-This is done by looping through the array and checking to see if the x and y of the mouse click fall inside the bounding rectangle of the image and then return the index of the image that has been clicked in.
+Any time the user clicks anywhere on the canvas a check is done to see if the location of that mouse click is inside one of the images in the array.
+This is done by looping through the array that is holding the images and checking to see if the x and y of the mouse click fall inside the bounding rectangle of the image.
 
 \begin{lstlisting}[language=JavaScript]
 function imageClickedOn(x, y, movableTextArray) {
@@ -852,10 +867,10 @@ function imageClickedOn(x, y, movableTextArray) {
 }
 \end{lstlisting}
 
-
 \section{Dragging items}
-Dragging images and text around the screen is the core of the game, and another feature that Canvas does not provide so again must be implemented manually. 
-First when the user clicks on an image the mouse click event is triggered and all the images are checked to see which one was clicked on, as detailed above. The clicked on image array index is stored as well as a drag offset, which contains the exact location on the image that was actually clicked.
+Dragging images and text around the screen is a core aspect of the gameplay, and another feature that Canvas does not provide so again must be implemented manually. 
+Firstly, when the user clicks on an image the algorithm above finds out which image was clicked on. The clicked on image array index is stored as well as a drag offset, which contains the exact location on the image that was actually clicked.
+
 When the user then moves their mouse the mouse move event is fired. This checks to see if the drag boolean is true and if it is updates the x and y location of the image to the new mouse location minus the drag offset that was stored. This reason that a drag offset must be stored is that without it the dragging would always take place from the x,y coordinates of the image which in Canvas' case is the top left. So no matter where the user clicked on an imagine they would experience dragging from the top left. Every time the mouse is moved until it is released the x and y get updated and each time that happens everything on the screen needs to be redrawn. 
 There are three ways to do this, setInterval, setTimeout and requestAnimationFrame. Initially, setTimeout was used as it is supported by all browsers. It works by calling a function every specified number of milliseconds. In the table below 1000/60 is used as the interval at which to call the function as this represents 60 frames per second. However, there was often a noticeable amount of delay when lots of intensive tasks were being animated, especially on lower powered devices such as mobile phones.
 
@@ -889,124 +904,9 @@ window.requestAnimFrame = (function(){
 \caption{Best way to animate test} 
 \end{table} 
 
-\section{Saving the game}
-One requirement was that it must be possible for the game to be saved so that the user could return at a later date and carry on playing from where they left off. There are a number of possible solutions for saving the state of a game in the browser.
-
-Previously to achieve this any storage of data would have to have been done through the use of cookies. A cookie is a way to store a small amount of data, up to a maximum of 4kb, in a text file on a user's computer which expire after a certain amount of time.
-
-With the introduction of HTML5 a new method for storing data in the browser was added, localStorage. This new mechanism allows 5MB of data to be stored locally on the browser and is then accessible through any JavaScript that is running on the same domain. It has been implemented here by saving the user's progression after every level that is completed.
-
-So in order to save the game an object is created that holds the current state of the game. This contains both the current level number and the name of the user. Every time a level is completed the object is updated with the new level number and that object is then saved. There is no need to remove the old object as the localStorage API silently overwrites the existing object if the key already exists.
-
-
-\begin{lstlisting}[language=JavaScript]
-\\save object
-localStorage.setItem('gameObject', JSON.stringify(game));
-\end{lstlisting}
-
-The next time the user returns to the web page this saved object can be retrieved.
-\begin{lstlisting}[language=JavaScript]
-var retrievedObject = JSON.parse(localStorage.getItem('gameObject'));
-\end{lstlisting}
-
-The option to resume play is presented to the user through a 'continue' button on the home page. The continue button is initially hidden and by checking that the object retrieved from local storage is not null it can be made visible.
-
-\begin{lstlisting}[language=JavaScript]
-if (retrievedObject != null) {
-   $("#continueButton").visible();
-}
-\end{lstlisting}
-
-\section{Saving data to database}
-One of the requirements was for a leaderboard that provides users with the option to enter their name and be able to see how they rank alongside other people who have played the game. This also doubles up as a way to gain an extra layer on analysis being able to take a deeper look at how long levels took and the number of moves that were made. 
-
-Initially a REST (REpresentational State Transfer) service was to be created to handle the transport of data. REST uses the HTTP protocol to manipulate data through requests such as GET, which returns data from a datbase and POST which persists data in a database. The REST service would act act as the intermediary between the client side and the database.
-
-\begin{figure}[h]
-  \centering
-  \begin{minipage}[b]{1\textwidth}
-    \includegraphics[width=\textwidth]{REST}
-    \caption{Basic REST service architecture}
-  \end{minipage}
-\end{figure}
-\FloatBarrier
-
-This would require writing REST endpoints to handle such data, using a language such as Node.js, a variant of JavaScript designed to run server side. The problem with this solution is that it requires not only the writing of a REST service but also setting up a database and acquiring a server to host both of these on. This is overkill for the needs of this project as no sensitive data is being stored, only a few columns of data are needed and speed and number of possible connections that can be sustained are of no concern.
- 
-Therefore, for this project Google Sheets is being used as a cloud based database. Google sheets is a web based spreadsheet application, very similar in functionality and appearance to Microsoft Excel. Whilst Google Sheets does not offer the same depth of functionality as desktop based solutions it is perfect for storing a relatively small amount of data with no significant analysis needing to be performed.
-
-Google Sheets does not explicitly support the functionality of using it to act as a database, and as such there are a number of workarounds that must be carried out to make this possible.
-Google Scripts is a cloud based scripting platform operated by Google that allows JavaScript code to be written that can interact with other Google products, such as Sheets. By using this, it is possible to create what is equivalent to a REST endpoint all hosted within Google's platform. 
-Data can then be posted to this Google Script URL from the game's code that will handle the data and insert it into a Google Sheet.
-
-An object is created that stores all the data that is to be posted, in this case the time and moves taken to complete each level. This object is then serialised for use in a URL query string. This serialised object is then sent to the Google Scripts endpoint via an AJAX request. AJAX (Asynchronous JavaScript and XML) allows client side code to communicate with a web server without needing to reload the page. The asynchronous nature means that the client side code will continue to execute without waiting for a reply, returning only once a reply has been received. This prevents the user from having to wait for the request to be returned.
-
-
-\begin{lstlisting}[language=JavaScript]
-request = $.ajax({
-   url: "https://script.google.com/macros/s/AKfycbxVGVxoQxNFK7_nxKfglL8yLNUmdPwP2e9j8IMO6JY5wzLEdSE/exec",
-   type: "post",
-   data: serializedData
-});
-\end{lstlisting}
-
-\section{Reading from database}
-Saving data to the database is just one part of the problem, in order to have a functioning leaderboard system it must also be possible to read that data back.
-
-The JavaScript library Sheetrock\.js allows Google Sheets to be interacted with as if they are a traditional database through the use of SQL-like statements.
-For example, in traditional SQL the query to get the 5 fastest play though times would be:
-
-\begin{lstlisting}[
-           language=SQL,
-           showspaces=false,
-           basicstyle=\ttfamily,
-           commentstyle=\color{gray}
-        ]
-SELECT TOP 5 time_taken, moves_made, levels_skipped FROM leaderboard ORDER BY time_taken ASC;
-\end{lstlisting}
-
-In Sheetrock.js a similar syntax is used:
-
-\begin{lstlisting}[language=JavaScript]
-$('#spreadsheet').sheetrock({
-   url: mySpreadsheet,
-   query: "select B,W,X order by X asc",
-   fetchSize: 5
-});
-\end{lstlisting}
-
-Which get the data from the Google Sheet and fills into the HTML table element with the ID 'spreadsheet'.
-
-\section{Working across multiple platforms}
-As this game is designed to run across browsers and mobile devices, it is important that the experience is consistent across all potential screen resolutions. The way that has been chosen to do this is everything drawn on the canvas is relative to the height and width of the screen. 
-For example, when creating the circles to represent the venn diagram the following is done:
-
-\begin{lstlisting}[language=JavaScript]
-if (circlesNeeded === 3) {
-    //split the screen in to 4 vertical segments
-    var segments = canvasHeight / 4;
-    //set the radius of each circle
-    var radius = segments / 2 * 1.25;
-
-    var overlap = radius / 2;
-    circlesArray.push(new Circle((canvasWidth / 2), (segments + (segments * 2)) / 2 + (segments / 6), radius));
-    circlesArray.push(new Circle((canvasWidth / 2) - overlap, (segments * 2 + (segments * 3)) / 2 - (segments / 6), radius));
-    circlesArray.push(new Circle((canvasWidth / 2) + overlap, (segments * 2 + (segments * 3)) / 2 - (segments / 6), radius));
-
-\end{lstlisting}
-
-This allows the user interface to look exactly the same across all screen resolutions. 
-Canvas is supported by the all the major desktop browsers but still has a number of bugs present on Internet Explorer and FireFox. It is also supported by Android and iOS browsers but some work must be done to actually make it work for touchscreen devices. Touch events must be defined to handle the user touching the screen and dragging their finger along the screen. When using jQuery, the user touching the screen is handled by:
-
-
-\begin{lstlisting}[language=JavaScript]
-$(window).bind('touchstart', function (jQueryEvent)
-
-\end{lstlisting}
-
 \section{Floodfill}
 In order to allow the user to fill in sections of the circles to represent ideas such as the empty set, a flood fill algorithm is needed. A flood fill behaves in the same way as a paint bucket tool in many image editing programs, filling an area of connected pixels with the same colour. There are a number of different algorithms that can achieve this, with recursive and stack based solutions the two most popular. The issue with recursive solutions is that given a complex image there can be a huge number of recursive calls made, potentially causing stack overflow. 
-Therefore, the implementation chosen was to use a stack and a while loop.
+Therefore, the implementation chosen was an iterative one that uses a stack and a while loop.
 
 \begin{itemize}
    \item  First the x,y location of the mouse click is added to a pixelStack
@@ -1048,10 +948,100 @@ This algorithm works well but unfortunately has a few problems. Figure \ref{fig:
 \end{figure}
 \FloatBarrier
 
-	A solution was found by using the library FloodFill2D which implements a more sophisticated floodfill algorithm to specifically deal with the anti-aliasing issue. This library allows a tolerance fade to be set that allows a soft edge to be created at boundaries. However, even that did not completely resolve the problem. In order to get a completely clean appearance to a floodfill more needed to be done. The solution was to create a new Canvas element that sat on top of the one currently being used to draw the circles. This new layer would be used to draw identical circles at a thicket width that would cover up the rough edges on the inner perimeter of the circle. This would not effect the floodfill as the algorithm only floodfills on one Canvas so has no knowledge of these new, wider diameter circles.
+	A solution was found by using the library FloodFill2D which implements a more sophisticated floodfill algorithm to specifically deal with the anti-aliasing issue. This library allows a tolerance fade to be set that allows a soft edge to be created at boundaries. However, even that did not completely resolve the problem. In order to get a completely clean appearance to the floodfill more needed to be done. A new Canvas layer was created that sat on top of the one currently being used to draw the circles. This new layer would be used to draw identical circles with a thicker line width that would cover up the rough edges on the inner perimeter of the circle. This would not effect the floodfill as the algorithm only floodfills on one Canvas layer so has no knowledge of these new, wider diameter circles.
+	
+	\begin{figure}[h]
+\centering
+    \includegraphics[scale=0.4]{floodFillGood}
+    \caption{Final floodfill appearance}
+    \label{fig:floodFillGood}
+\end{figure}
+\FloatBarrier
+	
+	\section{Visual Feedback}
+With one of the big advantages to using games to educate is that they can provide the user with immediate feedback it was important to try to provide this kind of feedback to the user where possible. There are a number of ways that this have been achieved in this game. When placing items in the circle, a check is performed to ensure that the placement is valid and if so highlights the circle in green. This immediately shows the user that they have made a correct move.  This is achieved by checking each premise is inside the same circle as another premise. If the premise is in its own circle then a new, green circle is drawn over the top to indicate a valid placement and remains highlighted until the user releases their mouse.
+
+\begin{lstlisting}[language=JavaScript]
+function checkPremiseAllInTheirOwnCircle() {
+    var middle = whichCircleIsPremiseIn(level.movableTextArray[0]);
+    var predicate = whichCircleIsPremiseIn(level.movableTextArray[1]);
+    var subject = whichCircleIsPremiseIn(level.movableTextArray[2]);
+
+    if (middle == null || predicate == null || subject == null) {
+        return false
+    } else {
+        return !(middle.equals(predicate) || middle.equals(subject) || predicate.equals(subject));
+
+    }
+}
+\end{lstlisting}
+
+\begin{figure}[!h]
+  \centering
+  \begin{minipage}[b]{0.4\textwidth}
+    \includegraphics[width=\textwidth]{GreenHighlightCorrectPlacement}
+    \caption{Correct Placement with highlighting}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[b]{0.4\textwidth}
+    \includegraphics[width=\textwidth]{GreenHighlightIncorrectPlacement}
+    \caption{Incorrect placement with no highlighting}
+  \end{minipage}
+\end{figure}
+\FloatBarrier
+
+When completing the syllogism levels there are 3 statements that must be made true; the major premise, the minor premise and the conclusion. When the user makes any of these three true the words font colour of the sentence changes to green.
+
+
+\begin{figure}[h]
+\centering
+    \includegraphics[scale=0.5]{PremiseHighlight}
+    \caption{Premise Highlighting}
+    \label{fig:floodFillBad}
+\end{figure}
+\FloatBarrier
+
+
+
+\section{Undo and Redo}
+As Canvas does not maintain any record of drawings on the canvas there is no in-built functionality that allows a user to undo or redo an action. 
+
+There are two ways this can be done; storing everything that is drawn on the canvas in a stack or capturing the screen as a image and using that image to redraw the canvas. Both options were investigated to see which was the best.
+
+Tests were ran on the execution time of both saving the entire canvas image and using a data structure to store the game state. Saving the entire canvas as an image took 16 milliseconds whilst adding the game state to a stack was 160 times faster, taking just 0.1 milliseconds. Despite 16 milliseconds being an acceptable amount of time for an action to take, when combined with other functions that must also run the performance begins to be impacted . Also as the number of moves increases the number of canvas images that must be stored increases leading to memory issues on certain browsers. Another issue with using the image method is that whilst the canvas will revert to its previous image, the underlying state of the game will be incorrect. This is not an issue when using the stack method as the entire state of the game is stored.
+
+The best option was every time a move is made, the current state of all the objects is stored in a data structure and pushed to the stack. Despite there being many different objects on the Canvas, the only ones that the user can interact with is the movable text, which can be dragged around, and filling in the circles. Therefore the current state of the game can be represented as
+ 
+
+\begin{lstlisting}
+var GameState = function (movableTextArray, clickedInArray) {
+   this.movableTextArray = movableTextArray;
+   this.clickedInArray = clickedInArray;
+};
+\end{lstlisting}
+
+ When the user presses the undo button, the top object in the stack is popped and everything is redrawn. 
+Redo works in a similar manner, with any time an undo is performed the GameState object popped from the undo stack is added to a redo stack. The undo and redo buttons then can push and pop from their respective stacks allowing the user to go back and forth between their moves.
 
 \section{Recognising when level is complete}
-The location of each text item is found:
+With the user being able to drag the premises in to any circle of their choosing it means that there are multiple ways that a completed level can be represented.
+Therefore, it is crucial that the game is able to recognise any valid arrangement of a completed level.
+
+\begin{figure}[!h]
+  \centering
+  \begin{minipage}[b]{0.4\textwidth}
+    \includegraphics[width=\textwidth]{Labrador1}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[b]{0.4\textwidth}
+    \includegraphics[width=\textwidth]{Labrador2}
+  \end{minipage}
+  \caption{Two different ways to represent the same syllogism}
+\end{figure}
+\FloatBarrier
+
+The ability to recognise correct syllogisms in any form is done by first finding which circle each premise in located in:
+
 \begin{lstlisting}[language=JavaScript]
     var middle = whichCircleIsPremiseIn(level.movableTextArray[0]);
     var predicate = whichCircleIsPremiseIn(level.movableTextArray[1]);
@@ -1073,72 +1063,132 @@ The correct answer is for each level is stored in the JSON as so:
 \end{lstlisting}
 
 A new object is created with the same structure as the correct syllogism object.
-Every time the user clicks in a segment of the circles, which fills it black, the location of the click is stored. This is array of user clicks is used in conjunction with the location of the text to set each location to true or false. From there the correctSyllogism object stored in the game level JSON can be compared with the new object that has been built up by checking the location of the terms to see if they are the same. If both objects are equal then it means that the level has been completed.
+Every time the user clicks in a segment of the circles, which fills it black, the location of the click is stored. This array of user clicks is used in conjunction with the location of the text to set each location to true or false. From there the correctSyllogism object stored in the game level JSON can be compared with the new object and if they are equal then it means that the level has been completed.
 
-\section{Visual Feedback}
-As previously mentioned one of the big advantages to using games to educate is that they can provide the user with immediate feedback. There are a number of ways that this have been achieved in this game. When placing items in the circle, the game checks to perform that the placement is valid and if so highlights the circle in green. This immediately shows the user that they have made a correct move.  This is achieved by checking each premise is inside the same circle as another premise. If the premise is in its own circle then a new, green circle is drawn over the top to indicate a valid placement and remains highlighted until the user releases their mouse.
+\section{Saving the game}
+One requirement was that it must be possible for the game to be saved so that the user could return at a later date and carry on playing from where they left off. There are a number of possible solutions for saving the state of a game in the browser.
+
+Previously, any storage of data in the user's browser would have to have been done through the use of cookies. A cookie is a way to store a small amount of data, up to a maximum of 4kb, in a text file on a user's computer which expire after a certain amount of time.
+
+With the introduction of HTML5 a new method for storing data in the browser was added, localStorage. This new mechanism allows 5MB of data to be stored locally on the browser and is then accessible through any JavaScript that is running on the same domain. It has been implemented here by saving the user's progression after every level that is completed.
+
+In order to save the game an object is created that holds the current state of the game. This contains both the current level number and the name of the user. Every time a level is completed the object is updated with the new level number and that object is then saved. There is no need to remove the old object as the localStorage API silently overwrites the existing object if the key already exists.
+
 
 \begin{lstlisting}[language=JavaScript]
-function checkPremiseAllInTheirOwnCircle() {
-    var middle = whichCircleIsPremiseIn(level.movableTextArray[0]);
-    var predicate = whichCircleIsPremiseIn(level.movableTextArray[1]);
-    var subject = whichCircleIsPremiseIn(level.movableTextArray[2]);
+\\save object
+localStorage.setItem('gameObject', JSON.stringify(game));
+\end{lstlisting}
 
-    if (middle == null || predicate == null || subject == null) {
-        return false
-    } else {
-        return !(middle.equals(predicate) || middle.equals(subject) || predicate.equals(subject));
+The next time the user returns to the web page this saved object is retrieved by the browser.
+\begin{lstlisting}[language=JavaScript]
+var retrievedObject = JSON.parse(localStorage.getItem('gameObject'));
+\end{lstlisting}
 
-    }
+The option to resume play is presented to the user through a 'continue' button on the home page. The continue button is initially hidden and by checking that the game object retrieved from local storage is not null it can be made visible.
+
+\begin{lstlisting}[language=JavaScript]
+if (retrievedObject != null) {
+   $("#continueButton").visible();
 }
 \end{lstlisting}
 
-\begin{figure}[!h]
+\section{Saving data to database}
+One of the requirements was for a leaderboard that provides users with the option to enter their name and be able to see how they rank alongside other people who have played the game. This also doubles up as a way to gain an extra layer of analysis by being able to take a deeper look at how long levels took and the number of moves that were made. 
+
+Initially a REST (REpresentational State Transfer) service was to be created to handle the transport of data. REST uses the HTTP protocol to manipulate data through requests such as GET, which returns data from a datbase and POST which persists data in a database. The REST service would act act as the intermediary between the client side and the database.
+
+\begin{figure}[h]
   \centering
-  \begin{minipage}[b]{0.4\textwidth}
-    \includegraphics[width=\textwidth]{GreenHighlightCorrectPlacement}
-    \caption{Correct Placement}
-  \end{minipage}
-  \hfill
-  \begin{minipage}[b]{0.4\textwidth}
-    \includegraphics[width=\textwidth]{GreenHighlightIncorrectPlacement}
-    \caption{Branching Temporal Logic}
+  \begin{minipage}[b]{1\textwidth}
+    \includegraphics[width=\textwidth]{REST}
+    \caption{Basic REST service architecture}
   \end{minipage}
 \end{figure}
 \FloatBarrier
 
-When completing the syllogism levels there are 3 statements that must be made true; the major premise, the minor premise and the conclusion. When the user makes any of these three true the words font colour of the sentence changes to green.
+This would require writing REST endpoints to handle such data using a language like Node.js, a variant of JavaScript designed to run server side. The problem with this solution is that it requires not only the writing of a REST service but also setting up of a database and acquiring a server to host both of these on. This is overkill for the needs of this project as no sensitive data is being stored, only a few columns of data are needed and speed and number of possible connections that can be sustained are of no concern.
+ 
+Therefore, for this project Google Sheets is being used as a cloud based database. Google sheets is a web based spreadsheet application, very similar in functionality and appearance to Microsoft Excel. Whilst Google Sheets does not offer the same depth of functionality as desktop based solutions it is perfect for storing a relatively small amount of data.
+
+Google Sheets does not explicitly support the functionality of using it to act as a database, and as such there are a number of workarounds that must be carried out to make this possible.
+
+Google Scripts is a cloud based scripting platform operated by Google that allows JavaScript code to be written that can interact with other Google products, such as Sheets. By using this, it is possible to create what is equivalent to a REST endpoint all hosted within Google's platform. 
+Data can then be sent to this Google Script URL from the game's code. The Google Script will then take in this data, process and format it and insert it into a Google Sheet.
+
+In the game's code an object is created that stores all the data that is to be saved. This includes the time and moves taken to complete each level, the player's name and the total time. This is then serialised, converted from an object to a stream of bytes, for use in a URL query string. This serialised object is then sent to the Google Scripts endpoint via an AJAX request. AJAX (Asynchronous JavaScript and XML) allows client side code to communicate with a web server without needing to reload the page. The asynchronous nature means that the client side code will continue to execute without waiting for a reply, returning only once a reply has been received. This prevents the user from having to wait for the request to be returned.
+
+Initially the game data was only saved once the whole game had been completed. This was because it was an expensive process to carry out, taking up to 1 second to save the data. However, during the initial user testing phase there were issues with the users either not fully completing the game or bugs that caused the game to enter a state that could not be progressed from. This meant the users never reached the final stage and the data was not saved. With the analysis of this data being such an important part of the project it was decided to save the data after every level. This did have the unfortunate side effect of reducing the user experience as there was a noticeable delay between each level but a trade off that was worth it for the data.
+
+\begin{lstlisting}[language=JavaScript]
+request = $.ajax({
+   url: "https://script.google.com/macros/s/AKfycbxVGVxoQxNFK7_nxKfglL8yLNUmdPwP2e9j8IMO6JY5wzLEdSE/exec",
+   type: "post",
+   data: serializedData
+});
+\end{lstlisting}
+
+\section{Reading from database}
+Saving data to the database is just one part of the problem, in order to have a functioning leaderboard system it must also be possible to read that data back in to the application.
+
+The JavaScript library Sheetrock\.js allows Google Sheets to be interacted with as if they are a traditional database through the use of SQL-like statements.
+For example, in traditional SQL the query to get the 5 fastest play though times would be:
+
+\begin{lstlisting}[
+           language=SQL,
+           showspaces=false,
+           basicstyle=\ttfamily,
+           commentstyle=\color{gray}
+        ]
+SELECT TOP 5 time_taken, moves_made, levels_skipped FROM leaderboard ORDER BY time_taken ASC;
+\end{lstlisting}
+
+In Sheetrock.js a similar syntax is used:
+
+\begin{lstlisting}[language=JavaScript]
+$('#spreadsheet').sheetrock({
+   url: mySpreadsheet,
+   query: "select B,W,X order by X asc",
+   fetchSize: 5
+});
+\end{lstlisting}
+
+By providing the URL of the spreadsheet, the query and the number of results that are required the data is returned from Google Sheets. This data is then automatically used to populate a HTML table with the data in the form of a leaderboard.
+
+\section{Working across multiple platforms}
+As this game is designed to run across browsers and mobile devices, it is important that the experience is consistent across all potential screen resolutions. The way that has been chosen to do this is everything drawn on the canvas is relative to the height and width of the screen resolution. 
+For example, when creating the circles to represent the venn diagram the following is done:
+
+\begin{lstlisting}[language=JavaScript]
+if (circlesNeeded === 3) {
+    //split the screen in to 4 vertical segments
+    var segments = canvasHeight / 4;
+    //set the radius of each circle
+    var radius = segments / 2 * 1.25;
+
+    var overlap = radius / 2;
+    circlesArray.push(new Circle((canvasWidth / 2), (segments + (segments * 2)) / 2 + (segments / 6), radius));
+    circlesArray.push(new Circle((canvasWidth / 2) - overlap, (segments * 2 + (segments * 3)) / 2 - (segments / 6), radius));
+    circlesArray.push(new Circle((canvasWidth / 2) + overlap, (segments * 2 + (segments * 3)) / 2 - (segments / 6), radius));
+
+\end{lstlisting}
+
+This allows the user interface to look exactly the same across all screen resolutions. Canvas is also supported by Android and iOS browsers but some changes must be made to actually make it work for touchscreen devices. Touch events must be defined to handle the user touching the screen and dragging their finger along the screen. This is relatively straightforward when using jQuery as event handlers for these type of interactions are provided. For example, the user touching the screen is handled by the following:
 
 
-\begin{figure}[h]
-\centering
-    \includegraphics[scale=0.5]{PremiseHighlight}
-    \caption{Premise Highlighting}
-    \label{fig:floodFillBad}
-\end{figure}
-\FloatBarrier
+\begin{lstlisting}[language=JavaScript]
+$(window).bind('touchstart', function (jQueryEvent)
 
-\section{Multiple Canvases}
-One of the biggest optimisations that can be made to the Canvas environment is to use multiple Canvas elements to act as layers. By doing it is possible to be selective about what items are cleared and redrawn in the animation loop. As mentioned in a previous section, when dragging items across the screen the Canvas is constantly being cleared and redrawn. Initially, when only one Canvas was in use this meant redrawing the circles every time. Drawing 3 circles is obviously negligible but when the ability to flood fill segments of the circle issues began to arise. Initially, when the user floodFilled an area, the X and Y coordinates were saved. Then, when in the animating loop this was cleared every time the coordinates that had been filled were passed to the flood fill algorithm to refill. So on every single run of the animation loop, around 60 per second, the flood fill was being carried out. This was a performance killer and almost instantly ground the game to a halt causing the game to become very laggy.
+\end{lstlisting}
 
-Tests carried out by show that creating as many as 500 Canvas elements had no noticeable effect on the time it took requestAnimationFrame to complete an animation render cycle. It was therefore decided to separate the game into its individual parts and draw each one on its own Canvas. This resulted in a total of 7 Canvases being used to create the game.
 
-\begin{figure}[h]
-\centering
-    \includegraphics[scale=0.5]{canvasLayers}
-    \caption{Canvas Layering}
-    \label{fig:canvasLayering}
-\end{figure}
-\FloatBarrier
 
-https://www.ibm.com/developerworks/library/wa-canvashtml5layering/
 
-http://mcgivery.com/how-many-stacked-canvas-elements-is-too-much/
 
 \chapter{Testing}
 
 \section{Test Driven Development}
-Test Driven Development is a process that involves incrementally developing software by writing unit tests before any functional code is written. The process is as follows:
+Test Driven Development is a process that involves incrementally developing software by writing unit tests before any functional code is written. The following process covers how to use test driven development when writing unit tests. A unit test aims to take the smallest piece of testable code from an application and test it in isolation from the rest of the code. 
 
 \begin{itemize}
    \item Write a unit test
@@ -1146,33 +1196,36 @@ Test Driven Development is a process that involves incrementally developing soft
    \item Write the bare minimum functional code to make the unit test pass
    \item Refactor the code
 \end{itemize}
-   
+
    There are a number of benefits to using test driven development when working on large software projects. \cite{muller2003return} found that whilst test driven development might result in more overall code being written for a project the total time to actually complete it can be shorter. One of the main benefits is that it provides security when making any major code changes as happened frequently during the development stage of this project. It means that the suite of tests can immediately be re-run and any breaking changes are highlighted which can then be quickly fixed.
 
 As the entire user interface is written exclusively in Canvas and the use of HTML and CSS is very minimal any unit tests would be explicitly testing the Canvas aspect of the code. Writing unit tests to ensure that certain UI elements are drawn, such as circles, text or images is not really possible given Canvas' 'draw and forget' approach. Therefore, all testing of the UI was done manually and through user testing.
 
 There are a number of functions that do lend themselves to be unit tested. Functions that simply take data in and perform checks and operations on it are perfect examples. In the scope of this project this concerns functions that check to see when levels are complete, check to see if user clicks are in a certain place and setting up shapes ready to be drawn. Jasmine, a behaviour driven framework for testing JavaScript code was used to write the unit tests.
 
+Below is an example unit test that ensures the correct number of circles with correct sizes are setup for each level. 
 \begin{lstlisting}[language=JavaScript]
-describe("Array contains another array", function () {
-    it("returns true", function () {
+describe("Given a number of circles to setup", function () {
+    it("sets up that many circles images", function () {
 
-        var array1 = [
-            {
-                "circleClickedIn": [
-                    1
-                ],
-                "x": 619,
-                "y": 420
-            }
-        ];
+        var x = 714;
+        var y = 702;
+        var canvasWidth = 1920;
+        var canvasHeight = 935;
 
-        var array2 = [1];
+        var circlesArray = [];
 
-        expect(arrayContainsAnotherArray(array1, array2)).toEqual(true);
+        var expected =[];
+        expected.push(new Circle(960, 467.5, 155.83333333333334));
+
+        var actual = setupCircles(1, canvasHeight, canvasWidth, circlesArray);
+
+        expect(_.isEqual(actual, expected)).toEqual(true);
     });
 });
 \end{lstlisting}
+
+By having a complete set of unit tests written for all testable functions it gives confidence that code will perform as intended.
 \bibliographystyle{plainnat}
 \bibliography{bibliography} 
 

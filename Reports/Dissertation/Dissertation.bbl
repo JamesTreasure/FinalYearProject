@@ -1,4 +1,4 @@
-\begin{thebibliography}{31}
+\begin{thebibliography}{34}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -106,6 +106,11 @@ Paul Kawachi.
 \newblock \emph{Interactive Learning Environments}, 11\penalty0 (1):\penalty0
   59--81, 2003.
 
+\bibitem[LaForge(2016)]{FlashInChrome}
+Anthony LaForge.
+\newblock Flash and chrome, 2016.
+\newblock URL \url{https://blog.google/products/chrome/flash-and-chrome/}.
+
 \bibitem[Lamport(1983)]{lamport1983good}
 Leslie Lamport.
 \newblock What good is temporal logic?
@@ -152,6 +157,12 @@ Thomas~W Malone.
 \newblock Toward a theory of intrinsically motivating instruction.
 \newblock \emph{Cognitive science}, 5\penalty0 (4):\penalty0 333--369, 1981.
 
+\bibitem[McGivery(2013)]{StackCanvasTest}
+Andrew McGivery.
+\newblock How many stacked canvas elements is too much?, 2013.
+\newblock URL
+  \url{http://mcgivery.com/how-many-stacked-canvas-elements-is-too-much/}.
+
 \bibitem[Michael and Chen(2005)]{michael2005serious}
 David~R Michael and Sandra~L Chen.
 \newblock \emph{Serious games: Games that educate, train, and inform}.
@@ -181,6 +192,12 @@ Diana Oblinger, James~L Oblinger, and Joan~K Lippincott.
 Marc Prensky.
 \newblock The games generations: How learners have changed.
 \newblock \emph{Digital game-based learning}, 1, 2001.
+
+\bibitem[Ranfelt(2012)]{IBMCanvasLayers}
+Adam Ranfelt.
+\newblock Optimize html5 canvas rendering with layering, 2012.
+\newblock URL
+  \url{https://www.ibm.com/developerworks/library/wa-canvashtml5layering/}.
 
 \bibitem[Smith(2016)]{sep-aristotle-logic}
 Robin Smith.
