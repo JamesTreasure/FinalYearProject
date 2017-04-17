@@ -22,6 +22,8 @@ var levelsSkipped = [];
 var playerName;
 var gameStarted = false;
 var retrievedObject = JSON.parse(localStorage.getItem('gameObject'));
+var spreadsheetURL = "https://script.google.com/macros/s/AKfycbxVGVxoQxNFK7_nxKfglL8yLNUmdPwP2e9j8IMO6JY5wzLEdSE/exec";
+var testSpreadsheetURL = "https://script.google.com/macros/s/AKfycbzJB6_HPPKzLWbG_rth3K3prvNgfV5ZLtxQtN7ISDjYwftL7jAT/exec";
 
 var layer1;
 var layer2;
@@ -34,7 +36,7 @@ var circleOutlineCanvas;
 //Context 1 has undo, redo and refresh. Also has static text, circles.
 var context1;
 
-//Context 2 has movable textf
+//Context 2 has movable text
 var context2;
 
 //Context 3 has win screen
@@ -177,7 +179,7 @@ function gameObject(levelNumber, playerName) {
     this.playerName = playerName;
 }
 
-function postDataToGoogleSheets(name, time) {
+function postDataToGoogleSheets() {
     var allSkippedLevels = (levelsSkipped.join(", "));
 
     var myData = {
@@ -208,9 +210,10 @@ function postDataToGoogleSheets(name, time) {
         "totalTime": ((level1endTime - level1startTime) / 1000) + ((level2endTime - level2startTime) / 1000) + ((level3endTime - level3startTime) / 1000) +
         ((level4endTime - level4startTime) / 1000) + ((level5endTime - level5startTime) / 1000) + ((level6endTime - level6startTime) / 1000) + ((level7endTime - level7startTime) / 1000)
         + ((level8endTime - level8startTime) / 1000) + ((level9endTime - level9startTime) / 1000) + ((level10endTime - level10startTime) / 1000) + ((level11endTime - level11startTime) / 1000)
-    }
+    };
 
-    postData(myData);
+
+    postData(myData, spreadsheetURL);
 }
 
 function main(levelNumber) {
@@ -435,6 +438,9 @@ function setupLeaderboard(){
         labels: ['Name', 'Levels Skipped', 'Time'],
         fetchSize: 10
     });
+
+    var table = $('#spreadsheet').tableToJSON();
+    console.log(table);
 
 }
 
