@@ -7,8 +7,6 @@ function drawStaticText() {
             staticTextContext.fillStyle = "#2ecc71";
         } else if (i === 1 && minorPremiseMet) {
             staticTextContext.fillStyle = "#2ecc71";
-        } else if (i === 2 && minorPremiseMet && majorPremiseMet) {
-            staticTextContext.fillStyle = "#2ecc71";
         } else {
             staticTextContext.fillStyle = "#003300";
         }
