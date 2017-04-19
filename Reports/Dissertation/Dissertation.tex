@@ -15,6 +15,7 @@
 \usepackage{enumitem}
 \usepackage{adjustbox}
 \usepackage[ruled,longend]{algorithm2e}
+\usepackage[parfill]{parskip}
 
 \usepackage{layout}
 \setlength{\voffset}{-0.5in}
@@ -133,6 +134,24 @@
 	2016 - 2017
 	{\large \today\par}
 \end{titlepage}
+
+\newpage
+\clearpage
+\vspace*{\fill}
+\begin{center}
+\begin{minipage}{.8\textwidth}
+This dissertation may be made available for consultation within the University
+Library and may be photocopied or lent to other libraries for the purposes of consultation.
+
+\end{minipage}
+\end{center}
+\vfill % equivalent to \vspace{\fill}
+\clearpage
+
+\begin{abstract}
+Research shows that the learning process can be enhanced through the use of serious, educational games. The focus of this dissertation was to build a web game that taught the basics of mathematical logic including Aristotle's syllogisms and set theory. This project is also concerned with the user experience and user interface design necessary to create an immersive game. Whilst the technology used was not of primary importance some investigation was carried out on the tools available when creating web games.
+\end{abstract}
+
 
 \tableofcontents
 \chapter{Literature Review}
@@ -810,7 +829,7 @@ One of the biggest optimisations that can be made to the Canvas environment is t
 
 Initially, when the user floodFilled an area the X and Y coordinates of the mouse click were saved. Then, every time the animation loop ran these X and Y coordinates were used to refill the segment that the user clicked in. So on every single run of the animation loop, around 60 per second, the flood fill was being carried out. This had a huge impact of performance and almost instantly ground the game to a halt rendering the game almost unplayable.
 
-\citep{StackCanvasTest} ran a number of tests that showed that creating as many as 500 Canvas elements had no noticeable effect on the time it took the function requestAnimationFrame to complete an animation render cycle. Therefore seperating as many parts of the game in to their own Canvas environment added huge performance gains for only a marginal increase in complexity. These findings resulted in multiple Canvas elements being used in this project that allowed much finer control over when and what was being drawn to the Canvas.
+\cite{StackCanvasTest} ran a number of tests that showed that creating as many as 500 Canvas elements had no noticeable effect on the time it took the function requestAnimationFrame to complete an animation render cycle. Therefore seperating as many parts of the game in to their own Canvas environment added huge performance gains for only a marginal increase in complexity. These findings resulted in multiple Canvas elements being used in this project that allowed much finer control over when and what was being drawn to the Canvas.
 
 
 
@@ -1226,6 +1245,84 @@ describe("Given a number of circles to setup", function () {
 \end{lstlisting}
 
 By having a complete set of unit tests written for all testable functions it gives confidence that code will perform as intended.
+
+\section{Integration Tests}
+Integration tests are an extension of unit tests that combine multiple smaller parts and test that they behave correctly when combined with each other. 
+
+The main advantage of writing integration tests are that it can find issues that only occur when two separate parts of the software interact, something that would not arise using solely unit tests. 
+
+An example integration test written for this project was to test that saving the game object to the database worked correctly, and it could also be retrieved to populate the leaderboard. This was an important test to write as the data gained from the user evaluation relied entirely on this feature working. If there were any issues it would result in the data being lost which would in turn affect the analysis that could be carried out on the effectiveness of the game as a whole. 
+
+The library used to save data to the Google Sheets database only can only send POST requests and has no support for DELETE. Due to this it was not possible to delete the entries made when running the tests. This means that a second test database was created as to not interfere with the production database that was used for the leaderboard. 
+
+Integration tests tend to be harder to write due to the interactions between the different parts of the code and this is no exception in this case. In addition due to the asynchronous nature of both adding to and reading from the database the assertions of the tests cannot be run until all the AJAX calls have successfully completed. 
+
+This is not completely straightforward to manage using the Jasmine framework, which supports asynchronous testing through the user of the done keyword. Once an asynchronous call has completed the function done(); is called allowing the code to progress on. 
+
+The test below works by inserting a new record in the database with a randomly generate ID, then that same ID is used to ensure that the record can be retrieved. A check is then done to ensure that this unique record is the only one returned. 
+
+\begin{lstlisting}[language=JavaScript]
+describe("POST data to Google Sheets", function() {
+    var id;
+    var returnedSpreadsheetResponse;
+
+    beforeEach(function(done) {
+        var testSpreadsheetURL = "https://script.google.com";
+        id = generateGuid();
+        var myData = {"name": id, ..., "totalTime": 100};
+        postData(myData, testSpreadsheetURL);
+        done();
+    });
+
+    beforeEach(function(done) {
+        var myCallback = function(error, options, response) {
+            returnedSpreadsheetResponse = response.rows.length;
+            done();
+        };
+
+        $('#spreadsheet').sheetrock({
+            url: "https://docs.google.com",
+            query: "select B,Y,AD where B = '" + id + "' order by AB asc",
+            labels: ['Name', 'Levels Skipped', 'Time'],
+            fetchSize: 10,
+            callback: myCallback
+        });
+    });
+
+    it("Sheetrock.js can read data back", function() {
+        expect(returnedSpreadsheetResponse).toEqual(2);
+    });
+});
+\end{lstlisting}
+
+\chapter{Evaluation}
+
+\section{Introduction}
+The next stage of the project was to carry out an assessment with users in order to both test the effectiveness of the system and see if the requirements had been met. Most bugs would hopefully have been removed during the development phase with the aid of the unit, integration and brief user testing so the focus this time was far more on evaluating the success of the game to teach the basics of logic.
+
+The experiment was split into three parts that the participants were required to carry out in succession. The participants were made up of a mixture of both people with and without a background in mathematics.
+The participants were were required to first complete a questionnaire to gauge their how comfortable and experienced they were with different aspects of Maths.
+
+Once completed the users were required to play through the game, completing as many levels as they were able to. 
+
+After there was a post-game questionnaire that asked questions about how they found the experience, if the usability was good and if they had learnt anything.
+
+\section{What would have been done differently}
+
+Whilst at the time the decision to use pure Canvas with no use of any libraries seemed a good choice, on reflection this appears not to be the case. The time spent implementing dragging and dropping, recognising when certain items were in certain places added a significant amount of time to development
+
+If this project was done over there would definitely have been a more thorough investigation into the benefits of using the multiple Canvas libraries including trying a few of them out to see how they could have simplified the process. 
+
+As it stood with the game not relying heavily on animations it was felt that they were not worthwhile but this decision was taken before there was a full understanding of how much work would be required to get the core functionality of the game up and running. 
+
+It is also possible that using Canvas in the first place was the wrong technology, and that SVG would have been far more suitable for a game of this nature. Canvas' strengths lie in its performance and versatility in creating 3d immersive games. These strengths were never hugely relevant to a game of this style so might not have been the most suitable technology to use. Perhaps the longest amount of time developing the projects was on creating the tutorials for each level. The work was far less challenging than the algorithms needed to actually make the game mechanics work but drawing both text and arrows on the Canvas was a surprisingly length process. If SVG had been used instead it would have been far easier to structure the tutorial layouts with HTML and CSS which would have greatly reduced the time taken to implement them.
+
+
+\section{Further Development}
+There are a number of further improvements that could be made to the game.
+
+A level creator could be added that allowed users to create their own levels. The infrastructure is already as levels are simply a JSON object. This means that it would be incredibly straightforward to create an editor online that allowed users to input their own JSON to add more levels. Adding levels through JSON might be too advanced for the average user so it could also be possible to use the existing graphical interface to add new levels. By providing three blank circles and 3 blank text boxes the user could specify their own text and highlight the desired areas of the venn diagram in order to add new levels. 
+
 \bibliographystyle{plainnat}
 \bibliography{bibliography} 
 
