@@ -145,7 +145,7 @@ describe("Given a number of circles to setup", function () {
 
         var circlesArray = [];
 
-        var expected =[];
+        var expected = [];
         expected.push(new Circle(960, 467.5, 155.83333333333334));
 
         var actual = setupCircles(1, canvasHeight, canvasWidth, circlesArray);
@@ -153,3 +153,76 @@ describe("Given a number of circles to setup", function () {
         expect(_.isEqual(actual, expected)).toEqual(true);
     });
 });
+
+
+describe("POST data to Google Sheets", function () {
+    var id;
+    var returnedSpreadsheetResponse;
+    jasmine.DEFAULT_TIMEOUT_INTERVAL = 10000;
+
+    beforeEach(function (done) {
+        var testSpreadsheetURL = "https://script.google.com/macros/s/AKfycbzJB6_HPPKzLWbG_rth3K3prvNgfV5ZLtxQtN7ISDjYwftL7jAT/exec";
+        id = generateGuid();
+        var myData = {
+            "name": id,
+            "level1time": 1,
+            "level1moves": 1,
+            "level2time": 2,
+            "level2moves": 2,
+            "level3time": 3,
+            "level3moves": 3,
+            "level4time": 4,
+            "level4moves": 4,
+            "level5time": 5,
+            "level5moves": 5,
+            "level6time": 6,
+            "level6moves": 6,
+            "level7time": 7,
+            "level7moves": 7,
+            "level8time": 8,
+            "level8moves": 8,
+            "level9time": 9,
+            "level9moves": 9,
+            "level10time": 10,
+            "level10moves": 10,
+            "level11time": 11,
+            "level11moves": 11,
+            "levelsSkipped": 0,
+            "totalTime": 100
+        };
+        postData(myData, testSpreadsheetURL);
+        done();
+
+    });
+
+    beforeEach(function (done) {
+        var myCallback = function (error, options, response) {
+            returnedSpreadsheetResponse = response.rows.length;
+            done();
+        };
+
+        $('#spreadsheet').sheetrock({
+            url: "https://docs.google.com/spreadsheets/d/1tXdVVOC5QnDm5zg-xAMfwrxFqX3cBAf8xnRwtWWl2Lk/edit#gid=0",
+            query: "select B,Y,AD where B = '" + id + "' order by AB asc",
+            labels: ['Name', 'Levels Skipped', 'Time'],
+            fetchSize: 10,
+            callback: myCallback
+        });
+    });
+
+    it("Sheetrock.js can read data back", function () {
+        expect(returnedSpreadsheetResponse).toEqual(2);
+    });
+});
+
+
+function generateGuid() {
+    function s4() {
+        return Math.floor((1 + Math.random()) * 0x10000)
+            .toString(16)
+            .substring(1);
+    }
+
+    return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
+        s4() + '-' + s4() + s4() + s4();
+}
