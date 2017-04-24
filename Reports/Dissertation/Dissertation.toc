@@ -1,66 +1,77 @@
-\contentsline {chapter}{\numberline {1}Literature Review}{3}{chapter.1}
-\contentsline {section}{\numberline {1.1}Syllogisms}{3}{section.1.1}
-\contentsline {subsection}{\numberline {1.1.1}History}{3}{subsection.1.1.1}
-\contentsline {subsection}{\numberline {1.1.2}What are syllogisms}{3}{subsection.1.1.2}
-\contentsline {subsubsection}{Existential Fallacy}{5}{subsubsection*.2}
-\contentsline {subsection}{\numberline {1.1.3}Current teaching}{6}{subsection.1.1.3}
-\contentsline {subsubsection}{Venn Diagrams}{6}{subsubsection*.4}
-\contentsline {subsubsection}{Euler Circles}{7}{subsubsection*.8}
-\contentsline {subsubsection}{Linear Diagrams}{9}{subsubsection*.12}
-\contentsline {subsubsection}{Categorical Pattern Diagrams}{10}{subsubsection*.14}
-\contentsline {subsection}{\numberline {1.1.4}Additional Logic Systems}{11}{subsection.1.1.4}
-\contentsline {subsubsection}{Polysyllogisms}{11}{subsubsection*.16}
-\contentsline {subsubsection}{Modal Logic}{12}{subsubsection*.18}
-\contentsline {subsubsection}{Temporal Logic}{12}{subsubsection*.19}
-\contentsline {subsubsection}{Set Theory}{13}{subsubsection*.21}
-\contentsline {section}{\numberline {1.2}Serious Games}{14}{section.1.2}
-\contentsline {subsection}{\numberline {1.2.1}Introduction}{14}{subsection.1.2.1}
-\contentsline {subsection}{\numberline {1.2.2}Why They Are Good For Education}{14}{subsection.1.2.2}
-\contentsline {subsubsection}{Accessibility}{14}{subsubsection*.23}
-\contentsline {subsubsection}{Motivation}{15}{subsubsection*.24}
-\contentsline {subsubsection}{Feedback}{16}{subsubsection*.25}
-\contentsline {subsection}{\numberline {1.2.3}Existing Serious Games}{17}{subsection.1.2.3}
-\contentsline {subsubsection}{MyMaths}{17}{subsubsection*.26}
-\contentsline {subsubsection}{BBC Bitesize}{18}{subsubsection*.28}
-\contentsline {chapter}{\numberline {2}Requirements}{21}{chapter.2}
-\contentsline {section}{\numberline {2.1}Introduction}{21}{section.2.1}
-\contentsline {section}{\numberline {2.2}Sources}{21}{section.2.2}
-\contentsline {subsection}{\numberline {2.2.1}Literature Review}{21}{subsection.2.2.1}
-\contentsline {subsection}{\numberline {2.2.2}Project Supervisor}{21}{subsection.2.2.2}
-\contentsline {section}{\numberline {2.3}Functional}{22}{section.2.3}
-\contentsline {section}{\numberline {2.4}Non-functional}{24}{section.2.4}
-\contentsline {chapter}{\numberline {3}Design}{26}{chapter.3}
-\contentsline {section}{\numberline {3.1}Game Design}{26}{section.3.1}
-\contentsline {section}{\numberline {3.2}Level Design}{26}{section.3.2}
-\contentsline {section}{\numberline {3.3}User Interface}{27}{section.3.3}
-\contentsline {section}{\numberline {3.4}Control Bar}{28}{section.3.4}
-\contentsline {section}{\numberline {3.5}Technologies}{29}{section.3.5}
-\contentsline {subsection}{\numberline {3.5.1}HTML}{29}{subsection.3.5.1}
-\contentsline {subsection}{\numberline {3.5.2}CSS}{29}{subsection.3.5.2}
-\contentsline {subsection}{\numberline {3.5.3}JavaScript}{30}{subsection.3.5.3}
-\contentsline {subsection}{\numberline {3.5.4}Web game technologies}{30}{subsection.3.5.4}
-\contentsline {subsubsection}{Flash}{30}{subsubsection*.32}
-\contentsline {subsubsection}{SVG}{31}{subsubsection*.33}
-\contentsline {subsubsection}{Canvas}{31}{subsubsection*.34}
-\contentsline {subsubsection}{Canvas Libraries}{31}{subsubsection*.35}
-\contentsline {chapter}{\numberline {4}Implementation}{32}{chapter.4}
-\contentsline {section}{\numberline {4.1}Introduction}{32}{section.4.1}
-\contentsline {section}{\numberline {4.2}Multiple Canvases}{32}{section.4.2}
-\contentsline {section}{\numberline {4.3}Clicking on items}{33}{section.4.3}
-\contentsline {section}{\numberline {4.4}Dragging items}{35}{section.4.4}
-\contentsline {section}{\numberline {4.5}Floodfill}{36}{section.4.5}
-\contentsline {section}{\numberline {4.6}Visual Feedback}{38}{section.4.6}
-\contentsline {section}{\numberline {4.7}Undo and Redo}{40}{section.4.7}
-\contentsline {section}{\numberline {4.8}Recognising when level is complete}{41}{section.4.8}
-\contentsline {section}{\numberline {4.9}Saving the game}{42}{section.4.9}
-\contentsline {section}{\numberline {4.10}Saving data to database}{43}{section.4.10}
-\contentsline {section}{\numberline {4.11}Reading from database}{45}{section.4.11}
-\contentsline {section}{\numberline {4.12}Working across multiple platforms}{46}{section.4.12}
-\contentsline {chapter}{\numberline {5}Testing}{48}{chapter.5}
-\contentsline {section}{\numberline {5.1}Test Driven Development}{48}{section.5.1}
-\contentsline {section}{\numberline {5.2}Integration Tests}{49}{section.5.2}
-\contentsline {chapter}{\numberline {6}Evaluation}{52}{chapter.6}
-\contentsline {section}{\numberline {6.1}Introduction}{52}{section.6.1}
-\contentsline {section}{\numberline {6.2}What would have been done differently}{52}{section.6.2}
-\contentsline {section}{\numberline {6.3}Further Development}{53}{section.6.3}
+\contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.1}
+\contentsline {section}{\numberline {1.1}Objectives}{1}{section.1.1}
+\contentsline {chapter}{\numberline {2}Literature Review}{2}{chapter.2}
+\contentsline {section}{\numberline {2.1}Syllogisms}{2}{section.2.1}
+\contentsline {subsection}{\numberline {2.1.1}History}{2}{subsection.2.1.1}
+\contentsline {subsection}{\numberline {2.1.2}What are syllogisms}{2}{subsection.2.1.2}
+\contentsline {subsubsection}{Existential Fallacy}{4}{subsubsection*.2}
+\contentsline {subsection}{\numberline {2.1.3}Current teaching}{5}{subsection.2.1.3}
+\contentsline {subsubsection}{Venn Diagrams}{5}{subsubsection*.4}
+\contentsline {subsubsection}{Euler Circles}{6}{subsubsection*.8}
+\contentsline {subsubsection}{Linear Diagrams}{8}{subsubsection*.12}
+\contentsline {subsubsection}{Categorical Pattern Diagrams}{9}{subsubsection*.14}
+\contentsline {subsection}{\numberline {2.1.4}Additional Logic Systems}{10}{subsection.2.1.4}
+\contentsline {subsubsection}{Polysyllogisms}{10}{subsubsection*.16}
+\contentsline {subsubsection}{Modal Logic}{11}{subsubsection*.18}
+\contentsline {subsubsection}{Temporal Logic}{11}{subsubsection*.19}
+\contentsline {subsubsection}{Set Theory}{12}{subsubsection*.21}
+\contentsline {section}{\numberline {2.2}Serious Games}{13}{section.2.2}
+\contentsline {subsection}{\numberline {2.2.1}Introduction}{13}{subsection.2.2.1}
+\contentsline {subsection}{\numberline {2.2.2}Why They Are Good For Education}{13}{subsection.2.2.2}
+\contentsline {subsubsection}{Accessibility}{13}{subsubsection*.23}
+\contentsline {subsubsection}{Motivation}{14}{subsubsection*.24}
+\contentsline {subsubsection}{Feedback}{15}{subsubsection*.25}
+\contentsline {subsection}{\numberline {2.2.3}Existing Serious Games}{16}{subsection.2.2.3}
+\contentsline {subsubsection}{MyMaths}{16}{subsubsection*.26}
+\contentsline {subsubsection}{BBC Bitesize}{17}{subsubsection*.28}
+\contentsline {chapter}{\numberline {3}Requirements}{19}{chapter.3}
+\contentsline {section}{\numberline {3.1}Introduction}{19}{section.3.1}
+\contentsline {section}{\numberline {3.2}Sources}{19}{section.3.2}
+\contentsline {subsubsection}{Literature Review}{19}{subsubsection*.30}
+\contentsline {subsubsection}{Project Supervisor}{19}{subsubsection*.31}
+\contentsline {section}{\numberline {3.3}Functional}{20}{section.3.3}
+\contentsline {section}{\numberline {3.4}Non-functional}{22}{section.3.4}
+\contentsline {chapter}{\numberline {4}Design}{24}{chapter.4}
+\contentsline {section}{\numberline {4.1}Game Design}{24}{section.4.1}
+\contentsline {subsubsection}{Tutorials}{24}{subsubsection*.32}
+\contentsline {subsubsection}{Level Design}{24}{subsubsection*.33}
+\contentsline {section}{\numberline {4.2}User Interface}{25}{section.4.2}
+\contentsline {section}{\numberline {4.3}Control Bar}{26}{section.4.3}
+\contentsline {section}{\numberline {4.4}Technologies}{27}{section.4.4}
+\contentsline {subsection}{\numberline {4.4.1}HTML}{27}{subsection.4.4.1}
+\contentsline {subsection}{\numberline {4.4.2}CSS}{27}{subsection.4.4.2}
+\contentsline {subsection}{\numberline {4.4.3}JavaScript}{28}{subsection.4.4.3}
+\contentsline {subsection}{\numberline {4.4.4}Web game technologies}{28}{subsection.4.4.4}
+\contentsline {subsubsection}{Flash}{28}{subsubsection*.36}
+\contentsline {subsubsection}{SVG}{29}{subsubsection*.37}
+\contentsline {subsubsection}{Canvas}{29}{subsubsection*.38}
+\contentsline {subsubsection}{Canvas Libraries}{29}{subsubsection*.39}
+\contentsline {chapter}{\numberline {5}Implementation}{30}{chapter.5}
+\contentsline {section}{\numberline {5.1}Introduction}{30}{section.5.1}
+\contentsline {section}{\numberline {5.2}Canvas overview}{30}{section.5.2}
+\contentsline {section}{\numberline {5.3}Multiple Canvases}{30}{section.5.3}
+\contentsline {section}{\numberline {5.4}Clicking on items}{31}{section.5.4}
+\contentsline {section}{\numberline {5.5}Dragging items}{33}{section.5.5}
+\contentsline {section}{\numberline {5.6}Floodfill}{34}{section.5.6}
+\contentsline {section}{\numberline {5.7}Visual Feedback}{37}{section.5.7}
+\contentsline {section}{\numberline {5.8}Undo and Redo}{39}{section.5.8}
+\contentsline {section}{\numberline {5.9}Recognising when level is complete}{40}{section.5.9}
+\contentsline {section}{\numberline {5.10}Saving the game}{41}{section.5.10}
+\contentsline {section}{\numberline {5.11}Saving data to database}{42}{section.5.11}
+\contentsline {section}{\numberline {5.12}Reading from database}{44}{section.5.12}
+\contentsline {section}{\numberline {5.13}Working across multiple platforms}{45}{section.5.13}
+\contentsline {chapter}{\numberline {6}Testing}{47}{chapter.6}
+\contentsline {section}{\numberline {6.1}Test Driven Development}{47}{section.6.1}
+\contentsline {section}{\numberline {6.2}Integration Tests}{48}{section.6.2}
+\contentsline {chapter}{\numberline {7}Evaluation}{51}{chapter.7}
+\contentsline {section}{\numberline {7.1}Introduction}{51}{section.7.1}
+\contentsline {subsection}{\numberline {7.1.1}Pre Game Questionnaire}{51}{subsection.7.1.1}
+\contentsline {subsection}{\numberline {7.1.2}Game}{53}{subsection.7.1.2}
+\contentsline {subsection}{\numberline {7.1.3}Post Game Questionnaire}{55}{subsection.7.1.3}
+\contentsline {chapter}{\numberline {8}Conclusion}{58}{chapter.8}
+\contentsline {section}{\numberline {8.1}Main findings}{58}{section.8.1}
+\contentsline {section}{\numberline {8.2}What would have been done differently}{58}{section.8.2}
+\contentsline {section}{\numberline {8.3}Further Development}{59}{section.8.3}
+\contentsline {subsubsection}{Level creator}{59}{subsubsection*.52}
+\contentsline {subsubsection}{Alternative syllogism representations}{59}{subsubsection*.53}
 \contentsfinish 
