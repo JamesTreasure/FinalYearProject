@@ -17,6 +17,11 @@
 \usepackage[ruled,longend]{algorithm2e}
 \usepackage[parfill]{parskip}
 
+\usepackage[toc,page]{appendix}
+
+\usepackage[utf8]{inputenc}
+\usepackage{booktabs}
+
 \usepackage{layout}
 \setlength{\voffset}{-0.5in}
 \setlength{\headsep}{5pt}
@@ -850,7 +855,7 @@ There are a number of on screen controls that need to be present at all times. A
 \FloatBarrier
 
 \section{Technologies}
-Certain technologies must be used when developing applications for the web but there are some areas where there is a choice. The following discusses what technologies will be used in order to create the game and discussion on the potential options available where a choice is available. 
+There is no choice but to use certain technologies must be used when developing web applications but there are some areas where there is a selection. The following discusses what technologies will be used in order to create the game and a discussion on the potential options available where a choice is available. 
 
 \subsection{HTML}
 HTML (Hyper Text Markup Language) is a markup language that describes the structure of web pages. Websites created with HTML are then able to be viewed by a web browser. HTML uses tags to tell the web browser how to display certain content with support for links, pictures and video. HTML is only used to define the content of a web page and not how it should be formatted for the end user.
@@ -900,16 +905,12 @@ One of the biggest optimisations that can be made to the Canvas environment is t
 \end{figure}
 
 
-Initially, when the user floodFilled an area the X and Y coordinates of the mouse click were saved. Then, every time the animation loop ran these X and Y coordinates were used to refill the segment that the user clicked in. So on every single run of the animation loop, around 60 per second, the flood fill was being carried out. This had a huge impact of performance and almost instantly ground the game to a halt rendering the game almost unplayable.
-
 \cite{StackCanvasTest} ran a number of tests that showed that creating as many as 500 Canvas elements had no noticeable effect on the time it took the function requestAnimationFrame to complete an animation render cycle. Therefore seperating as many parts of the game in to their own Canvas environment added huge performance gains for only a marginal increase in complexity. These findings resulted in multiple Canvas elements being used in this project that allowed much finer control over when and what was being drawn to the Canvas.
 
 
 
-
-
 \section{Clicking on items}
-As previously mentioned, Canvas uses immediate mode graphics to draw pixels to the screen meaning that once they've been draw Canvas forgets about them. In turn this means that recognising when a user clicks on an object is not something that is natively supported  and must be implemented manually. 
+As previously mentioned, Canvas uses immediate mode graphics to draw pixels to the screen meaning that once they have been draw Canvas forgets about them. In turn this means that recognising when a user clicks on an object is not something that is natively supported  and must be implemented manually. 
 
 \begin{figure}[h]
   \centering
@@ -1404,9 +1405,9 @@ describe("POST data to Google Sheets", function() {
 \chapter{Evaluation}
 
 \section{Introduction}
-The next stage of the project was to carry out an assessment with users in order to test both the effectiveness of the system and see if the requirements had been met. Most bugs would hopefully have been removed during the development phase with the aid of the unit, integration and user testing. The focus with this evaluation was was far more focussed on the effectiveness of the game to teach the player about syllogisms.
+The next stage of the project was to carry out an assessment with users in order to test both the effectiveness of the system and see if the requirements had been met. Most bugs would hopefully have been removed during the development phase with the aid of the unit, integration and user testing. The focus with this evaluation was on the effectiveness of the game to teach the player about syllogisms.
 
-The experiment was split into three parts that the participants were required to carry out in succession. The study consisted of 19 participants made up of a wide variety of ages, academic background and mathematical experience. 
+The experiment was split into three parts that the participants were required to carry out in succession. The study consisted of 18 participants made up of a wide variety of ages, academic backgrounds and mathematical experiences. 
 
 
 The questionnaires laid out a series of statements that the participants specified their level of agreement or disagreement using the likert scale. 
@@ -1421,13 +1422,13 @@ The questionnaires laid out a series of statements that the participants specifi
 
 \subsection{Pre Game Questionnaire}
 
-The participants were were required to first complete a questionnaire to gauge their how comfortable and experienced they were with different aspects of Maths.
+The participants were were required to first complete a questionnaire to gauge how comfortable and experienced they were with different aspects of maths.
 
 
 \begin{enumerate}
 	\item  \textit {Did you do A Level Mathematics?}
 	
-	9 of the 19 studied A Level mathematics, an optional qualification taken in the United Kingdom by pupils aged between 16-18. Conversely 10 did not study this subject for A Level.
+	8 of the 19 studied A Level mathematics, an optional qualification taken in the United Kingdom by pupils aged between 16-18. Conversely 10 did not study this subject for A Level.
 	
 	\item  \textit {Does your degree contain any of the following forms of mathematics?}
 	\begin{itemize}
@@ -1456,7 +1457,11 @@ As is clear to see in figure \ref{fig:typeOfMathsChart}, there is a significant 
 	
 	\item  \textit {I enjoy puzzle games}
 	
-	A large correlation could be seen here between those who enjoy maths and those who enjoy puzzle games. On average people prefer puzzle games to maths, with the average here being 3.9.
+	A large correlation could be seen here between those who enjoy maths and those who enjoy puzzle games. People prefer puzzle games to maths, with the average here being 3.9.
+	
+	\item  \textit {Riddles}
+	
+	Two riddles were asked, one in the style of a syllogism and one a more traditional style. This was to try and make a connection between the type of person who could correctly answer the riddle and their performance in the game. However as all participants got the first riddle correct and only five, with a two and three split between the maths and non-maths groups respectively, got the second riddle wrong there is not much that can be learned from this. 
 	
 	
 \end{enumerate}
@@ -1464,28 +1469,30 @@ As is clear to see in figure \ref{fig:typeOfMathsChart}, there is a significant 
 
 \subsection{Game}
 
-The participants were then required to play through the game, completing as many levels as they were able to. As mention in the requirements, the game will save both the time each level takes to complete as well as the number of moves made each participant takes to complete each level. 
+The participants were then required to play through the game, completing as many levels as they were able to. As mentioned in the requirements, the game will save both the time each level takes to complete as well as the number of moves each participant takes to complete each level. 
 
 Of the 18 participants, 11 people completed the game in its entirety without skipping any levels. Perhaps the most interesting observation from the results is the split in participants who studied A level mathematics and those who did not. All eight participants who did A level mathematics completed the game with no skips in an average time of 12 minutes and 29 seconds. On the other hand, only three out of ten people fully completed the game who did not have a maths background taking an average of 25 minutes and 33 seconds.
 
 
 \begin{figure}[h]
 \centering
-    \includegraphics[scale=0.5]{averageLevelTimeChart}
+    \includegraphics[scale=0.4]{timeTakenIfCompletedLevel}
     \caption{Average time for each level}
-        \label{fig:averageLevelTimeChart}
+        \label{fig:timeTakenIfCompletedLevel}
 \end{figure}
 \FloatBarrier
 
-As figure \ref{fig:averageLevelTimeChart} shows the average time taken for each level was shorter for those who have completed A level mathematics. However, the difference between average times is relatively small and consistent across the levels except for level 5. This is interesting as level 5 is the first level that introduces a totally new concept to the participants - the syllogisms. 
+Figure \ref{fig:timeTakenIfCompletedLevel} shows the average time taken for each level but only includes times where the participant actually completed the level and did not skip it. As can be seen, the time was shorter for those who have done A level mathematics. The difference between average times varied significantly depending on the level. Level 5 sees a large increase in real terms, potentially as it is the first level that introduces a totally new concept to the participants - the syllogisms. Interestingly, level 1 also also takes the non A level maths group over four times as long to complete. This is surprising as level 1 is a simple level that just requires three pictures to be dragged into a circle. This substantial difference in time between the two groups suggests that the non A level maths group was less comfortable with the interface.
 
-A similar trend can be seen by the number of moves taken by the two separate groups. Level 5 again sees a massive jump in the number of moves it takes the non A level maths group to complete it. With this group taking on average 100 moves to complete the level, this in isolation might lead to the assumption that they progressed purely by guessing randomly until they got the correct answer. However the following level, level 6, was asking almost exactly the same question as level 5 with the tutorial system providing much less assistance. But as figure  \ref{fig:averageLevelTimeChart} and \ref{fig:numberOfMovesChart} show, both the times and number of moves made for level 6 drop drastically. This implies that whilst initially the new concept took longer for the non mathematicians to grasp, once they had got over the initial hurdle they improved massively. This suggests that they did actually understand the concept and ideas behind the syllogisms. 
+A similar trend can be seen by the number of moves taken by the two separate groups, shown in figure \ref{fig:numberOfMovesIfCompletedLevel}. Again, the number of moves only include participants who completed the level. The number of moves taken to complete level 11 was not recorded due to a technical issue. Level 5 again sees a massive jump in the number of moves it takes the non A level maths group to complete it. With this group taking on average over 100 moves to complete the level, this in isolation might lead to the assumption that they progressed purely by guessing randomly until they got the correct answer. However the following level, level 6, was asking almost exactly the same question as level 5 with the tutorial system providing much less assistance. But as figure  \ref{fig:timeTakenIfCompletedLevel} and \ref{fig:numberOfMovesIfCompletedLevel} show, both the times and number of moves made for level 6 drop drastically. This implies that whilst initially the new concept took longer for the non mathematicians to grasp, once they had got over the initial hurdle they improved massively. This suggests that they did actually understand the concept and ideas behind the syllogisms. 
+
+Similar jumps can be seen in level 7, 8 and 10 which can also be attributed to the fact that new concepts were being introduced.
 
 \begin{figure}[h]
 \centering
-    \includegraphics[scale=0.5]{numberOfMovesChart}
+    \includegraphics[scale=0.4]{numberOfMovesIfCompletedLevel}
     \caption{Average number of moves for each level}
-        \label{fig:numberOfMovesChart}
+        \label{fig:numberOfMovesIfCompletedLevel}
 \end{figure}
 \FloatBarrier
 
@@ -1512,7 +1519,7 @@ Finally after playing the game there was a post-game questionnaire that asked ho
 	
 	\item  \textit {I found the interface easy to use}
 
-Again, this was another area where there was a large focus on during development. This work on making the UI as simple as possible paid off as the score received was 4.1. A number of participants made comments that clicking and dragging items around the screen was too hard. This was due to the fact that the text, and therefore the hitbox, was slightly too small meaning the user had to be precise when clicking. This had a effect on the score for the interface usability.
+Again, this was another area where there was a large focus on during development. This work on making the UI as simple as possible paid off as the score received was 4.1. A number of participants made comments that clicking and dragging items around the screen was too hard. This was due to the fact that the text, and therefore the hitbox, was slightly too small meaning the user had to be precise when clicking. This had a effect on the score for the interface usability. One participant also completed the game on a mobile device, giving the interface a score of 5. The participant remarked that it was slightly fiddly on a small screen but worked well.
 	
 	\item  \textit {The game ran smoothly with no issues}
 	
@@ -1526,18 +1533,23 @@ Again, this was another area where there was a large focus on during development
 	
 	This question received an average of 3.7 showing that most people felt that they did learn something. The three best performers of the game based on completion time all felt as though they did not learn anything giving it a score of 1. However, those who did not perform as well provided an average score of 4 showing that even though they might have struggled they did benefit from the game.
 	
+	\item  \textit {Riddles}
+	
+	Similarly to the pre game questionnaire there were again two riddles. The first, syllogism style riddle. This time 3 people got it wrong, including participants from both groups. The final riddle given to the participants was an incredibly challenging one, that saw only 3 people get the correct answer, again with from a mixture of the two groups. Overall, the four riddles did not add any avenues for analysis as they were all answered in such a similar manner by the vast majority of the participant.
+	
 \end{enumerate}
-
-
 
 \chapter{Conclusion}
 
-\section{Main findings}
+Overall the game was a success with the high level of engagement, enjoyment and educational effect that it achieved. It is fair to say that it is more suited to those with more mathematical experience as they will both enjoy and learn more. However it does have its benefits for others, as the results show that nearly everyone felt that they did learn something. 
 
+An increase in the number of levels, particularly early on would have helped ease the participants into the game more. The first few levels were very easy but the jump up to the syllogism levels was too abrupt. There was an attempt to mitigate against this, through both the tutorials and intermediate levels but this was not enough for those with little mathematical experience. 
 
-\section{What would have been done differently}
+The first few levels were essentially just very basic Venn diagrams that the participants would have experienced through their time in school. So it is understandable that these would have been possible to complete whilst the harder levels too far out of their reach due to the game not explaining the new ideas well enough.
 
-Whilst at the time the decision to use pure Canvas with no use of any libraries seemed a good choice, on reflection this appears not to be the case. The time spent implementing dragging and dropping, recognising when certain items were in certain places added a significant amount of time to development
+A more clear focus on the target audience of the game would have been of benefit. It could be said this game is trying to cater to both ends of the spectrum, in such a way that it is both too difficult for some and too easy for others. By having a more defined group of people for who the game is designed for then a more focussed approach to teaching could have been used.
+
+From a technical perspective there are a number of things that would have been done differently if this game was developed again. Whilst at the time the decision to use pure Canvas with no use of any libraries seemed a good choice, on reflection this appears not to be the case. The time spent implementing dragging and dropping, recognising when certain items were in certain places added a significant amount of time to development
 
 If this project was done over there would definitely have been a more thorough investigation into the benefits of using the multiple Canvas libraries including trying a few of them out to see how they could have simplified the process. 
 
@@ -1546,7 +1558,7 @@ As it stood, with the game not relying heavily on animations it was felt that th
 It is also possible that using Canvas in the first place was the wrong technology, and that SVG would have been far more suitable for a game of this nature. Canvas' strengths lie in its performance and versatility in creating 3d immersive games. These strengths were never hugely relevant to a game of this style so might not have been the most suitable technology to use. Perhaps the longest amount of time developing the projects was on creating the tutorials for each level. The work was far less challenging than the algorithms needed to actually make the game mechanics work but drawing both text and arrows on the Canvas was a surprisingly length process. If SVG had been used instead it would have been far easier to structure the tutorial layouts with HTML and CSS which would have greatly reduced the time taken to implement them.
 
 
-\section{Further Development}
+\section{Further Developments}
 There are a number of further improvements that could be made to the game.
 
 
@@ -1562,4 +1574,215 @@ For this project Venn diagrams were the chosen method to represent syllogisms. A
 \bibliographystyle{plainnat}
 \bibliography{bibliography} 
 
+
+
+\begin{appendices}
+% the \\ insures the section title is centered below the phrase: AppendixA
+
+\begin{table}[!bp]
+  \centering
+
+  \rotatebox{90}{%
+    \begin{minipage}{0.99\textheight}
+      \def\arraystretch{1.2}
+      \small\centering
+      \setlength{\tabcolsep}{1.0mm}
+      \scriptsize
+      \centering
+      \caption{Time to complete level data}
+      \label{my-label}  
+      \begin{tabular}{l*{14}{r}}
+        id & level1time & level2time & level3time & level4times & level5time & level6time & level7time &  level8time & level9time&  level10time &  level11time & levelsSkipped & totalTime\\
+        \midrule
+       1 & 7 & 14 & 18 & 11 & 15 & 22 & 35 & 28 & 7 & 20 & 21 &  & 199 \\
+2 & 13 & 18 & 61 & 31 & 143 & 113 & 154 & 39 & 7 & 180 & 67 &  & 826 \\
+3 & 16 & 15 & 56 & 43 & 73 & 41 & 92 & 39 & 9 & 114 & 61 &  & 559 \\
+4 & 22 & 16 & 39 & 54 & 126 & 99 & 112 & 46 & 26 & 93 & 52 &  & 684 \\
+5 & 14 & 15 & 27 & 20 & 125 & 35 & 255 & 45 & 16 & 276 & 101 &  & 928 \\
+6 & 11 & 25 & 98 & 36 & 411 & 118 & 96 & 78 & 17 & 241 & 311 &  & 1442 \\
+7 & 15 & 18 & 49 & 30 & 286 & 220 & 115 & 69 & 12 & 93 & 44 &  & 951 \\
+8 & 17 & 22 & 63 & 39 & 387 & 43 & 234 & 109 & 51 & 187 & 124 &  & 1274 \\
+9 & 30 & 39 & 69 & 68 & 747 & 377 & 0 & 0 & 0 & 0 & 0 &  & 1330 \\
+10 & 29 & 29 & 67 & 116 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 5, 6, 7, 8, 9, 10, 11 & 240 \\
+11 & 193 & 14 & 34 & 42 & 197 & 94 & 52 & 78 & 45 & 4 & 3 & 6, 8, 10, 11 & 755 \\
+12 & 12 & 17 & 59 & 42 & 262 & 49 & 284 & 174 & 40 & 425 & 112 &  & 1475 \\
+13 & 20 & 24 & 80 & 48 & 541 & 169 & 172 & 115 & 310 & 179 & 192 &  & 1850 \\
+14 & 22 & 17 & 38 & 232 & 328 & 72 & 110 & 113 & 47 & 66 & 23 & 5, 7, 8, 10, 11 & 1068 \\
+15 & 49 & 55 & 0 & 113 & 420 & 67 & 229 & 15 & 0 & 0 & 0 & 5, 6, 7, 8, 9, 10, 11 & 947 \\
+16 & 38 & 40 & 132 & 73 & 1201 & 84 & 64 & 1 & 19 & 91 & 0 & 6, 7, 8, 10 & 1743 \\
+17 & 55 & 41 & 51 & 171 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 5, 6, 7, 8, 9, 10, 11 & 318 \\
+18 & 14 & 15 & 40 & 18 & 67 & 25 & 53 & 39 & 19 & 76 & 38 &  & 403 \\
+
+      \end{tabular}
+    \end{minipage}}
+\end{table}
+
+\begin{table}[!bp]
+  \centering
+
+  \rotatebox{90}{%
+    \begin{minipage}{0.99\textheight}
+      \def\arraystretch{1.2}
+      \small\centering
+      \setlength{\tabcolsep}{1.0mm}
+      \scriptsize
+      \centering
+      \caption{Moves to complete level data}
+      \label{my-label}  
+      \begin{tabular}{l*{13}{r}}
+        id & level1moves & level2moves & level3moves & level4movess & level5moves & level6moves & level7moves &  level8moves & level9moves&  level10moves & levelsSkipped & totalMoves\\
+        \midrule
+1 & 7 & 6 & 8 & 6 & 7 & 8 & 13 & 12 & 1 & 25 &  & 93 \\
+2 & 3 & 5 & 6 & 6 & 9 & 11 & 11 & 17 & 1 & 37 &  & 106 \\
+3 & 3 & 4 & 11 & 7 & 9 & 8 & 10 & 19 & 1 & 32 &  & 104 \\
+4 & 4 & 4 & 6 & 11 & 62 & 58 & 62 & 11 & 1 & 37 &  & 256 \\
+5 & 3 & 3 & 6 & 2 & 13 & 8 & 60 & 7 & 1 & 41 &  & 144 \\
+6 & 4 & 8 & 7 & 24 & 23 & 31 & 16 & 15 & 1 & 39 &  & 121 \\
+7 & 3 & 3 & 6 & 1 & 119 & 68 & 39 & 20 & 1 & 49 &  & 309 \\
+8 & 3 & 3 & 13 & 7 & 58 & 7 & 48 & 23 & 1 & 25 &  & 188 \\
+9 & 3 & 3 & 6 & 1 & 159 & 91 & 0 & 0 & 0 & 0 &  & 263 \\
+10 & 3 & 3 & 6 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 5, 6, 7, 8, 9, 10, 11 & 13 \\
+11 & 4 & 5 & 9 & 3 & 163 & 82 & 36 & 53 & 1 & 1 & 6, 8, 10, 11 & 357 \\
+12 & 4 & 4 & 7 & 11 & 109 & 22 & 144 & 107 & 1 & 264 &  & 673 \\
+13 & 3 & 4 & 11 & 1 & 6 & 16 & 19 & 11 & 56 & 41 &  & 168 \\
+14 & 3 & 4 & 10 & 36 & 149 & 14 & 36 & 30 & 1 & 18 & 5, 7, 8, 10, 11 & 301 \\
+15 & 3 & 6 & 7 & 3 & 19 & 11 & 22 & 1 &  &  & 5, 6, 7, 8, 9, 10, 11 & 72 \\
+16 & 3 & 4 & 13 & 6 & 134 & 63 & 41 & 1 & 1 & 14 & 6, 7, 8, 10 & 280 \\
+17 & 3 & 5 & 13 & 5 & 0 & 0 & 0 & 0 & 0 & 0 & 5, 6, 7, 8, 9, 10, 11 & 26 \\
+18 & 3 & 3 & 7 & 1 & 11 & 9 & 14 & 10 & 1 & 37 &  & 96 \\
+
+
+      \end{tabular}
+    \end{minipage}}
+\end{table}
+
+
+\FloatBarrier
+\textbf{Riddle 1}
+\begin{itemize}
+ \item All dentists are old
+ \item All French people are dentists
+\end{itemize}
+\begin{enumerate}
+  \item All French people are old
+  \item No French people are old
+  \item Some French people are not old
+  \item Don't know
+\end{enumerate}
+
+\textbf{Riddle 2}
+
+You're not allowed to drink before 18. You see four people in a bar: one with a coke, one with a beer, and a child and his grandfather (but you can't see what they're having). You can ask one person for ID, and one what they're drinking. Select the the person you would ID and the person who you would check what they are drinking.
+\begin{enumerate}
+  \item Person with coke
+  \item Person with a beer
+  \item Child
+  \item Grandfather
+  \item Don't know
+\end{enumerate}
+
+
+\textbf{Riddle 3}
+\begin{itemize}
+ \item All men are normal people 
+ \item All men are wine drinkers 
+\end{itemize}
+\begin{enumerate}
+  \item At least a part of the wine drinkers are normal people
+  \item None of the normal people are wine drinkers
+  \item None of the wine drinkers are normal people
+  \item Don't know
+\end{enumerate}
+
+\textbf{Riddle 4}
+
+Suppose I glue a number of playing cards back-to-back, with a face card on one side and a number on the other. I claim that I have glued every red face card to an odd-numbered card. You want to know if this is true. There are four cards on the table and you can only turn over two cards. Which ones do you pick?
+\begin{enumerate}
+  \item Ace of spades
+  \item Jack of hearts
+  \item Nine of diamonds
+  \item Six of hearts
+  \item Don't know
+\end{enumerate}
+\FloatBarrier
+
+\begin{table}[!bp]
+  \centering
+
+  \rotatebox{90}{%
+    \begin{minipage}{1\textheight}
+      \def\arraystretch{1.2}
+      \small\centering
+      \setlength{\tabcolsep}{1.0mm}
+      \scriptsize
+      \centering
+      \caption{Pre game questionnaire}
+      \label{my-label}  
+      \begin{tabular}{l*{7}{r}}
+       A-Level Maths? & Degree contains? &  I enjoy maths &  I enjoy puzzle games & Riddle 1 & Riddle 2 Choice 1 & Riddle 2 Choice 2\\
+        \midrule
+No & None of the above & 4 & 4 & All French people are old & Person with a beer & Child \\
+No & None of the above & 4 & 4 & All French people are old & Person with a beer & Child \\
+No & None of the above & 4 & 4 & All French people are old & Person with a beer & Child \\
+No & Stats & 2 & 4 & All French people are old & Child & Person with a beer \\
+No & Stats & 2 & 3 & All French people are old & Person with a beer & Grandfather \\
+No & None of the above & 2 & 2 & All French people are old & Person with a beer & Grandfather \\
+No & None of the above & 2 & 3 & All French people are old & Person with a beer & Child \\
+No & Stats, Excel & 2 & 4 & All French people are old & Person with a beer & Child \\
+No & None of the above & 3 & 4 & All French people are old & Person with a beer & Grandfather \\
+No & None of the above & 1 & 3 & All French people are old & Person with a beer & Child \\
+Yes & None of the above & 4 & 4 & All French people are old & Person with a beer & Child \\
+Yes & Stats, Pure maths, Computer programming & 4 & 5 & All French people are old & Person with a beer & Child \\
+Yes & None of the above & 4 & 5 & All French people are old & Person with a beer & Person with a coke \\
+Yes & All of above & 4 & 4 & All French people are old & Person with a beer & Grandfather \\
+Yes & Pure maths, Computer programming & 3 & 2 & All French people are old & Person with a beer & Child \\
+Yes & Stats, Pure maths, Computer programming & 5 & 5 & All French people are old & Person with a beer & Child \\
+Yes & Stats & 5 & 5 & All French people are old & Person with a beer & Child \\
+Yes & All of above & 5 & 4 & All French people are old & Person with a beer & Child \\
+Yes & All of above & 5 & 5 & All French people are old & Person with a beer & Child \\
+
+
+      \end{tabular}
+    \end{minipage}}
+\end{table}
+
+\begin{table}[!bp]
+  \centering
+
+  \rotatebox{90}{%
+    \begin{minipage}{1\textheight}
+      \def\arraystretch{1.2}
+      \small\centering
+      \setlength{\tabcolsep}{1.0mm}
+      \scriptsize
+      \centering
+      \caption{Post game questionnaire}
+      \label{my-label}  
+      \begin{tabular}{*{10}{p{1.8cm}}}
+        I think I did well at the game  &  I enjoyed playing the game  &  I found the game engaging  &  I found the game too difficult  &  I found the interface easy to use  &  The game ran smoothly with no issues  &  The game introduced concepts effectively  &  I learnt something new  & Riddle 3 & Riddle 4\\
+        \midrule
+4 & 4 & 5 & 3 & 4 & 5 & 5 & 4 & 1 & 1, 2 \\
+4 & 4 & 4 & 4 & 4 & 1 & 2 & 5 & 1 & 2, 3 \\
+4 & 4 & 4 & 3 & 4 & 2 & 5 & 4 & 1 & 2, 4 \\
+4 & 5 & 4 & 2 & 4 & 5 & 4 & 5 & 1 & 2, 3 \\
+4 & 5 & 5 & 3 & 4 & 5 & 5 & 4 & 1 & 2, 4 \\
+3 & 4 & 4 & 3 & 4 & 4 & 4 & 5 & 1 & 2, 3 \\
+3 & 4 & 2 & 5 & 4 & 4 & 4 & 4 & 1 & 2, 3 \\
+1 & 2 & 3 & 5 & 4 & 5 & 2 & 4 & 2 & 2, 3 \\
+1 & 2 & 2 & 5 & 3 & 4 & 4 & 3 & 1 & 1 \\
+2 & 3 & 4 & 3 & 2 & 2 & 4 & 4 & 1 & 2, 3 \\
+3 & 4 & 5 & 4 & 5 & 3 & 5 & 4 & 1 & 1, 2 \\
+1 & 2 & 4 & 4 & 4 & 4 & 4 & 4 & 1 & 2, 3 \\
+5 & 4 & 4 & 2 & 4 & 4 & 4 & 2 & 1 & 2, 3 \\
+4 & 5 & 5 & 2 & 4 & 4 & 5 & 1 & 1 & 2, 4 \\
+2 & 2 & 3 & 4 & 5 & 5 & 4 & 4 & 4 & 2, 3 \\
+2 & 4 & 4 & 5 & 5 & 2 & 4 & 4 & 1 & 1, 2 \\
+2 & 4 & 4 & 2 & 5 & 4 & 5 & 4 & 1 & 2, 3 \\
+4 & 4 & 5 & 1 & 4 & 1 & 4 & 1 & 1 & 5 \\
+4 & 4 & 5 & 3 & 5 & 5 & 5 & 4 & 2 & 4 \\
+
+      \end{tabular}
+    \end{minipage}}
+\end{table}
+\end{appendices}
 \end{document}
