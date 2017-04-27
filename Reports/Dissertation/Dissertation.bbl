@@ -1,4 +1,4 @@
-\begin{thebibliography}{35}
+\begin{thebibliography}{44}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -70,6 +70,13 @@ John Hattie and Helen Timperley.
 \newblock \emph{Review of educational research}, 77\penalty0 (1):\penalty0
   81--112, 2007.
 
+\bibitem[Hawksey(2014)]{hawksey_2014}
+Martin Hawksey.
+\newblock Google sheets as a database – insert with apps script using
+  post/get methods (with ajax example), Jul 2014.
+\newblock URL
+  \url{https://mashe.hawksey.info/2014/07/google-sheets-as-a-database-insert-with-apps-script-using-postget-methods-with-ajax-example/}.
+
 \bibitem[Hill(2016)]{hammerhill}
 Hammer Hill.
 \newblock Existential import.
@@ -105,6 +112,12 @@ Paul Kawachi.
   current state of the art.
 \newblock \emph{Interactive Learning Environments}, 11\penalty0 (1):\penalty0
   59--81, 2003.
+
+\bibitem[Kearney(2017)]{kearney_2017}
+Meggin Kearney.
+\newblock Measure performance with the rail model, Apr 2017.
+\newblock URL
+  \url{https://developers.google.com/web/fundamentals/performance/rail}.
 
 \bibitem[LaForge(2016)]{FlashInChrome}
 Anthony LaForge.
@@ -152,6 +165,12 @@ Keith Lumsden and Alex Scott.
 \newblock \emph{The Journal of Economic Education}, 19\penalty0 (4):\penalty0
   353--362, 1988.
 
+\bibitem[Mallone()]{mallone}
+William Mallone.
+\newblock Create a paint bucket tool in html5 and javascript.
+\newblock URL
+  \url{http://www.williammalone.com/articles/html5-canvas-javascript-paint-bucket-tool/}.
+
 \bibitem[Malone(1981)]{malone1981toward}
 Thomas~W Malone.
 \newblock Toward a theory of intrinsically motivating instruction.
@@ -168,11 +187,22 @@ David~R Michael and Sandra~L Chen.
 \newblock \emph{Serious games: Games that educate, train, and inform}.
 \newblock Muska \& Lipman/Premier-Trade, 2005.
 
+\bibitem[Mills(2017)]{mills_2017}
+Chris~David Mills.
+\newblock Window.localstorage, Mar 2017.
+\newblock URL
+  \url{https://developer.mozilla.org/en/docs/Web/API/Window/localStorage}.
+
 \bibitem[M{\"u}ller and Padberg(2003)]{muller2003return}
 Matthias~M M{\"u}ller and Frank Padberg.
 \newblock About the return on investment of test-driven development.
 \newblock In \emph{Edser-5 5 th international workshop on economic-driven
   software engineering research}, page~26, 2003.
+
+\bibitem[Nielsen(1994)]{nielsen1994usability}
+Jakob Nielsen.
+\newblock \emph{Usability engineering}.
+\newblock Elsevier, 1994.
 
 \bibitem[Oblinger et~al.(2005)Oblinger, Oblinger, and
   Lippincott]{oblinger2005educating}
@@ -199,6 +229,12 @@ Adam Ranfelt.
 \newblock URL
   \url{https://www.ibm.com/developerworks/library/wa-canvashtml5layering/}.
 
+\bibitem[Rice(2007)]{rice2007assessing}
+John~W Rice.
+\newblock Assessing higher order thinking in video games.
+\newblock \emph{Journal of Technology and Teacher Education}, 15\penalty0
+  (1):\penalty0 87, 2007.
+
 \bibitem[Smith(2016)]{sep-aristotle-logic}
 Robin Smith.
 \newblock Aristotle's logic.
@@ -212,10 +248,25 @@ Ian Sommerville.
 \newblock Addison-Wesley Longman Publishing Co., Inc., Boston, MA, USA, 2006.
 \newblock ISBN 0321313798.
 
+\bibitem[Spronck(2016)]{blindman67}
+Mark Spronck.
+\newblock Floodfill2d.
+\newblock \url{https://github.com/blindman67/FloodFill2D}, 2016.
+
+\bibitem[W3Schools(2017)]{2017}
+W3Schools.
+\newblock Browser statistics, Mar 2017.
+\newblock URL \url{https://www.w3schools.com/browsers/}.
+
 \bibitem[Zalta(1988)]{zalta1988basic}
 Edward~N Zalta.
 \newblock Basic concepts in modal logic.
 \newblock \emph{Center for the Study of Language and Information Publications},
   page~2, 1988.
+
+\bibitem[Zarate(2015)]{sheetrock}
+Chris Zarate.
+\newblock Sheetrock.js.
+\newblock \url{https://github.com/chriszarate/sheetrock}, 2015.
 
 \end{thebibliography}
