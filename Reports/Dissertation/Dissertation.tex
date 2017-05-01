@@ -126,6 +126,20 @@
       {]}{{{\color{delim}{]}}}}{1},
 }
 
+\makeatletter
+\renewenvironment{abstract}{%
+  \if@twocolumn
+    \section*{\abstractname}%
+  \else
+    \small
+    \begin{center}%
+      {\bfseries \abstractname\vspace{-.5em}\vspace{\z@}}%
+    \end{center}%
+    \quotation
+  \fi}
+  {\if@twocolumn\else\endquotation\fi}
+\makeatother
+
 \begin{document}
 \begin{titlepage}\centering
 \vspace*{\fill}
@@ -140,7 +154,10 @@
 
 \end{titlepage}
 
-\begin{titlepage}
+\pagenumbering{Roman}
+\newpage
+\clearpage
+\thispagestyle{plain}
 \vspace*{\fill}
 
 
@@ -177,44 +194,72 @@ Signed:
 
 \vspace*{\fill}
 
-\end{titlepage}
-
 
 
 \newpage
 \clearpage
-\thispagestyle{empty}
 \vspace*{\fill}
 \begin{center}
+\thispagestyle{plain}
 \begin{minipage}{.8\textwidth}
 This dissertation may be made available for consultation within the University
 Library and may be photocopied or lent to other libraries for the purposes of consultation.
 
 \end{minipage}
 \end{center}
-\vfill % equivalent to \vspace{\fill}
+\vfill
 \clearpage
 
-\begin{abstract}
+\newpage
+\clearpage
+\vspace*{\fill}
+\begin{center}
+\thispagestyle{plain}
+\begin{minipage}{.8\textwidth}
+\begin{center}
+\textbf{Abstract}
+\end{center}
+
 Research shows that the learning process can be enhanced through the use of serious, educational games. The focus of this dissertation was to build a web game that taught the basics of mathematical logic including Aristotle's syllogisms and set theory. This project was also concerned with designing a user experience and user interface necessary to create an immersive game. Whilst the technology used was not of primary importance some investigation was carried out on the tools available when creating web games.
-\end{abstract}
+\end{minipage}
+\end{center}
+\vfill
+\clearpage%
+
+\newpage
+\clearpage
+\vspace*{\fill}
+\begin{center}
+\thispagestyle{plain}
+\begin{minipage}{.8\textwidth}
+\begin{center}
+\textbf{Acknowledgements}
+\end{center}
+
+I would like to thank my project supervisor, Dr. Willem Heijltjes, for his advice and support throughout this project and everyone who participated and played the game that was created.
+
+\end{minipage}
+\end{center}
+\vfill
+\clearpage%
 
 \cleardoublepage
-\pagenumbering{gobble}
+
 \tableofcontents
+
 \cleardoublepage
 \pagenumbering{arabic}
-\setcounter{page}{1} %reset the page counter
+
 \chapter{Introduction}
-The term 'serious game' is broadly used to describe games created to educate people in industries such as education, military and engineering. Games have been used as a way to educate since the beginning of the 1900s with paper-based games seeing a popularity surge in the 1960s \citep{rice2007assessing}. The prevalence of computers in today's world has breathed new life in to this industry and there is again focus on the benefits of serious games.
+The term 'serious game' is broadly used to describe games created to teach people about a variety of topics in industries such as education, military and engineering. Games have been used as a way to educate since the beginning of the 1900s with paper-based games seeing a popularity surge in the 1960s \citep{rice2007assessing}. The prevalence of computers in today's world has breathed new life into this industry and there is again focus on the benefits of serious games.
 
 Aristotle was a philosopher, mathematician and student of Plato's who lived during the 4th century BCE in Ancient Greece. One area of Aristotle's work was on syllogisms, one of the first examples of formal logic.
 
 The aim of this project was to bring these two together and develop a web based serious game that can be used to teach people the basics of logic, set theory and syllogisms. The game aimed to be as accessible as possible with no pre-requisite knowledge of set theory. The aim was to introduce new concepts slowly and with adequate explanations in order to make create an effective tool for learning.
 
-This involved exploring the methods currently used to teach syllogisms, their shortcomings and how these methods can be improved upon. The reasons that make serious games so effective such as their accessibility, and motivating and engaging nature were also looked at. By combining this information a game was created to try and improve the current state of syllogism education.
+This involved exploring the methods currently used to teach syllogisms, their shortcomings and how these methods can be improved upon. The reasons that make serious games so effective such as their accessibility, and motivating and engaging nature were also looked at. By combining all of this information, a game was created to try and improve the current state of syllogism education.
 
-The game was designed with Venn diagrams as the chosen representation for syllogisms with dragging, dropping, and highlighting segments as the core mechanics behind the game. This was chosen as it was both the simplest way to depict syllogisms as well as one that would be the most familiar to users.
+Venn diagrams were chosen as the representation for syllogisms with dragging, dropping, and highlighting segments as the core mechanics behind the game. This option was chosen as it was both the simplest way to depict syllogisms as well as one that would be the most familiar to users.
 
 Once developed, an evaluation was carried out on a group of users to determine the effectiveness of the game's ability to teach about syllogisms. The results showed that participants with more mathematical experience performed better at the game. However, nearly all participants who played the game reported that they did successfully learn something and found the experience enjoyable and engaging. 
 
@@ -225,7 +270,7 @@ Once developed, an evaluation was carried out on a group of users to determine t
   \item Investigate why serious games are effective tools for learning
   \item Gather a list of requirements required in order to develop a successful serious game
   \item Design and develop the serious game
-  \item Evaluate the effectiveness and usability of the serious games
+  \item Evaluate the effectiveness and usability of the serious game
   \item Discuss future developments for the project
 \end{itemize}
 
@@ -701,9 +746,9 @@ As figure \ref{fig:mymaths} shows, MyMaths makes use of fast feedback to provide
 \FloatBarrier
 
 \subsubsection{BBC Bitesize}
-BBC Bitesize is a website maintained by the BBC (British Broadcasting Corporation) that provides resources for children in the United Kingdom on a variety of school subjects. Maths is one of their main focuses with both static content and a number of educational games. As such Bitesize has a large number of games available, with 11 Key Stage 1 games, 25 Key Stage 2 games and 4 Key Stage 3 games. Key Stages are a grouping of school years used in the United Kingdom, with Key Stage 1 being for ages 6-7 up to Key Stage 5 being for ages 17-18.
+BBC Bitesize is a website maintained by the BBC (British Broadcasting Corporation) that provides resources for children in the United Kingdom on a variety of school subjects. Maths is one of their main focuses with both static content and a number of educational games. Bitesize has a large number of games available, with 11 Key Stage 1 games, 25 Key Stage 2 games and 4 Key Stage 3 games. Key Stages are a grouping of school years used in the United Kingdom, with Key Stage 1 being for ages 6-7 up to Key Stage 5 being for ages 17-18.
 
-With such a large number of games it allows each one to be very focussed on the topic it is teaching. This is also a disadvantage as for simpler games there is only so much that can be done within a certain topic before the user will start to get bored. As a further criticism the vast majority of games remain at the same difficulty level throughout and fail to increase the challenge as the player becomes more proficient. This lack of challenge will lead to players losing interest. 
+With such a large number of games it allows each one to be very focussed on the topic it is teaching. This is also a disadvantage as for simpler games there is only so much that can be done within a certain topic before the user will start to get bored. As a further criticism, the vast majority of games remain at the same difficulty level throughout and fail to increase the challenge as the player becomes more proficient. This lack of challenge will lead to players losing interest. 
 
 From a technical perspective all of BBC Bitesize games are built using Adobe Flash. This is a serious accessibility problem with major browsers phasing out support for this ageing technology. Google's Android operating system and Apple's iOS do not support Adobe Flash  and as these games are targeted at school children and with the popularity of tablets and smartphones it possible that they are severely limiting how many people can play their games.
 
@@ -721,7 +766,7 @@ From the above examples a trend can be seen that shows that whilst there are an 
 
 \chapter{Requirements}
 \section{Introduction}
-As stated previously, the main aim of this project is to build an educational game to explain formal logic, mainly through the use of Aristotle's syllogisms. The following requirements are used as a guide for the project during development and to ensure the project remains on track. They are separated into functional and non-functional requirements. Functional requirements are concerned with how the game should behave in particular situations with relation to the its functionality. 
+As stated previously, the main aim of this project is to build an educational game to explain formal logic, mainly through the use of Aristotle's syllogisms. The following requirements are used as a guide for the project during development and to ensure the project remains on track. They are separated into functional and non-functional requirements. Functional requirements are concerned with how the game should behave in particular situations with relation to its functionality. 
 Non-functional requirements place constraints on how the game's functions will complete their tasks, often applying not just to individual functions but the system as a whole \citep{Sommerville:2006:SE:1196763}.
 
 \section{Sources}
@@ -729,7 +774,7 @@ Non-functional requirements place constraints on how the game's functions will c
 The main source of requirements is the work in the literature review. Areas such as accessibility, motivation and feedback were extensively researched and the findings have been used to influence these requirements. The discussion of existing serious games and in particular their advantages and disadvantages also provide a source to draw upon.
 
 \subsubsection{Project Supervisor}
-Dr. Willem Heijltjes, the supervisor for this project, has experience with overseeing the development of serious games. His opinion was given many times during the course of the project with regards to requirements, the direction of the project and and the content that should be included.
+Dr. Willem Heijltjes, the supervisor for this project, has experience with overseeing the development of serious games. His opinion was given many times during the course of the project with regards to requirements and the content that should be included.
 
  \section{Functional}
    \begin{enumerate}[label*=\arabic*]
@@ -781,7 +826,7 @@ A leaderboard showing how the user performed compared to other people who played
            
 
             	  \item \textbf{The user must be able to save the game.}\\
-There should be the functionality for the user to save their place in the game so they can return to it at a later date. This could be useful if the user is interrupted whilst playing the game so they can return to it at a later date and carry on playing from where they left off.
+There should be the functionality for the user to save their place in the game so they can return to it at a later date. This could be useful if the user is interrupted whilst playing the game so they can return to it and carry on playing from where they left off.
             
 
             
@@ -791,7 +836,7 @@ There should be the functionality for the user to save their place in the game s
          \section{Non-functional}
    \begin{enumerate}[label*=\arabic*]
             \item \textbf{It must be possible to play the game on all major browsers}\\
-            This requirement is imperative as accessibility is one of the reasons behind building a web based game. It is important to have a consistent experience across all browsers to not detract from the experience of playing the game. The browsers targeted will be current list of browsers as maintained by W3Schools \citep{2017}. As most minor browsers are built using the same underlying technology as one of the major ones, provided it works on all of the most popular ones there is a very high chance it will work on the minor ones.    
+            This requirement is imperative as accessibility is one of the reasons behind building a web based game. It is important to have a consistent experience across all browsers to not detract from the experience of playing the game. The browsers targeted will be the current list of most used browsers as maintained by W3Schools \citep{2017}. As most minor browsers are built using the same underlying technology as one of the major ones, provided it works on all of the most popular ones there is a very high chance it will work on the minor ones.    
             
             
                          \item \textbf{The game must have an elegant user interface}\\
@@ -799,7 +844,7 @@ It is important to not crowd the users with an excessive number of buttons and o
             
                         
                          \item \textbf{The game must appear smooth to the user}\\
-When creating applications that a user interacts with it is important to consider the delays taken between the user interacting with the system to the result being shown on screen. For the game to appear to run without delay, it would ideally react to user input within 100ms. \citep{nielsen1994usability} explains a delay of less than 100ms will give the user the feeling of the system reacting instantaneously. A delay of longer than 100ms can lead to the user losing their focus on the task and can require feedback from the system informing the user of the delay. User experience guidelines published by Google delve further into this area and say that 16ms is the maximum response time for animations \citep{kearney_2017}. As this system is a game, that will heavily feature animations, this is important to consider.            
+When creating applications that a user interacts with it is important to consider the delays taken between the user interacting with the system to the result being shown on screen. For the game to appear to run without delay, it would ideally react to user input within 100ms. \cite{nielsen1994usability} explains a delay of less than 100ms will give the user the feeling of the system reacting instantaneously. A delay of longer than 100ms can lead to the user losing their focus on the task and can require feedback from the system informing the user of the delay. User experience guidelines published by Google delve further into this area and say that 16ms is the maximum response time for animations \citep{kearney_2017}. As this system is a game, that will heavily feature animations, this is important to consider.            
             
              \item \textbf{There must be an initial prototype of the game}\\
             Following an agile methodology when carrying out software development requires the application to be built incrementally. A minimum viable product should be built and then features continually added. By using this approach when developing the game it will mean that there will be an initial prototype that can be used to gather user feedback. Supervisor feedback can also be given to steer the project in the right direction and anything that needs to be added can be picked up at the development phase before full user testing takes place.
@@ -824,12 +869,12 @@ The game is styled in a drag and drop puzzle format that requires the player to 
 By having users drag, drop and fill in sections of the circles it creates an interactive experience. This leads to the users experimenting, exploring the interface and having the freedom to make mistakes when trying to complete the levels.
 
 \subsubsection{Tutorials}
-There will be a number of tutorials throughout the game and so there must be a clear and consistent structure to them. By making it obvious to that player when a tutorial is happening it will remind them to play close attention as it will mean new ideas are about to be introduced. The structure of the tutorials will involve instructions and information being displayed on screen with relevant areas highlighted to the user. Forwards and backwards buttons are present at either side of the screen for the user to navigate their way through the tutorials. 
+There will be a number of tutorials throughout the game and so there must be a clear and consistent structure to them. By making it obvious to the player when a tutorial is happening the player will be reminded to pay close attention. The structure of the tutorials will involve instructions and information being displayed on screen with relevant areas highlighted to the user. Forwards and backwards buttons are present at either side of the screen for the user to navigate their way through the tutorials. 
 
 \subsubsection{Level Design}
 It is very important to design the levels with the correct level of difficulty. If the game starts off too hard it would demotivate the player and stop them from wanting to play. Conversely, if the game is too easy and does not introduce harder concepts as the levels progressed there would be no challenge to keep the player interested.
 
-The general idea is to initially have very simple levels that introduce the mechanisms and controls for how the game worked. These simple levels can then also act as a refresher on Venn diagrams and other simpler set theory ideas.
+The general idea is to initially have very simple levels that introduce the mechanisms and controls for how the game works. These simple levels can then also act as a refresher on Venn diagrams and other simpler set theory ideas.
 
 After this there will be a number of syllogism levels. The first one will be structured with a very tutorial heavy focus. Every step of process from dragging the words into the correct circles to completing the syllogism line by line will be aided by the tutorial system guiding the user through the process. After the tutorial the syllogisms will get progressively harder with less assistance from the system.
 
@@ -848,7 +893,7 @@ The goal of the user interface was to be as simple as it possibly could be whils
 \FloatBarrier
 
 \section{Control Bar}
-There are a number of on screen controls that need to be present at all times. A control bar that remains consistent both in its placement and options available throughout the game will stop the user from feeling confused and allow them to be confident when interacting with it. The icons chosen were important as there would be no labelling of them so there functionality would have to be shown purely through how they looked. The icons chosen are based on Google's Material Design icons. The choice of icons will hopefully be familiar enough to users that their functionality is obvious.
+There are a number of on screen controls that need to be present at all times. A control bar that remains consistent both in its placement and options available throughout the game will stop the user from feeling confused and allow them to be confident when interacting with it. The icons chosen were important as there would be no labelling of them so their functionality would have to be shown purely through how they looked. The icons chosen are based on Google's Material Design icons. The choice of icons will hopefully be familiar enough to users that their functionality is obvious.
 
 \begin{figure}[h]
 \centering
@@ -859,7 +904,7 @@ There are a number of on screen controls that need to be present at all times. A
 \FloatBarrier
 
 \section{Technologies}
-There is no choice but to use certain technologies must be used when developing web applications but there are some areas where there is a selection. The following discusses what technologies will be used in order to create the game and a discussion on the potential options available where a choice is available. 
+Some technologies are forced upon the developer when creating web applications but there are some areas where there is a selection. The following discusses what technologies will be used in order to create the game and a discussion on the potential options available. 
 
 \subsection{HTML}
 HTML (Hyper Text Markup Language) is a markup language that describes the structure of web pages. Websites created with HTML are then able to be viewed by a web browser. HTML uses tags to tell the web browser how to display certain content with support for links, pictures and video. HTML is only used to define the content of a web page and not how it should be formatted for the end user.
@@ -876,18 +921,19 @@ Initially the web was made up of sites built using HTML and CSS serving static c
 There are three potential choices when making a web based game - Adobe Flash, SVG and Canvas. Adobe Flash has been around for the longest, being released in 1996, and became hugely popular in the early 2000s as both a medium to play videos and make games. In 2001 SVG (Scalable vector graphics) was released as alternative, followed by Canvas a few years later. The choice of which one to use depends on a number of factors and can greatly impact the development time, accessibility and appearance of a game. 
 
 \subsubsection{Flash}
-Adobe Flash allows games, animations and much more to be written using a subset of the JavaScript language, ActionScript. Due to its age it is a mature language and up until recently it was widely supported on all major platforms including the newest generation of video game console, PS4 and Xbox One. As of September 2016, Google Chrome, the world's most popular web browser began to block flash and request the user to enable it if needed \citep{FlashInChrome}. Flash is also completely unsupported on Apple's iOS and despite being briefly available for Android is also no longer supported. For these reasons it was decided that flash would not be used as the development language for this project.
+Adobe Flash allows games, animations and much more to be written using a subset of the JavaScript language, ActionScript. Due to its age it is a mature language and up until recently it was widely supported on all major platforms. As of September 2016, Google Chrome, the world's most popular web browser began to block flash and request the user to enable it if needed \citep{FlashInChrome}. Flash is also completely unsupported on Apple's iOS and despite being briefly available for Android is also no longer supported. For these reasons it was decided that flash would not be used as the development language for this project.
 
 
 \subsubsection{SVG}
 SVG (Scalable vector graphics) is a technology that was released in 2001. 
-It uses XML to define vector images that are retained by the browser. SVG is used with the <svg> tag and acts similarly to a <div> HTML tag. It acts on a higher level than Canvas, mentioned later, as objects are stored and remembered in the DOM. This means that all objects created are remembered by the DOM meaning they can be kept track of much easier and natively handle events such as mouse clicks.
+It uses XML to define vector images that are retained by the browser. SVG is used with the <svg> tag and acts similarly to a <div> HTML tag. It acts on a higher level than Canvas as objects are stored and remembered in the DOM. This means that all objects created are remembered by the DOM meaning they can be kept track of much easier and natively handle events such as mouse clicks.
 
 \subsubsection{Canvas}
 Canvas is a technology that was originally designed by Apple in 2004. It was later adopted as a web standard and included as part of HTML5, the current HTML standard introduced in 2014. By adding the <canvas> element to HTML it is possible to draw graphics using JavaScript. Canvas allows for the drawing of immediate mode graphics, meaning that once the pixels have been draw to the screen there is no record of these pixels maintained. In turn this means that any time something on the Canvas changes, everything needs to be redrawn. Canvas has been chosen for this project over Flash and SVG as it is the current cutting edge technology for building web games whilst providing a greater deal of flexibility over the other two.
 
 \subsubsection{Canvas Libraries}
-There are a large number of Canvas libraries out there that aim to simplify many aspects of using Canvas. Fabric.js, Paper.js, Easel.js and Phaser were all looked at with regards to being used in this project. The main features of these libraries include adding support for clicking and dragging objects on the Canvas, simplifying the drawing shapes and assist in animation.
+There are a large number of Canvas libraries out there that aim to simplify many aspects of using Canvas. Fabric.js, Paper.js, Easel.js and Phaser were all looked at with regards to being used in this project. The main features of these libraries include adding support for clicking and dragging objects on the Canvas, simplifying the drawing shapes and providing assistance in animation.
+
 The disadvantage of using these libraries is that they are more focussed on traditional games that rely heavily on animations and not the slower puzzle style that is being developed in this situation. They also abstract away the inner workings of Canvas and can add unnecessary complications to developing what is a reasonably simple game. For this reason it was decided to write the game with no libraries but to just use pure JavaScript.
 
 
@@ -910,7 +956,7 @@ One of the biggest optimisations that can be made to the Canvas environment is t
 
 
 
-\section{Clicking on items}
+\section{Clicking on items} \label{Clicking on items}
 As previously mentioned, Canvas uses immediate mode graphics to draw pixels to the screen that are forgotten about once they are drawn. In turn this means that recognising when a user clicks on an object is not something that is natively supported and must be implemented manually. 
 
 \begin{figure}[h]
@@ -968,7 +1014,7 @@ function imageClickedOn(x, y, movableTextArray) {
 
 \section{Dragging items}
 Dragging images and text around the screen is a core aspect of the gameplay.
-Firstly, when the user clicks on an image the algorithm above finds out which image was clicked on. The clicked on image array index is stored as well as a drag offset, which contains the exact location on the image that was actually clicked.
+Firstly, when the user clicks on an image the algorithm in section \ref{Clicking on items} finds out which image was clicked on. The image that was clicked on is then stored through its array index. A drag offset, which contains the exact location on the image that was actually clicked, is also stored.
 
 \begin{figure}[!h]
   \centering
@@ -985,7 +1031,7 @@ Firstly, when the user clicks on an image the algorithm above finds out which im
 \FloatBarrier
 
 
-When the user then moves their mouse the mouse move event is fired. This updates the x and y location of the image to the new mouse location minus the drag offset that was stored. This reason that a drag offset must be stored is that without it the dragging would always take place from the x,y coordinates of the image. So no matter where the user clicked on an imagine they would experience dragging from the origin.
+When the user then moves their mouse the mouse move event is fired. This updates the x and y location of the image to the new mouse location minus the drag offset that was stored. This reason that a drag offset must be stored is that without it the dragging would always take place from the x,y coordinates of the image. This would mean that regardless of where the user clicked on an image they would experience dragging from the origin.
 
 
 \begin{table}[ht]
@@ -1006,7 +1052,7 @@ When the user then moves their mouse the mouse move event is fired. This updates
 \end{table} 
 
 
-Every time the mouse is moved until it is released the x and y get updated and each time that happens everything on the screen needs to be redrawn. There are three ways to do this, setInterval, setTimeout and requestAnimationFrame. Initially, setTimeout was used as it is supported by all browsers. It works by calling a function every specified number of milliseconds. In table \ref{table:animatetest} the value 1000/60 is used as the interval at which to call the function as this represents 60 frames per second. However, there was often a noticeable amount of delay when lots of intensive tasks were being animated, especially on lower powered devices such as mobile phones.
+Every time the mouse is moved until it is released the x and y get updated and everything on the screen redrawn. There are three ways to do this, setInterval, setTimeout and requestAnimationFrame. Initially, setTimeout was used as it is supported by all browsers. It works by calling a function every specified number of milliseconds. In table \ref{table:animatetest} the value 1000/60 is used as the interval at which to call the function as this represents 60 frames per second. However, there was often a noticeable amount of delay when lots of intensive tasks were being animated, especially on lower powered devices such as mobile phones.
 
 Therefore, another solution needed to be found. requestAnimationFrame is an API provided by browsers that handle the drawing of animations for both Canvas and DOM-based changes. This allows the browser to perform a number of optimisations such as preventing unnecessary redraws, call pool multiple animations into a single redraw cycle and prevent animations from running on tabs that are not currently open. As table \ref{table:animatetest} shows, requestAnimationFrame is considerably faster than the other two options. Unfortunately, not all browsers support requestAnimationFrame meaning that a polyfill is needed that allows the browser to fall back to setInterval should requestAnimationFrame not be supported.
 
@@ -1069,7 +1115,7 @@ This algorithm works well but unfortunately has a few problems. Figure \ref{fig:
 \end{figure}
 \FloatBarrier
 
-	A solution was found by using the library FloodFill2D which implements a more sophisticated floodfill algorithm to specifically deal with the anti-aliasing issue \citep{blindman67}. This library allows a tolerance fade to be set that allows a soft edge to be created at boundaries. However, even that did not completely resolve the problem. In order to get a completely clean appearance to the floodfill more needed to be done. A new Canvas layer was created that sat on top of the one currently being used to draw the circles. This new layer would be used to draw identical circles with a thicker line width that would cover up the rough edges on the inner perimeter of the circle. This would not effect the floodfill as the algorithm only floodfills on one Canvas layer so has no knowledge of these new, wider diameter circles.
+	A solution was found by using the library FloodFill2D which implements a more sophisticated floodfill algorithm to specifically deal with the anti-aliasing issue \citep{blindman67}. This library allows a tolerance fade to be set that allows a soft edge to be created at boundaries. However, even that did not completely resolve the problem. In order to get a completely clean appearance to the floodfill more needed to be done. A new Canvas layer was created that sat on top of the one currently being used to draw the circles. This new layer would be used to draw identical circles with a thicker line width that would cover up the rough edges on the inner perimeter of the circle. This would not effect the floodfill as the algorithm only floodfills on one Canvas layer so has no knowledge of these new, thicker circles.
 	
 	\begin{figure}[h]
 \centering
@@ -1080,7 +1126,7 @@ This algorithm works well but unfortunately has a few problems. Figure \ref{fig:
 \FloatBarrier
 	
 	\section{Visual Feedback}
-As one of the big advantages to using games to educate is that they can provide the user with immediate feedback it was important to try to incorporate this where possible. There are a number of ways that this have been achieved in this game. When placing items in the circle, a check is performed to ensure that the placement is valid and if so highlights the circle in green. This immediately shows the user that they have made a correct move.  This is done by checking each premise is inside the same circle as another premise. If the premise is in its own circle then a new, green circle is drawn over the top to indicate a valid placement and remains highlighted until the user releases their mouse.
+As one of the big advantages to using games to educate is that they can provide the user with immediate feedback it was important to try to incorporate this where possible. There are a number of ways that this has been achieved in this game. When placing items in the circle, a check is performed to ensure that the placement is valid and if so highlights the circle in green. This immediately shows the user that they have made a correct move.  This is done by checking each premise is inside the same circle as another premise. If the premise is in its own circle then a new, green circle is drawn over the top to indicate a valid placement and remains highlighted until the user releases their mouse.
 
 \begin{minipage}{\linewidth}
 \begin{lstlisting}[language=JavaScript]
@@ -1113,7 +1159,7 @@ function checkPremiseAllInTheirOwnCircle() {
 \end{figure}
 \FloatBarrier
 
-Other feedback includes changing the font colour of the statements. When completing the syllogism levels there are 3 statements that must be made true; the major premise, the minor premise and the conclusion. When the user makes any of these three true the words font colour of the sentence changes to green.
+Other feedback includes changing the font colour of the statements. When completing the syllogism levels there are 3 statements that must be made true; the major premise, the minor premise and the conclusion. When the user makes any of these three true the font colour of the sentence changes to green.
 
 
 \begin{figure}[h]
@@ -1129,11 +1175,11 @@ Other feedback includes changing the font colour of the statements. When complet
 \section{Undo and Redo}
 As Canvas does not maintain any record of drawings on the canvas there is no in-built functionality that allows a user to undo or redo an action. 
 
-There are two ways this can be done; storing everything that is drawn on the canvas in a stack or capturing the screen as a image and using that image to redraw the canvas. Both options were investigated to see which was the best.
+There are two ways this can be done, storing everything that is drawn on the canvas in a stack or capturing the screen as a image and using that image to redraw the canvas. Both options were investigated to see which was the best.
 
-Tests were ran on the execution time of both saving the entire canvas image and using a data structure to store the game state. Saving the entire canvas as an image took 16 milliseconds whilst adding the game state to a stack was 160 times faster, taking just 0.1 milliseconds. Despite 16 milliseconds being an acceptable amount of time for an action to take, when combined with other functions that must also run the performance can be impacted. Also as the number of moves increases the number of canvas images that must be stored increases leading to memory issues on certain browsers. Another issue with using the image method is that whilst the canvas will revert to its previous image, the underlying state of the game will be incorrect. This is not an issue when using the stack method as the entire state of the game is stored.
+Tests were ran on the execution time of both options. Saving the entire canvas as an image took 16 milliseconds whilst adding the game state to a stack was 160 times faster, taking just 0.1 milliseconds. Despite 16 milliseconds being an acceptable amount of time for an action to take, when combined with other functions that must also run the performance can be impacted. Also as the number of moves increases the number of canvas images that must be stored increases leading to memory issues on certain browsers. Another issue with using the image method is that whilst the canvas will revert to its previous image, the underlying state of the game will be incorrect. This is not an issue when using the stack method as the entire state of the game is stored.
 
-The best option was every time a move is made, the current state of all the objects is stored in a data structure and pushed to the stack. Despite there being many different objects on the Canvas, the only ones that the user can interact with is the movable text, which can be dragged around, and filling in the circles. Therefore the current state of the game can be represented as
+Every time a move is made, the current state of all the objects are stored in a data structure and pushed to the stack. Despite there being many different objects on the Canvas, the only changes the user can make to the canvas is the location of the movable text and the flood filled sections. Therefore the current state of the game can be represented as
  
 \begin{minipage}{\linewidth}
 \begin{lstlisting}
@@ -1145,10 +1191,10 @@ var GameState = function (movableTextArray, clickedInArray) {
 \end{minipage}
 
  When the user presses the undo button, the top object in the stack is popped and everything is redrawn. 
-Redo works in a similar manner, with any time an undo is performed the GameState object popped from the undo stack is added to a redo stack. The undo and redo buttons then can push and pop from their respective stacks allowing the user to go back and forth between their moves.
+Redo works in a similar manner, as time an undo is performed the GameState object is popped from the undo stack is added to a redo stack. The undo and redo buttons then can push and pop from their respective stacks allowing the user to go back and forth between their moves.
 
 \section{Recognising when level is complete}
-With the user being able to drag the premises in to any circle of their choosing it means that there are multiple ways that a completed level can be represented.
+With the user being able to drag the premises into any circle of their choosing it means that there are multiple ways that a completed level can be represented.
 Therefore, it is crucial that the game is able to recognise any valid arrangement of a completed level.
 
 \begin{figure}[!h]
@@ -1316,13 +1362,7 @@ if (circlesNeeded === 3) {
 \end{lstlisting}
 \end{minipage}
 
-This allows the user interface to look exactly the same across all screen resolutions. Canvas is also supported by Android and iOS browsers but some changes must be made to actually make it work for touchscreen devices. Touch events must be defined to handle the user touching the screen and dragging their finger along the screen. This is relatively straightforward when using jQuery as event handlers for these type of interactions are provided. For example, the user touching the screen is handled by the following:
-
-\begin{minipage}{\linewidth}
-\begin{lstlisting}[language=JavaScript]
-$(window).bind('touchstart', function (jQueryEvent)
-\end{lstlisting}
-\end{minipage}
+This allows the user interface to look exactly the same across all screen resolutions. Canvas is also supported by Android and iOS browsers but some changes must be made to actually make it work for touchscreen devices. Touch events must be defined to handle the user touching the screen and dragging their finger along the screen. This is relatively straightforward when using jQuery as event handlers for these type of interactions are provided.
 
 
 
@@ -1331,7 +1371,7 @@ $(window).bind('touchstart', function (jQueryEvent)
 \chapter{Testing}
 
 \section{Test Driven Development}
-Test Driven Development is a process that involves incrementally developing software by writing unit tests before any functional code is written. The following process covers how to use test driven development when writing unit tests. A unit test aims to take the smallest piece of testable code from an application and test it in isolation from the rest of the code. 
+Test Driven Development is a process that involves incrementally developing software by writing unit tests before any functional code is written. The following process covers how to use test driven development when writing unit tests. A unit test aims to take the smallest piece of testable code from an application and test it in isolation. 
 
 \begin{itemize}
    \item Write a unit test
@@ -1380,11 +1420,11 @@ The main advantage of writing integration tests are that it can find issues that
 
 An example integration test written for this project was to test that saving the game object to the database worked correctly, and it could also be retrieved to populate the leaderboard. This was an important test to write as the participant data gained would be used in the evaluation. If there were any issues it would result in the data being lost which would in turn impact the analysis that could be carried out on the effectiveness of the game. 
 
-The library used to save data to the Google Sheets database only can only send POST requests and has no support for DELETE. Due to this it was not possible to delete the entries made when running the tests. This means that a second test database was created as to not interfere with the production database that was used for the leaderboard. 
+The library used to save data to the Google Sheets database can only send POST requests and has no support for DELETE. Due to this it was not possible to delete the entries made when running the tests. This means that a second test database was created as to not interfere with the production database that was used for the leaderboard. 
 
 Integration tests tend to be harder to write due to the interactions between the different parts of the code and this example was no exception. Due to the asynchronous nature of both adding to and reading from the database the assertions of the tests cannot be run until all the AJAX calls have successfully completed. 
 
-This is not completely straightforward to manage using the Jasmine framework, which supports asynchronous testing through the user of the \textit{done} keyword. Once an asynchronous call has completed the function \textit{done();} is called allowing the code to progress on. 
+This is not completely straightforward to manage using the Jasmine framework, which supports asynchronous testing through the use of the \textit{done} keyword. Once an asynchronous call has completed the function \textit{done();} is called allowing the code to progress on. 
 
 The test below works by inserting a new record in the database with a randomly generated ID, then that same ID is used to ensure that the record can be retrieved. A check is then done to ensure that this unique record is the only one returned. 
 
@@ -1431,7 +1471,7 @@ The next stage of the project was to carry out an assessment with users in order
 
 The experiment consisted of three parts that the participants were required to carry out in succession. The study included 18 participants made up of a wide variety of ages, academic backgrounds and mathematical experiences. 
 
- Across the two questionnaires, four riddle questions were asked to participants. The first riddle in each questionnaire closely resembled a syllogism in its sentential form, with the second being a more traditional style riddle. This provided another opportunity to try and find a link between performance in the game and how well participants would answer these questions. It was expected there would be more correct answers to the riddles in the post game questionnaire as participants would have just learnt about syllogisms. 
+Two questionnaires were completed, one before and one after the game had been played. Across the two questionnaires, four riddle questions were asked to participants. The first riddle in each questionnaire closely resembled a syllogism in its sentential form, with the second being a more traditional style riddle. This provided another opportunity to try and find a link between performance in the game and how well participants would answer these questions. It was expected there would be more correct answers to the riddles in the post game questionnaire as participants would have just learnt about syllogisms. 
 
 
 The questionnaires laid out a series of statements that the participants specified their level of agreement or disagreement using the following scale. 
@@ -1464,7 +1504,7 @@ The participants were were required to first complete a questionnaire to gauge h
 	\item Excel Spreadsheets
 	\item None of the above
 	
-As is clear to see in figure \ref{fig:typeOfMathsChart}, there is a significant divide between the two groups, most notable in the pure maths and computer programming section. Only three people group 2 have done a degree that contains any form of maths.
+As is clear to see in figure \ref{fig:typeOfMathsChart}, there is a significant divide between the two groups, most notable in the pure maths and computer programming section. Only three people from group 2 have done a degree that contains any form of maths.
 	
 \begin{figure}[h]
 \centering
@@ -1495,7 +1535,7 @@ As is clear to see in figure \ref{fig:typeOfMathsChart}, there is a significant 
 
 \subsection{Game}
 
-The participants were then required to play through the game, completing as many levels as they were able to. As mentioned in the requirements, the game will save both the time each level takes to complete as well as the number of moves each participant takes to complete each level. 
+The participants were then required to play through the game, completing as many levels as they were able to. As mentioned in the requirements, the game will save both the time each level takes to complete as well as the number of moves each participant makes. 
 
 Of the 18 participants, 11 people completed the game in its entirety without skipping any levels. Perhaps the most interesting observation from the results is the split in group 1 and group 2 in terms of how well they did at the game. All eight participants from group 1 completed the game with no skipped levels in an average time of 12 minutes and 29 seconds. On the other hand, only three out of ten people fully completed the game from group 2 taking an average of 25 minutes and 33 seconds.
 
@@ -1510,7 +1550,7 @@ Of the 18 participants, 11 people completed the game in its entirety without ski
 
 Figure \ref{fig:timeTakenIfCompletedLevel} shows the average time taken for each level but only includes times where the participant completed the level and did not skip it. As can be seen, the time was shorter for those who have done A level maths. The difference between average times varied significantly depending on the level. Level 5 sees a large increase in real terms, potentially as it is the first level that introduces a totally new concept to the participants - the syllogisms. Interestingly, level 1 also also takes group 2 participants over four times as long to complete. This is surprising as level 1 is a simple level that just requires three pictures to be dragged into a circle. This substantial difference in time between the two groups suggests that group 2 was less comfortable with the interface.
 
-A similar trend can be seen by the number of moves taken by the two separate groups, shown in figure \ref{fig:numberOfMovesIfCompletedLevel}. Again, the number of moves only includes participants who completed the level. The number of moves taken to complete level 11 was not recorded due to a technical issue. Level 5 again sees a massive jump in the number of moves it takes the group 2 to complete it. With this group taking on average over 100 moves to complete the level, this in isolation might lead to the assumption that they progressed purely by guessing randomly until they got the correct answer. However the following level, level 6, was almost exactly the same question as level 5 with the tutorial system providing much less assistance. But as figure  \ref{fig:timeTakenIfCompletedLevel} and \ref{fig:numberOfMovesIfCompletedLevel} show, both the times and number of moves made for level 6 drop drastically. This implies that whilst initially the new concept took longer for the non mathematicians to grasp, once they had got over the initial hurdle they improved massively. This suggests that they did actually understand the concept and ideas behind the syllogisms. 
+A similar trend can be seen by the number of moves taken by the two separate groups, shown in figure \ref{fig:numberOfMovesIfCompletedLevel}. Again, the number of moves only includes participants who completed the level. The number of moves taken to complete level 11 was not recorded due to a technical issue. Level 5 again sees a massive jump in the number of moves it takes  group 2 to complete it. With this group taking on average over 100 moves to complete the level, this in isolation might lead to the assumption that they progressed purely by guessing randomly until they got the correct answer. However the following level, level 6, was almost exactly the same question as level 5 with the tutorial system providing much less assistance. But as figure  \ref{fig:timeTakenIfCompletedLevel} and \ref{fig:numberOfMovesIfCompletedLevel} show, both the times and number of moves made for level 6 drop drastically. This implies that whilst initially the new concept took longer for the non mathematicians to grasp, once they had got over the initial hurdle they improved massively. This suggests that they did actually understand the concept and ideas behind the syllogisms. 
 
 Similar jumps can be seen in level 7, 8 and 10 which can also be attributed to the fact that new concepts were being introduced.
 
@@ -1537,7 +1577,7 @@ Finally after playing the game there was a post-game questionnaire that asked ho
 	
 	\item  \textit {I found the game too difficult}
 	
-	Again a large split could be seen between those with maths experience and those without. The average of in group 2 was 4.2 showing that as a group they found the game very difficult. In comparison group 1 had a score of 2.3 meaning they did not find the game too hard.
+	Again a large split could be seen between those with maths experience and those without. The average in group 2 was 4.2 showing that as a group they found the game very difficult. In comparison group 1 had a score of 2.3 meaning they did not find the game too hard.
 	
 	\item  \textit {I found the game engaging}
 	
@@ -1545,7 +1585,7 @@ Finally after playing the game there was a post-game questionnaire that asked ho
 	
 	\item  \textit {I found the interface easy to use}
 
-Again, this was another area where there was a large focus on during development. This work on making the UI as simple as possible paid off as the score received was 4.1. A number of participants made comments that clicking and dragging items around the screen was too hard. This was due to the fact that the text, and therefore the hitbox, was slightly too small meaning the user had to be precise when clicking. This had a effect on the score for the interface usability. One participant also completed the game on a mobile device, giving the interface a score of 5. The participant remarked that it was slightly fiddly on a small screen but worked well.
+This was another area where there was a large focus during development. The work on making the UI as simple as possible paid off as the score received was 4.1. A number of participants made comments that clicking and dragging items around the screen was too hard. This was due to the fact that the text, and therefore the hitbox, was slightly too small meaning the user had to be precise when clicking. This had a effect on the score for the interface usability. One participant also completed the game on a mobile device, giving the interface a score of 5. The participant remarked that it was slightly fiddly on a small screen but worked well.
 	
 	\item  \textit {The game ran smoothly with no issues}
 	
@@ -1553,7 +1593,7 @@ Again, this was another area where there was a large focus on during development
 	
 	\item  \textit {The game introduced concepts effectively}
 	
-	This was the strongest attribute of the game, how well it introduced new ideas. Participants gave it on average 4, with only two participants giving it less than a 4.
+	This was the strongest attribute of the game scoring on average a 4, with only two participants giving it less than a 4.
 	
 	\item  \textit {I learnt something new}
 	
@@ -1561,7 +1601,7 @@ Again, this was another area where there was a large focus on during development
 	
 	\item  \textit {Riddles}
 	
-	Similarly to the pre game questionnaire the vast majority of participants answered in the same way. The first riddle three people got wrong, including participants from both groups. The final riddle given to the participants was an incredibly challenging one, that saw only three people get the correct answer, again with from a mixture of the two groups. 
+	Similarly to the pre game questionnaire the vast majority of participants answered in the same way. The first riddle three people got wrong, including participants from both groups. The final riddle given to the participants was an incredibly challenging one that saw only three people get the correct answer, again with a mixture of the two groups. 
 	
 \end{enumerate}
 
@@ -1573,11 +1613,11 @@ The user testing carried out gave an excellent opportunity to see the difficulti
 
 If more levels were added, the system that is currently in place would provide a way to look more deeply at where the problem lies when learning about syllogisms. Currently, the data collected shows that participants began to struggle when the syllogisms were added, but if the game was changed to increase the difficulty more slowly through a greater number of levels it would be possible to more accurately pin point what people are struggling with. This is deeper level of analysis is something that would not be possible through more traditional learning styles, so is a huge benefit of using a serious game.
 
-A surprising aspect of the questionnaire results was the number of participants who got the answers to the syllogism style riddle correct. As discussed in the literature review, both \cite{larkin1987diagram} and \cite{johnson1980mental} both found that sentential representation of syllogisms was an ineffective way for them to represented and reasoned about. This goes against what was found in this study, with participants being more capable of understanding about syllogisms in their text form. This could the result of a number of reasons, it is possible that the interface and tutorials did not make it clear what was being asked of participants. Participants might have been overwhelmed by being asked to both solve a riddle in the game whilst at the same time using a system and representation they are not familiar with. 
+A surprising aspect of the questionnaire results was the number of participants who got the answers to the syllogism style riddle correct. As discussed in the literature review, both \cite{larkin1987diagram} and \cite{johnson1980mental} both found that sentential representation of syllogisms was an ineffective way for them to be represented and reasoned about. This goes against what was found in this study, with participants being more capable of understanding about syllogisms in their text form. This could the result of a number of reasons, it is possible that the interface and tutorials did not make it clear what was being asked of participants. Participants might have been overwhelmed by being asked to both solve a riddle in the game whilst at the same time using a system and representation they are not familiar with. 
 
 A more clear focus on the target audience of the game would have been of benefit. It could be said this game is trying to cater to both ends of the spectrum, in such a way that it is both too difficult for some and too easy for others. By having a more defined group of people for who the game is designed for then a more focussed approach to teaching could have been used.
 
-From a technical perspective there are a number of things that would have been done differently if this game was developed again. Whilst at the time the decision to use pure Canvas with no use of any libraries seemed a good choice, on reflection this appears not to be the case. The time spent implementing dragging and dropping, recognising when certain items were in certain places added a significant amount of time to development.
+From a technical perspective there are a number of things that would have been done differently if this game was developed again. Whilst at the time the decision to use pure Canvas with no use of any libraries seemed a good choice, on reflection this appears not to be the case. The time spent implementing dragging and dropping and recognising when certain items were in certain places added a significant amount of time to development.
 
 If this project was done over there would definitely have been a more thorough investigation into the benefits of using the multiple Canvas libraries including trying a few of them out to see how they could have simplified the process. 
 
@@ -1593,11 +1633,11 @@ There are a number of further improvements that could be made to the game.
 
 
 \subsubsection{Level creator}
-A level creator could be added that allowed users to create their own levels. The infrastructure is already in place to facilitate this as levels are simply a JSON object. This means that it would be straightforward to create an online editor that allowed users to input their own JSON or modify existing JSON to add more levels. Adding levels through JSON might be too advanced for the average user so it could also be possible to use the existing graphical interface to add new levels. By providing three blank circles and 3 blank text boxes the user build their own levels. 
+A level creator could be added that allowed users to create their own levels. The infrastructure is already in place to facilitate this as levels are simply a JSON object. This means that it would be straightforward to create an online editor that allowed users to input their own JSON or modify existing JSON to add more levels. Adding levels through JSON might be too advanced for the average user so it could also be possible to use the existing graphical interface to add new levels. By providing three blank circles and 3 blank text boxes the user could build their own levels. 
 
 
 \subsubsection{Alternative syllogism representations}
-For this project Venn diagrams were the chosen method to represent syllogisms. As a potential avenue to explore the game could be recreated using the alternative methods discussed in the literature review. The study could then be re-run with the multiple representations in order to determine which is the simplest and most effective. This would be done in a similar manner to the work carried out in this project, by measure the length of time to complete the levels and asking for participant feedback on the level of difficulty.
+For this project Venn diagrams were the chosen method to represent syllogisms. As a potential avenue to explore the game could be recreated using the alternative methods discussed in the literature review. The study could then be re-run with the multiple representations in order to determine which is the simplest and most effective. This would be done in a similar manner to the work carried out in this project, by measuring the length of time to complete the game  and asking for participant feedback on the level of difficulty.
 
 
 
