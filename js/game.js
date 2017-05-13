@@ -951,3 +951,46 @@ if (retrievedObject != null) {
 }
 
 document.getElementById("playerInputId").value = retrievedObject.playerName;
+
+
+function extendedEuclideanAlgorithm(a,b){
+    var initialA = a;
+    var a = a;
+    var b = b;
+    var q = Math.floor(a/b);
+    var r = a-(q*b);
+    var sold = 1;
+    var s = 0;
+    var told = 0;
+    var t = 1;
+    var tnew;
+    var snew;
+
+    var roundCounter = 0;
+
+    while(r>0){
+        roundCounter++;
+        console.log("-----------------------------------------------------------")
+        console.log("Beginning round: " + roundCounter);
+        tnew = told-(q*t);
+        told = t;
+        t = tnew;
+        console.log("Tnew = " + tnew + ", Told = " + told + ", t = " + t);
+        snew = sold-(q*s);
+        sold = s;
+        s = snew;
+        console.log("Snew = " + snew + ", Sold = " + sold + ", s = " + s);
+        a = b;
+        b = r;
+        q = Math.floor(a/b);
+        r = a-(q*b);
+        console.log("a = " + a + ", b = " + b + ", q = " + q + ", r = " + r);
+        console.log("-----------------------------------------------------------")
+    }
+    console.log(t)
+    if(t < 0){
+        t = initialA - Math.abs(t);
+    }
+    console.log(t);
+
+}
